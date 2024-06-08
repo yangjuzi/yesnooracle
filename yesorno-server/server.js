@@ -18,6 +18,13 @@ app.post('/generate-answer', (req, res) => {
   res.json({ answer });
 });
 
+console.log("Current directory:", __dirname);
+console.log("Index.html path:", path.join(__dirname, 'index.html'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // 如果上面的静态文件服务没有处理请求，则默认返回index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
