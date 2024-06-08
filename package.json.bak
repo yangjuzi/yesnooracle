@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "tailwindcss": "^3.4.3"
-  }
-     "scripts": {
-     "start": "node server.js",
-     "dev": "nodemon server.js" // 可选的开发环境启动命令
-   }
-}
