@@ -2,11 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "yesorno-server/server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
-    { "src": "/generate-answer", "dest": "/server.js" }
+    { "src": "/generate-answer", "dest": "yesorno-server/server.js" }
   ]
 }

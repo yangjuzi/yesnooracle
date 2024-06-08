@@ -1,15 +1,12 @@
-   {
-     "version": 2,
-     "builds": [
-       {
-         "src": "server.js",
-         "use": "@vercel/node"
-       }
-     ],
-     "routes": [
-       { "src": "/(.*)", "dest": "/server.js" }
-     ],
-     "env": {
-       
-     }
-   }
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "yesno-server/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/generate-answer", "dest": "yesorno-server/server.js" }
+  ]
+}
