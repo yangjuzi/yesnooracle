@@ -4,9 +4,14 @@
     {
       "src": "yesorno-server/server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
-    { "src": "/generate-answer", "dest": "yesorno-server/server.js" }
+    { "src": "/generate-answer", "dest": "yesorno-server/server.js" },
+    { "src": ".*", "dest": "index.html" } 
   ]
 }
