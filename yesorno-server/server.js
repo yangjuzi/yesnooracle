@@ -21,14 +21,14 @@ app.post('/generate-answer', (req, res) => {
 console.log("Current directory:", __dirname);
 console.log("Index.html path:", path.join(__dirname, 'index.html'));
 
+const rootDir = path.resolve(__dirname, '..'); // 上一级目录，即项目根目录
+// 或者如果index.html就在server.js同级目录，保持原样即可，无需改变
+
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(rootDir, 'index.html'));
 });
 
-// 如果上面的静态文件服务没有处理请求，则默认返回index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
