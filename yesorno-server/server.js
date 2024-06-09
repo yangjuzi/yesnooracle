@@ -10,7 +10,7 @@ app.use(cors());
 
 // 设置静态文件目录，这里假设index.html位于根目录下
 
-app.use(express.static(path.join(__dirname, '')));
+app.use(express.static(path.join(__dirname, 'static')));
 
 // 处理POST请求到/generate-answer
 app.post('/generate-answer', (req, res) => {
@@ -18,17 +18,14 @@ app.post('/generate-answer', (req, res) => {
   res.json({ answer });
 });
 
-console.log("Current directory:", __dirname);
-console.log("Index.html path:", path.join(__dirname, 'index.html'));
 
-const rootDir = path.resolve(__dirname, '..'); // 上一级目录，即项目根目录
-// 或者如果index.html就在server.js同级目录，保持原样即可，无需改变
 
+// 处理所有GET请求以返回index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(rootDir, 'index.html'));
+  res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3008;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
