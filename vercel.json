@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 2.1,
   "builds": [
     {
       "src": "server.js",
@@ -8,6 +8,7 @@
   ],
   "routes": [
     { "src": "/generate-answer", "dest": "server.js" },
+    { "src": "/122", "dest": "yes-no-button.html" },
     { "src": "/(.*)", "dest": "static/index.html" }
   ]
 }
