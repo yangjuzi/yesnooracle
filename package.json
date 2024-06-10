@@ -8,13 +8,14 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
-    
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.19.2"
+    
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+   
   },
   "author": "Your Name", 
   "license": "MIT" 
