@@ -9,6 +9,6 @@
   "routes": [
     { "src": "/generate-answer", "dest": "server.js" },
     { "src": "/122", "dest": "yes-no-button.html" },
-    { "src": "/(.*)", "dest": "static/index.html" }
+    { "src": "/(.*)", "dest": "public/index.html" }
   ]
 }
