@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yes No Oracle,yes or no oracle</title>
+    <meta name="description" content=" Yes No Oracle help you make decisions,answer your yes no questions">
+    <link rel="canonical" href="https://yesnooracle.dev/index.html" />
+    <!-- Favicon -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+<!-- 192x192 图标（通常用于 Android） -->
+<link rel="icon" sizes="192x192" href="/icon-192.png">
+
+<!-- 512x512 图标（用于 PWA 和 Android） -->
+<link rel="icon" sizes="512x512" href="/icon-512.png">
+
+<!-- 可遮罩的 192x192 图标（用于 Android 和 PWA） -->
+<link rel="icon" sizes="192x192" href="/icon-192-maskable.png" type="image/png">
+
+<!-- 可遮罩的 512x512 图标（用于 Android 和 PWA） -->
+<link rel="icon" sizes="512x512" href="/icon-512-maskable.png" type="image/png">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="#features" class="hover:text-purple-400 transition">Features</a>
+            <a href="#how-it-works" class="hover:text-purple-400 transition">How It Works</a>
+            <a href="#testimonials" class="hover:text-purple-400 transition">Testimonials</a>
+            <a href="#faq" class="hover:text-purple-400 transition">FAQ</a>
+          </div>
+          <div class="relative">
+            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="es">Español</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6 py-24 text-center">
+        <h1 class="text-5xl md:text-7xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+          Discover Your Destiny
+        </h1>
+        <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto">
+          Ancient wisdom meets modern technology. Our oracle combines Eastern mysticism, Western astrology, and advanced algorithms to guide your path.
+        </p>
+        <div class="max-w-2xl mx-auto bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+          <textarea id="question" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-4 mb-4 focus:outline-none focus:border-purple-400 transition" rows="3" placeholder="Ask your question..."></textarea>
+          <button id="oracle-button" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-lg text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg hover:shadow-purple-500/20">
+            Consult the Oracle
+          </button>
+          <div id="answer" class="mt-6 text-2xl font-cinzel hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-24 bg-black">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-cinzel text-center mb-16">Ancient Wisdom, Modern Insights</h2>
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="text-center p-6">
+            <div class="text-purple-400 text-4xl mb-4">☯</div>
+            <h3 class="text-xl font-semibold mb-4">I Ching Wisdom</h3>
+            <p class="text-gray-400">Ancient Chinese divination meets quantum algorithms</p>
+          </div>
+          <div class="text-center p-6">
+            <div class="text-purple-400 text-4xl mb-4">⭐</div>
+            <h3 class="text-xl font-semibold mb-4">Astrological Alignment</h3>
+            <p class="text-gray-400">Celestial influences guide your decisions</p>
+          </div>
+          <div class="text-center p-6">
+            <div class="text-purple-400 text-4xl mb-4">🔮</div>
+            <h3 class="text-xl font-semibold mb-4">Mystical Integration</h3>
+            <p class="text-gray-400">East meets West in perfect harmony</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 bg-gradient-to-b from-black via-purple-900/10 to-black">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-cinzel text-center mb-16">The Oracle's Process</h2>
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="text-2xl mb-4">1</div>
+            <h3 class="font-semibold mb-2">Ask Your Question</h3>
+            <p class="text-gray-400">Focus your energy and intent</p>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl mb-4">2</div>
+            <h3 class="font-semibold mb-2">Energy Alignment</h3>
+            <p class="text-gray-400">We connect with cosmic forces</p>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl mb-4">3</div>
+            <h3 class="font-semibold mb-2">Divine Consultation</h3>
+            <p class="text-gray-400">Ancient algorithms process your query</p>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl mb-4">4</div>
+            <h3 class="font-semibold mb-2">Receive Guidance</h3>
+            <p class="text-gray-400">Clear yes/no answer appears</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 bg-black">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-cinzel text-center mb-16">Voices of the Enlightened</h2>
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="bg-white/5 p-6 rounded-lg">
+            <p class="mb-4">"The accuracy of the oracle's guidance is uncanny. It helped me make a crucial business decision."</p>
+            <p class="text-purple-400">- Sarah Chen, Entrepreneur</p>
+          </div>
+          <div class="bg-white/5 p-6 rounded-lg">
+            <p class="mb-4">"I was skeptical at first, but the deep connection to ancient wisdom is evident in every answer."</p>
+            <p class="text-purple-400">- Michael Rodriguez, Life Coach</p>
+          </div>
+          <div class="bg-white/5 p-6 rounded-lg">
+            <p class="mb-4">"The perfect blend of Eastern and Western mysticism. This oracle understands nuance."</p>
+            <p class="text-purple-400">- Emma Thompson, Spiritual Guide</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-gradient-to-b from-black via-purple-900/10 to-black">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-cinzel text-center mb-16">Sacred Knowledge</h2>
+        <div class="max-w-3xl mx-auto space-y-8">
+          <div>
+            <h3 class="text-xl font-semibold mb-2">How accurate is the oracle?</h3>
+            <p class="text-gray-400">Our oracle combines ancient wisdom with modern technology, achieving remarkable accuracy through the synthesis of multiple divination methods.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">What types of questions work best?</h3>
+            <p class="text-gray-400">Clear, specific questions that can be answered with yes or no yield the most precise guidance. Focus your intent while asking.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">How does the oracle work?</h3>
+            <p class="text-gray-400">We integrate I Ching hexagrams, astrological positions, and numerology with quantum randomization to channel authentic answers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">© 2024 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
