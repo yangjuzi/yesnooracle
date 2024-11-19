@@ -55,23 +55,59 @@
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-purple-900/20 to-black">
-      <div class="container mx-auto px-6 py-24 text-center">
+      <div class="container mx-auto px-6 py-6 text-center">
         <h1 class="text-5xl md:text-7xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
           Oracle guide you.Yes or No?
         </h1>
         <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto">
           Please enter your question in the box below.</br>Click oracle button to get a yes or no response.
         </p>
-        <div class="max-w-2xl mx-auto bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
-          <textarea id="question" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-4 mb-4 focus:outline-none focus:border-purple-400 transition" rows="3" placeholder="Please enter your question"></textarea>
+        <div class="max-w-2xl mx-auto bg-white/5 backdrop-blur-lg rounded-lg p-4 shadow-2xl">
+          <textarea id="question" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-4 mb-4 focus:outline-none focus:border-purple-400 transition" rows="5" placeholder="Please enter your question"></textarea>
           <button id="oracle-button" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-lg text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg hover:shadow-purple-500/20">
             Oracle
           </button>
           <div id="answer" class="mt-6 text-2xl font-cinzel hidden"></div>
+          
+
+<!-- 新增的部分 -->
+
         </div>
       </div>
     </section>
+    
 
+<!-- 新增的部分 -->
+
+<section class="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-purple-900/20 to-black">
+  <div class="container mx-auto px-6 py-6  text-center">
+    <div class="max-w-2xl mx-auto bg-white/5 backdrop-blur-lg rounded-lg p-4 shadow-2xl">
+    <h2 class="text-3xl font-semibold mb-4">Top 20 Yes/No Questions</h2>
+    <ul class="list-disc pl-5">
+      <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Does he love me?">Does he love me?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Will I get the job?">Will I get the job?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Is this the right time to invest?">Is this the right time to invest?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Should I move to a new city?">Should I move to a new city?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Am I on the right path?">Am I on the right path?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Will I find love soon?">Will I find love soon?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Is now a good time to travel?">Is now a good time to travel?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Should I start a new hobby?">Should I start a new hobby?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Will I be successful?">Will I be successful?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Is my friend trustworthy?">Is my friend trustworthy?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Should I take that risk?">Should I take that risk?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Will I pass my exams?">Will I pass my exams?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Is this a good relationship?">Is this a good relationship?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Should I buy that item?">Should I buy that item?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Will I achieve my goals?">Will I achieve my goals?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Is it time to change jobs?">Is it time to change jobs?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Should I reach out to them?">Should I reach out to them?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Will I get a promotion?">Will I get a promotion?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Is my health improving?">Is my health improving?</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline question-link" data-question="Should i marry him?">Should i marry him?</a></li>
+    </ul></div>
+  </div>
+
+</section>
     <!-- Features -->
     <section id="features" class="py-24 bg-black">
       <div class="container mx-auto px-6">
@@ -184,7 +220,29 @@
     </div>
   </div>
 </footer>
+<script>
+  // 获取所有问题链接
+  const questionLinks = document.querySelectorAll('.question-link');
 
+  questionLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+          event.preventDefault(); // 阻止默认链接行为
+
+          // 获取问题文本
+          const question = this.getAttribute('data-question');
+
+          // 设置 textarea 的值
+          const textarea = document.getElementById('question');
+          textarea.value = question;
+
+          // 滚动到 textarea
+          textarea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+          // 额外的滚动调整，确保输入框可见
+          window.scrollBy(0, -1500); // 向上滚动150px，您可以根据需要调整这个值
+      });
+  });
+</script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
