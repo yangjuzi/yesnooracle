@@ -20,8 +20,57 @@ const translations = {
   }
 };
 
+// 生成问题的哈希值
+function hashQuestion(question) {
+  let hash = 0;
+  for (let i = 0; i < question.length; i++) {
+    const char = question.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return hash.toString();
+}
+
+// 获取存储的答案
+function getStoredAnswer(question) {
+  const questionHash = hashQuestion(question);
+  const storedData = localStorage.getItem(`oracle_${questionHash}`);
+  
+  if (storedData) {
+    const { answer, timestamp } = JSON.parse(storedData);
+    const now = new Date().getTime();
+    const oneDay = 24 * 60 * 60 * 1000; // 24小时
+    
+    // 检查答案是否在24小时内
+    if (now - timestamp < oneDay) {
+      return answer;
+    } else {
+      // 删除过期的答案
+      localStorage.removeItem(`oracle_${questionHash}`);
+    }
+  }
+  return null;
+}
+
+// 存储答案
+function storeAnswer(question, answer) {
+  const questionHash = hashQuestion(question);
+  const data = {
+    answer,
+    timestamp: new Date().getTime()
+  };
+  localStorage.setItem(`oracle_${questionHash}`, JSON.stringify(data));
+}
+
 // Oracle logic
-function getOracleAnswer() {
+function getOracleAnswer(question) {
+  // 先检查是否有缓存的答案
+  const storedAnswer = getStoredAnswer(question);
+  if (storedAnswer) {
+    return storedAnswer;
+  }
+  
+  // 如果没有缓存的答案，生成新的答案
   const mysticalFactors = {
     time: new Date().getTime(),
     moonPhase: Math.sin(new Date().getDate() / 30 * Math.PI),
@@ -29,7 +78,12 @@ function getOracleAnswer() {
   };
   
   const combinedEnergy = Object.values(mysticalFactors).reduce((a, b) => a + b, 0);
-  return combinedEnergy % 1 > 0.5 ? "Oracle Yes" : "Oracle No";
+  const answer = combinedEnergy % 1 > 0.5 ? "Oracle Yes" : "Oracle No";
+  
+  // 存储新生成的答案
+  storeAnswer(question, answer);
+  
+  return answer;
 }
 
 // DOM Elements
@@ -41,14 +95,15 @@ const languageSelect = document.getElementById('language-select');
 // Event Listeners
 if (oracleButton) {
   oracleButton.addEventListener('click', () => {
-    if (!questionInput.value.trim()) return;
+    const question = questionInput.value.trim();
+    if (!question) return;
     
     answerDiv.classList.remove('hidden');
     answerDiv.textContent = '';
     
     // Dramatic reveal
     setTimeout(() => {
-      const answer = getOracleAnswer();
+      const answer = getOracleAnswer(question);
       answerDiv.textContent = answer;
       
       // Add a class for styling the answer
