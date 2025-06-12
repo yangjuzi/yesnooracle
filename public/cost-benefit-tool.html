@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLS1QMH9GM');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cost-Benefit Analysis Tool - Yes No Oracle</title>
+    <meta name="description" content="Comprehensive cost-benefit analysis tool - calculate ROI, NPV, and financial impact of your decisions">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-4 sm:px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-xl sm:text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="text-purple-400">Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section class="min-h-screen pt-24 sm:pt-32 pb-16 sm:pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+          <!-- Back Button -->
+          <div class="mb-6 sm:mb-8">
+            <a href="/decision-making-tools.html" class="text-purple-400 hover:text-purple-300 transition text-sm sm:text-base">
+              ← Back to Decision Tools
+            </a>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-cinzel text-center mb-6 sm:mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Cost-Benefit Analysis
+          </h1>
+          
+          <p class="text-lg sm:text-xl text-center mb-12 sm:mb-16 text-gray-300 max-w-3xl mx-auto">
+            Quantify the financial impact of your decision by comparing costs and benefits over time.
+          </p>
+
+          <!-- Project Setup -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">Project Setup</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Project Name</label>
+                <input 
+                  type="text" 
+                  id="project-name"
+                  placeholder="e.g., Launch new product line"
+                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                >
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold mb-2">Time Period (Years)</label>
+                <select id="time-period" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 text-white">
+                  <option value="1">1 Year</option>
+                  <option value="2">2 Years</option>
+                  <option value="3" selected>3 Years</option>
+                  <option value="5">5 Years</option>
+                  <option value="10">10 Years</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold mb-2">Initial Investment ($)</label>
+                <input 
+                  type="number" 
+                  id="initial-investment"
+                  placeholder="0"
+                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                >
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold mb-2">Discount Rate (%)</label>
+                <input 
+                  type="number" 
+                  id="discount-rate"
+                  value="10"
+                  step="0.1"
+                  placeholder="10"
+                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                >
+                <p class="text-xs text-gray-400 mt-1">Used for calculating Net Present Value (NPV)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cost and Benefit Analysis -->
+          <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <!-- Costs Section -->
+            <div class="bg-red-900/20 backdrop-blur-lg rounded-lg p-6 sm:p-8 border border-red-500/20">
+              <div class="flex items-center mb-6">
+                <span class="text-3xl mr-3">💸</span>
+                <h2 class="text-xl sm:text-2xl font-semibold text-red-400">Costs</h2>
+              </div>
+              
+              <div class="space-y-4 mb-6">
+                <div class="grid grid-cols-3 gap-3">
+                  <input 
+                    type="text" 
+                    id="cost-name"
+                    placeholder="Cost item..."
+                    class="col-span-2 bg-black/50 border border-red-500/30 rounded-lg p-3 focus:outline-none focus:border-red-400 transition text-white text-sm"
+                  >
+                  <input 
+                    type="number" 
+                    id="cost-amount"
+                    placeholder="Amount"
+                    class="bg-black/50 border border-red-500/30 rounded-lg p-3 focus:outline-none focus:border-red-400 transition text-white text-sm"
+                  >
+                </div>
+                
+                <div class="grid grid-cols-3 gap-3">
+                  <select id="cost-frequency" class="bg-black/50 border border-red-500/30 rounded-lg p-3 text-white text-sm">
+                    <option value="one-time">One-time</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly" selected>Yearly</option>
+                  </select>
+                  
+                  <select id="cost-year" class="bg-black/50 border border-red-500/30 rounded-lg p-3 text-white text-sm">
+                    <option value="1">Year 1</option>
+                    <option value="2">Year 2</option>
+                    <option value="3">Year 3</option>
+                    <option value="all">All Years</option>
+                  </select>
+                  
+                  <button 
+                    id="add-cost"
+                    class="bg-red-600 text-white px-4 py-3 rounded-lg hover:bg-red-700 transition text-sm"
+                  >
+                    Add Cost
+                  </button>
+                </div>
+              </div>
+
+              <div id="costs-list" class="space-y-3 min-h-[200px] max-h-[300px] overflow-y-auto">
+                <p class="text-gray-500 italic text-sm">No costs added yet</p>
+              </div>
+              
+              <div class="mt-6 p-4 bg-red-900/30 rounded-lg">
+                <div class="flex justify-between items-center">
+                  <span class="font-semibold">Total Costs:</span>
+                  <span id="total-costs" class="text-xl font-bold text-red-400">$0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefits Section -->
+            <div class="bg-green-900/20 backdrop-blur-lg rounded-lg p-6 sm:p-8 border border-green-500/20">
+              <div class="flex items-center mb-6">
+                <span class="text-3xl mr-3">💰</span>
+                <h2 class="text-xl sm:text-2xl font-semibold text-green-400">Benefits</h2>
+              </div>
+              
+              <div class="space-y-4 mb-6">
+                <div class="grid grid-cols-3 gap-3">
+                  <input 
+                    type="text" 
+                    id="benefit-name"
+                    placeholder="Benefit item..."
+                    class="col-span-2 bg-black/50 border border-green-500/30 rounded-lg p-3 focus:outline-none focus:border-green-400 transition text-white text-sm"
+                  >
+                  <input 
+                    type="number" 
+                    id="benefit-amount"
+                    placeholder="Amount"
+                    class="bg-black/50 border border-green-500/30 rounded-lg p-3 focus:outline-none focus:border-green-400 transition text-white text-sm"
+                  >
+                </div>
+                
+                <div class="grid grid-cols-3 gap-3">
+                  <select id="benefit-frequency" class="bg-black/50 border border-green-500/30 rounded-lg p-3 text-white text-sm">
+                    <option value="one-time">One-time</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly" selected>Yearly</option>
+                  </select>
+                  
+                  <select id="benefit-year" class="bg-black/50 border border-green-500/30 rounded-lg p-3 text-white text-sm">
+                    <option value="1">Year 1</option>
+                    <option value="2">Year 2</option>
+                    <option value="3">Year 3</option>
+                    <option value="all">All Years</option>
+                  </select>
+                  
+                  <button 
+                    id="add-benefit"
+                    class="bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 transition text-sm"
+                  >
+                    Add Benefit
+                  </button>
+                </div>
+              </div>
+
+              <div id="benefits-list" class="space-y-3 min-h-[200px] max-h-[300px] overflow-y-auto">
+                <p class="text-gray-500 italic text-sm">No benefits added yet</p>
+              </div>
+              
+              <div class="mt-6 p-4 bg-green-900/30 rounded-lg">
+                <div class="flex justify-between items-center">
+                  <span class="font-semibold">Total Benefits:</span>
+                  <span id="total-benefits" class="text-xl font-bold text-green-400">$0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Financial Analysis Results -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">Financial Analysis</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              <div class="text-center p-4 bg-gradient-to-br from-purple-900/30 to-pink-900/20 rounded-lg">
+                <div class="text-2xl mb-2">💵</div>
+                <div class="text-sm font-semibold">Net Benefit</div>
+                <div id="net-benefit" class="text-xl font-bold text-purple-400">$0</div>
+              </div>
+              
+              <div class="text-center p-4 bg-gradient-to-br from-blue-900/30 to-purple-900/20 rounded-lg">
+                <div class="text-2xl mb-2">📊</div>
+                <div class="text-sm font-semibold">ROI</div>
+                <div id="roi" class="text-xl font-bold text-blue-400">0%</div>
+              </div>
+              
+              <div class="text-center p-4 bg-gradient-to-br from-green-900/30 to-teal-900/20 rounded-lg">
+                <div class="text-2xl mb-2">⏱️</div>
+                <div class="text-sm font-semibold">Payback Period</div>
+                <div id="payback-period" class="text-xl font-bold text-green-400">-</div>
+              </div>
+              
+              <div class="text-center p-4 bg-gradient-to-br from-yellow-900/30 to-orange-900/20 rounded-lg">
+                <div class="text-2xl mb-2">🎯</div>
+                <div class="text-sm font-semibold">NPV</div>
+                <div id="npv" class="text-xl font-bold text-yellow-400">$0</div>
+              </div>
+            </div>
+
+            <div id="analysis-insights" class="bg-black/30 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold mb-4">Financial Insights</h3>
+              <p class="text-gray-400">Add costs and benefits to see detailed financial analysis...</p>
+            </div>
+          </div>
+
+          <!-- Year-by-Year Breakdown -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-center">Year-by-Year Breakdown</h2>
+            <div id="yearly-breakdown" class="overflow-x-auto">
+              <p class="text-gray-400 text-center">Add costs and benefits to see yearly breakdown...</p>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center mb-8">
+            <button id="calculate-analysis" class="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+              Calculate Analysis
+            </button>
+            <button id="clear-all" class="w-full sm:w-auto border border-gray-500 text-gray-300 px-6 py-3 rounded-lg hover:bg-gray-500/20 transition">
+              Clear All
+            </button>
+            <button id="sample-project" class="w-full sm:w-auto border border-purple-400 text-purple-400 px-6 py-3 rounded-lg hover:bg-purple-400/20 transition">
+              Load Sample
+            </button>
+          </div>
+
+          <!-- Help Section -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">Understanding Financial Metrics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="font-semibold mb-3 text-purple-400">Key Metrics</h3>
+                <ul class="text-sm text-gray-300 space-y-2">
+                  <li><strong>ROI:</strong> Return on Investment = (Benefits - Costs) / Costs × 100%</li>
+                  <li><strong>NPV:</strong> Net Present Value considers time value of money</li>
+                  <li><strong>Payback Period:</strong> Time to recover initial investment</li>
+                  <li><strong>Net Benefit:</strong> Total benefits minus total costs</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-3 text-purple-400">Decision Guidelines</h3>
+                <ul class="text-sm text-gray-300 space-y-2">
+                  <li><strong>Positive NPV:</strong> Project creates value</li>
+                  <li><strong>ROI > 15%:</strong> Generally considered good</li>
+                  <li><strong>Shorter Payback:</strong> Lower risk, faster returns</li>
+                  <li><strong>Compare Alternatives:</strong> Choose highest NPV option</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 sm:py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center">
+          <div class="text-xl sm:text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Make financially informed decisions with confidence</p>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      let costs = [];
+      let benefits = [];
+
+      function addCost() {
+        const name = document.getElementById('cost-name').value.trim();
+        const amount = parseFloat(document.getElementById('cost-amount').value) || 0;
+        const frequency = document.getElementById('cost-frequency').value;
+        const year = document.getElementById('cost-year').value;
+        
+        if (!name || amount <= 0) return;
+        
+        costs.push({
+          name,
+          amount,
+          frequency,
+          year,
+          id: Date.now()
+        });
+        
+        // Clear inputs
+        document.getElementById('cost-name').value = '';
+        document.getElementById('cost-amount').value = '';
+        
+        updateCostsList();
+        calculateTotals();
+      }
+
+      function addBenefit() {
+        const name = document.getElementById('benefit-name').value.trim();
+        const amount = parseFloat(document.getElementById('benefit-amount').value) || 0;
+        const frequency = document.getElementById('benefit-frequency').value;
+        const year = document.getElementById('benefit-year').value;
+        
+        if (!name || amount <= 0) return;
+        
+        benefits.push({
+          name,
+          amount,
+          frequency,
+          year,
+          id: Date.now()
+        });
+        
+        // Clear inputs
+        document.getElementById('benefit-name').value = '';
+        document.getElementById('benefit-amount').value = '';
+        
+        updateBenefitsList();
+        calculateTotals();
+      }
+
+      function removeCost(id) {
+        costs = costs.filter(cost => cost.id !== id);
+        updateCostsList();
+        calculateTotals();
+      }
+
+      function removeBenefit(id) {
+        benefits = benefits.filter(benefit => benefit.id !== id);
+        updateBenefitsList();
+        calculateTotals();
+      }
+
+      function updateCostsList() {
+        const list = document.getElementById('costs-list');
+        
+        if (costs.length === 0) {
+          list.innerHTML = '<p class="text-gray-500 italic text-sm">No costs added yet</p>';
+          return;
+        }
+
+        list.innerHTML = costs.map(cost => `
+          <div class="flex items-center justify-between bg-red-900/20 p-3 rounded-lg">
+            <div class="flex-1">
+              <span class="text-white text-sm">${cost.name}</span>
+              <div class="text-xs text-red-300">
+                $${cost.amount.toLocaleString()} ${cost.frequency} ${cost.year !== 'all' ? `(Year ${cost.year})` : '(All years)'}
+              </div>
+            </div>
+            <button onclick="removeCost(${cost.id})" class="text-red-400 hover:text-red-300 text-sm ml-2">
+              ✕
+            </button>
+          </div>
+        `).join('');
+      }
+
+      function updateBenefitsList() {
+        const list = document.getElementById('benefits-list');
+        
+        if (benefits.length === 0) {
+          list.innerHTML = '<p class="text-gray-500 italic text-sm">No benefits added yet</p>';
+          return;
+        }
+
+        list.innerHTML = benefits.map(benefit => `
+          <div class="flex items-center justify-between bg-green-900/20 p-3 rounded-lg">
+            <div class="flex-1">
+              <span class="text-white text-sm">${benefit.name}</span>
+              <div class="text-xs text-green-300">
+                $${benefit.amount.toLocaleString()} ${benefit.frequency} ${benefit.year !== 'all' ? `(Year ${benefit.year})` : '(All years)'}
+              </div>
+            </div>
+            <button onclick="removeBenefit(${benefit.id})" class="text-red-400 hover:text-red-300 text-sm ml-2">
+              ✕
+            </button>
+          </div>
+        `).join('');
+      }
+
+      function calculateTotals() {
+        const timePeriod = parseInt(document.getElementById('time-period').value);
+        
+        let totalCosts = 0;
+        let totalBenefits = 0;
+        
+        // Calculate total costs
+        costs.forEach(cost => {
+          let costAmount = cost.amount;
+          if (cost.frequency === 'monthly') costAmount *= 12;
+          if (cost.year === 'all') costAmount *= timePeriod;
+          totalCosts += costAmount;
+        });
+        
+        // Calculate total benefits
+        benefits.forEach(benefit => {
+          let benefitAmount = benefit.amount;
+          if (benefit.frequency === 'monthly') benefitAmount *= 12;
+          if (benefit.year === 'all') benefitAmount *= timePeriod;
+          totalBenefits += benefitAmount;
+        });
+        
+        document.getElementById('total-costs').textContent = `$${totalCosts.toLocaleString()}`;
+        document.getElementById('total-benefits').textContent = `$${totalBenefits.toLocaleString()}`;
+      }
+
+      function calculateAnalysis() {
+        const timePeriod = parseInt(document.getElementById('time-period').value);
+        const initialInvestment = parseFloat(document.getElementById('initial-investment').value) || 0;
+        const discountRate = parseFloat(document.getElementById('discount-rate').value) / 100 || 0.1;
+        
+        // Calculate yearly cash flows
+        const yearlyData = [];
+        for (let year = 1; year <= timePeriod; year++) {
+          let yearlyCosts = initialInvestment * (year === 1 ? 1 : 0); // Initial investment in year 1
+          let yearlyBenefits = 0;
+          
+          // Add costs for this year
+          costs.forEach(cost => {
+            if (cost.year === 'all' || parseInt(cost.year) === year) {
+              let amount = cost.amount;
+              if (cost.frequency === 'monthly') amount *= 12;
+              yearlyCosts += amount;
+            }
+          });
+          
+          // Add benefits for this year
+          benefits.forEach(benefit => {
+            if (benefit.year === 'all' || parseInt(benefit.year) === year) {
+              let amount = benefit.amount;
+              if (benefit.frequency === 'monthly') amount *= 12;
+              yearlyBenefits += amount;
+            }
+          });
+          
+          const netCashFlow = yearlyBenefits - yearlyCosts;
+          const presentValue = netCashFlow / Math.pow(1 + discountRate, year);
+          
+          yearlyData.push({
+            year,
+            costs: yearlyCosts,
+            benefits: yearlyBenefits,
+            netCashFlow,
+            presentValue
+          });
+        }
+        
+        // Calculate metrics
+        const totalCosts = yearlyData.reduce((sum, year) => sum + year.costs, 0);
+        const totalBenefits = yearlyData.reduce((sum, year) => sum + year.benefits, 0);
+        const netBenefit = totalBenefits - totalCosts;
+        const roi = totalCosts > 0 ? ((totalBenefits - totalCosts) / totalCosts * 100) : 0;
+        const npv = yearlyData.reduce((sum, year) => sum + year.presentValue, 0);
+        
+        // Calculate payback period
+        let cumulativeCashFlow = -initialInvestment;
+        let paybackPeriod = null;
+        for (let i = 0; i < yearlyData.length; i++) {
+          cumulativeCashFlow += yearlyData[i].netCashFlow + (i === 0 ? -initialInvestment : 0);
+          if (cumulativeCashFlow >= 0 && paybackPeriod === null) {
+            paybackPeriod = i + 1;
+            break;
+          }
+        }
+        
+        // Update UI
+        document.getElementById('net-benefit').textContent = `$${netBenefit.toLocaleString()}`;
+        document.getElementById('roi').textContent = `${roi.toFixed(1)}%`;
+        document.getElementById('payback-period').textContent = paybackPeriod ? `${paybackPeriod} years` : 'Never';
+        document.getElementById('npv').textContent = `$${npv.toLocaleString()}`;
+        
+        // Generate insights
+        updateInsights(netBenefit, roi, npv, paybackPeriod);
+        
+        // Update yearly breakdown
+        updateYearlyBreakdown(yearlyData);
+      }
+
+      function updateInsights(netBenefit, roi, npv, paybackPeriod) {
+        const insights = document.getElementById('analysis-insights');
+        
+        let recommendation = '';
+        let insights_list = [];
+        
+        // Financial viability assessment
+        if (npv > 0 && roi > 15) {
+          recommendation = '✅ Highly Recommended - Strong financial returns expected';
+          insights_list.push('Positive NPV indicates the project creates value');
+          insights_list.push('ROI exceeds typical investment thresholds');
+        } else if (npv > 0 && roi > 0) {
+          recommendation = '👍 Recommended - Positive but moderate returns';
+          insights_list.push('Project is financially viable with positive returns');
+          insights_list.push('Consider if ROI meets your investment criteria');
+        } else if (npv <= 0 || roi <= 0) {
+          recommendation = '❌ Not Recommended - Negative or poor returns';
+          insights_list.push('Project likely to destroy value');
+          insights_list.push('Consider alternative investment options');
+        }
+        
+        // Add specific insights
+        if (paybackPeriod && paybackPeriod <= 2) {
+          insights_list.push('🚀 Quick payback period reduces investment risk');
+        } else if (paybackPeriod && paybackPeriod > 5) {
+          insights_list.push('⚠️ Long payback period increases uncertainty');
+        } else if (!paybackPeriod) {
+          insights_list.push('⚠️ Investment may never pay back - high risk');
+        }
+        
+        if (roi > 25) {
+          insights_list.push('💰 Exceptional ROI - verify assumptions');
+        } else if (roi < 5) {
+          insights_list.push('📉 Low ROI - consider safer alternatives');
+        }
+        
+        insights.innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Financial Insights</h3>
+          <div class="space-y-4">
+            <div class="p-4 bg-purple-900/30 rounded-lg">
+              <h4 class="font-semibold mb-2">Recommendation</h4>
+              <p class="text-purple-300">${recommendation}</p>
+            </div>
+            <div class="p-4 bg-black/40 rounded-lg">
+              <h4 class="font-semibold mb-2">Key Insights</h4>
+              <ul class="space-y-1">
+                ${insights_list.map(insight => `<li class="text-sm">• ${insight}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        `;
+      }
+
+      function updateYearlyBreakdown(yearlyData) {
+        const breakdown = document.getElementById('yearly-breakdown');
+        
+        if (yearlyData.length === 0) {
+          breakdown.innerHTML = '<p class="text-gray-400 text-center">Add costs and benefits to see yearly breakdown...</p>';
+          return;
+        }
+        
+        breakdown.innerHTML = `
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-700">
+                <th class="text-left p-2">Year</th>
+                <th class="text-right p-2">Costs</th>
+                <th class="text-right p-2">Benefits</th>
+                <th class="text-right p-2">Net Cash Flow</th>
+                <th class="text-right p-2">Present Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${yearlyData.map(year => `
+                <tr class="border-b border-gray-800">
+                  <td class="p-2">${year.year}</td>
+                  <td class="text-right p-2 text-red-400">$${year.costs.toLocaleString()}</td>
+                  <td class="text-right p-2 text-green-400">$${year.benefits.toLocaleString()}</td>
+                  <td class="text-right p-2 ${year.netCashFlow >= 0 ? 'text-green-400' : 'text-red-400'}">
+                    $${year.netCashFlow.toLocaleString()}
+                  </td>
+                  <td class="text-right p-2 ${year.presentValue >= 0 ? 'text-green-400' : 'text-red-400'}">
+                    $${year.presentValue.toLocaleString()}
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+
+      function clearAll() {
+        costs = [];
+        benefits = [];
+        document.getElementById('project-name').value = '';
+        document.getElementById('initial-investment').value = '';
+        document.getElementById('discount-rate').value = '10';
+        document.getElementById('time-period').value = '3';
+        
+        updateCostsList();
+        updateBenefitsList();
+        calculateTotals();
+        
+        // Reset metrics
+        document.getElementById('net-benefit').textContent = '$0';
+        document.getElementById('roi').textContent = '0%';
+        document.getElementById('payback-period').textContent = '-';
+        document.getElementById('npv').textContent = '$0';
+        
+        document.getElementById('analysis-insights').innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Financial Insights</h3>
+          <p class="text-gray-400">Add costs and benefits to see detailed financial analysis...</p>
+        `;
+        
+        document.getElementById('yearly-breakdown').innerHTML = `
+          <p class="text-gray-400 text-center">Add costs and benefits to see yearly breakdown...</p>
+        `;
+      }
+
+      function loadSample() {
+        document.getElementById('project-name').value = 'E-commerce Website Launch';
+        document.getElementById('initial-investment').value = '50000';
+        document.getElementById('time-period').value = '3';
+        
+        costs = [
+          { name: 'Website Development', amount: 30000, frequency: 'one-time', year: '1', id: 1 },
+          { name: 'Marketing & Advertising', amount: 2000, frequency: 'monthly', year: 'all', id: 2 },
+          { name: 'Server Hosting', amount: 200, frequency: 'monthly', year: 'all', id: 3 },
+          { name: 'Staff Training', amount: 5000, frequency: 'one-time', year: '1', id: 4 }
+        ];
+        
+        benefits = [
+          { name: 'Online Sales Revenue', amount: 10000, frequency: 'monthly', year: 'all', id: 5 },
+          { name: 'Cost Savings (Reduced Staff)', amount: 3000, frequency: 'monthly', year: 'all', id: 6 },
+          { name: 'New Customer Acquisition', amount: 15000, frequency: 'yearly', year: 'all', id: 7 }
+        ];
+        
+        updateCostsList();
+        updateBenefitsList();
+        calculateTotals();
+      }
+
+      // Event listeners
+      document.getElementById('add-cost').addEventListener('click', addCost);
+      document.getElementById('cost-amount').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addCost();
+      });
+      
+      document.getElementById('add-benefit').addEventListener('click', addBenefit);
+      document.getElementById('benefit-amount').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addBenefit();
+      });
+      
+      document.getElementById('calculate-analysis').addEventListener('click', calculateAnalysis);
+      document.getElementById('clear-all').addEventListener('click', clearAll);
+      document.getElementById('sample-project').addEventListener('click', loadSample);
+      
+      // Auto-calculate when time period changes
+      document.getElementById('time-period').addEventListener('change', calculateTotals);
+    </script>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html> 

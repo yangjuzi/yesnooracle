@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLS1QMH9GM');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decision Tree Tool - Yes No Oracle</title>
+    <meta name="description" content="Visual decision tree builder - map out complex decision paths and outcomes">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      
+      .tree-node {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .tree-node:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+      }
+      
+      .tree-line {
+        stroke: #a855f7;
+        stroke-width: 2;
+        fill: none;
+      }
+      
+      .decision-node {
+        background: linear-gradient(135deg, #7c3aed, #ec4899);
+      }
+      
+      .chance-node {
+        background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+      }
+      
+      .outcome-node {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-4 sm:px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-xl sm:text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="text-purple-400">Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section class="min-h-screen pt-24 sm:pt-32 pb-16 sm:pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto">
+          <!-- Back Button -->
+          <div class="mb-6 sm:mb-8">
+            <a href="/decision-making-tools.html" class="text-purple-400 hover:text-purple-300 transition text-sm sm:text-base">
+              ← Back to Decision Tools
+            </a>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-cinzel text-center mb-6 sm:mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Decision Tree Builder
+          </h1>
+          
+          <p class="text-lg sm:text-xl text-center mb-12 sm:mb-16 text-gray-300 max-w-3xl mx-auto">
+            Visualize complex decision paths and explore different scenarios to make informed choices.
+          </p>
+
+          <!-- Decision Setup -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">Decision Setup</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Root Decision</label>
+                <input 
+                  type="text" 
+                  id="root-decision"
+                  placeholder="e.g., Should I start a new business?"
+                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                >
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold mb-2">Decision Criteria</label>
+                <select id="decision-criteria" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 text-white">
+                  <option value="value">Highest Value</option>
+                  <option value="probability">Best Probability</option>
+                  <option value="risk">Lowest Risk</option>
+                  <option value="custom">Custom Weights</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tree Builder Controls -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-blue-400">Add Nodes</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <button id="add-decision-node" class="decision-node text-white px-4 py-3 rounded-lg hover:opacity-80 transition">
+                + Decision Node
+              </button>
+              <button id="add-chance-node" class="chance-node text-white px-4 py-3 rounded-lg hover:opacity-80 transition">
+                + Chance Node
+              </button>
+              <button id="add-outcome-node" class="outcome-node text-white px-4 py-3 rounded-lg hover:opacity-80 transition">
+                + Outcome Node
+              </button>
+            </div>
+
+            <!-- Node Details Form -->
+            <div id="node-form" class="hidden bg-black/30 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold mb-4">Node Details</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Node Text</label>
+                  <input 
+                    type="text" 
+                    id="node-text"
+                    placeholder="Enter node description..."
+                    class="w-full bg-black/50 border border-gray-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                  >
+                </div>
+                
+                <div id="value-field">
+                  <label class="block text-sm font-semibold mb-2">Value</label>
+                  <input 
+                    type="number" 
+                    id="node-value"
+                    placeholder="Enter value..."
+                    step="0.1"
+                    class="w-full bg-black/50 border border-gray-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                  >
+                </div>
+                
+                <div id="probability-field" class="hidden">
+                  <label class="block text-sm font-semibold mb-2">Probability (%)</label>
+                  <input 
+                    type="number" 
+                    id="node-probability"
+                    placeholder="Enter probability..."
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full bg-black/50 border border-gray-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                  >
+                </div>
+              </div>
+              
+              <div class="flex gap-3">
+                <button id="save-node" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                  Save Node
+                </button>
+                <button id="cancel-node" class="border border-gray-500 text-gray-300 px-4 py-2 rounded-lg hover:bg-gray-500/20 transition">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision Tree Visualization -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+              <h2 class="text-xl sm:text-2xl font-semibold text-green-400 mb-4 sm:mb-0">Decision Tree</h2>
+              <div class="flex gap-3">
+                <button id="auto-layout" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
+                  Auto Layout
+                </button>
+                <button id="reset-tree" class="border border-red-500 text-red-400 px-4 py-2 rounded-lg hover:bg-red-500/20 transition text-sm">
+                  Reset Tree
+                </button>
+              </div>
+            </div>
+            
+            <div id="tree-container" class="bg-black/30 rounded-lg p-4 min-h-[400px] overflow-auto">
+              <div id="tree-canvas" class="relative w-full h-full">
+                <div class="flex items-center justify-center h-64 text-gray-400">
+                  <div class="text-center">
+                    <div class="text-4xl mb-4">🌳</div>
+                    <p>Start building your decision tree by adding nodes above</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analysis Results -->
+          <div id="analysis-section" class="hidden bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">Decision Analysis</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="text-center p-4 bg-gradient-to-br from-purple-900/30 to-pink-900/20 rounded-lg">
+                <div class="text-2xl mb-2">🎯</div>
+                <div class="text-sm font-semibold">Best Path</div>
+                <div id="best-path" class="text-lg font-bold text-purple-400">-</div>
+              </div>
+              
+              <div class="text-center p-4 bg-gradient-to-br from-blue-900/30 to-purple-900/20 rounded-lg">
+                <div class="text-2xl mb-2">⚡</div>
+                <div class="text-sm font-semibold">Expected Value</div>
+                <div id="expected-value" class="text-lg font-bold text-blue-400">-</div>
+              </div>
+              
+              <div class="text-center p-4 bg-gradient-to-br from-green-900/30 to-teal-900/20 rounded-lg">
+                <div class="text-2xl mb-2">🛡️</div>
+                <div class="text-sm font-semibold">Risk Level</div>
+                <div id="risk-level" class="text-lg font-bold text-green-400">-</div>
+              </div>
+            </div>
+
+            <div id="path-analysis" class="bg-black/30 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold mb-4">Path Analysis</h3>
+              <p class="text-gray-400">Build your decision tree to see detailed path analysis...</p>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center mb-8">
+            <button id="analyze-tree" class="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+              Analyze Decision Tree
+            </button>
+            <button id="clear-tree" class="w-full sm:w-auto border border-gray-500 text-gray-300 px-6 py-3 rounded-lg hover:bg-gray-500/20 transition">
+              Clear Tree
+            </button>
+            <button id="sample-tree" class="w-full sm:w-auto border border-purple-400 text-purple-400 px-6 py-3 rounded-lg hover:bg-purple-400/20 transition">
+              Load Sample
+            </button>
+          </div>
+
+          <!-- Help Section -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">How to Use Decision Trees</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="font-semibold mb-3 text-purple-400">Node Types</h3>
+                <ul class="text-sm text-gray-300 space-y-2">
+                  <li><span class="inline-block w-4 h-4 decision-node rounded mr-2"></span><strong>Decision Node:</strong> Choices you control</li>
+                  <li><span class="inline-block w-4 h-4 chance-node rounded mr-2"></span><strong>Chance Node:</strong> Uncertain events with probabilities</li>
+                  <li><span class="inline-block w-4 h-4 outcome-node rounded mr-2"></span><strong>Outcome Node:</strong> Final results with values</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-3 text-purple-400">Best Practices</h3>
+                <ul class="text-sm text-gray-300 space-y-2">
+                  <li>• Start with your main decision at the root</li>
+                  <li>• Add all possible branches from each decision</li>
+                  <li>• Include probability estimates for uncertain events</li>
+                  <li>• Assign realistic values to outcomes</li>
+                  <li>• Consider both quantitative and qualitative factors</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 sm:py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center">
+          <div class="text-xl sm:text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Navigate complex decisions with clarity</p>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      let decisionTree = {
+        nodes: [],
+        connections: [],
+        nextId: 1
+      };
+      
+      let currentNodeType = null;
+      let isAddingNode = false;
+
+      function showNodeForm(nodeType) {
+        currentNodeType = nodeType;
+        isAddingNode = true;
+        
+        const form = document.getElementById('node-form');
+        const probabilityField = document.getElementById('probability-field');
+        const valueField = document.getElementById('value-field');
+        
+        form.classList.remove('hidden');
+        
+        // Show/hide fields based on node type
+        if (nodeType === 'chance') {
+          probabilityField.classList.remove('hidden');
+          valueField.classList.add('hidden');
+        } else if (nodeType === 'outcome') {
+          probabilityField.classList.add('hidden');
+          valueField.classList.remove('hidden');
+        } else {
+          probabilityField.classList.add('hidden');
+          valueField.classList.add('hidden');
+        }
+        
+        // Clear form
+        document.getElementById('node-text').value = '';
+        document.getElementById('node-value').value = '';
+        document.getElementById('node-probability').value = '';
+      }
+
+      function hideNodeForm() {
+        document.getElementById('node-form').classList.add('hidden');
+        isAddingNode = false;
+        currentNodeType = null;
+      }
+
+      function saveNode() {
+        const text = document.getElementById('node-text').value.trim();
+        const value = parseFloat(document.getElementById('node-value').value) || 0;
+        const probability = parseFloat(document.getElementById('node-probability').value) || 0;
+        
+        if (!text) {
+          alert('Please enter node text');
+          return;
+        }
+        
+        const node = {
+          id: decisionTree.nextId++,
+          type: currentNodeType,
+          text: text,
+          value: currentNodeType === 'outcome' ? value : null,
+          probability: currentNodeType === 'chance' ? probability / 100 : null,
+          x: Math.random() * 400 + 100,
+          y: Math.random() * 200 + 100
+        };
+        
+        decisionTree.nodes.push(node);
+        hideNodeForm();
+        renderTree();
+      }
+
+      function renderTree() {
+        const canvas = document.getElementById('tree-canvas');
+        
+        if (decisionTree.nodes.length === 0) {
+          canvas.innerHTML = `
+            <div class="flex items-center justify-center h-64 text-gray-400">
+              <div class="text-center">
+                <div class="text-4xl mb-4">🌳</div>
+                <p>Start building your decision tree by adding nodes above</p>
+              </div>
+            </div>
+          `;
+          return;
+        }
+        
+        canvas.innerHTML = '';
+        canvas.style.position = 'relative';
+        canvas.style.minHeight = '500px';
+        
+        // Render connections first (lines)
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.style.position = 'absolute';
+        svg.style.top = '0';
+        svg.style.left = '0';
+        svg.style.width = '100%';
+        svg.style.height = '100%';
+        svg.style.pointerEvents = 'none';
+        
+        decisionTree.connections.forEach(conn => {
+          const fromNode = decisionTree.nodes.find(n => n.id === conn.from);
+          const toNode = decisionTree.nodes.find(n => n.id === conn.to);
+          
+          if (fromNode && toNode) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', fromNode.x + 75);
+            line.setAttribute('y1', fromNode.y + 40);
+            line.setAttribute('x2', toNode.x + 75);
+            line.setAttribute('y2', toNode.y + 40);
+            line.setAttribute('class', 'tree-line');
+            svg.appendChild(line);
+          }
+        });
+        
+        canvas.appendChild(svg);
+        
+        // Render nodes
+        decisionTree.nodes.forEach(node => {
+          const nodeElement = document.createElement('div');
+          nodeElement.className = `tree-node absolute w-32 h-20 rounded-lg p-3 text-center text-white text-sm flex flex-col justify-center cursor-move ${node.type}-node`;
+          nodeElement.style.left = node.x + 'px';
+          nodeElement.style.top = node.y + 'px';
+          
+          let nodeContent = `<div class="font-semibold text-xs mb-1">${node.text}</div>`;
+          
+          if (node.type === 'outcome' && node.value !== null) {
+            nodeContent += `<div class="text-xs">Value: ${node.value}</div>`;
+          } else if (node.type === 'chance' && node.probability !== null) {
+            nodeContent += `<div class="text-xs">${(node.probability * 100).toFixed(0)}%</div>`;
+          }
+          
+          nodeElement.innerHTML = nodeContent;
+          
+          // Add drag functionality
+          let isDragging = false;
+          let dragStart = { x: 0, y: 0 };
+          
+          nodeElement.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            dragStart.x = e.clientX - node.x;
+            dragStart.y = e.clientY - node.y;
+            nodeElement.style.zIndex = '1000';
+          });
+          
+          document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+              node.x = Math.max(0, Math.min(canvas.offsetWidth - 128, e.clientX - dragStart.x));
+              node.y = Math.max(0, Math.min(canvas.offsetHeight - 80, e.clientY - dragStart.y));
+              nodeElement.style.left = node.x + 'px';
+              nodeElement.style.top = node.y + 'px';
+              renderTree();
+            }
+          });
+          
+          document.addEventListener('mouseup', () => {
+            if (isDragging) {
+              isDragging = false;
+              nodeElement.style.zIndex = 'auto';
+            }
+          });
+          
+          // Add click to connect functionality
+          nodeElement.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!isDragging) {
+              connectNodes(node.id);
+            }
+          });
+          
+          canvas.appendChild(nodeElement);
+        });
+      }
+
+      let selectedNode = null;
+      
+      function connectNodes(nodeId) {
+        if (selectedNode === null) {
+          selectedNode = nodeId;
+          // Highlight selected node
+          const nodeElements = document.querySelectorAll('.tree-node');
+          nodeElements.forEach(el => el.style.border = '');
+          const selectedElement = Array.from(nodeElements).find(el => 
+            parseInt(el.style.left) === decisionTree.nodes.find(n => n.id === nodeId).x
+          );
+          if (selectedElement) {
+            selectedElement.style.border = '3px solid #fbbf24';
+          }
+        } else if (selectedNode !== nodeId) {
+          // Create connection
+          const existingConnection = decisionTree.connections.find(
+            conn => (conn.from === selectedNode && conn.to === nodeId) || 
+                   (conn.from === nodeId && conn.to === selectedNode)
+          );
+          
+          if (!existingConnection) {
+            decisionTree.connections.push({
+              from: selectedNode,
+              to: nodeId
+            });
+          }
+          
+          selectedNode = null;
+          renderTree();
+        } else {
+          selectedNode = null;
+          renderTree();
+        }
+      }
+
+      function autoLayout() {
+        if (decisionTree.nodes.length === 0) return;
+        
+        // Simple tree layout algorithm
+        const levels = {};
+        const visited = new Set();
+        const canvas = document.getElementById('tree-canvas');
+        const canvasWidth = canvas.offsetWidth || 800;
+        
+        // Find root nodes (nodes with no incoming connections)
+        const rootNodes = decisionTree.nodes.filter(node => 
+          !decisionTree.connections.some(conn => conn.to === node.id)
+        );
+        
+        if (rootNodes.length === 0 && decisionTree.nodes.length > 0) {
+          // If no clear root, use first node
+          rootNodes.push(decisionTree.nodes[0]);
+        }
+        
+        // BFS to assign levels
+        const queue = [];
+        rootNodes.forEach(node => {
+          queue.push({ node, level: 0 });
+          levels[0] = levels[0] || [];
+          levels[0].push(node);
+        });
+        
+        while (queue.length > 0) {
+          const { node, level } = queue.shift();
+          if (visited.has(node.id)) continue;
+          visited.add(node.id);
+          
+          // Find children
+          const children = decisionTree.connections
+            .filter(conn => conn.from === node.id)
+            .map(conn => decisionTree.nodes.find(n => n.id === conn.to))
+            .filter(child => child && !visited.has(child.id));
+          
+          children.forEach(child => {
+            const childLevel = level + 1;
+            levels[childLevel] = levels[childLevel] || [];
+            levels[childLevel].push(child);
+            queue.push({ node: child, level: childLevel });
+          });
+        }
+        
+        // Position nodes
+        Object.keys(levels).forEach(levelKey => {
+          const level = parseInt(levelKey);
+          const nodesInLevel = levels[level];
+          const spacing = Math.max(150, canvasWidth / (nodesInLevel.length + 1));
+          
+          nodesInLevel.forEach((node, index) => {
+            node.x = spacing * (index + 1) - 64; // Center the node
+            node.y = level * 120 + 50;
+          });
+        });
+        
+        renderTree();
+      }
+
+      function analyzeTree() {
+        if (decisionTree.nodes.length === 0) {
+          alert('Please build a decision tree first');
+          return;
+        }
+        
+        // Simple analysis - find paths and calculate expected values
+        const analysisSection = document.getElementById('analysis-section');
+        analysisSection.classList.remove('hidden');
+        
+        const outcomes = decisionTree.nodes.filter(node => node.type === 'outcome');
+        const decisions = decisionTree.nodes.filter(node => node.type === 'decision');
+        
+        let bestValue = 0;
+        let bestPath = 'No complete path found';
+        let totalValue = 0;
+        let riskLevel = 'Medium';
+        
+        if (outcomes.length > 0) {
+          bestValue = Math.max(...outcomes.map(o => o.value || 0));
+          const bestOutcome = outcomes.find(o => o.value === bestValue);
+          bestPath = bestOutcome ? bestOutcome.text : 'Unknown';
+          totalValue = outcomes.reduce((sum, o) => sum + (o.value || 0), 0) / outcomes.length;
+          
+          // Simple risk calculation based on value variance
+          const variance = outcomes.reduce((sum, o) => sum + Math.pow((o.value || 0) - totalValue, 2), 0) / outcomes.length;
+          riskLevel = variance > 1000 ? 'High' : variance > 100 ? 'Medium' : 'Low';
+        }
+        
+        document.getElementById('best-path').textContent = bestPath;
+        document.getElementById('expected-value').textContent = totalValue.toFixed(0);
+        document.getElementById('risk-level').textContent = riskLevel;
+        
+        // Generate path analysis
+        const pathAnalysis = document.getElementById('path-analysis');
+        pathAnalysis.innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Path Analysis</h3>
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-purple-900/20 p-4 rounded-lg">
+                <h4 class="font-semibold mb-2">Tree Structure</h4>
+                <ul class="text-sm space-y-1">
+                  <li>• Decision Nodes: ${decisions.length}</li>
+                  <li>• Outcome Nodes: ${outcomes.length}</li>
+                  <li>• Connections: ${decisionTree.connections.length}</li>
+                  <li>• Complete Paths: ${Math.min(decisions.length, outcomes.length)}</li>
+                </ul>
+              </div>
+              <div class="bg-blue-900/20 p-4 rounded-lg">
+                <h4 class="font-semibold mb-2">Recommendations</h4>
+                <ul class="text-sm space-y-1">
+                  <li>• ${bestValue > totalValue * 1.5 ? 'Focus on high-value outcomes' : 'Consider balanced approach'}</li>
+                  <li>• ${riskLevel === 'High' ? 'High risk detected - consider mitigation' : 'Risk level appears manageable'}</li>
+                  <li>• ${decisionTree.connections.length < decisionTree.nodes.length - 1 ? 'Add more connections between nodes' : 'Good connectivity'}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="bg-green-900/20 p-4 rounded-lg">
+              <h4 class="font-semibold mb-2">Next Steps</h4>
+              <p class="text-sm">Based on the analysis, focus on the path leading to "${bestPath}" as it offers the highest expected value. Consider the risk level and have contingency plans ready.</p>
+            </div>
+          </div>
+        `;
+      }
+
+      function clearTree() {
+        decisionTree = {
+          nodes: [],
+          connections: [],
+          nextId: 1
+        };
+        
+        document.getElementById('root-decision').value = '';
+        document.getElementById('analysis-section').classList.add('hidden');
+        renderTree();
+      }
+
+      function loadSampleTree() {
+        decisionTree = {
+          nodes: [
+            { id: 1, type: 'decision', text: 'Start Business', x: 100, y: 50 },
+            { id: 2, type: 'decision', text: 'Online Store', x: 50, y: 170 },
+            { id: 3, type: 'decision', text: 'Physical Store', x: 200, y: 170 },
+            { id: 4, type: 'chance', text: 'Market Success', x: 20, y: 290, probability: 0.7 },
+            { id: 5, type: 'chance', text: 'Market Failure', x: 120, y: 290, probability: 0.3 },
+            { id: 6, type: 'outcome', text: 'High Profit', x: 20, y: 410, value: 100000 },
+            { id: 7, type: 'outcome', text: 'Loss', x: 120, y: 410, value: -20000 },
+            { id: 8, type: 'outcome', text: 'Moderate Profit', x: 200, y: 290, value: 50000 }
+          ],
+          connections: [
+            { from: 1, to: 2 },
+            { from: 1, to: 3 },
+            { from: 2, to: 4 },
+            { from: 2, to: 5 },
+            { from: 4, to: 6 },
+            { from: 5, to: 7 },
+            { from: 3, to: 8 }
+          ],
+          nextId: 9
+        };
+        
+        document.getElementById('root-decision').value = 'Should I start a new business?';
+        renderTree();
+      }
+
+      // Event listeners
+      document.getElementById('add-decision-node').addEventListener('click', () => showNodeForm('decision'));
+      document.getElementById('add-chance-node').addEventListener('click', () => showNodeForm('chance'));
+      document.getElementById('add-outcome-node').addEventListener('click', () => showNodeForm('outcome'));
+      
+      document.getElementById('save-node').addEventListener('click', saveNode);
+      document.getElementById('cancel-node').addEventListener('click', hideNodeForm);
+      
+      document.getElementById('auto-layout').addEventListener('click', autoLayout);
+      document.getElementById('reset-tree').addEventListener('click', clearTree);
+      document.getElementById('analyze-tree').addEventListener('click', analyzeTree);
+      document.getElementById('clear-tree').addEventListener('click', clearTree);
+      document.getElementById('sample-tree').addEventListener('click', loadSampleTree);
+      
+      // Initialize
+      renderTree();
+    </script>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html> 
