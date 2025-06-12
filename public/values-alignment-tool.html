@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLS1QMH9GM');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Values Alignment Tool - Yes No Oracle</title>
+    <meta name="description" content="Values alignment analysis tool - evaluate how well your options align with your core values">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      
+      .rating-scale {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        margin: 1rem 0;
+      }
+      
+      .rating-button {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        border: 2px solid;
+        background: transparent;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      
+      .rating-button:hover {
+        transform: scale(1.1);
+      }
+      
+      .rating-button.selected {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        border-color: #a855f7;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-4 sm:px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-xl sm:text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="text-purple-400">Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section class="min-h-screen pt-24 sm:pt-32 pb-16 sm:pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto">
+          <!-- Back Button -->
+          <div class="mb-6 sm:mb-8">
+            <a href="/decision-making-tools.html" class="text-purple-400 hover:text-purple-300 transition text-sm sm:text-base">
+              ← Back to Decision Tools
+            </a>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-cinzel text-center mb-6 sm:mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Values Alignment
+          </h1>
+          
+          <p class="text-lg sm:text-xl text-center mb-12 sm:mb-16 text-gray-300 max-w-3xl mx-auto">
+            Evaluate how well your options align with your core values and beliefs.
+          </p>
+
+          <!-- Decision Setup -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">Decision Setup</h2>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-semibold mb-2">What decision are you making?</label>
+                <input 
+                  type="text" 
+                  id="decision-input"
+                  placeholder="e.g., Should I take a new job offer?"
+                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                >
+              </div>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Option A</label>
+                  <input 
+                    type="text" 
+                    id="option-a"
+                    placeholder="e.g., Stay at current job"
+                    class="w-full bg-black/50 border border-green-500/30 rounded-lg p-3 focus:outline-none focus:border-green-400 transition text-white"
+                  >
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Option B</label>
+                  <input 
+                    type="text" 
+                    id="option-b"
+                    placeholder="e.g., Take the new job"
+                    class="w-full bg-black/50 border border-blue-500/30 rounded-lg p-3 focus:outline-none focus:border-blue-400 transition text-white"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Core Values Assessment -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">Rate Each Option Against Your Core Values</h2>
+            <p class="text-gray-400 mb-6">Rate how well each option aligns with your values (1 = Poor alignment, 5 = Perfect alignment)</p>
+            
+            <div id="values-assessment" class="space-y-8">
+              <!-- Values will be populated here -->
+            </div>
+            
+            <div class="mt-6">
+              <button id="add-custom-value" class="border border-purple-400 text-purple-400 px-4 py-2 rounded-lg hover:bg-purple-400/20 transition text-sm">
+                + Add Custom Value
+              </button>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">Values Alignment Analysis</h2>
+            
+            <div id="alignment-results" class="bg-black/30 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold mb-4">Alignment Summary</h3>
+              <p class="text-gray-400">Complete the values assessment to see your alignment analysis...</p>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center mb-8">
+            <button id="calculate-alignment" class="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+              Calculate Alignment
+            </button>
+            <button id="clear-all" class="w-full sm:w-auto border border-gray-500 text-gray-300 px-6 py-3 rounded-lg hover:bg-gray-500/20 transition">
+              Clear All
+            </button>
+            <button id="sample-values" class="w-full sm:w-auto border border-purple-400 text-purple-400 px-6 py-3 rounded-lg hover:bg-purple-400/20 transition">
+              Load Sample
+            </button>
+          </div>
+
+          <!-- Help Section -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">Understanding Values Alignment</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="font-semibold mb-3 text-purple-400">Why Values Matter</h3>
+                <ul class="text-sm text-gray-300 space-y-2">
+                  <li>• Values guide meaningful decisions</li>
+                  <li>• Alignment reduces internal conflict</li>
+                  <li>• Values-based choices lead to satisfaction</li>
+                  <li>• They help prioritize what's truly important</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-3 text-purple-400">Common Core Values</h3>
+                <div class="text-sm text-gray-300 grid grid-cols-2 gap-1">
+                  <span>• Freedom</span>
+                  <span>• Security</span>
+                  <span>• Growth</span>
+                  <span>• Family</span>
+                  <span>• Impact</span>
+                  <span>• Adventure</span>
+                  <span>• Creativity</span>
+                  <span>• Balance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 sm:py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center">
+          <div class="text-xl sm:text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Make decisions aligned with your deepest values</p>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const defaultValues = [
+        { name: 'Freedom & Autonomy', icon: '🕊️' },
+        { name: 'Financial Security', icon: '💰' },
+        { name: 'Personal Growth', icon: '🌱' },
+        { name: 'Family & Relationships', icon: '👨‍👩‍👧‍👦' },
+        { name: 'Work-Life Balance', icon: '⚖️' },
+        { name: 'Making an Impact', icon: '🌍' },
+        { name: 'Creativity & Innovation', icon: '🎨' },
+        { name: 'Adventure & Excitement', icon: '🎢' }
+      ];
+
+      let customValues = [];
+      let ratings = {};
+
+      function initializeValues() {
+        const container = document.getElementById('values-assessment');
+        container.innerHTML = '';
+        
+        const allValues = [...defaultValues, ...customValues];
+        
+        allValues.forEach((value, index) => {
+          const valueDiv = document.createElement('div');
+          valueDiv.className = 'border border-gray-700 rounded-lg p-6';
+          valueDiv.innerHTML = `
+            <div class="flex items-center mb-4">
+              <span class="text-2xl mr-3">${value.icon}</span>
+              <h3 class="text-lg font-semibold">${value.name}</h3>
+              ${value.custom ? `<button onclick="removeCustomValue(${index})" class="ml-auto text-red-400 hover:text-red-300">✕</button>` : ''}
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold mb-2 text-green-400">Option A Rating</h4>
+                <div class="rating-scale" data-value="${value.name}" data-option="a">
+                  ${[1,2,3,4,5].map(num => `
+                    <button class="rating-button border-green-500" data-rating="${num}" onclick="setRating('${value.name}', 'a', ${num})">
+                      ${num}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="font-semibold mb-2 text-blue-400">Option B Rating</h4>
+                <div class="rating-scale" data-value="${value.name}" data-option="b">
+                  ${[1,2,3,4,5].map(num => `
+                    <button class="rating-button border-blue-500" data-rating="${num}" onclick="setRating('${value.name}', 'b', ${num})">
+                      ${num}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          `;
+          container.appendChild(valueDiv);
+        });
+      }
+
+      function setRating(valueName, option, rating) {
+        if (!ratings[valueName]) ratings[valueName] = {};
+        ratings[valueName][option] = rating;
+        
+        // Update visual feedback
+        const ratingContainer = document.querySelector(`[data-value="${valueName}"][data-option="${option}"]`);
+        const buttons = ratingContainer.querySelectorAll('.rating-button');
+        
+        buttons.forEach((btn, index) => {
+          if (index < rating) {
+            btn.classList.add('selected');
+          } else {
+            btn.classList.remove('selected');
+          }
+        });
+      }
+
+      function addCustomValue() {
+        const valueName = prompt('Enter your custom value:');
+        if (valueName && valueName.trim()) {
+          const icon = prompt('Enter an emoji for this value (optional):') || '⭐';
+          customValues.push({
+            name: valueName.trim(),
+            icon: icon,
+            custom: true
+          });
+          initializeValues();
+        }
+      }
+
+      function removeCustomValue(index) {
+        const valueIndex = index - defaultValues.length;
+        if (valueIndex >= 0) {
+          const valueName = customValues[valueIndex].name;
+          delete ratings[valueName];
+          customValues.splice(valueIndex, 1);
+          initializeValues();
+        }
+      }
+
+      function calculateAlignment() {
+        const allValues = [...defaultValues, ...customValues];
+        const results = document.getElementById('alignment-results');
+        
+        if (Object.keys(ratings).length === 0) {
+          results.innerHTML = `
+            <h3 class="text-lg font-semibold mb-4">Alignment Summary</h3>
+            <p class="text-yellow-400">Please rate at least one value to see the analysis...</p>
+          `;
+          return;
+        }
+        
+        let optionATotal = 0;
+        let optionBTotal = 0;
+        let valueCount = 0;
+        
+        const valueBreakdown = [];
+        
+        allValues.forEach(value => {
+          const valueRatings = ratings[value.name];
+          if (valueRatings && valueRatings.a !== undefined && valueRatings.b !== undefined) {
+            optionATotal += valueRatings.a;
+            optionBTotal += valueRatings.b;
+            valueCount++;
+            
+            valueBreakdown.push({
+              name: value.name,
+              icon: value.icon,
+              aRating: valueRatings.a,
+              bRating: valueRatings.b,
+              difference: valueRatings.b - valueRatings.a
+            });
+          }
+        });
+        
+        if (valueCount === 0) {
+          results.innerHTML = `
+            <h3 class="text-lg font-semibled mb-4">Alignment Summary</h3>
+            <p class="text-yellow-400">Please complete rating both options for at least one value...</p>
+          `;
+          return;
+        }
+        
+        const optionAAvg = (optionATotal / valueCount).toFixed(1);
+        const optionBAvg = (optionBTotal / valueCount).toFixed(1);
+        const optionAName = document.getElementById('option-a').value || 'Option A';
+        const optionBName = document.getElementById('option-b').value || 'Option B';
+        
+        let recommendation = '';
+        let confidence = '';
+        
+        const difference = Math.abs(optionAAvg - optionBAvg);
+        
+        if (difference >= 1.0) {
+          confidence = 'High';
+          recommendation = optionAAvg > optionBAvg 
+            ? `Strong alignment with ${optionAName}` 
+            : `Strong alignment with ${optionBName}`;
+        } else if (difference >= 0.5) {
+          confidence = 'Medium';
+          recommendation = optionAAvg > optionBAvg 
+            ? `Moderate alignment with ${optionAName}` 
+            : `Moderate alignment with ${optionBName}`;
+        } else {
+          confidence = 'Low';
+          recommendation = 'Both options are similarly aligned with your values';
+        }
+        
+        // Sort values by difference for insights
+        valueBreakdown.sort((a, b) => Math.abs(b.difference) - Math.abs(a.difference));
+        
+        results.innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Alignment Summary</h3>
+          <div class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 bg-green-900/20 rounded-lg text-center">
+                <h4 class="font-semibold text-green-400 mb-2">${optionAName}</h4>
+                <div class="text-3xl font-bold">${optionAAvg}</div>
+                <div class="text-sm text-gray-300">Average Alignment</div>
+              </div>
+              <div class="p-4 bg-blue-900/20 rounded-lg text-center">
+                <h4 class="font-semibold text-blue-400 mb-2">${optionBName}</h4>
+                <div class="text-3xl font-bold">${optionBAvg}</div>
+                <div class="text-sm text-gray-300">Average Alignment</div>
+              </div>
+            </div>
+            
+            <div class="p-4 bg-purple-900/30 rounded-lg">
+              <h4 class="font-semibold mb-2">Recommendation</h4>
+              <p class="text-purple-300">${recommendation}</p>
+              <p class="text-sm text-gray-400 mt-2">Confidence: ${confidence}</p>
+            </div>
+            
+            <div class="p-4 bg-black/40 rounded-lg">
+              <h4 class="font-semibold mb-3">Values Breakdown</h4>
+              <div class="space-y-2">
+                ${valueBreakdown.slice(0, 5).map(value => `
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="flex items-center">
+                      ${value.icon} ${value.name}
+                    </span>
+                    <span class="flex items-center gap-4">
+                      <span class="text-green-400">${value.aRating}</span>
+                      <span class="text-gray-500">vs</span>
+                      <span class="text-blue-400">${value.bRating}</span>
+                      <span class="text-purple-300 text-xs">
+                        ${value.difference > 0 ? `+${value.difference}` : value.difference}
+                      </span>
+                    </span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            
+            <div class="text-center p-4 bg-teal-900/20 rounded-lg">
+              <p class="text-sm text-teal-300">
+                <strong>Remember:</strong> The option that best aligns with your core values 
+                is likely to bring you greater long-term satisfaction and fulfillment.
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      function clearAll() {
+        document.getElementById('decision-input').value = '';
+        document.getElementById('option-a').value = '';
+        document.getElementById('option-b').value = '';
+        ratings = {};
+        customValues = [];
+        
+        // Reset all rating buttons
+        document.querySelectorAll('.rating-button').forEach(btn => {
+          btn.classList.remove('selected');
+        });
+        
+        document.getElementById('alignment-results').innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Alignment Summary</h3>
+          <p class="text-gray-400">Complete the values assessment to see your alignment analysis...</p>
+        `;
+        
+        initializeValues();
+      }
+
+      function loadSample() {
+        document.getElementById('decision-input').value = 'Should I accept a high-paying job with long hours?';
+        document.getElementById('option-a').value = 'Keep current job';
+        document.getElementById('option-b').value = 'Take new high-paying job';
+        
+        // Set sample ratings
+        ratings = {
+          'Freedom & Autonomy': { a: 4, b: 2 },
+          'Financial Security': { a: 3, b: 5 },
+          'Personal Growth': { a: 3, b: 4 },
+          'Family & Relationships': { a: 5, b: 2 },
+          'Work-Life Balance': { a: 4, b: 1 }
+        };
+        
+        // Update visual ratings
+        setTimeout(() => {
+          Object.entries(ratings).forEach(([valueName, valueRatings]) => {
+            Object.entries(valueRatings).forEach(([option, rating]) => {
+              setRating(valueName, option, rating);
+            });
+          });
+        }, 100);
+      }
+
+      // Event listeners
+      document.getElementById('add-custom-value').addEventListener('click', addCustomValue);
+      document.getElementById('calculate-alignment').addEventListener('click', calculateAlignment);
+      document.getElementById('clear-all').addEventListener('click', clearAll);
+      document.getElementById('sample-values').addEventListener('click', loadSample);
+
+      // Initialize the values on page load
+      initializeValues();
+    </script>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html> 

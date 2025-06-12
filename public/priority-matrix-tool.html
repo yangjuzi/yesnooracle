@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLS1QMH9GM');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Priority Matrix Tool - Yes No Oracle</title>
+    <meta name="description" content="Eisenhower Priority Matrix tool - organize tasks by importance and urgency">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      
+      .matrix-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        aspect-ratio: 1;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      @media (max-width: 768px) {
+        .matrix-grid {
+          grid-template-columns: 1fr;
+          aspect-ratio: auto;
+          gap: 1.5rem;
+        }
+      }
+      
+      .matrix-quadrant {
+        min-height: 200px;
+        border: 2px solid;
+        border-radius: 12px;
+        padding: 1rem;
+        position: relative;
+      }
+      
+      @media (max-width: 640px) {
+        .matrix-quadrant {
+          min-height: 150px;
+          padding: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-4 sm:px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-xl sm:text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="text-purple-400">Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+          <!-- Mobile menu button -->
+          <button class="md:hidden p-2" onclick="toggleMenu()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+          <a href="/index.html" class="block py-2 hover:text-purple-400 transition">Home</a>
+          <a href="/decision-making-tools.html" class="block py-2 text-purple-400">Tools</a>
+          <a href="/blog.html" class="block py-2 hover:text-purple-400 transition">Blog</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section class="min-h-screen pt-24 sm:pt-32 pb-16 sm:pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+          <!-- Back Button -->
+          <div class="mb-6 sm:mb-8">
+            <a href="/decision-making-tools.html" class="text-purple-400 hover:text-purple-300 transition text-sm sm:text-base">
+              ← Back to Decision Tools
+            </a>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-cinzel text-center mb-6 sm:mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Priority Matrix
+          </h1>
+          
+          <p class="text-lg sm:text-xl text-center mb-12 sm:mb-16 text-gray-300 max-w-3xl mx-auto">
+            Organize your tasks using the Eisenhower Matrix based on importance and urgency.
+          </p>
+
+          <!-- Task Input -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-4 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">Add a Task</h2>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Task Description</label>
+                <input 
+                  type="text" 
+                  id="task-input"
+                  placeholder="Enter your task..."
+                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                >
+              </div>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Importance Level</label>
+                  <select id="importance-select" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 text-white">
+                    <option value="high">High - Critical for goals</option>
+                    <option value="low">Low - Nice to have</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Urgency Level</label>
+                  <select id="urgency-select" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 text-white">
+                    <option value="high">High - Time sensitive</option>
+                    <option value="low">Low - Can wait</option>
+                  </select>
+                </div>
+              </div>
+              
+              <button 
+                id="add-task"
+                class="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition"
+              >
+                Add Task to Matrix
+              </button>
+            </div>
+          </div>
+
+          <!-- Priority Matrix -->
+          <div class="mb-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel text-center mb-8">Eisenhower Priority Matrix</h2>
+            
+            <!-- Matrix Labels -->
+            <div class="text-center mb-4">
+              <div class="inline-flex items-center text-sm text-gray-400">
+                <span class="mr-8">← Low Urgency</span>
+                <span>High Urgency →</span>
+              </div>
+            </div>
+            
+            <div class="matrix-grid">
+              <!-- Quadrant 1: Important & Urgent -->
+              <div class="matrix-quadrant border-red-500 bg-red-900/20">
+                <div class="flex items-center mb-3">
+                  <span class="text-xl mr-2">🔥</span>
+                  <div>
+                    <h3 class="font-semibold text-red-400">DO FIRST</h3>
+                    <p class="text-xs text-red-300">Important & Urgent</p>
+                  </div>
+                </div>
+                <div id="quadrant-1" class="space-y-2 min-h-[100px] overflow-y-auto">
+                  <p class="text-gray-500 italic text-sm">Crisis management tasks</p>
+                </div>
+                <div class="mt-3 text-xs text-red-300">
+                  Count: <span id="count-1">0</span>
+                </div>
+              </div>
+
+              <!-- Quadrant 2: Important & Not Urgent -->
+              <div class="matrix-quadrant border-green-500 bg-green-900/20">
+                <div class="flex items-center mb-3">
+                  <span class="text-xl mr-2">📅</span>
+                  <div>
+                    <h3 class="font-semibold text-green-400">SCHEDULE</h3>
+                    <p class="text-xs text-green-300">Important & Not Urgent</p>
+                  </div>
+                </div>
+                <div id="quadrant-2" class="space-y-2 min-h-[100px] overflow-y-auto">
+                  <p class="text-gray-500 italic text-sm">Planning & development</p>
+                </div>
+                <div class="mt-3 text-xs text-green-300">
+                  Count: <span id="count-2">0</span>
+                </div>
+              </div>
+
+              <!-- Quadrant 3: Not Important & Urgent -->
+              <div class="matrix-quadrant border-yellow-500 bg-yellow-900/20">
+                <div class="flex items-center mb-3">
+                  <span class="text-xl mr-2">📞</span>
+                  <div>
+                    <h3 class="font-semibold text-yellow-400">DELEGATE</h3>
+                    <p class="text-xs text-yellow-300">Not Important & Urgent</p>
+                  </div>
+                </div>
+                <div id="quadrant-3" class="space-y-2 min-h-[100px] overflow-y-auto">
+                  <p class="text-gray-500 italic text-sm">Interruptions & some calls</p>
+                </div>
+                <div class="mt-3 text-xs text-yellow-300">
+                  Count: <span id="count-3">0</span>
+                </div>
+              </div>
+
+              <!-- Quadrant 4: Not Important & Not Urgent -->
+              <div class="matrix-quadrant border-gray-500 bg-gray-900/20">
+                <div class="flex items-center mb-3">
+                  <span class="text-xl mr-2">🗑️</span>
+                  <div>
+                    <h3 class="font-semibold text-gray-400">ELIMINATE</h3>
+                    <p class="text-xs text-gray-300">Not Important & Not Urgent</p>
+                  </div>
+                </div>
+                <div id="quadrant-4" class="space-y-2 min-h-[100px] overflow-y-auto">
+                  <p class="text-gray-500 italic text-sm">Time wasters & distractions</p>
+                </div>
+                <div class="mt-3 text-xs text-gray-300">
+                  Count: <span id="count-4">0</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Axis Labels -->
+            <div class="text-center mt-4">
+              <div class="text-sm text-gray-400 transform -rotate-90 absolute left-4 top-1/2 origin-center hidden sm:block">
+                High Importance ↑<br>↓ Low Importance
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">Priority Summary</h2>
+            
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div class="text-center p-4 bg-red-900/30 rounded-lg">
+                <div class="text-2xl mb-2">🔥</div>
+                <div class="text-sm font-semibold">Do First</div>
+                <div id="summary-1" class="text-xl font-bold text-red-400">0</div>
+              </div>
+              
+              <div class="text-center p-4 bg-green-900/30 rounded-lg">
+                <div class="text-2xl mb-2">📅</div>
+                <div class="text-sm font-semibold">Schedule</div>
+                <div id="summary-2" class="text-xl font-bold text-green-400">0</div>
+              </div>
+              
+              <div class="text-center p-4 bg-yellow-900/30 rounded-lg">
+                <div class="text-2xl mb-2">📞</div>
+                <div class="text-sm font-semibold">Delegate</div>
+                <div id="summary-3" class="text-xl font-bold text-yellow-400">0</div>
+              </div>
+              
+              <div class="text-center p-4 bg-gray-900/30 rounded-lg">
+                <div class="text-2xl mb-2">🗑️</div>
+                <div class="text-sm font-semibold">Eliminate</div>
+                <div id="summary-4" class="text-xl font-bold text-gray-400">0</div>
+              </div>
+            </div>
+
+            <div id="priority-insights" class="bg-black/30 p-4 sm:p-6 rounded-lg">
+              <h3 class="text-lg font-semibold mb-4">Priority Insights</h3>
+              <p class="text-gray-400">Add tasks to see priority distribution and recommendations...</p>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+            <button id="clear-all" class="w-full sm:w-auto border border-gray-500 text-gray-300 px-4 sm:px-6 py-3 rounded-lg hover:bg-gray-500/20 transition text-sm sm:text-base">
+              Clear All Tasks
+            </button>
+            <button id="sample-tasks" class="w-full sm:w-auto border border-purple-400 text-purple-400 px-4 sm:px-6 py-3 rounded-lg hover:bg-purple-400/20 transition text-sm sm:text-base">
+              Load Sample Tasks
+            </button>
+          </div>
+
+          <!-- Help Section -->
+          <div class="mt-12 sm:mt-16 bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">How to Use Priority Matrix</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              <div class="text-center">
+                <div class="text-3xl mb-4">🔥</div>
+                <h3 class="font-semibold mb-2 text-red-400">Do First</h3>
+                <p class="text-gray-400 text-sm">Important + Urgent tasks that need immediate attention</p>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl mb-4">📅</div>
+                <h3 class="font-semibold mb-2 text-green-400">Schedule</h3>
+                <p class="text-gray-400 text-sm">Important but not urgent - plan and schedule these</p>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl mb-4">📞</div>
+                <h3 class="font-semibold mb-2 text-yellow-400">Delegate</h3>
+                <p class="text-gray-400 text-sm">Urgent but not important - delegate if possible</p>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl mb-4">🗑️</div>
+                <h3 class="font-semibold mb-2 text-gray-400">Eliminate</h3>
+                <p class="text-gray-400 text-sm">Neither important nor urgent - consider eliminating</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 sm:py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center">
+          <div class="text-xl sm:text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Prioritize effectively with strategic clarity</p>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      let tasks = {
+        1: [], // Do First (Important + Urgent)
+        2: [], // Schedule (Important + Not Urgent)
+        3: [], // Delegate (Not Important + Urgent)
+        4: []  // Eliminate (Not Important + Not Urgent)
+      };
+
+      // Toggle mobile menu
+      function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+      }
+
+      function addTask() {
+        const input = document.getElementById('task-input');
+        const importance = document.getElementById('importance-select').value;
+        const urgency = document.getElementById('urgency-select').value;
+        
+        const taskText = input.value.trim();
+        if (!taskText) return;
+        
+        // Determine quadrant based on importance and urgency
+        let quadrant;
+        if (importance === 'high' && urgency === 'high') {
+          quadrant = 1; // Do First
+        } else if (importance === 'high' && urgency === 'low') {
+          quadrant = 2; // Schedule
+        } else if (importance === 'low' && urgency === 'high') {
+          quadrant = 3; // Delegate
+        } else {
+          quadrant = 4; // Eliminate
+        }
+        
+        const task = {
+          text: taskText,
+          id: Date.now(),
+          importance,
+          urgency
+        };
+        
+        tasks[quadrant].push(task);
+        input.value = '';
+        updateQuadrant(quadrant);
+        updateSummary();
+      }
+
+      function removeTask(quadrant, id) {
+        tasks[quadrant] = tasks[quadrant].filter(task => task.id !== id);
+        updateQuadrant(quadrant);
+        updateSummary();
+      }
+
+      function updateQuadrant(quadrant) {
+        const quadrantEl = document.getElementById(`quadrant-${quadrant}`);
+        const countEl = document.getElementById(`count-${quadrant}`);
+        
+        countEl.textContent = tasks[quadrant].length;
+        
+        if (tasks[quadrant].length === 0) {
+          const placeholders = {
+            1: 'Crisis management tasks',
+            2: 'Planning & development',
+            3: 'Interruptions & some calls',
+            4: 'Time wasters & distractions'
+          };
+          quadrantEl.innerHTML = `<p class="text-gray-500 italic text-sm">${placeholders[quadrant]}</p>`;
+          return;
+        }
+
+        quadrantEl.innerHTML = tasks[quadrant].map(task => `
+          <div class="flex items-center justify-between bg-black/20 p-2 rounded text-sm">
+            <span class="text-white flex-1 pr-2">${task.text}</span>
+            <button onclick="removeTask(${quadrant}, ${task.id})" class="text-red-400 hover:text-red-300 text-xs">
+              ✕
+            </button>
+          </div>
+        `).join('');
+      }
+
+      function updateSummary() {
+        // Update summary counts
+        for (let i = 1; i <= 4; i++) {
+          document.getElementById(`summary-${i}`).textContent = tasks[i].length;
+        }
+        
+        const insights = document.getElementById('priority-insights');
+        const totalTasks = Object.values(tasks).reduce((sum, arr) => sum + arr.length, 0);
+        
+        if (totalTasks === 0) {
+          insights.innerHTML = '<h3 class="text-lg font-semibold mb-4">Priority Insights</h3><p class="text-gray-400">Add tasks to see priority distribution and recommendations...</p>';
+          return;
+        }
+        
+        let recommendations = [];
+        let focusArea = '';
+        
+        // Analyze task distribution
+        const counts = [tasks[1].length, tasks[2].length, tasks[3].length, tasks[4].length];
+        const maxIndex = counts.indexOf(Math.max(...counts));
+        
+        if (tasks[1].length > 0) {
+          focusArea = '🔥 Crisis Mode - Focus on urgent issues';
+          recommendations.push('Address Do First tasks immediately to reduce stress');
+          recommendations.push('After handling crises, focus on prevention (Schedule quadrant)');
+        } else if (tasks[2].length > 0) {
+          focusArea = '📅 Strategic Mode - Great for long-term success';
+          recommendations.push('Excellent focus on important non-urgent tasks');
+          recommendations.push('This quadrant leads to the most effective outcomes');
+        } else if (tasks[3].length > 0) {
+          focusArea = '📞 Reactive Mode - Consider delegation';
+          recommendations.push('Look for ways to delegate or automate these tasks');
+          recommendations.push('Question if these tasks are truly necessary');
+        } else {
+          focusArea = '🗑️ Distraction Mode - Time to refocus';
+          recommendations.push('These tasks may be consuming valuable time');
+          recommendations.push('Consider eliminating or minimizing these activities');
+        }
+        
+        // Add general recommendations
+        if (tasks[1].length > tasks[2].length) {
+          recommendations.push('⚠️ Too many crises - invest more time in planning (Schedule)');
+        }
+        
+        if (tasks[4].length > 0) {
+          recommendations.push('🗑️ Consider eliminating low-value activities');
+        }
+        
+        if (tasks[2].length === 0) {
+          recommendations.push('📅 Add some strategic planning tasks to prevent future crises');
+        }
+
+        insights.innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Priority Insights</h3>
+          <div class="space-y-4">
+            <div class="p-4 bg-purple-900/30 rounded-lg">
+              <h4 class="font-semibold mb-2">Current Focus</h4>
+              <p class="text-purple-300">${focusArea}</p>
+            </div>
+            <div class="p-4 bg-black/40 rounded-lg">
+              <h4 class="font-semibold mb-2">Recommendations</h4>
+              <ul class="space-y-1">
+                ${recommendations.map(rec => `<li class="text-sm">• ${rec}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm">
+              <div class="p-2 bg-red-900/20 rounded">
+                <div class="font-semibold text-red-400">${tasks[1].length}</div>
+                <div class="text-xs text-red-300">Do First</div>
+              </div>
+              <div class="p-2 bg-green-900/20 rounded">
+                <div class="font-semibold text-green-400">${tasks[2].length}</div>
+                <div class="text-xs text-green-300">Schedule</div>
+              </div>
+              <div class="p-2 bg-yellow-900/20 rounded">
+                <div class="font-semibold text-yellow-400">${tasks[3].length}</div>
+                <div class="text-xs text-yellow-300">Delegate</div>
+              </div>
+              <div class="p-2 bg-gray-900/20 rounded">
+                <div class="font-semibold text-gray-400">${tasks[4].length}</div>
+                <div class="text-xs text-gray-300">Eliminate</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function clearAll() {
+        tasks = { 1: [], 2: [], 3: [], 4: [] };
+        for (let i = 1; i <= 4; i++) {
+          updateQuadrant(i);
+        }
+        updateSummary();
+      }
+
+      function loadSampleTasks() {
+        tasks = {
+          1: [
+            { text: 'Fix critical system bug', id: 1, importance: 'high', urgency: 'high' },
+            { text: 'Prepare for client presentation tomorrow', id: 2, importance: 'high', urgency: 'high' }
+          ],
+          2: [
+            { text: 'Develop quarterly strategy', id: 3, importance: 'high', urgency: 'low' },
+            { text: 'Learn new programming language', id: 4, importance: 'high', urgency: 'low' },
+            { text: 'Plan team building activities', id: 5, importance: 'high', urgency: 'low' }
+          ],
+          3: [
+            { text: 'Respond to non-critical emails', id: 6, importance: 'low', urgency: 'high' },
+            { text: 'Attend status meeting', id: 7, importance: 'low', urgency: 'high' }
+          ],
+          4: [
+            { text: 'Browse social media', id: 8, importance: 'low', urgency: 'low' },
+            { text: 'Organize desk', id: 9, importance: 'low', urgency: 'low' }
+          ]
+        };
+        
+        for (let i = 1; i <= 4; i++) {
+          updateQuadrant(i);
+        }
+        updateSummary();
+      }
+
+      // Event listeners
+      document.getElementById('add-task').addEventListener('click', addTask);
+      document.getElementById('task-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addTask();
+      });
+      
+      document.getElementById('clear-all').addEventListener('click', clearAll);
+      document.getElementById('sample-tasks').addEventListener('click', loadSampleTasks);
+    </script>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html> 

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLS1QMH9GM');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10-10-10 Rule Tool - Yes No Oracle</title>
+    <meta name="description" content="10-10-10 decision rule - analyze how you'll feel about your decision in 10 minutes, 10 months, and 10 years">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-4 sm:px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-xl sm:text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="text-purple-400">Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section class="min-h-screen pt-24 sm:pt-32 pb-16 sm:pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto">
+          <!-- Back Button -->
+          <div class="mb-6 sm:mb-8">
+            <a href="/decision-making-tools.html" class="text-purple-400 hover:text-purple-300 transition text-sm sm:text-base">
+              ← Back to Decision Tools
+            </a>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-cinzel text-center mb-6 sm:mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            10-10-10 Rule
+          </h1>
+          
+          <p class="text-lg sm:text-xl text-center mb-12 sm:mb-16 text-gray-300 max-w-3xl mx-auto">
+            Consider how you'll feel about this decision in 10 minutes, 10 months, and 10 years to gain perspective.
+          </p>
+
+          <!-- Decision Input -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">What decision are you considering?</h2>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Describe your decision</label>
+                <textarea 
+                  id="decision-input"
+                  placeholder="e.g., Should I quit my job to start my own business?"
+                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-4 focus:outline-none focus:border-purple-400 transition text-white resize-none"
+                  rows="3"
+                ></textarea>
+              </div>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Option A</label>
+                  <input 
+                    type="text" 
+                    id="option-a"
+                    placeholder="e.g., Stay at current job"
+                    class="w-full bg-black/50 border border-green-500/30 rounded-lg p-3 focus:outline-none focus:border-green-400 transition text-white"
+                  >
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Option B</label>
+                  <input 
+                    type="text" 
+                    id="option-b"
+                    placeholder="e.g., Start my own business"
+                    class="w-full bg-black/50 border border-blue-500/30 rounded-lg p-3 focus:outline-none focus:border-blue-400 transition text-white"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Time Perspective Analysis -->
+          <div class="space-y-8 mb-8">
+            <!-- 10 Minutes -->
+            <div class="bg-orange-900/20 backdrop-blur-lg rounded-lg p-6 sm:p-8 border border-orange-500/20">
+              <div class="flex items-center mb-6">
+                <span class="text-3xl mr-3">⏰</span>
+                <div>
+                  <h2 class="text-xl sm:text-2xl font-semibold text-orange-400">10 Minutes From Now</h2>
+                  <p class="text-orange-300 text-sm">Immediate emotional reaction</p>
+                </div>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 class="font-semibold mb-3 text-green-400">If I choose Option A</h3>
+                  <textarea 
+                    id="minutes-a"
+                    placeholder="How will you feel immediately after choosing this option?"
+                    class="w-full bg-black/50 border border-green-500/30 rounded-lg p-3 focus:outline-none focus:border-green-400 transition text-white resize-none"
+                    rows="3"
+                  ></textarea>
+                </div>
+                
+                <div>
+                  <h3 class="font-semibold mb-3 text-blue-400">If I choose Option B</h3>
+                  <textarea 
+                    id="minutes-b"
+                    placeholder="How will you feel immediately after choosing this option?"
+                    class="w-full bg-black/50 border border-blue-500/30 rounded-lg p-3 focus:outline-none focus:border-blue-400 transition text-white resize-none"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10 Months -->
+            <div class="bg-purple-900/20 backdrop-blur-lg rounded-lg p-6 sm:p-8 border border-purple-500/20">
+              <div class="flex items-center mb-6">
+                <span class="text-3xl mr-3">📅</span>
+                <div>
+                  <h2 class="text-xl sm:text-2xl font-semibold text-purple-400">10 Months From Now</h2>
+                  <p class="text-purple-300 text-sm">Medium-term consequences and adaptation</p>
+                </div>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 class="font-semibold mb-3 text-green-400">If I choose Option A</h3>
+                  <textarea 
+                    id="months-a"
+                    placeholder="What will your life look like? How will you feel about this choice?"
+                    class="w-full bg-black/50 border border-green-500/30 rounded-lg p-3 focus:outline-none focus:border-green-400 transition text-white resize-none"
+                    rows="3"
+                  ></textarea>
+                </div>
+                
+                <div>
+                  <h3 class="font-semibold mb-3 text-blue-400">If I choose Option B</h3>
+                  <textarea 
+                    id="months-b"
+                    placeholder="What will your life look like? How will you feel about this choice?"
+                    class="w-full bg-black/50 border border-blue-500/30 rounded-lg p-3 focus:outline-none focus:border-blue-400 transition text-white resize-none"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10 Years -->
+            <div class="bg-teal-900/20 backdrop-blur-lg rounded-lg p-6 sm:p-8 border border-teal-500/20">
+              <div class="flex items-center mb-6">
+                <span class="text-3xl mr-3">🔮</span>
+                <div>
+                  <h2 class="text-xl sm:text-2xl font-semibold text-teal-400">10 Years From Now</h2>
+                  <p class="text-teal-300 text-sm">Long-term impact and life satisfaction</p>
+                </div>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 class="font-semibold mb-3 text-green-400">If I choose Option A</h3>
+                  <textarea 
+                    id="years-a"
+                    placeholder="Looking back, how will you feel about this decision? Will you regret it?"
+                    class="w-full bg-black/50 border border-green-500/30 rounded-lg p-3 focus:outline-none focus:border-green-400 transition text-white resize-none"
+                    rows="3"
+                  ></textarea>
+                </div>
+                
+                <div>
+                  <h3 class="font-semibold mb-3 text-blue-400">If I choose Option B</h3>
+                  <textarea 
+                    id="years-b"
+                    placeholder="Looking back, how will you feel about this decision? Will you regret it?"
+                    class="w-full bg-black/50 border border-blue-500/30 rounded-lg p-3 focus:outline-none focus:border-blue-400 transition text-white resize-none"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analysis Results -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">Time Perspective Analysis</h2>
+            
+            <div id="analysis-results" class="bg-black/30 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold mb-4">Perspective Summary</h3>
+              <p class="text-gray-400">Fill in your thoughts for each time period to see the analysis...</p>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center mb-8">
+            <button id="analyze-decision" class="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+              Analyze Decision
+            </button>
+            <button id="clear-all" class="w-full sm:w-auto border border-gray-500 text-gray-300 px-6 py-3 rounded-lg hover:bg-gray-500/20 transition">
+              Clear All
+            </button>
+            <button id="sample-decision" class="w-full sm:w-auto border border-purple-400 text-purple-400 px-6 py-3 rounded-lg hover:bg-purple-400/20 transition">
+              Load Sample
+            </button>
+          </div>
+
+          <!-- Help Section -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">How the 10-10-10 Rule Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="text-3xl mb-4">⏰</div>
+                <h3 class="font-semibold mb-2 text-orange-400">10 Minutes</h3>
+                <p class="text-gray-400 text-sm">Focus on immediate emotions and reactions. How will you feel right after making the decision?</p>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl mb-4">📅</div>
+                <h3 class="font-semibold mb-2 text-purple-400">10 Months</h3>
+                <p class="text-gray-400 text-sm">Consider medium-term consequences. How will this decision affect your life and goals?</p>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl mb-4">🔮</div>
+                <h3 class="font-semibold mb-2 text-teal-400">10 Years</h3>
+                <p class="text-gray-400 text-sm">Think about long-term impact. Will you look back and be grateful for this choice?</p>
+              </div>
+            </div>
+            <div class="mt-8 p-4 bg-black/30 rounded-lg">
+              <h4 class="font-semibold mb-2">Key Benefits:</h4>
+              <ul class="text-sm text-gray-300 space-y-1">
+                <li>• Reduces emotional decision-making</li>
+                <li>• Provides perspective on short vs long-term thinking</li>
+                <li>• Helps identify what truly matters</li>
+                <li>• Clarifies the difference between urgent and important</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 sm:py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center">
+          <div class="text-xl sm:text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Gain perspective through time-based decision analysis</p>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function analyzeDecision() {
+        const decision = document.getElementById('decision-input').value.trim();
+        const optionA = document.getElementById('option-a').value.trim();
+        const optionB = document.getElementById('option-b').value.trim();
+        
+        const minutesA = document.getElementById('minutes-a').value.trim();
+        const minutesB = document.getElementById('minutes-b').value.trim();
+        const monthsA = document.getElementById('months-a').value.trim();
+        const monthsB = document.getElementById('months-b').value.trim();
+        const yearsA = document.getElementById('years-a').value.trim();
+        const yearsB = document.getElementById('years-b').value.trim();
+        
+        const results = document.getElementById('analysis-results');
+        
+        // Check if enough information is provided
+        const fieldsCompleted = [minutesA, minutesB, monthsA, monthsB, yearsA, yearsB].filter(field => field.length > 0).length;
+        
+        if (fieldsCompleted < 4) {
+          results.innerHTML = `
+            <h3 class="text-lg font-semibold mb-4">Perspective Summary</h3>
+            <p class="text-yellow-400">Please fill in at least 4 fields to get a meaningful analysis...</p>
+          `;
+          return;
+        }
+        
+        // Generate insights based on common patterns
+        let insights = [];
+        let recommendation = '';
+        
+        // Analyze time perspectives
+        if (minutesA && minutesB) {
+          if (minutesA.toLowerCase().includes('relief') || minutesA.toLowerCase().includes('comfortable')) {
+            insights.push('Option A provides immediate emotional comfort');
+          }
+          if (minutesB.toLowerCase().includes('excited') || minutesB.toLowerCase().includes('nervous')) {
+            insights.push('Option B creates immediate excitement but possible anxiety');
+          }
+        }
+        
+        if (yearsA && yearsB) {
+          if (yearsA.toLowerCase().includes('regret') || yearsA.toLowerCase().includes('wonder')) {
+            insights.push('⚠️ Option A may lead to long-term regret');
+            recommendation = 'Consider Option B for long-term satisfaction';
+          }
+          if (yearsB.toLowerCase().includes('proud') || yearsB.toLowerCase().includes('grateful')) {
+            insights.push('✅ Option B aligns with long-term values');
+            recommendation = 'Option B appears to be the better long-term choice';
+          }
+        }
+        
+        // Default insights if no specific patterns found
+        if (insights.length === 0) {
+          insights = [
+            'Consider which option aligns with your long-term values',
+            'Short-term discomfort may lead to long-term satisfaction',
+            'The decision that feels scarier might be the growth opportunity'
+          ];
+        }
+        
+        if (!recommendation) {
+          recommendation = 'Review your 10-year perspective - which choice would your future self thank you for?';
+        }
+        
+        const optionAName = optionA || 'Option A';
+        const optionBName = optionB || 'Option B';
+        
+        results.innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Perspective Summary</h3>
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 bg-green-900/20 rounded-lg">
+                <h4 class="font-semibold text-green-400 mb-2">${optionAName}</h4>
+                <div class="space-y-2 text-sm">
+                  <div><strong>10 min:</strong> ${minutesA || 'Not specified'}</div>
+                  <div><strong>10 months:</strong> ${monthsA || 'Not specified'}</div>
+                  <div><strong>10 years:</strong> ${yearsA || 'Not specified'}</div>
+                </div>
+              </div>
+              <div class="p-4 bg-blue-900/20 rounded-lg">
+                <h4 class="font-semibold text-blue-400 mb-2">${optionBName}</h4>
+                <div class="space-y-2 text-sm">
+                  <div><strong>10 min:</strong> ${minutesB || 'Not specified'}</div>
+                  <div><strong>10 months:</strong> ${monthsB || 'Not specified'}</div>
+                  <div><strong>10 years:</strong> ${yearsB || 'Not specified'}</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="p-4 bg-purple-900/30 rounded-lg">
+              <h4 class="font-semibold mb-2">Key Insights</h4>
+              <ul class="space-y-1 text-sm">
+                ${insights.map(insight => `<li>• ${insight}</li>`).join('')}
+              </ul>
+            </div>
+            
+            <div class="p-4 bg-black/40 rounded-lg">
+              <h4 class="font-semibold mb-2">Recommendation</h4>
+              <p class="text-purple-300">${recommendation}</p>
+            </div>
+            
+            <div class="text-center p-4 bg-teal-900/20 rounded-lg">
+              <p class="text-sm text-teal-300">
+                <strong>Remember:</strong> The option that aligns with your 10-year vision is usually the right choice, 
+                even if it feels uncomfortable in the short term.
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      function clearAll() {
+        const fields = [
+          'decision-input', 'option-a', 'option-b',
+          'minutes-a', 'minutes-b', 'months-a', 'months-b', 'years-a', 'years-b'
+        ];
+        
+        fields.forEach(field => {
+          document.getElementById(field).value = '';
+        });
+        
+        document.getElementById('analysis-results').innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Perspective Summary</h3>
+          <p class="text-gray-400">Fill in your thoughts for each time period to see the analysis...</p>
+        `;
+      }
+
+      function loadSample() {
+        document.getElementById('decision-input').value = 'Should I quit my stable job to start my own business?';
+        document.getElementById('option-a').value = 'Stay at current job';
+        document.getElementById('option-b').value = 'Start my own business';
+        
+        document.getElementById('minutes-a').value = 'Relief and comfort - no immediate stress or uncertainty';
+        document.getElementById('minutes-b').value = 'Excited but terrified - big leap into the unknown';
+        
+        document.getElementById('months-a').value = 'Stable but possibly bored - same routine, steady paycheck';
+        document.getElementById('months-b').value = 'Challenging but energized - learning daily, building something mine';
+        
+        document.getElementById('years-a').value = 'Might wonder "what if" - could regret not taking the chance';
+        document.getElementById('years-b').value = 'Proud of taking the risk - grateful for the growth and experience';
+      }
+
+      // Event listeners
+      document.getElementById('analyze-decision').addEventListener('click', analyzeDecision);
+      document.getElementById('clear-all').addEventListener('click', clearAll);
+      document.getElementById('sample-decision').addEventListener('click', loadSample);
+    </script>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html> 
