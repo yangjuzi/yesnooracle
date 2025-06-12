@@ -143,6 +143,26 @@ if (languageSelect) {
   });
 }
 
+// Handle preset question clicks
+document.addEventListener('DOMContentLoaded', () => {
+  const questionLinks = document.querySelectorAll('.question-link');
+  
+  questionLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      const question = this.getAttribute('data-question');
+      const textarea = document.getElementById('question');
+      
+      if (textarea) {
+        textarea.value = question;
+        textarea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollBy(0, -150);
+      }
+    });
+  });
+});
+
 // Blog detail page handling
 if (window.location.pathname.includes('blog-detail.html')) {
   const urlParams = new URLSearchParams(window.location.search);

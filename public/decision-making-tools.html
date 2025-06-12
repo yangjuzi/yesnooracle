@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FLS1QMH9GM');
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decision Making Tools - Yes No Oracle</title>
+    <meta name="description" content="Comprehensive decision making tools including pros/cons analysis, priority matrix, and decision frameworks">
+    <link rel="canonical" href="https://yesnooracle.dev/decision-making-tools.html" />
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="192x192" href="/icon-192.png">
+    <link rel="icon" sizes="512x512" href="/icon-512.png">
+    <link rel="icon" sizes="192x192" href="/icon-192-maskable.png" type="image/png">
+    <link rel="icon" sizes="512x512" href="/icon-512-maskable.png" type="image/png">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel {
+        font-family: 'Cinzel', serif;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .tool-card {
+        transition: all 0.3s ease;
+      }
+      .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15);
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html#features" class="hover:text-purple-400 transition">Features</a>
+            <a href="/index.html#how-it-works" class="hover:text-purple-400 transition">How It Works</a>
+            <a href="/index.html#testimonials" class="hover:text-purple-400 transition">Testimonials</a>
+            <a href="/index.html#faq" class="hover:text-purple-400 transition">FAQ</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+            <a href="/decision-making-tools.html" class="text-purple-400">Decision Tools</a>
+          </div>
+          <div class="relative">
+            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="es">Español</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Decision Making Tools
+          </h1>
+          <p class="text-xl text-center mb-16 text-gray-300 max-w-3xl mx-auto">
+            Empower your decision-making process with our comprehensive suite of tools designed to bring clarity to complex choices.
+          </p>
+
+          <!-- Tools Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <!-- Pros and Cons Tool -->
+            <div class="tool-card bg-white/5 backdrop-blur-lg rounded-lg p-6 border border-purple-500/20">
+              <div class="text-3xl mb-4">⚖️</div>
+              <h3 class="text-xl font-semibold mb-4">Pros & Cons Analysis</h3>
+              <p class="text-gray-400 mb-6">Systematically evaluate the advantages and disadvantages of your decision.</p>
+              <button onclick="showProsConsModal()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+                Start Analysis
+              </button>
+            </div>
+
+            <!-- Priority Matrix -->
+            <div class="tool-card bg-white/5 backdrop-blur-lg rounded-lg p-6 border border-purple-500/20">
+              <div class="text-3xl mb-4">📊</div>
+              <h3 class="text-xl font-semibold mb-4">Priority Matrix</h3>
+              <p class="text-gray-400 mb-6">Organize your options based on importance and urgency using the Eisenhower Matrix.</p>
+              <button onclick="showPriorityModal()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+                Create Matrix
+              </button>
+            </div>
+
+            <!-- Decision Wheel -->
+            <div class="tool-card bg-white/5 backdrop-blur-lg rounded-lg p-6 border border-purple-500/20">
+              <div class="text-3xl mb-4">🎯</div>
+              <h3 class="text-xl font-semibold mb-4">Decision Wheel</h3>
+              <p class="text-gray-400 mb-6">Spin the wheel to randomly select from your options when logic isn't enough.</p>
+              <button onclick="showWheelModal()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+                Spin Wheel
+              </button>
+            </div>
+
+            <!-- SWOT Analysis -->
+            <div class="tool-card bg-white/5 backdrop-blur-lg rounded-lg p-6 border border-purple-500/20">
+              <div class="text-3xl mb-4">🎯</div>
+              <h3 class="text-xl font-semibold mb-4">SWOT Analysis</h3>
+              <p class="text-gray-400 mb-6">Analyze Strengths, Weaknesses, Opportunities, and Threats for strategic decisions.</p>
+              <button onclick="showSWOTModal()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+                Start SWOT
+              </button>
+            </div>
+
+            <!-- 10-10-10 Rule -->
+            <div class="tool-card bg-white/5 backdrop-blur-lg rounded-lg p-6 border border-purple-500/20">
+              <div class="text-3xl mb-4">⏰</div>
+              <h3 class="text-xl font-semibold mb-4">10-10-10 Rule</h3>
+              <p class="text-gray-400 mb-6">Consider how you'll feel about this decision in 10 minutes, 10 months, and 10 years.</p>
+              <button onclick="show101010Modal()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+                Apply Rule
+              </button>
+            </div>
+
+            <!-- Values Alignment -->
+            <div class="tool-card bg-white/5 backdrop-blur-lg rounded-lg p-6 border border-purple-500/20">
+              <div class="text-3xl mb-4">💎</div>
+              <h3 class="text-xl font-semibold mb-4">Values Alignment</h3>
+              <p class="text-gray-400 mb-6">Evaluate how well your options align with your core values and beliefs.</p>
+              <button onclick="showValuesModal()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+                Check Alignment
+              </button>
+            </div>
+          </div>
+
+          <!-- Decision Making Tips -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 mb-16">
+            <h2 class="text-2xl font-cinzel mb-6">Decision Making Best Practices</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-purple-400">Before Making a Decision</h3>
+                <ul class="space-y-2 text-gray-300">
+                  <li>• Clearly define the problem or opportunity</li>
+                  <li>• Gather all relevant information</li>
+                  <li>• Identify all possible options</li>
+                  <li>• Consider the stakeholders affected</li>
+                  <li>• Set a timeline for the decision</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-purple-400">After Making a Decision</h3>
+                <ul class="space-y-2 text-gray-300">
+                  <li>• Commit fully to your choice</li>
+                  <li>• Create an implementation plan</li>
+                  <li>• Monitor the results</li>
+                  <li>• Learn from the outcomes</li>
+                  <li>• Be prepared to adjust if needed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modals would go here - I'll add the JavaScript for functionality -->
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Empowering better decisions through wisdom and tools</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Placeholder functions for modal interactions
+      function showProsConsModal() {
+        alert('Pros & Cons tool will be implemented here');
+      }
+      
+      function showPriorityModal() {
+        alert('Priority Matrix tool will be implemented here');
+      }
+      
+      function showWheelModal() {
+        alert('Decision Wheel tool will be implemented here');
+      }
+      
+      function showSWOTModal() {
+        alert('SWOT Analysis tool will be implemented here');
+      }
+      
+      function show101010Modal() {
+        alert('10-10-10 Rule tool will be implemented here');
+      }
+      
+      function showValuesModal() {
+        alert('Values Alignment tool will be implemented here');
+      }
+    </script>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html> 
