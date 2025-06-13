@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Language selector functionality
-    const languageSelect = document.getElementById('language-select');
+const languageSelect = document.getElementById('language-select');
     if (languageSelect) {
         languageSelect.addEventListener('change', function() {
             const selectedLang = this.value;

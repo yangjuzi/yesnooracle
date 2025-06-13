@@ -57,6 +57,18 @@
             <a href="/decision-making-tools.html" class="text-purple-400">Tools</a>
             <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
           </div>
+          <div class="relative">
+            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="es">Español</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+              </svg>
+            </div>
+          </div>
           <!-- Mobile menu button -->
           <button class="md:hidden p-2" onclick="toggleMenu()">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

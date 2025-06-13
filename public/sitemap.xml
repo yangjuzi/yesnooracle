@@ -2,155 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://yesnooracle.dev/</loc>
-        <lastmod>2024-11-16</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/index.html</loc>
-        <lastmod>2024-11-16</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/privacy-policy.html</loc>
-        <lastmod>2024-11-16</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/contact-us.html</loc>
-        <lastmod>2024-11-16</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/about-us.html</loc>
-        <lastmod>2024-10-08</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/terms-of-service.html</loc>
-        <lastmod>2024-11-16</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/blog.html</loc>
-        <lastmod>2025-06-02</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/blog-1.html</loc>
-        <lastmod>2025-06-02</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/blog-2.html</loc>
-        <lastmod>2025-06-02</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/blog-3.html</loc>
-        <lastmod>2025-06-02</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/blog-4.html</loc>
-        <lastmod>2025-06-02</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/blog-5.html</loc>
-        <lastmod>2025-06-02</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/blog-6.html</loc>
-        <lastmod>2025-06-02</lastmod>
+        <lastmod>2024-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://yesnooracle.dev/blog-7.html</loc>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/decision-making-tools.html</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://yesnooracle.dev/psychology-insights.html</loc>
-        <lastmod>2025-01-01</lastmod>
+        <loc>https://yesnooracle.dev/coin-flip.html</loc>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://yesnooracle.dev/learning-resources.html</loc>
-        <lastmod>2025-01-01</lastmod>
+        <loc>https://yesnooracle.dev/random-number.html</loc>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://yesnooracle.dev/dice-roller.html</loc>
+        <lastmod>2024-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://yesnooracle.dev/draw-lots.html</loc>
+        <lastmod>2024-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://yesnooracle.dev/decision-matrix.html</loc>
+        <lastmod>2024-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/decision-wheel-tool.html</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/pros-cons-tool.html</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/swot-analysis-tool.html</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yesnooracle.dev/priority-matrix-tool.html</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    <url>
-        <loc>https://yesnooracle.dev/ten-ten-ten-tool.html</loc>
-        <lastmod>2025-01-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://yesnooracle.dev/values-alignment-tool.html</loc>
-        <lastmod>2025-01-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://yesnooracle.dev/cost-benefit-tool.html</loc>
-        <lastmod>2025-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://yesnooracle.dev/decision-tree-tool.html</loc>
-        <lastmod>2025-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://yesnooracle.dev/risk-assessment-tool.html</loc>
-        <lastmod>2025-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-   
-    <!-- Add more URLs as needed -->
 </urlset>
