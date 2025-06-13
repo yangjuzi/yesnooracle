@@ -296,29 +296,29 @@ if (document.getElementById('decision-matrix')) {
   document.getElementById('add-criterion').addEventListener('click', addCriterion);
 }
 
-// 随机数生成器功能
+// Random Number Generator functionality
 if (document.getElementById('random-number-tool')) {
   const toolDiv = document.getElementById('random-number-tool');
   const resultDiv = document.getElementById('random-number-result');
 
   toolDiv.innerHTML = `
     <div class="flex flex-col md:flex-row items-center gap-4">
-      <label class="flex items-center gap-2">最小值
+      <label class="flex items-center gap-2">Minimum
         <input id="rand-min" type="number" value="1" class="bg-white/10 rounded px-2 py-1 w-24 text-center" />
       </label>
-      <label class="flex items-center gap-2">最大值
+      <label class="flex items-center gap-2">Maximum
         <input id="rand-max" type="number" value="100" class="bg-white/10 rounded px-2 py-1 w-24 text-center" />
       </label>
-      <button id="rand-generate" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">生成</button>
+      <button id="rand-generate" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">Generate</button>
     </div>
   `;
-  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">请设置范围并点击生成</div>';
+  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">Set range and click generate</div>';
 
   document.getElementById('rand-generate').onclick = function() {
     const min = parseInt(document.getElementById('rand-min').value);
     const max = parseInt(document.getElementById('rand-max').value);
     if (isNaN(min) || isNaN(max) || min > max) {
-      resultDiv.innerHTML = '<div class="text-red-400 text-center mt-4">请输入有效的最小值和最大值</div>';
+      resultDiv.innerHTML = '<div class="text-red-400 text-center mt-4">Please enter valid minimum and maximum values</div>';
       return;
     }
     const rand = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -504,57 +504,57 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// 骰子功能
+// Dice Roller functionality
 if (document.getElementById('dice-roller-tool')) {
   const toolDiv = document.getElementById('dice-roller-tool');
   const resultDiv = document.getElementById('dice-roller-result');
 
   toolDiv.innerHTML = `
     <div class="flex flex-col md:flex-row items-center gap-4">
-      <label class="flex items-center gap-2">骰子面数
+      <label class="flex items-center gap-2">Number of sides
         <select id="dice-sides" class="bg-white/10 rounded px-2 py-1 w-24 text-center">
-          <option value="6">6面</option>
-          <option value="4">4面</option>
-          <option value="8">8面</option>
-          <option value="10">10面</option>
-          <option value="12">12面</option>
-          <option value="20">20面</option>
+          <option value="6">6-sided</option>
+          <option value="4">4-sided</option>
+          <option value="8">8-sided</option>
+          <option value="10">10-sided</option>
+          <option value="12">12-sided</option>
+          <option value="20">20-sided</option>
         </select>
       </label>
-      <button id="dice-roll-btn" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">掷骰子</button>
+      <button id="dice-roll-btn" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">Roll</button>
     </div>
   `;
-  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">请选择面数并点击掷骰子</div>';
+  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">Select number of sides and click roll</div>';
 
   document.getElementById('dice-roll-btn').onclick = function() {
     const sides = parseInt(document.getElementById('dice-sides').value);
     const roll = Math.floor(Math.random() * sides) + 1;
-    resultDiv.innerHTML = `<div class="text-center text-5xl font-bold text-purple-300 animate-pulse">${roll}</div><div class="text-center text-lg mt-2">${sides}面骰子</div>`;
+    resultDiv.innerHTML = `<div class="text-center text-5xl font-bold text-purple-300 animate-pulse">${roll}</div><div class="text-center text-lg mt-2">${sides}-sided die</div>`;
   };
 }
 
-// 抽签功能
+// Draw Lots functionality
 if (document.getElementById('draw-lots-tool')) {
   const toolDiv = document.getElementById('draw-lots-tool');
   const resultDiv = document.getElementById('draw-lots-result');
 
   toolDiv.innerHTML = `
     <div class="flex flex-col gap-4">
-      <textarea id="lots-input" rows="5" placeholder="每行输入一个候选项" class="bg-white/10 rounded px-3 py-2 w-full text-white"></textarea>
-      <button id="draw-lots-btn" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">抽签</button>
+      <textarea id="lots-input" rows="5" placeholder="Enter one option per line" class="bg-white/10 rounded px-3 py-2 w-full text-white"></textarea>
+      <button id="draw-lots-btn" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">Draw</button>
     </div>
   `;
-  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">输入候选项后点击抽签</div>';
+  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">Enter options and click draw</div>';
 
   document.getElementById('draw-lots-btn').onclick = function() {
     const input = document.getElementById('lots-input').value;
     const options = input.split('\n').map(s => s.trim()).filter(Boolean);
     if (options.length < 2) {
-      resultDiv.innerHTML = '<div class="text-red-400 text-center mt-4">请至少输入两个候选项</div>';
+      resultDiv.innerHTML = '<div class="text-red-400 text-center mt-4">Please enter at least two options</div>';
       return;
     }
     const idx = Math.floor(Math.random() * options.length);
     const chosen = options[idx];
-    resultDiv.innerHTML = `<div class="text-center text-4xl font-bold text-purple-300 animate-bounce">${chosen}</div><div class="text-center text-lg mt-2">共${options.length}个候选项</div>`;
+    resultDiv.innerHTML = `<div class="text-center text-4xl font-bold text-purple-300 animate-bounce">${chosen}</div><div class="text-center text-lg mt-2">Total options: ${options.length}</div>`;
   };
 } 
