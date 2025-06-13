@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FLS1QMH9GM');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decision Matrix - Yes No Oracle</title>
+    <meta name="description" content="Make better decisions with our decision matrix tool. Compare options systematically and get clear recommendations.">
+    <link rel="canonical" href="https://yesnooracle.dev/decision-matrix.html" />
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="192x192" href="/icon-192.png">
+    <link rel="icon" sizes="512x512" href="/icon-512.png">
+    <link rel="icon" sizes="192x192" href="/icon-192-maskable.png" type="image/png">
+    <link rel="icon" sizes="512x512" href="/icon-512-maskable.png" type="image/png">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel {
+        font-family: 'Cinzel', serif;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      .matrix-cell input {
+        width: 60px;
+        text-align: center;
+      }
+
+      .weight-input {
+        width: 80px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html#features" class="hover:text-purple-400 transition">Features</a>
+            <a href="/index.html#how-it-works" class="hover:text-purple-400 transition">How It Works</a>
+            <a href="/index.html#testimonials" class="hover:text-purple-400 transition">Testimonials</a>
+            <a href="/index.html#faq" class="hover:text-purple-400 transition">FAQ</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+          <div class="relative">
+            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="es">Español</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Decision Matrix
+          </h1>
+          
+          <div class="bg-white/5 p-8 rounded-lg mb-8">
+            <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
+            <ol class="list-decimal pl-6 space-y-2">
+              <li>Add your decision options (e.g., different choices you're considering)</li>
+              <li>Add criteria to evaluate each option (e.g., cost, time, quality)</li>
+              <li>Set weights for each criterion (how important each factor is)</li>
+              <li>Rate each option on each criterion (1-10)</li>
+              <li>Get your results and recommendation</li>
+            </ol>
+          </div>
+
+          <div class="bg-white/5 p-8 rounded-lg mb-8">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-semibold">Decision Matrix</h2>
+              <div class="space-x-4">
+                <button id="add-option" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition">
+                  Add Option
+                </button>
+                <button id="add-criterion" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition">
+                  Add Criterion
+                </button>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full" id="decision-matrix">
+                <thead>
+                  <tr>
+                    <th class="p-2 border border-white/20">Options/Criteria</th>
+                    <!-- Criteria will be added here -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Options and ratings will be added here -->
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th class="p-2 border border-white/20">Weights</th>
+                    <!-- Weight inputs will be added here -->
+                  </tr>
+                  <tr>
+                    <th class="p-2 border border-white/20">Total Score</th>
+                    <!-- Total scores will be added here -->
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-white/5 p-8 rounded-lg">
+            <h2 class="text-2xl font-semibold mb-4">Results</h2>
+            <div id="results" class="space-y-4">
+              <p>Fill in the matrix above to see your results.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html> 

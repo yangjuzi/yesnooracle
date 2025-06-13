@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice Roller - Yes No Oracle</title>
+    <meta name="description" content="Roll a virtual dice for games, decisions, and fun.">
+    <link rel="canonical" href="https://yesnooracle.dev/dice-roller.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="192x192" href="/icon-192.png">
+    <link rel="icon" sizes="512x512" href="/icon-512.png">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html#features" class="hover:text-purple-400 transition">Features</a>
+            <a href="/index.html#how-it-works" class="hover:text-purple-400 transition">How It Works</a>
+            <a href="/index.html#testimonials" class="hover:text-purple-400 transition">Testimonials</a>
+            <a href="/index.html#faq" class="hover:text-purple-400 transition">FAQ</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="max-w-2xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Dice Roller
+          </h1>
+          <div class="bg-white/5 p-8 rounded-lg mb-8">
+            <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
+            <ol class="list-decimal pl-6 space-y-2">
+              <li>选择骰子面数（如6面、20面等）</li>
+              <li>点击掷骰子按钮</li>
+              <li>查看结果</li>
+            </ol>
+          </div>
+          <div class="bg-white/5 p-8 rounded-lg mb-8" id="dice-roller-tool">
+            <!-- 功能区，后续补充 -->
+          </div>
+          <div class="bg-white/5 p-8 rounded-lg" id="dice-roller-result">
+            <!-- 结果区，后续补充 -->
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html> 
