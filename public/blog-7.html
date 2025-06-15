@@ -12,9 +12,9 @@
 </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Science of Better Decisions - Yes No Oracle Blog</title>
-    <meta name="description" content="Discover evidence-based decision making tools and psychological insights">
-    <link rel="canonical" href="https://yesnooracle.dev/blog-7.html" />
+    <title>Decision Tree: Your Visual Guide to Smarter Choices - Yes No Oracle Blog</title>
+    <meta name="description" content="Learn what Decision Tree is, why and when to use it, who benefits, and how to get the most out of this visual decision-making tool">
+    <link rel="canonical" href="https://yesnooracle.dev/blog/7" />
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" sizes="192x192" href="/icon-192.png">
@@ -24,14 +24,21 @@
     <link rel="stylesheet" href="/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      .font-cinzel { font-family: 'Cinzel', serif; }
-      body { font-family: 'Inter', sans-serif; }
-    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              cinzel: ['Cinzel', 'serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
-  <body class="bg-black text-white">
+  <body class="bg-gray-900 text-white min-h-screen">
     <!-- Header -->
     <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
       <nav class="container mx-auto px-6 py-4">
@@ -67,59 +74,119 @@
           </div>
           
           <h1 class="text-4xl md:text-5xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
-            The Science of Better Decisions
+            Decision Tree: Your Visual Guide to Smarter Choices
           </h1>
           
           <div class="flex items-center space-x-4 mb-12">
             <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
-              <span class="text-xl">🧠</span>
+              <span class="text-xl">🌳</span>
             </div>
             <div>
-              <div class="font-semibold">Decision Science Team</div>
-              <div class="text-gray-400">January 1, 2025 · 12 min read</div>
+              <div class="font-semibold">Decision Coach</div>
+              <div class="text-gray-400">March 20, 2024 · 8 min read</div>
             </div>
           </div>
 
           <div class="prose prose-invert max-w-none">
             <p class="text-lg mb-8">
-              Decision making is one of the most critical skills we need in life, yet most of us never receive formal training in how to make better choices. Today, we explore evidence-based tools and insights that will transform how you approach important decisions.
+              When faced with complex decisions, a Decision Tree can be your best ally. This visual tool helps you map out different choices and their potential outcomes, making it easier to evaluate options and make informed decisions. In this guide, we'll explore how to use this powerful tool effectively for various decision-making scenarios.
             </p>
 
             <div class="bg-white/5 p-8 rounded-lg mb-12">
-              <h2 class="text-2xl font-semibold mb-4">Why Decision Science Matters</h2>
+              <h2 class="text-2xl font-semibold mb-4">What is a Decision Tree?</h2>
               <p class="mb-4">
-                Every day, we make thousands of decisions. Research shows that the quality of our decisions directly impacts our happiness, success, and well-being.
+                A Decision Tree is a visual tool that helps you map out different choices and their potential outcomes. It consists of:
               </p>
-              <p class="mb-4">
-                However, our brains evolved for a different world. The cognitive shortcuts that helped our ancestors survive often work against us in our complex modern environment.
-              </p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Decision nodes (choices)</li>
+                <li>Chance nodes (probabilities)</li>
+                <li>Outcome nodes (results)</li>
+                <li>Branches (connections)</li>
+              </ul>
             </div>
 
             <div class="bg-white/5 p-8 rounded-lg mb-12">
-              <h2 class="text-2xl font-semibold mb-4">Understanding Cognitive Biases</h2>
+              <h2 class="text-2xl font-semibold mb-4">Why Use a Decision Tree?</h2>
               <p class="mb-4">
-                One of the biggest breakthroughs in decision science has been identifying systematic errors in thinking that lead to poor decisions.
+                This tool offers several benefits for decision-making:
               </p>
-              
-              <div class="space-y-4">
-                <div class="border-l-4 border-purple-400 pl-4">
-                  <h4 class="font-semibold">Confirmation Bias</h4>
-                  <p class="text-gray-300">We seek information that confirms what we already believe while ignoring contradictory evidence.</p>
-                </div>
-                
-                <div class="border-l-4 border-purple-400 pl-4">
-                  <h4 class="font-semibold">Loss Aversion</h4>
-                  <p class="text-gray-300">Losses feel roughly twice as powerful as gains, leading us to make overly conservative choices.</p>
-                </div>
-              </div>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Visualizes complex decisions</li>
+                <li>Shows all possible outcomes</li>
+                <li>Helps evaluate probabilities</li>
+                <li>Facilitates comparison of options</li>
+                <li>Supports informed decision-making</li>
+              </ul>
             </div>
 
-            <div class="bg-white/5 p-6 rounded-lg text-center">
-              <h3 class="text-xl font-semibold mb-4">Ready to Improve Your Decision Making?</h3>
-              <p class="mb-6">Explore our decision-making tools and start making better choices today.</p>
-              <a href="/decision-making-tools.html" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition inline-block">
-                Try Decision Tools
-              </a>
+            <div class="bg-white/5 p-8 rounded-lg mb-12">
+              <h2 class="text-2xl font-semibold mb-4">When to Use a Decision Tree</h2>
+              <p class="mb-4">
+                This tool is particularly useful in these situations:
+              </p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Complex decision-making</li>
+                <li>Multiple options to evaluate</li>
+                <li>Uncertain outcomes</li>
+                <li>Risk assessment</li>
+                <li>Strategic planning</li>
+              </ul>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-lg mb-12">
+              <h2 class="text-2xl font-semibold mb-4">How to Create a Decision Tree</h2>
+              <p class="mb-4">
+                Follow these steps for an effective decision tree:
+              </p>
+              <ol class="list-decimal pl-6 space-y-2">
+                <li>Identify the main decision</li>
+                <li>List all possible options</li>
+                <li>Add chance nodes and probabilities</li>
+                <li>Include all possible outcomes</li>
+                <li>Calculate expected values</li>
+              </ol>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-lg mb-12">
+              <h2 class="text-2xl font-semibold mb-4">Tips for Success</h2>
+              <p class="mb-4">
+                To get the most out of your Decision Tree:
+              </p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Be comprehensive in listing options</li>
+                <li>Use realistic probabilities</li>
+                <li>Consider all possible outcomes</li>
+                <li>Update as new information arises</li>
+                <li>Use software for complex trees</li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-4 mb-12">
+              <span class="px-4 py-2 bg-purple-500/20 rounded-full text-sm">Decision Making</span>
+              <span class="px-4 py-2 bg-purple-500/20 rounded-full text-sm">Visualization</span>
+              <span class="px-4 py-2 bg-purple-500/20 rounded-full text-sm">Strategy</span>
+              <span class="px-4 py-2 bg-purple-500/20 rounded-full text-sm">Planning</span>
+            </div>
+
+            <div class="border-t border-white/10 pt-8">
+              <h3 class="text-xl font-semibold mb-4">Share this article</h3>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center hover:bg-purple-500/30 transition">
+                  <svg class="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center hover:bg-purple-500/30 transition">
+                  <svg class="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                  </svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center hover:bg-purple-500/30 transition">
+                  <svg class="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
