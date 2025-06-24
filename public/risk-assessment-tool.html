@@ -1,4 +1,13 @@
-<!-- ... existing code ... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
       gtag('config', 'G-FLS1QMH9GM');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4461477700183709"
@@ -6,6 +15,236 @@
     <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-4461477700183709">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risk Assessment Tool - Yes No Oracle</title>
+    <title>Risk Assessment Matrix Tool - Identify & Mitigate Risks</title>
+    <meta name="description" content="Use our interactive Risk Assessment Matrix to identify, analyze, and prioritize risks. A professional tool to help you make smarter, safer decisions.">
+    <link rel="canonical" href="https://yesnooracle.dev/risk-assessment-tool.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/style.css">
-<!-- ... existing code ... --> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .risk-dot {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
+      }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-4 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Risk Assessment Matrix
+          </h1>
+          <p class="text-center text-lg text-gray-400 mb-12">Visualize and Prioritize Potential Risks to Act Decisively</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Risk Input Section -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h2 class="text-2xl font-semibold mb-4">Identify Your Risks</h2>
+              <form id="risk-form" class="space-y-4">
+                <input type="text" id="risk-name" placeholder="Describe the potential risk..." class="w-full p-2 bg-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400">
+                <div>
+                  <label for="risk-likelihood" class="block mb-1 text-sm">Likelihood (1-5)</label>
+                  <input type="range" id="risk-likelihood" min="1" max="5" value="3" class="w-full">
+                </div>
+                <div>
+                  <label for="risk-impact" class="block mb-1 text-sm">Impact / Severity (1-5)</label>
+                  <input type="range" id="risk-impact" min="1" max="5" value="3" class="w-full">
+                </div>
+                <button type="submit" class="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition">Add Risk</button>
+              </form>
+              <div id="risk-list" class="mt-6 space-y-2">
+                <!-- Risk items will be added here -->
+              </div>
+            </div>
+
+            <!-- Risk Matrix Visualization -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h2 class="text-2xl font-semibold mb-4">Risk Matrix</h2>
+              <div class="relative aspect-square">
+                <!-- Grid Background -->
+                <div class="absolute inset-0 grid grid-cols-5 grid-rows-5 gap-0">
+                  <div class="col-span-2 row-span-2 bg-green-500/10"></div>
+                  <div class="col-span-3 row-span-2 bg-yellow-500/10"></div>
+                  <div class="col-span-2 row-span-3 bg-yellow-500/10"></div>
+                  <div class="col-span-3 row-span-3 bg-red-500/10"></div>
+                </div>
+                 <!-- Matrix Container -->
+                <div id="risk-matrix" class="relative w-full h-full">
+                   <!-- Risk dots will be plotted here -->
+                </div>
+                <!-- Labels -->
+                <div class="absolute -bottom-8 left-0 w-full text-center text-gray-400">Likelihood →</div>
+                <div class="absolute -left-12 top-0 h-full flex items-center transform -rotate-90 text-gray-400">Impact / Severity →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Educational Content Section -->
+        <div class="max-w-4xl mx-auto mt-16 text-gray-300">
+          <h2 class="text-3xl font-cinzel text-center mb-10 text-white">A Practical Guide to Risk Assessment</h2>
+          <div class="space-y-8 prose prose-invert max-w-none">
+              
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">What is a Risk Assessment?</h3>
+                  <p>Risk assessment is a systematic process used by professionals to identify potential risks, analyze their potential for harm, and prioritize them for mitigation. It's about thinking ahead to prevent problems, rather than reacting to them. By plotting risks on a Likelihood vs. Impact matrix, you can instantly see which issues demand your immediate attention and which can be monitored.</p>
+              </div>
+
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">How to Use the Risk Matrix Tool</h3>
+                  <ol class="list-decimal list-inside space-y-4">
+                      <li><strong>Brainstorm Risks:</strong> In the "Identify Your Risks" section, list every potential event that could negatively affect your project or decision. Be specific. "Server crashes" is better than "IT problems."</li>
+                      <li><strong>Rate Likelihood:</strong> For each risk, estimate the probability of it occurring. Use the 1-5 slider, where 1 is "Very Unlikely" and 5 is "Very Likely."</li>
+                      <li><strong>Rate Impact:</strong> Now, estimate the severity of the consequences if the risk does occur. Use the 1-5 slider, where 1 is "Insignificant Impact" and 5 is "Catastrophic Impact."</li>
+                      <li><strong>Add the Risk:</strong> Click "Add Risk." The tool will calculate the score and plot it on the matrix. A color-coded dot will appear, and the risk will be added to your list below the form.</li>
+                  </ol>
+              </div>
+              
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">Understanding the Quadrants & Forming a Strategy</h3>
+                  <p>The matrix is divided into zones that suggest a specific strategy for each risk:</p>
+                  <ul class="space-y-4 mt-4">
+                    <li><strong class="text-red-400">Red Zone (High-Impact, High-Likelihood):</strong> These are your critical priorities. Your strategy should be to <span class="font-bold">Mitigate or Avoid</span> these risks at all costs. Develop immediate action plans.</li>
+                    <li><strong class="text-yellow-400">Yellow Zone (High-Impact/Low-Likelihood or Low-Impact/High-Likelihood):</strong> These require careful management. For high-impact risks, consider a <span class="font-bold">Transfer</span> strategy (like insurance). For high-likelihood risks, focus on <span class="font-bold">Control</span> measures to reduce their frequency.</li>
+                    <li><strong class="text-green-400">Green Zone (Low-Impact, Low-Likelihood):</strong> These are minor risks. The best strategy is often to <span class="font-bold">Accept</span> them, while monitoring them to ensure they don't escalate.</li>
+                  </ul>
+              </div>
+
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">Frequently Asked Questions (FAQ)</h3>
+                  <div class="space-y-4">
+                      <div>
+                          <h4 class="font-bold text-white">How is the Risk Score calculated?</h4>
+                          <p>It's a simple multiplication: Risk Score = Likelihood (1-5) × Impact (1-5). This gives a score from 1 to 25, which determines its position on the matrix.</p>
+                      </div>
+                      <div>
+                          <h4 class="font-bold text-white">Can I use this for personal decisions?</h4>
+                          <p>Absolutely. While it's a staple in business project management, it's incredibly useful for personal life. Use it to assess risks when changing careers, making a large investment, or even planning a major event.</p>
+                      </div>
+                       <div>
+                          <h4 class="font-bold text-white">What's the difference between Mitigate, Transfer, and Avoid?</h4>
+                          <p><strong>Avoid:</strong> Change your plans to eliminate the risk entirely. <strong>Mitigate:</strong> Take steps to reduce the likelihood or impact of the risk. <strong>Transfer:</strong> Shift the financial cost of the risk to a third party (e.g., buying insurance).</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script type_to_remove="module">
+      const riskForm = document.getElementById('risk-form');
+      const riskNameInput = document.getElementById('risk-name');
+      const riskLikelihoodInput = document.getElementById('risk-likelihood');
+      const riskImpactInput = document.getElementById('risk-impact');
+      const riskList = document.getElementById('risk-list');
+      const riskMatrix = document.getElementById('risk-matrix');
+
+      let risks = [];
+
+      riskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = riskNameInput.value.trim();
+        if (!name) return;
+
+        const risk = {
+          id: Date.now(),
+          name,
+          likelihood: parseInt(riskLikelihoodInput.value),
+          impact: parseInt(riskImpactInput.value),
+        };
+
+        risks.push(risk);
+        renderRisks();
+        riskNameInput.value = '';
+        riskLikelihoodInput.value = 3;
+        riskImpactInput.value = 3;
+      });
+
+      function renderRisks() {
+        riskList.innerHTML = '';
+        riskMatrix.innerHTML = '';
+        risks.forEach(risk => {
+          // Render list item
+          const listItem = document.createElement('div');
+          listItem.className = 'flex justify-between items-center bg-white/10 p-2 rounded-md';
+          listItem.innerHTML = `
+            <span>${risk.name} (Score: ${risk.likelihood * risk.impact})</span>
+            <button data-id="${risk.id}" class="text-red-500 hover:text-red-400">✖</button>
+          `;
+          riskList.appendChild(listItem);
+
+          // Render dot on matrix
+          const dot = document.createElement('div');
+          dot.className = 'risk-dot';
+          dot.style.left = `${((risk.likelihood - 1) / 4) * 100}%`;
+          dot.style.bottom = `${((risk.impact - 1) / 4) * 100}%`;
+          
+          const score = risk.likelihood * risk.impact;
+          if (score >= 15 || (risk.impact >=4 && risk.likelihood >=4)) {
+              dot.style.backgroundColor = '#ef4444'; // red
+          } else if (score >= 8) {
+              dot.style.backgroundColor = '#facc15'; // yellow
+          } else {
+              dot.style.backgroundColor = '#22c55e'; // green
+          }
+          
+          dot.title = `${risk.name} (L:${risk.likelihood}, I:${risk.impact})`;
+          riskMatrix.appendChild(dot);
+        });
+      }
+      
+      riskList.addEventListener('click', (e) => {
+        if(e.target.tagName === 'BUTTON') {
+            const id = parseInt(e.target.dataset.id);
+            risks = risks.filter(risk => risk.id !== id);
+            renderRisks();
+        }
+      });
+
+    </script>
+</body>
+</html> 

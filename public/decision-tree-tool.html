@@ -80,16 +80,21 @@
           </div>
 
           <h1 class="text-3xl sm:text-4xl md:text-5xl font-cinzel text-center mb-6 sm:mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
-            Decision Tree Builder
+            Decision Tree Analysis
           </h1>
           
-          <p class="text-lg sm:text-xl text-center mb-12 sm:mb-16 text-gray-300 max-w-3xl mx-auto">
-            Visualize complex decision paths and explore different scenarios to make informed choices.
-          </p>
+          <div class="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
+            <p class="text-lg sm:text-xl text-gray-300 mb-4">
+              Welcome to our interactive Decision Tree tool. In a world of uncertainty, a decision tree helps you map out all possible paths, probabilities, and payoffs for a complex decision.
+            </p>
+            <p class="text-base text-gray-400">
+              This powerful technique allows you to visually compare different choices and their potential outcomes, bringing structure and clarity to your strategic thinking. Use our builder to construct your tree and calculate the expected value of each choice to find the optimal path forward.
+            </p>
+          </div>
 
           <!-- Decision Setup -->
           <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
-            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">Decision Setup</h2>
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">1. Define Your Decision</h2>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
@@ -250,30 +255,76 @@
             </button>
           </div>
 
-          <!-- Help Section -->
-          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8">
-            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">How to Use Decision Trees</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 class="font-semibold mb-3 text-purple-400">Node Types</h3>
-                <ul class="text-sm text-gray-300 space-y-2">
-                  <li><span class="inline-block w-4 h-4 decision-node rounded mr-2"></span><strong>Decision Node:</strong> Choices you control</li>
-                  <li><span class="inline-block w-4 h-4 chance-node rounded mr-2"></span><strong>Chance Node:</strong> Uncertain events with probabilities</li>
-                  <li><span class="inline-block w-4 h-4 outcome-node rounded mr-2"></span><strong>Outcome Node:</strong> Final results with values</li>
-                </ul>
+          <!-- =================================== -->
+          <!-- ==  NEW EDUCATIONAL CONTENT START == -->
+          <!-- =================================== -->
+          <div class="mt-16 sm:mt-24 max-w-7xl mx-auto text-white">
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-10">
+              
+              <h2 class="text-2xl sm:text-3xl font-cinzel mb-8 text-center bg-gradient-to-r from-purple-300 to-pink-300 text-transparent bg-clip-text">
+                A Practical Guide to Decision Tree Analysis
+              </h2>
+
+              <!-- Core Concepts -->
+              <div class="mb-12">
+                <h3 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">The Core Components of a Decision Tree</h3>
+                <p class="text-gray-300 mb-6">A decision tree is composed of three types of nodes:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                  
+                  <div class="p-4 bg-black/30 rounded-lg border border-purple-500/30">
+                    <div class="text-4xl mb-3">■</div>
+                    <h4 class="font-bold text-white mb-2">Decision Node</h4>
+                    <p class="text-gray-400 text-sm">Represents a choice you can make (e.g., "Invest in Project A" or "Invest in Project B"). You have control over this.</p>
+                  </div>
+                  
+                  <div class="p-4 bg-black/30 rounded-lg border border-blue-500/30">
+                    <div class="text-4xl mb-3">●</div>
+                    <h4 class="font-bold text-white mb-2">Chance Node</h4>
+                    <p class="text-gray-400 text-sm">Represents an uncertain outcome with probabilities (e.g., "Market is Strong" at 60% vs. "Market is Weak" at 40%). You don't have control over this.</p>
+                  </div>
+                  
+                  <div class="p-4 bg-black/30 rounded-lg border border-green-500/30">
+                    <div class="text-4xl mb-3">▲</div>
+                    <h4 class="font-bold text-white mb-2">Outcome Node (or Leaf Node)</h4>
+                    <p class="text-gray-400 text-sm">Represents the final result or payoff of a particular path (e.g., a profit of $100,000).</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 class="font-semibold mb-3 text-purple-400">Best Practices</h3>
-                <ul class="text-sm text-gray-300 space-y-2">
-                  <li>• Start with your main decision at the root</li>
-                  <li>• Add all possible branches from each decision</li>
-                  <li>• Include probability estimates for uncertain events</li>
-                  <li>• Assign realistic values to outcomes</li>
-                  <li>• Consider both quantitative and qualitative factors</li>
-                </ul>
+
+              <!-- How to Build -->
+              <div class="mb-12">
+                <h3 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">How to Build an Effective Decision Tree</h3>
+                <div class="prose prose-invert max-w-none text-gray-300">
+                  <ol>
+                    <li><strong>Start with the Main Decision:</strong> Begin on the left with a single Decision Node that represents the core choice you need to make.</li>
+                    <li><strong>Map Out Alternatives:</strong> Draw branches from the decision node for each possible alternative or action you can take.</li>
+                    <li><strong>Add Chance Nodes:</strong> At the end of each alternative branch, add a Chance Node if there's uncertainty. Draw branches from these nodes for each possible outcome of that uncertainty.</li>
+                    <li><strong>Assign Probabilities and Values:</strong> For each branch coming from a Chance Node, assign a probability (the sum of probabilities for any given Chance Node must equal 100%). At the end of each path (the "leaves" of the tree), assign a monetary value or score to the outcome.</li>
+                    <li><strong>Calculate and Analyze:</strong> Work backwards from right to left. For each Chance Node, calculate its "Expected Value" by multiplying the value of each outcome by its probability and summing the results. When you reach a Decision Node, choose the branch with the highest Expected Value. Our tool automates this calculation for you.</li>
+                  </ol>
+                </div>
               </div>
+              
+              <!-- FAQ Section -->
+              <div>
+                <h3 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">Frequently Asked Questions (FAQ)</h3>
+                <div class="space-y-6">
+                  <div class="bg-black/30 p-4 rounded-lg">
+                    <h4 class="font-bold text-white mb-2">Where do the probabilities come from?</h4>
+                    <p class="text-gray-400 text-sm">This is the most critical part of a good analysis. Probabilities can come from historical data (e.g., "in the past 10 years, the market grew in 7 of them, so the probability is 70%"), market research reports, expert opinions, or even your own educated estimates. The key is to be as objective as possible and document your assumptions.</p>
+                  </div>
+                  <div class="bg-black/30 p-4 rounded-lg">
+                    <h4 class="font-bold text-white mb-2">When should I use a Decision Tree?</h4>
+                    <p class="text-gray-400 text-sm">Decision trees are best for complex, multi-stage decisions where uncertainty is a major factor. They are particularly useful for investment decisions, new product launches, or any strategic choice with a series of dependent steps. For simpler choices, a <a href="/pros-cons-tool.html" class="text-purple-400 hover:underline">Pros & Cons list</a> or <a href="/swot-analysis-tool.html" class="text-purple-400 hover:underline">SWOT analysis</a> might be more appropriate.</p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
+          <!-- =================================== -->
+          <!-- ==   NEW EDUCATIONAL CONTENT END  == -->
+          <!-- =================================== -->
         </div>
       </div>
     </section>

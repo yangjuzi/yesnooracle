@@ -15,8 +15,8 @@
     <meta charset="UTF-8" />
     <meta name="google-adsense-account" content="ca-pub-4461477700183709">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Decision Matrix - Yes No Oracle</title>
-    <meta name="description" content="Use our Decision Matrix tool to evaluate and compare multiple options based on various criteria.">
+    <title>Decision Matrix Tool - Make Rational Choices</title>
+    <meta name="description" content="Use our interactive Decision Matrix tool to systematically evaluate and compare multiple options based on weighted criteria. Make clear, rational decisions.">
     <link rel="canonical" href="https://yesnooracle.dev/decision-matrix.html" />
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -81,24 +81,14 @@
     <main class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
       <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto">
-          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
-            Decision Matrix
+          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-4 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Decision Matrix Analysis
           </h1>
+          <p class="text-center text-lg text-gray-400 mb-12">Quantify Your Options for a Clearer Choice</p>
           
           <div class="bg-white/5 p-8 rounded-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
-            <ol class="list-decimal pl-6 space-y-2">
-              <li>Add your decision options (e.g., different choices you're considering)</li>
-              <li>Add criteria to evaluate each option (e.g., cost, time, quality)</li>
-              <li>Set weights for each criterion (how important each factor is)</li>
-              <li>Rate each option on each criterion (1-10)</li>
-              <li>Get your results and recommendation</li>
-            </ol>
-          </div>
-
-          <div class="bg-white/5 p-8 rounded-lg mb-8">
             <div class="flex justify-between items-center mb-6">
-              <h2 class="text-2xl font-semibold">Decision Matrix</h2>
+              <h2 class="text-2xl font-semibold">Interactive Decision Matrix Tool</h2>
               <div class="space-x-4">
                 <button id="add-option" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition">
                   Add Option
@@ -124,21 +114,85 @@
                   <tr>
                     <th class="p-2 border border-white/20">Weights</th>
                     <!-- Weight inputs will be added here -->
+                    <td class="p-2 border border-white/20"></td>
                   </tr>
                   <tr>
                     <th class="p-2 border border-white/20">Total Score</th>
                     <!-- Total scores will be added here -->
+                    <td class="p-2 border border-white/20"></td>
                   </tr>
                 </tfoot>
               </table>
             </div>
           </div>
 
-          <div class="bg-white/5 p-8 rounded-lg">
-            <h2 class="text-2xl font-semibold mb-4">Results</h2>
+          <div id="results-container" class="bg-white/5 p-8 rounded-lg" style="display: none;">
+            <h2 class="text-2xl font-semibold mb-4">Results Analysis</h2>
             <div id="results" class="space-y-4">
-              <p>Fill in the matrix above to see your results.</p>
+              <!-- Results will be dynamically inserted here -->
             </div>
+          </div>
+        </div>
+
+        <!-- Educational Content Section -->
+        <div class="max-w-4xl mx-auto mt-16 text-gray-300">
+          <h2 class="text-3xl font-cinzel text-center mb-10 text-white">A Comprehensive Guide to Using a Decision Matrix</h2>
+
+          <div class="space-y-8 prose prose-invert max-w-none">
+              
+              <!-- What is a Decision Matrix? -->
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">What is a Decision Matrix?</h3>
+                  <p>A decision matrix is a simple but powerful tool for making complex choices. It helps you move past simple pro/con lists by forcing you to evaluate multiple options against a consistent set of criteria. More importantly, it allows you to assign a "weight" to each criterion, ensuring that what matters most to you has the biggest impact on the final score.</p>
+                  <p class="mt-4"><strong>Example:</strong> Imagine choosing a new laptop. You care about Price, Performance, and Portability. But Performance might be twice as important to you as Price. A decision matrix lets you quantify that preference, leading to a more rational and personalized recommendation.</p>
+              </div>
+
+              <!-- How to Build Your Decision Matrix -->
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">How to Build Your Decision Matrix: A Step-by-Step Guide</h3>
+                  <ol class="list-decimal list-inside space-y-4">
+                      <li>
+                          <strong>Identify Your Options:</strong> These are the different choices you are considering. Click "Add Option" to list them out. (e.g., Laptop A, Laptop B, Laptop C).
+                      </li>
+                      <li>
+                          <strong>Define Your Criteria:</strong> These are the factors you will use to evaluate each option. Click "Add Criterion" for each factor. Good criteria are distinct and meaningful. (e.g., Cost, Battery Life, Screen Quality, Processing Power).
+                      </li>
+                      <li>
+                          <strong>Assign Weights to Criteria:</strong> This is the most critical step. In the "Weights" row, assign a number (e.g., 1-5 or 1-10) to each criterion based on its importance to you. A higher number means it's more important. This ensures the final score reflects your priorities.
+                      </li>
+                      <li>
+                          <strong>Rate Each Option:</strong> For each option, go through and rate it against each criterion, typically on a scale of 1-10. A higher score means the option performs better on that criterion. For a factor like "Cost," you might decide a lower price gets a higher score.
+                      </li>
+                      <li>
+                          <strong>Analyze the Results:</strong> The tool automatically multiplies each rating by the criterion's weight and sums the scores for each option. The option with the highest "Total Score" is, mathematically, your best choice based on your own evaluation.
+                      </li>
+                  </ol>
+              </div>
+              
+              <!-- Interpreting the Results -->
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">Interpreting the Results: Beyond the Numbers</h3>
+                  <p>The highest score points to your most logical choice. However, a decision matrix is a guide, not a dictator. Use the results to challenge your assumptions. If the winning option feels "wrong," it might be because you mis-weighted a criterion or there's an intangible factor ("gut feeling") you haven't considered. The goal is clarity, not just a number.</p>
+              </div>
+
+              <!-- FAQ -->
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">Frequently Asked Questions (FAQ)</h3>
+                  <div class="space-y-4">
+                      <div>
+                          <h4 class="font-bold text-white">What if two options have very close scores?</h4>
+                          <p>This is a valuable insight! It means you have two strong contenders. You could either re-evaluate your weights and ratings to see if you can be more decisive, or add a new criterion that might separate them (e.g., "Warranty" or "Customer Support").</p>
+                      </div>
+                      <div>
+                          <h4 class="font-bold text-white">Is there a limit to the number of options or criteria?</h4>
+                          <p>While our tool is flexible, a good analysis is focused. Too many criteria can overcomplicate things. Try to stick to the 5-7 most important factors that truly differentiate your options.</p>
+                      </div>
+                       <div>
+                          <h4 class="font-bold text-white">Is this tool suitable for big life decisions?</h4>
+                          <p>Absolutely. While it's great for choosing laptops or vacation spots, it's also incredibly effective for career choices, housing decisions, and other major life events. It provides a structured way to think through highly emotional and complex situations, ensuring you don't overlook key factors.</p>
+                      </div>
+                  </div>
+              </div>
           </div>
         </div>
       </div>

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FLS1QMH9GM');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4461477700183709"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-4461477700183709">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Number Generator: Generate Numbers Between Any Range | Yes No Oracle</title>
-    <meta name="description" content="Generate truly random numbers between any range with our free online tool. Perfect for games, decisions, lotteries, and random selection. Fast, fair, and easy to use.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator - Flexible & Easy to Use</title>
+    <meta name="description" content="A powerful and free random number generator. Specify a range (min/max), quantity, and allow or prevent duplicates. Perfect for contests, sampling, and games.">
     <link rel="canonical" href="https://yesnooracle.dev/random-number.html" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" sizes="192x192" href="/icon-192.png">
-    <link rel="icon" sizes="512x512" href="/icon-512.png">
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -18,9 +27,18 @@
     <style>
       .font-cinzel { font-family: 'Cinzel', serif; }
       body { font-family: 'Inter', sans-serif; }
+      .result-number {
+        animation: pop-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      @keyframes pop-in {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
     </style>
-  </head>
-  <body class="bg-black text-white">
+</head>
+<body class="bg-black text-white">
+
+    <!-- Header -->
     <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
       <nav class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
@@ -30,59 +48,79 @@
             <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
             <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
           </div>
-          <div class="relative">
-            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
-              <option value="en">English</option>
-              <option value="zh">中文</option>
-              <option value="es">Español</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
-              </svg>
-            </div>
-          </div>
         </div>
       </nav>
     </header>
+
+    <!-- Main Content -->
     <main class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
       <div class="container mx-auto px-6">
-        <div class="max-w-2xl mx-auto">
-          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-4 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
             Random Number Generator
           </h1>
+          <p class="text-center text-lg text-gray-400 mb-12">Your Tool for Unbiased Numerical Selection</p>
+          
           <div class="bg-white/5 p-8 rounded-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
-            <ol class="list-decimal pl-6 space-y-2">
-              <li>Enter minimum and maximum values</li>
-              <li>Click the "Generate" button</li>
-              <li>View your random number</li>
-            </ol>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 items-end">
+              <div>
+                  <label for="min-val" class="block text-sm font-medium text-gray-400 mb-1">Min</label>
+                  <input type="number" id="min-val" value="1" class="w-full bg-black/50 p-2 rounded-md border border-purple-500/30 focus:outline-none focus:border-purple-400">
+              </div>
+              <div>
+                  <label for="max-val" class="block text-sm font-medium text-gray-400 mb-1">Max</label>
+                  <input type="number" id="max-val" value="100" class="w-full bg-black/50 p-2 rounded-md border border-purple-500/30 focus:outline-none focus:border-purple-400">
+              </div>
+               <div>
+                  <label for="count-val" class="block text-sm font-medium text-gray-400 mb-1">Quantity</label>
+                  <input type="number" id="count-val" value="1" min="1" class="w-full bg-black/50 p-2 rounded-md border border-purple-500/30 focus:outline-none focus:border-purple-400">
+              </div>
+              <button id="generate-btn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition h-10">
+                  Generate
+              </button>
+            </div>
+             <div class="mt-4 flex items-center">
+                <input type="checkbox" id="allow-duplicates" class="h-4 w-4 bg-black/50 border-purple-500/30 rounded text-purple-600 focus:ring-purple-500">
+                <label for="allow-duplicates" class="ml-2 text-sm text-gray-300">Allow Duplicates</label>
+            </div>
+
+            <div id="result-area" class="mt-6 text-center bg-black/30 p-6 rounded-lg min-h-[80px] flex items-center justify-center">
+              <p class="text-gray-400">Set your range and generate a number!</p>
+            </div>
           </div>
-          <div class="bg-white/5 p-8 rounded-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4">Perfect For</h2>
-            <ul class="list-disc pl-6 space-y-2">
-              <li>Random selection</li>
-              <li>Games and contests</li>
-              <li>Decision making</li>
-              <li>Lottery numbers</li>
-              <li>Statistical sampling</li>
-            </ul>
-          </div>
-          <div class="bg-white/5 p-8 rounded-lg mb-8" id="random-number-tool">
-            <!-- Tool area, to be added later -->
-          </div>
-          <div class="bg-white/5 p-8 rounded-lg" id="random-number-result">
-            <!-- Result area, to be added later -->
+
+          <!-- Educational Content Section -->
+          <div class="space-y-8 prose prose-invert max-w-none text-gray-300">
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">The Power of the Unknown: Why Randomness Matters</h3>
+                  <p>Random numbers are the invisible engine behind many modern technologies. They are crucial for creating the secure encryption that protects your online data. In scientific research, random sampling ensures that studies are unbiased and their results are valid. In gaming and art, randomness creates unpredictable, dynamic, and endlessly replayable experiences.</p>
+              </div>
+
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">Creative & Practical Uses</h3>
+                  <ul class="list-disc list-inside space-y-2 mt-4">
+                      <li><strong>Contests & Giveaways:</strong> Assign each participant a number and generate a winner for a provably fair result.</li>
+                      <li><strong>Breaking Habits:</strong> Have a list of 5 healthy snacks? Generate a number from 1-5 to decide which one you'll eat today, breaking routine.</li>
+                      <li><strong>Learning & Study:</strong> Generate a random page number in a textbook to review a topic you might otherwise skip.</li>
+                      <li><strong>Mindfulness Exercise:</strong> Generate a number from 1-10 and take that many deep, conscious breaths to reset your focus.</li>
+                  </ul>
+              </div>
+
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">A Note on "True" Randomness</h3>
+                  <p>Our tool, like most computer programs, uses a "pseudo-random number generator" (PRNG). It creates sequences of numbers that are statistically random and practically impossible to predict, making them perfect for everyday use. "True" random numbers, however, are generated from unpredictable physical phenomena, like atmospheric noise or radioactive decay. These are needed for high-stakes applications like cryptography, but for choosing a lottery number or a contest winner, a PRNG is the perfect tool for the job!</p>
+              </div>
           </div>
         </div>
       </div>
     </main>
+
+    <!-- Footer -->
     <footer class="py-12 bg-black border-t border-white/10">
       <div class="container mx-auto px-6">
         <div class="text-center">
           <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
-          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <p class="text-gray-400 mb-4">Empowering better decisions through wisdom and tools</p>
           <div class="text-sm text-gray-500">
             <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
             <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
@@ -93,6 +131,70 @@
         </div>
       </div>
     </footer>
-    <script type="module" src="/main.js"></script>
-  </body>
-</html> 
+
+    <script>
+        const minInput = document.getElementById('min-val');
+        const maxInput = document.getElementById('max-val');
+        const countInput = document.getElementById('count-val');
+        const allowDuplicatesCheckbox = document.getElementById('allow-duplicates');
+        const generateBtn = document.getElementById('generate-btn');
+        const resultArea = document.getElementById('result-area');
+
+        generateBtn.addEventListener('click', () => {
+            let min = parseInt(minInput.value);
+            let max = parseInt(maxInput.value);
+            let count = parseInt(countInput.value);
+
+            if (isNaN(min) || isNaN(max) || isNaN(count)) {
+                resultArea.innerHTML = '<p class="text-red-400">Please enter valid numbers.</p>';
+                return;
+            }
+
+            if (max < min) {
+                [min, max] = [max, min];
+                minInput.value = min;
+                maxInput.value = max;
+            }
+
+            if (count < 1) {
+                count = 1;
+                countInput.value = 1;
+            }
+
+            const allowDuplicates = allowDuplicatesCheckbox.checked;
+            if (!allowDuplicates && count > (max - min + 1)) {
+                resultArea.innerHTML = '<p class="text-red-400">Cannot generate more unique numbers than the available range.</p>';
+                return;
+            }
+            
+            resultArea.innerHTML = '';
+            const numbers = new Set();
+            const results = [];
+
+            if (allowDuplicates) {
+                for (let i = 0; i < count; i++) {
+                    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+                    results.push(randomNumber);
+                }
+            } else {
+                while (numbers.size < count) {
+                    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+                    numbers.add(randomNumber);
+                }
+                results.push(...numbers);
+            }
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-wrap gap-4 justify-center';
+            results.forEach((num, i) => {
+                const numberEl = document.createElement('span');
+                numberEl.className = 'result-number bg-purple-600/50 text-white font-bold py-2 px-4 rounded-lg text-2xl';
+                numberEl.textContent = num;
+                numberEl.style.animationDelay = `${i * 0.05}s`;
+                wrapper.appendChild(numberEl);
+            });
+            resultArea.appendChild(wrapper);
+        });
+    </script>
+</body>
+</html>

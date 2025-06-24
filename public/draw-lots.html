@@ -1,23 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Draw Lots: Random Selection Tool for Fair Decision Making | Yes No Oracle</title>
-    <meta name="description" content="Use our free Draw Lots tool to randomly select from multiple options. Perfect for group decisions, games, and fair selection. Simple, fast, and unbiased random drawing.">
-    <link rel="canonical" href="https://yesnooracle.dev/draw-lots.html" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" sizes="192x192" href="/icon-192.png">
-    <link rel="icon" sizes="512x512" href="/icon-512.png">
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      .font-cinzel { font-family: 'Cinzel', serif; }
-      body { font-family: 'Inter', sans-serif; }
-    </style>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -27,13 +12,46 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4461477700183709"
      crossorigin="anonymous"></script>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-4461477700183709">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Draw Lots - Yes No Oracle</title>
-    <meta name="description" content="Draw lots to make a fair and random selection from a list of items.">
-  </head>
-  <body class="bg-black text-white">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Lots Online - Fair Random Selection Tool</title>
+    <meta name="description" content="A simple and fair online tool to draw lots. Add your options and randomly select a winner. Perfect for giveaways, task assignment, and unbiased group decisions.">
+    <link rel="canonical" href="https://yesnooracle.dev/draw-lots.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .lot {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .lot.jiggle {
+        animation: jiggle 0.5s ease-in-out;
+      }
+      @keyframes jiggle {
+        0%, 100% { transform: translate(0, 0) rotate(0); }
+        25% { transform: translate(5px, -5px) rotate(3deg); }
+        50% { transform: translate(-5px, 5px) rotate(-3deg); }
+        75% { transform: translate(3px, -3px) rotate(2deg); }
+      }
+      .lot.drawn {
+        transform: translateY(-200px) scale(1.2);
+        opacity: 1;
+        background: linear-gradient(135deg, #10b981, #3b82f6);
+        z-index: 10;
+      }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Header -->
     <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
       <nav class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
@@ -43,59 +61,78 @@
             <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
             <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
           </div>
-          <div class="relative">
-            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
-              <option value="en">English</option>
-              <option value="zh">中文</option>
-              <option value="es">Español</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
-              </svg>
-            </div>
-          </div>
         </div>
       </nav>
     </header>
+
+    <!-- Main Content -->
     <main class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
       <div class="container mx-auto px-6">
-        <div class="max-w-2xl mx-auto">
-          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
-            Draw Lots: Random Selection Tool
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-4 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Draw Lots
           </h1>
-          <div class="bg-white/5 p-8 rounded-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
-            <ol class="list-decimal pl-6 space-y-2">
-              <li>Enter all options (one per line)</li>
-              <li>Click the "Draw" button</li>
-              <li>View the randomly selected result</li>
-            </ol>
+          <p class="text-center text-lg text-gray-400 mb-12">The Fairest Way to Make a Random Choice</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Input and List -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h2 class="text-2xl font-semibold mb-4 text-purple-400">1. Add Options</h2>
+              <div class="flex gap-2 mb-4">
+                <input type="text" id="option-input" placeholder="Enter an option..." class="flex-grow bg-black/50 p-2 rounded-md border border-purple-500/30 focus:outline-none focus:border-purple-400">
+                <button id="add-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-4 rounded-lg transition">+</button>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Options in the Hat:</h3>
+              <div id="options-list" class="space-y-2 min-h-[100px] bg-black/20 p-4 rounded-md">
+                <p class="text-gray-500">Add some options to begin...</p>
+              </div>
+            </div>
+
+            <!-- Drawing Area -->
+            <div class="bg-white/5 p-6 rounded-lg text-center">
+              <h2 class="text-2xl font-semibold mb-4 text-purple-400">2. Draw a Winner</h2>
+              <div id="lots-container" class="relative w-48 h-48 bg-black/30 rounded-full mx-auto mb-4 flex items-center justify-center border-2 border-dashed border-purple-500/30">
+                <p class="text-gray-500 text-sm">Your lots will appear here</p>
+              </div>
+              <button id="draw-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition" disabled>
+                Draw
+              </button>
+              <div id="result-area" class="mt-4 text-xl font-bold min-h-[32px]"></div>
+            </div>
           </div>
-          <div class="bg-white/5 p-8 rounded-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4">Perfect For</h2>
-            <ul class="list-disc pl-6 space-y-2">
-              <li>Group decision making</li>
-              <li>Team selection</li>
-              <li>Game night activities</li>
-              <li>Fair task distribution</li>
-              <li>Random prize selection</li>
-            </ul>
-          </div>
-          <div class="bg-white/5 p-8 rounded-lg mb-8" id="draw-lots-tool">
-            <!-- Tool area, to be added later -->
-          </div>
-          <div class="bg-white/5 p-8 rounded-lg" id="draw-lots-result">
-            <!-- Result area, to be added later -->
+
+          <!-- Educational Content Section -->
+          <div class="mt-16 space-y-8 prose prose-invert max-w-none text-gray-300">
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">The Art of Drawing Lots: Ensuring Fairness</h3>
+                  <p>Drawing lots is one of the oldest and most respected methods for making an impartial decision. It removes all human bias—preference, guilt, or politics—from a choice. The core principle is that every option has an equal and random chance of being selected. This makes it the perfect tool when fairness is the most important criterion.</p>
+              </div>
+
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">Creative & Practical Uses</h3>
+                  <ul class="list-disc list-inside space-y-2 mt-4">
+                      <li><strong>Assigning Tasks:</strong> Who brings snacks for the next meeting? Who gets the unpleasant chore? Drawing lots is the universally accepted fair way to decide.</li>
+                      <li><strong>Giveaways & Raffles:</strong> Conduct a fair prize drawing by adding the names of all participants.</li>
+                      <li><strong>Group Decisions:</strong> Can't decide which movie to watch or restaurant to visit? Let the lots decide and commit to the outcome.</li>
+                      <li><strong>Sparking Creativity:</strong> In a brainstorming session, write down all the ideas. Draw one to decide which concept the team will explore first.</li>
+                  </ul>
+              </div>
+
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">A Tradition Through History</h3>
+                  <p>The practice of casting lots (*Cleromancy*) is mentioned in ancient texts across many cultures, including the Bible and Homer's *Iliad*, often to divide property or discover divine will. In ancient Athens, many government officials were chosen by lot from a pool of candidates, believing it to be a cornerstone of true democracy. This simple tool connects us to a long history of people seeking fair and unbiased ways to make choices.</p>
+              </div>
           </div>
         </div>
       </div>
     </main>
+
+    <!-- Footer -->
     <footer class="py-12 bg-black border-t border-white/10">
       <div class="container mx-auto px-6">
         <div class="text-center">
           <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
-          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <p class="text-gray-400 mb-4">Empowering better decisions through wisdom and tools</p>
           <div class="text-sm text-gray-500">
             <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
             <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
@@ -106,6 +143,102 @@
         </div>
       </div>
     </footer>
-    <script type="module" src="/main.js"></script>
-  </body>
-</html> 
+
+    <script>
+      const optionInput = document.getElementById('option-input');
+      const addBtn = document.getElementById('add-btn');
+      const drawBtn = document.getElementById('draw-btn');
+      const optionsList = document.getElementById('options-list');
+      const lotsContainer = document.getElementById('lots-container');
+      const resultArea = document.getElementById('result-area');
+      
+      let options = [];
+
+      function updateOptionsDisplay() {
+        optionsList.innerHTML = '';
+        lotsContainer.innerHTML = '';
+
+        if (options.length === 0) {
+            optionsList.innerHTML = '<p class="text-gray-500">Add some options to begin...</p>';
+            lotsContainer.innerHTML = '<p class="text-gray-500 text-sm">Your lots will appear here</p>';
+            drawBtn.disabled = true;
+            return;
+        }
+
+        options.forEach((option, index) => {
+            // Update list view
+            const listItem = document.createElement('div');
+            listItem.className = 'flex items-center justify-between bg-black/30 p-2 rounded';
+            listItem.innerHTML = `
+                <span>${option}</span>
+                <button onclick="removeOption(${index})" class="text-red-500 hover:text-red-400">✖</button>
+            `;
+            optionsList.appendChild(listItem);
+
+            // Update lots container view
+            const lot = document.createElement('div');
+            lot.className = 'lot absolute w-10 h-6 rounded-sm flex items-center justify-center';
+            lot.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg)`;
+            lotsContainer.appendChild(lot);
+        });
+
+        drawBtn.disabled = options.length < 2;
+      }
+
+      function addOption() {
+        const value = optionInput.value.trim();
+        if (value) {
+            options.push(value);
+            optionInput.value = '';
+            updateOptionsDisplay();
+        }
+      }
+
+      function removeOption(index) {
+        options.splice(index, 1);
+        updateOptionsDisplay();
+      }
+
+      addBtn.addEventListener('click', addOption);
+      optionInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addOption();
+      });
+
+      drawBtn.addEventListener('click', () => {
+        if (options.length < 2) return;
+
+        resultArea.textContent = '';
+        drawBtn.disabled = true;
+
+        const lots = lotsContainer.querySelectorAll('.lot');
+        lots.forEach(lot => lot.classList.add('jiggle'));
+
+        setTimeout(() => {
+            const winnerIndex = Math.floor(Math.random() * options.length);
+            const winner = options[winnerIndex];
+
+            lots.forEach((lot, index) => {
+                lot.classList.remove('jiggle');
+                if (index === winnerIndex) {
+                    lot.classList.add('drawn');
+                }
+            });
+
+            setTimeout(() => {
+                resultArea.textContent = `Selected: ${winner}`;
+                drawBtn.disabled = false;
+                // Reset for next draw
+                setTimeout(() => {
+                    options.splice(winnerIndex, 1);
+                    updateOptionsDisplay();
+                }, 1500);
+
+            }, 1000);
+
+        }, 500);
+      });
+
+      updateOptionsDisplay();
+    </script>
+</body>
+</html>

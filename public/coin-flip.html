@@ -1,23 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coin Flip - Yes No Oracle</title>
-    <meta name="description" content="Flip a virtual coin for quick yes/no or heads/tails decisions.">
-    <link rel="canonical" href="https://yesnooracle.dev/coin-flip.html" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" sizes="192x192" href="/icon-192.png">
-    <link rel="icon" sizes="512x512" href="/icon-512.png">
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      .font-cinzel { font-family: 'Cinzel', serif; }
-      body { font-family: 'Inter', sans-serif; }
-    </style>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -27,13 +12,59 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4461477700183709"
      crossorigin="anonymous"></script>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-4461477700183709">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coin Flip - Yes No Oracle</title>
-    <meta name="description" content="Get a quick heads or tails decision with our coin flip tool.">
-  </head>
-  <body class="bg-black text-white">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customizable Coin Flip - The Ultimate Tie-Breaker Tool</title>
+    <meta name="description" content="A customizable animated Coin Flip tool. Assign your own choices to Heads and Tails to reveal your true preference in any 50/50 decision.">
+    <link rel="canonical" href="https://yesnooracle.dev/coin-flip.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .coin-container {
+        perspective: 1000px;
+      }
+      .coin {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 1s cubic-bezier(0.45, 0, 0.55, 1);
+      }
+      .coin.flipping {
+        transform: rotateY(1800deg);
+      }
+      .coin-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        background-image: linear-gradient(45deg, #c0c0c0, #f8f8f8, #c0c0c0);
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.2), 0 0 20px rgba(255, 255, 255, 0.3);
+        color: #333;
+      }
+      .tails {
+        transform: rotateY(180deg);
+      }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Header -->
     <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
       <nav class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
@@ -43,48 +74,74 @@
             <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
             <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
           </div>
-          <div class="relative">
-            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
-              <option value="en">English</option>
-              <option value="zh">中文</option>
-              <option value="es">Español</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
-              </svg>
-            </div>
-          </div>
         </div>
       </nav>
     </header>
+
+    <!-- Main Content -->
     <main class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
       <div class="container mx-auto px-6">
-        <div class="max-w-2xl mx-auto">
-          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
-            Coin Flip
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-4 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            The Coin Flip
           </h1>
+          <p class="text-center text-lg text-gray-400 mb-12">The Ultimate Tool for a 50/50 Tie-Breaker</p>
+          
           <div class="bg-white/5 p-8 rounded-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
-            <ol class="list-decimal pl-6 space-y-2">
-              <li>Click the button to flip the coin</li>
-              <li>See if it lands on Heads or Tails</li>
-            </ol>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label for="heads-input" class="block text-sm font-medium text-gray-400 mb-1">Heads</label>
+                <input type="text" id="heads-input" placeholder="e.g., Stay at my job" class="w-full bg-black/50 p-2 rounded-md border border-purple-500/30 focus:outline-none focus:border-purple-400">
+              </div>
+              <div>
+                <label for="tails-input" class="block text-sm font-medium text-gray-400 mb-1">Tails</label>
+                <input type="text" id="tails-input" placeholder="e.g., Start a new business" class="w-full bg-black/50 p-2 rounded-md border border-purple-500/30 focus:outline-none focus:border-purple-400">
+              </div>
+            </div>
+
+            <div class="text-center">
+                <div class="coin-container inline-block mb-6">
+                  <div id="coin" class="coin">
+                    <div id="heads-face" class="coin-face heads">HEADS</div>
+                    <div id="tails-face" class="coin-face tails">TAILS</div>
+                  </div>
+                </div>
+                <button id="flip-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition text-lg">
+                  Flip Coin
+                </button>
+                <div id="result" class="mt-6 text-2xl font-bold min-h-[64px] flex items-center justify-center text-center">
+                  &nbsp;
+                </div>
+            </div>
           </div>
-          <div class="bg-white/5 p-8 rounded-lg mb-8" id="coin-flip-tool">
-            <!-- Tool area, will be filled by JS -->
-          </div>
-          <div class="bg-white/5 p-8 rounded-lg" id="coin-flip-result">
-            <!-- Result area, will be filled by JS -->
+
+          <!-- Educational Content Section -->
+          <div class="space-y-8 prose prose-invert max-w-none text-gray-300">
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">More Than Chance: A Tool for Self-Discovery</h3>
+                  <p>A coin flip is the perfect tool for a decision with two equally weighted options. But its true power isn't in letting fate decide. It's a psychological hack to reveal what you truly want.</p>
+                  <p class="mt-4">Assign your choices to Heads and Tails above. Before you flip, take a moment to commit to the outcome. As the coin is flipping, you'll find yourself subconsciously hoping it lands on one side. That hope *is* your answer. If the coin's result disappoints you, you've also discovered your true preference. The flip doesn't make the decision; it illuminates the decision you had already made inside.</p>
+              </div>
+
+              <div class="bg-white/5 p-8 rounded-lg">
+                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">When to Use a Coin Flip</h3>
+                  <ul class="list-disc list-inside space-y-2 mt-4">
+                      <li><strong>The Final Tie-Breaker:</strong> You've used logic, made pro/con lists, and two options are still perfectly tied. A coin flip is the ideal way to break the deadlock.</li>
+                      <li><strong>Low-Stakes Decisions:</strong> Don't suffer from decision fatigue. For small choices like where to eat or what movie to watch, let the coin save your mental energy for bigger things.</li>
+                      <li><strong>Initiating Action:</strong> When you're procrastinating on starting one of two tasks, assign them to the coin. The result gives you an immediate starting point, breaking inertia.</li>
+                  </ul>
+              </div>
           </div>
         </div>
       </div>
     </main>
+
+    <!-- Footer -->
     <footer class="py-12 bg-black border-t border-white/10">
       <div class="container mx-auto px-6">
         <div class="text-center">
           <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
-          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <p class="text-gray-400 mb-4">Empowering better decisions through wisdom and tools</p>
           <div class="text-sm text-gray-500">
             <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
             <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
@@ -95,6 +152,46 @@
         </div>
       </div>
     </footer>
-    <script type="module" src="/main.js"></script>
-  </body>
-</html> 
+
+    <script>
+      const coin = document.getElementById('coin');
+      const flipBtn = document.getElementById('flip-btn');
+      const resultDiv = document.getElementById('result');
+      const headsInput = document.getElementById('heads-input');
+      const tailsInput = document.getElementById('tails-input');
+      const headsFace = document.getElementById('heads-face');
+      const tailsFace = document.getElementById('tails-face');
+      let isFlipping = false;
+
+      function updateFaces() {
+          headsFace.textContent = headsInput.value.trim() || 'HEADS';
+          tailsFace.textContent = tailsInput.value.trim() || 'TAILS';
+      }
+
+      headsInput.addEventListener('input', updateFaces);
+      tailsInput.addEventListener('input', updateFaces);
+
+      flipBtn.addEventListener('click', () => {
+        if (isFlipping) return;
+
+        isFlipping = true;
+        resultDiv.innerHTML = '&nbsp;';
+        coin.style.transform = 'rotateY(0deg)'; // Reset previous visual state
+
+        const isHeads = Math.random() < 0.5;
+        const totalRotation = 1800 + (isHeads ? 0 : 180);
+        
+        coin.style.transition = 'transform 1s cubic-bezier(0.45, 0, 0.55, 1)';
+        coin.style.transform = `rotateY(${totalRotation}deg)`;
+
+        setTimeout(() => {
+          isFlipping = false;
+          const winnerText = isHeads ? (headsInput.value.trim() || 'HEADS') : (tailsInput.value.trim() || 'TAILS');
+          resultDiv.innerHTML = `<span class="block">The result is:</span><strong class="text-purple-400">${winnerText}</strong>`;
+        }, 1000);
+      });
+      
+      updateFaces();
+    </script>
+</body>
+</html>
