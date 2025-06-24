@@ -1,4 +1,15 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
+import { readdirSync } from 'fs'
+
+// Get all HTML files from the public directory
+const publicHtmlFiles = readdirSync(resolve(__dirname, 'public'))
+  .filter(file => file.endsWith('.html'))
+  .reduce((acc, file) => {
+    const name = file.slice(0, -5); // remove .html extension
+    acc[name] = resolve(__dirname, 'public', file);
+    return acc;
+  }, {});
 
 export default defineConfig({
   root: '.',
@@ -10,13 +21,8 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: './index.html',
-        blog: './public/blog.html',
-        'blog-7': './public/blog-7.html',
-        'decision-tools': './public/decision-making-tools.html',
-        'psychology': './public/psychology-insights.html',
-        'learning': './public/learning-resources.html',
-        'privacy': './public/privacy-policy.html'
+        main: resolve(__dirname, 'index.html'),
+        ...publicHtmlFiles
       }
     }
   },
