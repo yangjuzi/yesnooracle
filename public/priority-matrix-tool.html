@@ -469,4 +469,113 @@
 
       function updateQuadrant(quadrant) {
         const quadrantEl = document.getElementById(`quadrant-${quadrant}`);
-        const countEl = document.getElementById(`
+        const countEl = document.getElementById(`count-${quadrant}`);
+        const tasksInQuadrant = Array.from(quadrantEl.querySelectorAll('.task-item')).length;
+        countEl.textContent = tasksInQuadrant;
+      }
+
+      // Add initial placeholder content check
+      document.addEventListener('DOMContentLoaded', () => {
+        ['do-first', 'schedule', 'delegate', 'eliminate'].forEach(updateQuadrant);
+      });
+
+      document.getElementById('add-task').addEventListener('click', () => {
+        const taskText = document.getElementById('task-input').value.trim();
+        const importance = document.getElementById('importance-select').value;
+        const urgency = document.getElementById('urgency-select').value;
+
+        if (taskText) {
+          addTaskToMatrix(taskText, importance, urgency);
+          document.getElementById('task-input').value = '';
+        }
+      });
+
+      function addTaskToMatrix(text, importance, urgency) {
+        let quadrantId;
+        let quadrantName;
+
+        if (importance === 'high' && urgency === 'high') {
+          quadrantId = 'quadrant-1';
+          quadrantName = 'do-first';
+        } else if (importance === 'high' && urgency === 'low') {
+          quadrantId = 'quadrant-2';
+          quadrantName = 'schedule';
+        } else if (importance === 'low' && urgency === 'high') {
+          quadrantId = 'quadrant-3';
+          quadrantName = 'delegate';
+        } else {
+          quadrantId = 'quadrant-4';
+          quadrantName = 'eliminate';
+        }
+
+        const quadrantEl = document.getElementById(quadrantId);
+        
+        // Clear placeholder if it exists
+        const placeholder = quadrantEl.querySelector('.italic');
+        if (placeholder) {
+          placeholder.remove();
+        }
+
+        const taskItem = document.createElement('div');
+        taskItem.className = 'task-item bg-black/30 p-2 rounded flex justify-between items-center';
+        taskItem.textContent = text;
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'text-red-500 hover:text-red-400 text-xs ml-2';
+        deleteBtn.textContent = '✖';
+        deleteBtn.onclick = () => {
+          taskItem.remove();
+          updateQuadrant(quadrantName);
+          // Add placeholder back if quadrant is empty
+          if (quadrantEl.children.length === 0) {
+             const newPlaceholder = document.createElement('p');
+             newPlaceholder.className = 'text-gray-500 italic text-sm';
+             let placeholderText = '';
+              switch(quadrantName){
+                  case 'do-first': placeholderText = 'Crisis management tasks'; break;
+                  case 'schedule': placeholderText = 'Planning & development'; break;
+                  case 'delegate': placeholderText = 'Interruptions & some calls'; break;
+                  case 'eliminate': placeholderText = 'Time wasters & distractions'; break;
+              }
+             newPlaceholder.textContent = placeholderText;
+             quadrantEl.appendChild(newPlaceholder);
+          }
+        };
+        
+        taskItem.appendChild(deleteBtn);
+        quadrantEl.appendChild(taskItem);
+        updateQuadrant(quadrantName);
+      }
+
+      function updateSummary() {
+        const summary = {
+          1: tasks[1].length,
+          2: tasks[2].length,
+          3: tasks[3].length,
+          4: tasks[4].length
+        };
+        for (const [key, value] of Object.entries(summary)) {
+          document.getElementById(`summary-${key}`).textContent = value;
+        }
+      }
+
+      document.getElementById('clear-all').addEventListener('click', () => {
+        tasks = {
+          1: [],
+          2: [],
+          3: [],
+          4: []
+        };
+        document.getElementById('quadrant-1').innerHTML = '<p class="text-gray-500 italic text-sm">Crisis management tasks</p>';
+        document.getElementById('quadrant-2').innerHTML = '<p class="text-gray-500 italic text-sm">Planning & development</p>';
+        document.getElementById('quadrant-3').innerHTML = '<p class="text-gray-500 italic text-sm">Interruptions & some calls</p>';
+        document.getElementById('quadrant-4').innerHTML = '<p class="text-gray-500 italic text-sm">Time wasters & distractions</p>';
+        updateSummary();
+      });
+
+      document.getElementById('sample-tasks').addEventListener('click', () => {
+        // Implementation of loading sample tasks
+      });
+    </script>
+  </body>
+</html>
