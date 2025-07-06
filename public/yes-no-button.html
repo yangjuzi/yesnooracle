@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yes No Button - Yes No Oracle</title>
+    <meta name="description" content="Click the Yes or No button to get a quick answer to your question.">
+    <link rel="canonical" href="https://yesnooracle.dev/yes-no-button.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .button {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        background-color: #4f46e5;
+        color: white;
+      }
+      .button:hover {
+        transform: scale(1.1);
+        background-color: #4338ca;
+      }
+      .yes { background-color: #34d399; }
+      .no { background-color: #f87171; }
+      .answer { font-size: 1.5rem; color: #fff; text-align: center; margin-top: 20px; }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Yes No Button
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Click the Yes or No button to get a quick answer to your question.
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div class="flex justify-center gap-8 mb-4">
+              <input type="text" id="user-question" placeholder="Enter your question here" class="w-full max-w-md px-4 py-2 rounded-lg text-black" />
+            </div>
+            <div class="flex justify-center gap-8">
+              <div class="button" id="random-btn">Click Me</div>
+            </div>
+            <div class="answer" id="answer">Click the button to get your answer!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('random-btn').addEventListener('click', function() {
+        const answers = ['Yes', 'No'];
+        const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+        const userQuestion = document.getElementById('user-question').value;
+        document.getElementById('answer').textContent = `Q: ${userQuestion} - A: ${randomAnswer}`;
+        triggerConfetti();
+      });
+
+      function triggerConfetti() {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    </script>
+  </body>
+</html> 

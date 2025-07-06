@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pendulum Divination - Yes No Oracle</title>
+    <meta name="description" content="Use the ancient art of pendulum divination to receive yes or no answers to your most important questions.">
+    <link rel="canonical" href="https://yesnooracle.dev/pendulum.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      
+      .pendulum-container { position: relative; width: 300px; height: 400px; margin: 0 auto; }
+      
+      .pendulum-stand { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 200px; height: 20px; background: linear-gradient(135deg, #8b7355 0%, #a0522d 100%); border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+      
+      .pendulum-string { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 2px; height: 250px; background: linear-gradient(to bottom, #4a4a4a 0%, #2a2a2a 100%); transform-origin: top center; transition: transform 2s ease-in-out; }
+      
+      .pendulum-weight { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: radial-gradient(circle at 30% 30%, #ffd700, #b8860b); border-radius: 50%; border: 3px solid #8b7355; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+      
+      .pendulum-weight::before { content: ''; position: absolute; top: 15%; left: 20%; width: 40%; height: 40%; background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%); border-radius: 50%; }
+      
+      .answer-zones { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; height: 80px; }
+      
+      .answer-zone { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; border-radius: 15px; margin: 0 10px; transition: all 0.3s ease; }
+      
+      .yes-zone { background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.4)); color: #22c55e; border: 2px solid #22c55e; }
+      
+      .no-zone { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.4)); color: #ef4444; border: 2px solid #ef4444; }
+      
+      .answer-zone.active { transform: scale(1.1); box-shadow: 0 0 30px currentColor; }
+      
+      .swing-left { transform: rotate(-25deg); }
+      .swing-right { transform: rotate(25deg); }
+      
+      .pendulum-instructions { background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; }
+      
+      .meditation-text { font-style: italic; color: #a78bfa; margin: 10px 0; }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-violet-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-violet-400 via-purple-300 to-violet-400 text-transparent bg-clip-text">
+            ⚖️ Pendulum Divination ⚖️
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Experience the ancient art of pendulum divination. Focus your energy and let the sacred pendulum reveal the truth
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <!-- Question Input -->
+            <div class="mb-8">
+              <div class="text-center mb-6">
+                <label class="block text-lg font-semibold mb-3 text-violet-300">🌟 Ask Your Question 🌟</label>
+                <input type="text" id="user-question" placeholder="Focus your mind and ask your question..." class="w-full max-w-md px-4 py-3 rounded-lg text-black border-2 border-violet-400 mx-auto block" />
+              </div>
+              <div class="text-center">
+                <button id="consult-pendulum" class="bg-gradient-to-r from-violet-600 to-purple-600 px-8 py-3 rounded-lg hover:from-violet-700 hover:to-purple-700 transition text-white font-semibold">
+                  🔮 Consult the Pendulum 🔮
+                </button>
+              </div>
+            </div>
+
+            <!-- Pendulum Display -->
+            <div class="pendulum-container">
+              <div class="pendulum-stand"></div>
+              <div class="pendulum-string" id="pendulum-string">
+                <div class="pendulum-weight"></div>
+              </div>
+              <div class="answer-zones">
+                <div class="answer-zone yes-zone" id="yes-zone">YES</div>
+                <div class="answer-zone no-zone" id="no-zone">NO</div>
+              </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="pendulum-instructions">
+              <h3 class="text-lg font-semibold mb-3 text-violet-300">How to Use the Pendulum</h3>
+              <div class="meditation-text">
+                "Clear your mind, focus on your question, and watch as the pendulum reveals the universe's answer"
+              </div>
+              <div class="text-sm text-gray-400 space-y-2">
+                <p>1. Enter your question in the field above</p>
+                <p>2. Take a deep breath and center yourself</p>
+                <p>3. Click "Consult the Pendulum" with focused intention</p>
+                <p>4. Watch as the pendulum swings to reveal your answer</p>
+              </div>
+            </div>
+
+            <!-- Result Display -->
+            <div id="result-display" class="hidden text-center mt-8">
+              <div class="bg-white/10 p-6 rounded-lg">
+                <div class="text-lg font-semibold mb-2 text-violet-300">The Pendulum Has Spoken</div>
+                <div id="question-display" class="text-base mb-4 text-gray-300"></div>
+                <div id="answer-display" class="text-3xl font-bold mb-4"></div>
+                <div id="interpretation" class="text-base text-gray-300 mb-6"></div>
+                <button id="ask-again" class="bg-gradient-to-r from-green-600 to-blue-600 px-6 py-2 rounded-lg hover:from-green-700 hover:to-blue-700 transition">
+                  Ask Another Question
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Educational Content -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h2 class="text-2xl font-cinzel text-center mb-8 text-violet-400">The Art of Pendulum Divination</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🕰️</div>
+                <h3 class="font-semibold mb-2">Ancient Wisdom</h3>
+                <p class="text-sm text-gray-400">Used for centuries to seek guidance</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🧘</div>
+                <h3 class="font-semibold mb-2">Focused Intent</h3>
+                <p class="text-sm text-gray-400">Clear mind leads to clear answers</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">⚡</div>
+                <h3 class="font-semibold mb-2">Energy Flow</h3>
+                <p class="text-sm text-gray-400">Responds to your inner energy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const interpretations = {
+        yes: [
+          "The pendulum swings with confidence toward YES. The universe supports your path forward.",
+          "A clear YES emerges from the cosmic energies. Trust in this positive guidance.",
+          "The pendulum's movement is decisive - YES is your answer. Move forward with faith.",
+          "Strong positive energy flows through the pendulum, indicating YES to your question.",
+          "The sacred pendulum confirms YES. Your intuition aligns with universal wisdom."
+        ],
+        no: [
+          "The pendulum gently guides you toward NO. Sometimes protection comes through pause.",
+          "A clear NO resonates from the pendulum's wisdom. Consider alternative paths.",
+          "The pendulum's energy suggests NO for now. Timing may need adjustment.",
+          "The universe speaks through the pendulum with a gentle NO. Trust this guidance.",
+          "The pendulum's movement indicates NO. Perhaps deeper reflection is needed."
+        ]
+      };
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const consultBtn = document.getElementById('consult-pendulum');
+        const pendulumString = document.getElementById('pendulum-string');
+        const yesZone = document.getElementById('yes-zone');
+        const noZone = document.getElementById('no-zone');
+        const resultDisplay = document.getElementById('result-display');
+        const questionDisplay = document.getElementById('question-display');
+        const answerDisplay = document.getElementById('answer-display');
+        const interpretation = document.getElementById('interpretation');
+        const askAgainBtn = document.getElementById('ask-again');
+        const userQuestion = document.getElementById('user-question');
+
+        consultBtn.addEventListener('click', consultPendulum);
+        askAgainBtn.addEventListener('click', resetPendulum);
+
+        function consultPendulum() {
+          const question = userQuestion.value.trim();
+          
+          if (!question) {
+            alert('⚖️ Please enter your question before consulting the pendulum! ⚖️');
+            userQuestion.focus();
+            return;
+          }
+
+          // Disable button during consultation
+          consultBtn.disabled = true;
+          consultBtn.textContent = '🔮 Consulting... 🔮';
+
+          // Random answer
+          const answers = ['yes', 'no'];
+          const answer = answers[Math.floor(Math.random() * answers.length)];
+
+          // Start pendulum swing animation
+          setTimeout(() => {
+            if (answer === 'yes') {
+              pendulumString.classList.add('swing-left');
+              yesZone.classList.add('active');
+            } else {
+              pendulumString.classList.add('swing-right');
+              noZone.classList.add('active');
+            }
+
+            // Show result after swing animation
+            setTimeout(() => {
+              showResult(question, answer);
+              
+              // Trigger confetti
+              confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: answer === 'yes' ? ['#22c55e', '#16a34a', '#15803d'] : ['#ef4444', '#dc2626', '#b91c1c']
+              });
+            }, 2000);
+          }, 500);
+        }
+
+        function showResult(question, answer) {
+          questionDisplay.textContent = `"${question}"`;
+          answerDisplay.textContent = answer.toUpperCase();
+          answerDisplay.className = answer === 'yes' ? 'text-3xl font-bold mb-4 text-green-400' : 'text-3xl font-bold mb-4 text-red-400';
+          
+          const randomInterpretation = interpretations[answer][Math.floor(Math.random() * interpretations[answer].length)];
+          interpretation.textContent = randomInterpretation;
+          
+          resultDisplay.classList.remove('hidden');
+        }
+
+        function resetPendulum() {
+          // Reset pendulum position
+          pendulumString.classList.remove('swing-left', 'swing-right');
+          yesZone.classList.remove('active');
+          noZone.classList.remove('active');
+          
+          // Hide result
+          resultDisplay.classList.add('hidden');
+          
+          // Reset button
+          consultBtn.disabled = false;
+          consultBtn.textContent = '🔮 Consult the Pendulum 🔮';
+          
+          // Clear question
+          userQuestion.value = '';
+        }
+      });
+    </script>
+  </body>
+</html> 

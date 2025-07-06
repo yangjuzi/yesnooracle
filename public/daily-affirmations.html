@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Affirmations - Yes No Oracle</title>
+    <meta name="description" content="Start your day with powerful positive affirmations to boost confidence, attract success, and manifest your dreams.">
+    <link rel="canonical" href="https://yesnooracle.dev/daily-affirmations.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      
+      .affirmation-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        border: 2px solid transparent;
+        background-clip: padding-box;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .affirmation-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+        border-radius: 15px;
+        z-index: -1;
+        padding: 2px;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+      }
+      
+      .affirmation-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      }
+      
+      .category-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid #4ecdc4;
+        transition: all 0.3s ease;
+      }
+      
+      .category-btn:hover {
+        background: rgba(78, 205, 196, 0.2);
+        transform: scale(1.05);
+      }
+      
+      .category-btn.active {
+        background: rgba(78, 205, 196, 0.3);
+        border-color: #45b7d1;
+      }
+      
+      .affirmation-text {
+        font-size: 1.5rem;
+        line-height: 1.6;
+        text-align: center;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 3s ease-in-out infinite;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      
+      .breathing-animation {
+        animation: breathe 4s ease-in-out infinite;
+      }
+      
+      @keyframes breathe {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      
+      .sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ffd700;
+        border-radius: 50%;
+        animation: sparkle 2s ease-in-out infinite;
+      }
+      
+      @keyframes sparkle {
+        0%, 100% { opacity: 0; transform: scale(0); }
+        50% { opacity: 1; transform: scale(1); }
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-teal-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-teal-400 via-cyan-300 to-blue-400 text-transparent bg-clip-text">
+            💫 Daily Affirmations 💫
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Transform your mindset with powerful positive affirmations. Start each day with intention and manifest your dreams
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <!-- Category Selection -->
+          <div class="mb-12">
+            <h3 class="text-xl font-semibold mb-6 text-center text-teal-400">🌟 Choose Your Focus 🌟</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <button class="category-btn px-4 py-3 rounded-lg text-center" data-category="confidence">
+                <div class="text-2xl mb-2">💪</div>
+                <div class="font-semibold">Confidence</div>
+              </button>
+              <button class="category-btn px-4 py-3 rounded-lg text-center" data-category="success">
+                <div class="text-2xl mb-2">🎯</div>
+                <div class="font-semibold">Success</div>
+              </button>
+              <button class="category-btn px-4 py-3 rounded-lg text-center" data-category="love">
+                <div class="text-2xl mb-2">❤️</div>
+                <div class="font-semibold">Love</div>
+              </button>
+              <button class="category-btn px-4 py-3 rounded-lg text-center" data-category="health">
+                <div class="text-2xl mb-2">🌱</div>
+                <div class="font-semibold">Health</div>
+              </button>
+              <button class="category-btn px-4 py-3 rounded-lg text-center" data-category="abundance">
+                <div class="text-2xl mb-2">💰</div>
+                <div class="font-semibold">Abundance</div>
+              </button>
+              <button class="category-btn px-4 py-3 rounded-lg text-center" data-category="peace">
+                <div class="text-2xl mb-2">🕊️</div>
+                <div class="font-semibold">Peace</div>
+              </button>
+              <button class="category-btn px-4 py-3 rounded-lg text-center" data-category="creativity">
+                <div class="text-2xl mb-2">🎨</div>
+                <div class="font-semibold">Creativity</div>
+              </button>
+              <button class="category-btn px-4 py-3 rounded-lg text-center" data-category="gratitude">
+                <div class="text-2xl mb-2">🙏</div>
+                <div class="font-semibold">Gratitude</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Generate Button -->
+          <div class="text-center mb-12">
+            <button id="generate-affirmation" class="bg-gradient-to-r from-teal-600 to-cyan-600 px-8 py-4 rounded-lg hover:from-teal-700 hover:to-cyan-700 transition text-white font-semibold text-lg">
+              ✨ Generate My Affirmation ✨
+            </button>
+          </div>
+
+          <!-- Affirmation Display -->
+          <div id="affirmation-display" class="hidden">
+            <div class="affirmation-card rounded-lg p-8 mb-8 breathing-animation relative overflow-hidden">
+              <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+              <div class="sparkle" style="top: 70%; right: 15%; animation-delay: 1s;"></div>
+              <div class="sparkle" style="bottom: 30%; left: 20%; animation-delay: 2s;"></div>
+              <div class="sparkle" style="top: 40%; right: 25%; animation-delay: 0.5s;"></div>
+              
+              <div id="category-display" class="text-center mb-4 text-teal-400 font-semibold"></div>
+              <div id="affirmation-text" class="affirmation-text mb-6"></div>
+              <div id="affirmation-guidance" class="text-center text-gray-300 italic"></div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div id="action-buttons" class="hidden text-center mb-12">
+            <button id="speak-affirmation" class="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition mr-4">
+              🔊 Speak Aloud
+            </button>
+            <button id="save-affirmation" class="bg-gradient-to-r from-green-600 to-blue-600 px-6 py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition mr-4">
+              💾 Save Favorite
+            </button>
+            <button id="share-affirmation" class="bg-gradient-to-r from-orange-600 to-red-600 px-6 py-3 rounded-lg hover:from-orange-700 hover:to-red-700 transition">
+              📱 Share
+            </button>
+          </div>
+
+          <!-- Daily Practice Guide -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-6 text-center text-teal-400">🌅 Daily Affirmation Practice 🌅</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold mb-4 text-cyan-300">Morning Ritual</h4>
+                <ul class="space-y-2 text-gray-300">
+                  <li>• Wake up and take 3 deep breaths</li>
+                  <li>• Read your affirmation aloud with conviction</li>
+                  <li>• Visualize your affirmation coming true</li>
+                  <li>• Feel the emotions of already having it</li>
+                  <li>• Carry this energy throughout your day</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-4 text-cyan-300">Evening Reflection</h4>
+                <ul class="space-y-2 text-gray-300">
+                  <li>• Review how your affirmation showed up today</li>
+                  <li>• Express gratitude for positive moments</li>
+                  <li>• Repeat your affirmation before sleep</li>
+                  <li>• Set intentions for tomorrow</li>
+                  <li>• Trust in the process of manifestation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Saved Affirmations -->
+          <div id="saved-affirmations" class="hidden bg-white/5 backdrop-blur-lg rounded-lg p-8">
+            <h3 class="text-2xl font-semibold mb-6 text-center text-teal-400">💎 Your Saved Affirmations 💎</h3>
+            <div id="saved-list" class="space-y-4"></div>
+            <div class="text-center mt-6">
+              <button id="clear-saved" class="bg-gradient-to-r from-red-600 to-pink-600 px-4 py-2 rounded-lg hover:from-red-700 hover:to-pink-700 transition">
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const affirmations = {
+        confidence: {
+          affirmations: [
+            "I am confident, capable, and worthy of all good things in life.",
+            "I trust in my abilities and make decisions with confidence.",
+            "I radiate self-assurance and attract positive opportunities.",
+            "I am becoming more confident and self-assured every day.",
+            "I believe in myself and my unique gifts and talents.",
+            "I speak with confidence and my voice matters.",
+            "I am worthy of respect, love, and success.",
+            "I face challenges with courage and determination.",
+            "I trust my intuition and make wise choices.",
+            "I am proud of my progress and celebrate my achievements."
+          ],
+          guidance: "Repeat this affirmation while standing tall and feeling your inner strength."
+        },
+        success: {
+          affirmations: [
+            "I am successful in all areas of my life.",
+            "Success flows to me easily and naturally.",
+            "I attract opportunities that align with my highest good.",
+            "I am worthy of achieving my dreams and goals.",
+            "Every challenge I face leads to greater success.",
+            "I have all the resources I need to succeed.",
+            "Success is my natural state of being.",
+            "I create value and abundance wherever I go.",
+            "I am persistent and never give up on my dreams.",
+            "My success inspires and uplifts others."
+          ],
+          guidance: "Visualize your goals already achieved while repeating this affirmation."
+        },
+        love: {
+          affirmations: [
+            "I am worthy of deep, unconditional love.",
+            "Love flows to me and through me effortlessly.",
+            "I attract loving, supportive relationships into my life.",
+            "I love and accept myself completely.",
+            "I am surrounded by love and loving people.",
+            "My heart is open to giving and receiving love.",
+            "I radiate love and kindness to everyone I meet.",
+            "I deserve a relationship filled with love and respect.",
+            "Love is my natural state and I express it freely.",
+            "I am grateful for all the love in my life."
+          ],
+          guidance: "Place your hand on your heart and feel love radiating from within."
+        },
+        health: {
+          affirmations: [
+            "My body is healthy, strong, and full of energy.",
+            "I make choices that support my optimal health.",
+            "Every cell in my body vibrates with perfect health.",
+            "I am grateful for my body and treat it with love.",
+            "Healing energy flows through me constantly.",
+            "I sleep peacefully and wake up refreshed.",
+            "My immune system is strong and protects me.",
+            "I choose foods that nourish and energize my body.",
+            "I am in perfect harmony with my body's wisdom.",
+            "Health and vitality are my natural birthright."
+          ],
+          guidance: "Take deep breaths and feel vitality flowing through your entire body."
+        },
+        abundance: {
+          affirmations: [
+            "I am a magnet for abundance and prosperity.",
+            "Money flows to me easily and frequently.",
+            "I am worthy of financial freedom and security.",
+            "Abundance is my natural state of being.",
+            "I attract opportunities for wealth and success.",
+            "I am grateful for all the abundance in my life.",
+            "I create value and receive abundant compensation.",
+            "My income increases every month.",
+            "I have more than enough for all my needs and desires.",
+            "I share my abundance and it multiplies."
+          ],
+          guidance: "Feel gratitude for current abundance while envisioning more flowing in."
+        },
+        peace: {
+          affirmations: [
+            "I am at peace with myself and the world around me.",
+            "Calmness and serenity flow through me naturally.",
+            "I release all worry and trust in the process of life.",
+            "Peace is my natural state of being.",
+            "I find tranquility in every moment.",
+            "I am centered, grounded, and at peace.",
+            "I let go of what I cannot control with grace.",
+            "My mind is calm and my heart is peaceful.",
+            "I create harmony in all my relationships.",
+            "Inner peace is my greatest treasure."
+          ],
+          guidance: "Breathe deeply and feel peace settling into every part of your being."
+        },
+        creativity: {
+          affirmations: [
+            "I am a creative being with unlimited potential.",
+            "Creative ideas flow through me effortlessly.",
+            "I express my creativity with joy and confidence.",
+            "My creativity brings value to the world.",
+            "I am inspired and my imagination is limitless.",
+            "I trust my creative instincts and follow my inspiration.",
+            "Creative solutions come to me easily.",
+            "I am open to new ideas and creative possibilities.",
+            "My creativity is a gift that I share with the world.",
+            "I am constantly creating beauty and meaning."
+          ],
+          guidance: "Let your imagination run free as you embrace your creative power."
+        },
+        gratitude: {
+          affirmations: [
+            "I am grateful for all the blessings in my life.",
+            "Gratitude fills my heart and attracts more good things.",
+            "I appreciate every moment and experience.",
+            "I am thankful for my journey and growth.",
+            "Gratitude is my attitude and joy is my choice.",
+            "I see the good in every situation.",
+            "I am blessed beyond measure.",
+            "My grateful heart attracts miracles.",
+            "I appreciate the simple pleasures in life.",
+            "Gratitude transforms my life in wonderful ways."
+          ],
+          guidance: "Feel genuine appreciation for three specific things in your life right now."
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const generateBtn = document.getElementById('generate-affirmation');
+        const affirmationDisplay = document.getElementById('affirmation-display');
+        const categoryDisplay = document.getElementById('category-display');
+        const affirmationText = document.getElementById('affirmation-text');
+        const affirmationGuidance = document.getElementById('affirmation-guidance');
+        const actionButtons = document.getElementById('action-buttons');
+        const speakBtn = document.getElementById('speak-affirmation');
+        const saveBtn = document.getElementById('save-affirmation');
+        const shareBtn = document.getElementById('share-affirmation');
+        const savedSection = document.getElementById('saved-affirmations');
+        const savedList = document.getElementById('saved-list');
+        const clearSavedBtn = document.getElementById('clear-saved');
+
+        let selectedCategory = 'confidence';
+        let currentAffirmation = '';
+
+        // Category selection
+        categoryBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            selectedCategory = this.dataset.category;
+          });
+        });
+
+        // Set default category
+        categoryBtns[0].classList.add('active');
+
+        generateBtn.addEventListener('click', generateAffirmation);
+        speakBtn.addEventListener('click', speakAffirmation);
+        saveBtn.addEventListener('click', saveAffirmation);
+        shareBtn.addEventListener('click', shareAffirmation);
+        clearSavedBtn.addEventListener('click', clearSavedAffirmations);
+
+        function generateAffirmation() {
+          const categoryData = affirmations[selectedCategory];
+          const randomAffirmation = categoryData.affirmations[Math.floor(Math.random() * categoryData.affirmations.length)];
+          
+          currentAffirmation = randomAffirmation;
+          
+          categoryDisplay.textContent = `${getCategoryEmoji(selectedCategory)} ${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Affirmation`;
+          affirmationText.textContent = randomAffirmation;
+          affirmationGuidance.textContent = categoryData.guidance;
+          
+          affirmationDisplay.classList.remove('hidden');
+          actionButtons.classList.remove('hidden');
+          
+          // Trigger confetti
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#ff6b6b']
+          });
+          
+          loadSavedAffirmations();
+        }
+
+        function getCategoryEmoji(category) {
+          const emojis = {
+            confidence: '💪',
+            success: '🎯',
+            love: '❤️',
+            health: '🌱',
+            abundance: '💰',
+            peace: '🕊️',
+            creativity: '🎨',
+            gratitude: '🙏'
+          };
+          return emojis[category] || '✨';
+        }
+
+        function speakAffirmation() {
+          if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(currentAffirmation);
+            utterance.rate = 0.8;
+            utterance.pitch = 1;
+            utterance.volume = 1;
+            speechSynthesis.speak(utterance);
+          } else {
+            alert('Speech synthesis not supported in your browser.');
+          }
+        }
+
+        function saveAffirmation() {
+          if (!currentAffirmation) return;
+          
+          let saved = JSON.parse(localStorage.getItem('savedAffirmations') || '[]');
+          
+          const affirmationData = {
+            text: currentAffirmation,
+            category: selectedCategory,
+            date: new Date().toLocaleDateString()
+          };
+          
+          // Check if already saved
+          const exists = saved.some(a => a.text === currentAffirmation);
+          if (!exists) {
+            saved.push(affirmationData);
+            localStorage.setItem('savedAffirmations', JSON.stringify(saved));
+            alert('💎 Affirmation saved to your collection! 💎');
+            loadSavedAffirmations();
+          } else {
+            alert('This affirmation is already in your collection!');
+          }
+        }
+
+        function shareAffirmation() {
+          if (!currentAffirmation) return;
+          
+          const shareText = `${currentAffirmation}\n\n✨ Generated by Yes No Oracle Daily Affirmations ✨`;
+          
+          if (navigator.share) {
+            navigator.share({
+              title: 'Daily Affirmation',
+              text: shareText,
+              url: window.location.href
+            });
+          } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareText).then(() => {
+              alert('📱 Affirmation copied to clipboard! 📱');
+            });
+          } else {
+            alert('Sharing not supported in your browser.');
+          }
+        }
+
+        function loadSavedAffirmations() {
+          const saved = JSON.parse(localStorage.getItem('savedAffirmations') || '[]');
+          
+          if (saved.length > 0) {
+            savedSection.classList.remove('hidden');
+            savedList.innerHTML = '';
+            
+            saved.forEach((affirmation, index) => {
+              const div = document.createElement('div');
+              div.className = 'bg-white/10 p-4 rounded-lg';
+              div.innerHTML = `
+                <div class="flex justify-between items-start">
+                  <div class="flex-1">
+                    <div class="text-sm text-gray-400 mb-2">${getCategoryEmoji(affirmation.category)} ${affirmation.category} - ${affirmation.date}</div>
+                    <div class="text-white">${affirmation.text}</div>
+                  </div>
+                  <button onclick="removeSavedAffirmation(${index})" class="text-red-400 hover:text-red-300 ml-4">
+                    🗑️
+                  </button>
+                </div>
+              `;
+              savedList.appendChild(div);
+            });
+          } else {
+            savedSection.classList.add('hidden');
+          }
+        }
+
+        function clearSavedAffirmations() {
+          if (confirm('Are you sure you want to clear all saved affirmations?')) {
+            localStorage.removeItem('savedAffirmations');
+            savedSection.classList.add('hidden');
+            alert('All saved affirmations have been cleared.');
+          }
+        }
+
+        // Make removeSavedAffirmation global
+        window.removeSavedAffirmation = function(index) {
+          let saved = JSON.parse(localStorage.getItem('savedAffirmations') || '[]');
+          saved.splice(index, 1);
+          localStorage.setItem('savedAffirmations', JSON.stringify(saved));
+          loadSavedAffirmations();
+        };
+
+        // Load saved affirmations on page load
+        loadSavedAffirmations();
+      });
+    </script>
+  </body>
+</html> 

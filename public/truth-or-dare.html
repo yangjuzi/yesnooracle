@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truth or Dare - Yes No Oracle</title>
+    <meta name="description" content="Play Truth or Dare with our fun and interactive tool. Get random truth questions and dare challenges.">
+    <link rel="canonical" href="https://yesnooracle.dev/truth-or-dare.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .option-item { transition: all 0.3s ease; }
+      .option-item:hover { transform: translateX(10px); }
+      .selected { background: linear-gradient(135deg, #8b5cf6, #ec4899) !important; }
+      .spinning { animation: spin 0.5s ease-in-out; }
+      @keyframes spin { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Truth or Dare
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Ready for some fun? Play Truth or Dare with our interactive tool. Get random truth questions and dare challenges.
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h2 class="text-2xl font-cinzel mb-6 text-center">Choose Your Challenge</h2>
+            
+            <!-- Action Buttons -->
+            <div class="flex gap-4 justify-center mb-8">
+              <button id="truth-btn" class="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-lg text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg hover:shadow-purple-500/20">
+                Truth
+              </button>
+              <button id="dare-btn" class="bg-gradient-to-r from-blue-600 to-green-600 px-8 py-4 rounded-lg text-lg hover:from-blue-700 hover:to-green-700 transition shadow-lg hover:shadow-blue-500/20">
+                Dare
+              </button>
+            </div>
+
+            <!-- Result Display -->
+            <div id="result-container" class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl hidden">
+              <h3 class="text-2xl font-cinzel mb-6 text-center">Your Challenge</h3>
+              <div id="result-display" class="text-center">
+                <div id="selected-challenge" class="text-4xl font-cinzel mb-4 bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"></div>
+                <p class="text-gray-300 mb-6">This is your randomly selected challenge!</p>
+                <button id="select-again-btn" class="bg-gradient-to-r from-green-600 to-blue-600 px-8 py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition">
+                  Select Again
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const truths = [
+        "What is your biggest fear?",
+        "What is your most embarrassing moment?",
+        "What is a secret you've never told anyone?",
+        "Who is your crush?",
+        "What is the biggest lie you've ever told?",
+        "What is something you're glad your parents don't know about you?",
+        "What is the most childish thing you still do?",
+        "What is the worst thing you've ever done?",
+        "What is your biggest regret?",
+        "What is the most trouble you've been in?"
+      ];
+
+      const dares = [
+        "Do 20 pushups",
+        "Sing a song loudly",
+        "Dance like no one is watching",
+        "Do your best impression of a celebrity",
+        "Talk in an accent for the next 3 rounds",
+        "Let someone tickle you for 30 seconds",
+        "Do a silly walk across the room",
+        "Try to lick your elbow",
+        "Do your best chicken dance outside",
+        "Wear socks on your hands for the next 10 minutes"
+      ];
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const truthBtn = document.getElementById('truth-btn');
+        const dareBtn = document.getElementById('dare-btn');
+        const selectAgainBtn = document.getElementById('select-again-btn');
+
+        truthBtn.addEventListener('click', () => selectChallenge('truth'));
+        dareBtn.addEventListener('click', () => selectChallenge('dare'));
+        selectAgainBtn.addEventListener('click', () => {
+          document.getElementById('result-container').classList.add('hidden');
+        });
+      });
+
+      function selectChallenge(type) {
+        const resultContainer = document.getElementById('result-container');
+        const selectedChallenge = document.getElementById('selected-challenge');
+        
+        let challenge = '';
+        if (type === 'truth') {
+          challenge = truths[Math.floor(Math.random() * truths.length)];
+        } else if (type === 'dare') {
+          challenge = dares[Math.floor(Math.random() * dares.length)];
+        }
+
+        selectedChallenge.textContent = challenge;
+        resultContainer.classList.remove('hidden');
+
+        // Trigger confetti
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    </script>
+  </body>
+</html> 

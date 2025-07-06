@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8 Ball Yes or No - Yes No Oracle</title>
+    <meta name="description" content="Ask the mystical 8 Ball your yes or no questions and receive a random answer.">
+    <link rel="canonical" href="https://yesnooracle.dev/8-ball.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .ball { width: 200px; height: 200px; background: radial-gradient(circle, #000 60%, #444); border-radius: 50%; position: relative; margin: 0 auto; }
+      .ball::after { content: "8"; font-size: 4rem; color: #fff; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .answer { font-size: 1.5rem; color: #fff; text-align: center; margin-top: 20px; }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            8 Ball Yes or No
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Ask the mystical 8 Ball your yes or no questions and receive a random answer.
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div class="ball" id="magic-ball"></div>
+            <div class="answer" id="answer">Ask a question and click the ball!</div>
+            <button id="shake-btn" class="mt-8 bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-lg text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg hover:shadow-purple-500/20">
+              Shake the 8 Ball
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const answers = [
+        "Yes", "No", "Ask again later", "Definitely", "I don't think so", "Absolutely", "Not sure", "Very likely", "Unlikely", "Yes, but be cautious"
+      ];
+
+      document.getElementById('shake-btn').addEventListener('click', function() {
+        const answer = answers[Math.floor(Math.random() * answers.length)];
+        document.getElementById('answer').textContent = answer;
+
+        // Trigger confetti
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      });
+    </script>
+  </body>
+</html> 

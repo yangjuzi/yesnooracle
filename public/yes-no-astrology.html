@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yes No Astrology - Yes No Oracle</title>
+    <meta name="description" content="Ask the stars for a yes or no answer to your question based on your zodiac sign.">
+    <link rel="canonical" href="https://yesnooracle.dev/yes-no-astrology.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .button { width: 150px; height: 150px; border-radius: 50%; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto; cursor: pointer; transition: transform 0.3s ease; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: 2px solid #ffd700; }
+      .button:hover { transform: scale(1.1); background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); }
+      .answer { font-size: 1.2rem; color: #fff; text-align: center; margin-top: 20px; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+      .zodiac-select { background: rgba(255, 255, 255, 0.1); border: 1px solid #ffd700; color: white; padding: 10px; border-radius: 8px; }
+      .zodiac-select option { background: #1a1a1a; color: white; }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            ✨ Yes No Astrology ✨
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Let the cosmic energy of your zodiac sign guide your yes or no answers
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <!-- Zodiac Selection -->
+            <div class="mb-6 text-center">
+              <label class="block text-lg font-semibold mb-3 text-gold">🌟 Choose Your Zodiac Sign 🌟</label>
+              <select id="zodiac-sign" class="zodiac-select">
+                <option value="">Select your zodiac sign</option>
+                <option value="aries">♈ Aries (March 21 - April 19)</option>
+                <option value="taurus">♉ Taurus (April 20 - May 20)</option>
+                <option value="gemini">♊ Gemini (May 21 - June 20)</option>
+                <option value="cancer">♋ Cancer (June 21 - July 22)</option>
+                <option value="leo">♌ Leo (July 23 - August 22)</option>
+                <option value="virgo">♍ Virgo (August 23 - September 22)</option>
+                <option value="libra">♎ Libra (September 23 - October 22)</option>
+                <option value="scorpio">♏ Scorpio (October 23 - November 21)</option>
+                <option value="sagittarius">♐ Sagittarius (November 22 - December 21)</option>
+                <option value="capricorn">♑ Capricorn (December 22 - January 19)</option>
+                <option value="aquarius">♒ Aquarius (January 20 - February 18)</option>
+                <option value="pisces">♓ Pisces (February 19 - March 20)</option>
+              </select>
+            </div>
+
+            <!-- Question Input -->
+            <div class="flex justify-center gap-8 mb-6">
+              <input type="text" id="user-question" placeholder="Ask the stars your question..." class="w-full max-w-md px-4 py-3 rounded-lg text-black border-2 border-purple-400" />
+            </div>
+
+            <!-- Ask Button -->
+            <div class="flex justify-center gap-8 mb-6">
+              <div class="button" id="random-btn">🔮 Ask the Stars 🔮</div>
+            </div>
+
+            <!-- Answer Display -->
+            <div class="answer" id="answer">Select your zodiac sign and ask a question to receive cosmic guidance!</div>
+          </div>
+
+          <!-- Horoscope Section -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h2 class="text-2xl font-cinzel text-center mb-6 text-gold">🌙 Daily Cosmic Insight 🌙</h2>
+            <div id="horoscope-content" class="text-center text-gray-300">
+              Select your zodiac sign to see your daily cosmic insight
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const zodiacMessages = {
+        aries: {
+          horoscope: "🔥 Aries: Your fiery energy is at its peak today. The stars align for bold decisions and new beginnings. Trust your instincts!",
+          yesMessage: "YES! Your Aries fire burns bright - the universe supports your bold move forward!",
+          noMessage: "NO. Your Aries energy suggests patience. Sometimes the warrior must wait for the right moment."
+        },
+        taurus: {
+          horoscope: "🌱 Taurus: Stability and patience are your strengths today. The earth signs favor steady progress and practical decisions.",
+          yesMessage: "YES! Your Taurus steadiness has earned cosmic approval - move forward with confidence!",
+          noMessage: "NO. Your Taurus wisdom says to hold steady. The right opportunity will come when the time is right."
+        },
+        gemini: {
+          horoscope: "💫 Gemini: Your dual nature brings clarity today. Communication and adaptability are your cosmic gifts right now.",
+          yesMessage: "YES! Your Gemini versatility opens new doors - embrace the change ahead!",
+          noMessage: "NO. Your Gemini intuition suggests exploring other options first. Keep your mind open to alternatives."
+        },
+        cancer: {
+          horoscope: "🌙 Cancer: Your emotional intelligence guides you today. Trust your feelings and nurture your dreams.",
+          yesMessage: "YES! Your Cancer intuition feels the positive energy - follow your heart!",
+          noMessage: "NO. Your Cancer sensitivity detects hidden currents. Protect your emotional energy for now."
+        },
+        leo: {
+          horoscope: "☀️ Leo: Your natural leadership shines today. The spotlight is yours - embrace your royal destiny!",
+          yesMessage: "YES! Your Leo confidence radiates success - the stage is set for your triumph!",
+          noMessage: "NO. Your Leo pride suggests this isn't worthy of your magnificence. Wait for something grander."
+        },
+        virgo: {
+          horoscope: "🌾 Virgo: Your analytical mind sees clearly today. Attention to detail and practical wisdom guide your path.",
+          yesMessage: "YES! Your Virgo precision has calculated the perfect outcome - proceed with your methodical approach!",
+          noMessage: "NO. Your Virgo analysis reveals flaws in the plan. Refine your approach before moving forward."
+        },
+        libra: {
+          horoscope: "⚖️ Libra: Balance and harmony surround you today. Your diplomatic nature brings peace to chaos.",
+          yesMessage: "YES! Your Libra sense of balance finds perfect equilibrium - this choice brings harmony!",
+          noMessage: "NO. Your Libra scales tip toward caution. Seek more balance before making this decision."
+        },
+        scorpio: {
+          horoscope: "🦂 Scorpio: Your intense energy transforms everything today. Deep truths and hidden knowledge are revealed.",
+          yesMessage: "YES! Your Scorpio intensity pierces through illusions - this path leads to transformation!",
+          noMessage: "NO. Your Scorpio instincts sense hidden dangers. Trust your powerful intuition to guide you away."
+        },
+        sagittarius: {
+          horoscope: "🏹 Sagittarius: Adventure calls to your free spirit today. Expand your horizons and seek new experiences.",
+          yesMessage: "YES! Your Sagittarius arrow flies true - this adventure awaits your bold spirit!",
+          noMessage: "NO. Your Sagittarius wanderlust suggests a different path. Keep exploring other horizons."
+        },
+        capricorn: {
+          horoscope: "🏔️ Capricorn: Your ambitious nature climbs toward success today. Discipline and determination are your allies.",
+          yesMessage: "YES! Your Capricorn determination builds the foundation for success - climb that mountain!",
+          noMessage: "NO. Your Capricorn wisdom says this isn't the summit you're meant to reach. Keep climbing toward your true goal."
+        },
+        aquarius: {
+          horoscope: "🌊 Aquarius: Your innovative spirit revolutionizes today. Unique solutions and humanitarian ideals guide you.",
+          yesMessage: "YES! Your Aquarius vision sees the future clearly - this progressive choice aligns with your destiny!",
+          noMessage: "NO. Your Aquarius independence suggests breaking free from this conventional path. Innovate instead!"
+        },
+        pisces: {
+          horoscope: "🐟 Pisces: Your intuitive depths flow with cosmic wisdom today. Dreams and spirituality illuminate your path.",
+          yesMessage: "YES! Your Pisces intuition swims with the cosmic current - dive deep into this opportunity!",
+          noMessage: "NO. Your Pisces sensitivity feels turbulent waters ahead. Trust your psychic instincts to guide you to calmer seas."
+        }
+      };
+
+      document.getElementById('zodiac-sign').addEventListener('change', function() {
+        const selectedSign = this.value;
+        const horoscopeContent = document.getElementById('horoscope-content');
+        
+        if (selectedSign && zodiacMessages[selectedSign]) {
+          horoscopeContent.innerHTML = zodiacMessages[selectedSign].horoscope;
+        } else {
+          horoscopeContent.innerHTML = 'Select your zodiac sign to see your daily cosmic insight';
+        }
+      });
+
+      document.getElementById('random-btn').addEventListener('click', function() {
+        const userQuestion = document.getElementById('user-question').value;
+        const selectedSign = document.getElementById('zodiac-sign').value;
+        const answerElement = document.getElementById('answer');
+        
+        if (!selectedSign) {
+          answerElement.innerHTML = '🌟 Please select your zodiac sign first to receive cosmic guidance! 🌟';
+          return;
+        }
+        
+        if (!userQuestion.trim()) {
+          answerElement.innerHTML = '🔮 Please ask a question to receive your cosmic answer! 🔮';
+          return;
+        }
+        
+        const answers = ['yes', 'no'];
+        const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+        const zodiacData = zodiacMessages[selectedSign];
+        
+        const message = randomAnswer === 'yes' ? zodiacData.yesMessage : zodiacData.noMessage;
+        
+        answerElement.innerHTML = `
+          <div class="text-lg font-semibold mb-2">🌟 Your Question: "${userQuestion}" 🌟</div>
+          <div class="text-2xl font-bold mb-3 ${randomAnswer === 'yes' ? 'text-green-400' : 'text-red-400'}">${randomAnswer.toUpperCase()}</div>
+          <div class="text-base">${message}</div>
+        `;
+        
+        triggerConfetti();
+      });
+
+      function triggerConfetti() {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#ffd700', '#ff69b4', '#9370db', '#00ced1']
+        });
+      }
+    </script>
+  </body>
+</html> 

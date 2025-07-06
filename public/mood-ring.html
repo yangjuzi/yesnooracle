@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Ring - Yes No Oracle</title>
+    <meta name="description" content="Discover your current emotional state with our interactive mood ring. Get personalized insights and guidance for emotional well-being.">
+    <link rel="canonical" href="https://yesnooracle.dev/mood-ring.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      
+      .mood-ring {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        position: relative;
+        margin: 0 auto;
+        transition: all 1s ease;
+        box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+      }
+      
+      .mood-ring::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent 50%);
+        z-index: 2;
+      }
+      
+      .mood-ring::after {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3), transparent 50%);
+        z-index: 1;
+      }
+      
+      .ring-glow {
+        animation: ringGlow 2s ease-in-out infinite alternate;
+      }
+      
+      @keyframes ringGlow {
+        0% { box-shadow: 0 0 30px currentColor; }
+        100% { box-shadow: 0 0 60px currentColor, 0 0 90px currentColor; }
+      }
+      
+      .mood-option {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid transparent;
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .mood-option:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.2);
+      }
+      
+      .mood-option.selected {
+        border-color: currentColor;
+        background: rgba(255, 255, 255, 0.2);
+      }
+      
+      .mood-colors {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+      
+      .color-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+      
+      .color-dot.active {
+        transform: scale(1.3);
+        border-color: white;
+        box-shadow: 0 0 15px currentColor;
+      }
+      
+      .mood-history {
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      
+      .mood-entry {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px 0;
+        border-left: 4px solid;
+      }
+      
+      .pulse {
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-indigo-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-indigo-400 text-transparent bg-clip-text">
+            💍 Mood Ring 💍
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Discover your current emotional state and receive personalized insights for emotional well-being and balance
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <!-- Mood Ring Display -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div class="text-center mb-8">
+              <div id="mood-ring" class="mood-ring ring-glow" style="background: linear-gradient(135deg, #6b73ff, #000dff);"></div>
+              <div id="current-mood" class="text-2xl font-semibold mt-4 text-purple-400">Touch the ring to reveal your mood</div>
+              <div id="mood-description" class="text-gray-300 mt-2 hidden"></div>
+            </div>
+          </div>
+
+          <!-- Mood Selection -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h3 class="text-2xl font-semibold mb-6 text-center text-purple-400">🌈 How are you feeling right now? 🌈</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="mood-options">
+              <!-- Mood options will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Mood Analysis -->
+          <div id="mood-analysis" class="hidden bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h3 class="text-2xl font-semibold mb-6 text-center text-purple-400">🔍 Your Mood Analysis 🔍</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="bg-white/10 p-6 rounded-lg">
+                <h4 class="font-semibold mb-3 text-pink-300">💝 What This Means</h4>
+                <p id="mood-meaning" class="text-gray-300"></p>
+              </div>
+              <div class="bg-white/10 p-6 rounded-lg">
+                <h4 class="font-semibold mb-3 text-cyan-300">🌟 Recommendations</h4>
+                <p id="mood-recommendations" class="text-gray-300"></p>
+              </div>
+            </div>
+            <div class="mt-6 text-center">
+              <button id="save-mood" class="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition mr-4">
+                💾 Save Mood
+              </button>
+              <button id="share-mood" class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 rounded-lg hover:from-blue-700 hover:to-cyan-700 transition">
+                📱 Share
+              </button>
+            </div>
+          </div>
+
+          <!-- Mood History -->
+          <div id="mood-history-section" class="hidden bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h3 class="text-2xl font-semibold mb-6 text-center text-purple-400">📊 Your Mood Journey 📊</h3>
+            <div class="mood-history" id="mood-history">
+              <!-- Mood history will be populated by JavaScript -->
+            </div>
+            <div class="text-center mt-6">
+              <button id="clear-history" class="bg-gradient-to-r from-red-600 to-pink-600 px-4 py-2 rounded-lg hover:from-red-700 hover:to-pink-700 transition">
+                🗑️ Clear History
+              </button>
+            </div>
+          </div>
+
+          <!-- Mood Enhancement Tips -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h3 class="text-2xl font-semibold mb-6 text-center text-purple-400">✨ Mood Enhancement Tips ✨</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🧘</div>
+                <h4 class="font-semibold mb-2">Mindfulness</h4>
+                <p class="text-sm text-gray-400">Practice deep breathing and meditation</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🎵</div>
+                <h4 class="font-semibold mb-2">Music Therapy</h4>
+                <p class="text-sm text-gray-400">Listen to music that matches your desired mood</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🌱</div>
+                <h4 class="font-semibold mb-2">Nature Connection</h4>
+                <p class="text-sm text-gray-400">Spend time outdoors to boost your spirits</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const moodData = {
+        happy: {
+          color: 'linear-gradient(135deg, #ffd700, #ffb347)',
+          emoji: '😊',
+          name: 'Happy',
+          description: 'Your mood ring glows with golden warmth',
+          meaning: 'You are experiencing joy, contentment, and positive energy. This is a wonderful state that radiates outward and attracts more positivity into your life.',
+          recommendations: 'Share your joy with others, engage in creative activities, and take time to appreciate the good things in your life. Consider journaling about what made you happy today.'
+        },
+        excited: {
+          color: 'linear-gradient(135deg, #ff6b6b, #ff8e53)',
+          emoji: '🤩',
+          name: 'Excited',
+          description: 'Your mood ring pulses with vibrant energy',
+          meaning: 'You are full of enthusiasm and anticipation. This high-energy state is perfect for taking action on your goals and pursuing new opportunities.',
+          recommendations: 'Channel this energy into productive activities, start new projects, or engage in physical exercise. Be mindful not to overwhelm yourself with too many commitments.'
+        },
+        calm: {
+          color: 'linear-gradient(135deg, #4ecdc4, #44a08d)',
+          emoji: '😌',
+          name: 'Calm',
+          description: 'Your mood ring emanates peaceful serenity',
+          meaning: 'You are in a state of inner peace and tranquility. This balanced emotional state allows for clear thinking and wise decision-making.',
+          recommendations: 'Use this peaceful state for reflection, meditation, or planning. This is an excellent time for important conversations or making significant decisions.'
+        },
+        anxious: {
+          color: 'linear-gradient(135deg, #a8e6cf, #88d8c0)',
+          emoji: '😰',
+          name: 'Anxious',
+          description: 'Your mood ring shows swirling uncertainty',
+          meaning: 'You are experiencing worry or nervousness about something. This is a natural response to stress or uncertainty, and acknowledging it is the first step to managing it.',
+          recommendations: 'Practice deep breathing exercises, try progressive muscle relaxation, or talk to someone you trust. Consider breaking down overwhelming tasks into smaller, manageable steps.'
+        },
+        sad: {
+          color: 'linear-gradient(135deg, #667eea, #764ba2)',
+          emoji: '😢',
+          name: 'Sad',
+          description: 'Your mood ring reflects deep blue emotions',
+          meaning: 'You are processing difficult emotions or experiencing loss. Sadness is a natural and healthy response to life\'s challenges, and it\'s important to honor these feelings.',
+          recommendations: 'Allow yourself to feel these emotions without judgment. Reach out to supportive friends or family, engage in gentle self-care, or consider professional support if needed.'
+        },
+        angry: {
+          color: 'linear-gradient(135deg, #ff4757, #c44569)',
+          emoji: '😠',
+          name: 'Angry',
+          description: 'Your mood ring burns with intense fire',
+          meaning: 'You are experiencing frustration or anger about a situation. This powerful emotion can be a signal that your boundaries have been crossed or that change is needed.',
+          recommendations: 'Take time to cool down before reacting. Try physical exercise, write in a journal, or practice anger management techniques. Consider what this anger is telling you about your needs.'
+        },
+        confused: {
+          color: 'linear-gradient(135deg, #ffa726, #fb8c00)',
+          emoji: '😕',
+          name: 'Confused',
+          description: 'Your mood ring swirls with mixed colors',
+          meaning: 'You are experiencing uncertainty or mixed emotions about a situation. This state often occurs when facing complex decisions or conflicting feelings.',
+          recommendations: 'Take time to sort through your thoughts and feelings. Make lists of pros and cons, talk to trusted advisors, or give yourself permission to not have all the answers right now.'
+        },
+        grateful: {
+          color: 'linear-gradient(135deg, #f093fb, #f5576c)',
+          emoji: '🙏',
+          name: 'Grateful',
+          description: 'Your mood ring glows with appreciation',
+          meaning: 'You are experiencing deep appreciation for the good things in your life. Gratitude is a powerful emotion that enhances well-being and attracts more positivity.',
+          recommendations: 'Keep a gratitude journal, express thanks to people who have helped you, or perform acts of kindness for others. This positive energy will continue to grow and spread.'
+        },
+        lonely: {
+          color: 'linear-gradient(135deg, #6c5ce7, #a29bfe)',
+          emoji: '😔',
+          name: 'Lonely',
+          description: 'Your mood ring shows muted, distant hues',
+          meaning: 'You are feeling disconnected from others or craving deeper social connections. Loneliness is a common human experience that signals our need for meaningful relationships.',
+          recommendations: 'Reach out to friends or family, join social groups or activities, or consider volunteering. Remember that quality connections matter more than quantity.'
+        },
+        energetic: {
+          color: 'linear-gradient(135deg, #00b894, #00cec9)',
+          emoji: '⚡',
+          name: 'Energetic',
+          description: 'Your mood ring sparkles with vitality',
+          meaning: 'You are feeling vibrant and full of life force. This dynamic state is perfect for tackling challenges and pursuing your passions with vigor.',
+          recommendations: 'Use this energy wisely by focusing on important goals, exercising, or engaging in activities that bring you joy. Balance high energy with adequate rest.'
+        },
+        peaceful: {
+          color: 'linear-gradient(135deg, #74b9ff, #0984e3)',
+          emoji: '☮️',
+          name: 'Peaceful',
+          description: 'Your mood ring flows with tranquil harmony',
+          meaning: 'You are experiencing deep inner peace and harmony with yourself and your surroundings. This is a state of emotional balance and spiritual well-being.',
+          recommendations: 'Savor this peaceful state through meditation, gentle yoga, or quiet reflection. This is an ideal time for creative pursuits or spiritual practices.'
+        },
+        hopeful: {
+          color: 'linear-gradient(135deg, #fd79a8, #fdcb6e)',
+          emoji: '🌅',
+          name: 'Hopeful',
+          description: 'Your mood ring radiates optimistic light',
+          meaning: 'You are feeling positive about the future and believing in good outcomes. Hope is a powerful force that motivates action and resilience.',
+          recommendations: 'Use this optimistic energy to set goals, make plans, or take steps toward your dreams. Share your hope with others who might need encouragement.'
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const moodRing = document.getElementById('mood-ring');
+        const currentMood = document.getElementById('current-mood');
+        const moodDescription = document.getElementById('mood-description');
+        const moodOptions = document.getElementById('mood-options');
+        const moodAnalysis = document.getElementById('mood-analysis');
+        const moodMeaning = document.getElementById('mood-meaning');
+        const moodRecommendations = document.getElementById('mood-recommendations');
+        const saveMoodBtn = document.getElementById('save-mood');
+        const shareMoodBtn = document.getElementById('share-mood');
+        const moodHistorySection = document.getElementById('mood-history-section');
+        const moodHistory = document.getElementById('mood-history');
+        const clearHistoryBtn = document.getElementById('clear-history');
+
+        let selectedMood = null;
+
+        // Create mood options
+        Object.keys(moodData).forEach(mood => {
+          const option = document.createElement('div');
+          option.className = 'mood-option';
+          option.style.color = moodData[mood].color.match(/#[a-fA-F0-9]{6}/g)?.[0] || '#ffffff';
+          option.innerHTML = `
+            <div class="text-3xl mb-2">${moodData[mood].emoji}</div>
+            <div class="font-semibold">${moodData[mood].name}</div>
+          `;
+          option.addEventListener('click', () => selectMood(mood));
+          moodOptions.appendChild(option);
+        });
+
+        // Mood ring click handler
+        moodRing.addEventListener('click', () => {
+          if (!selectedMood) {
+            // Random mood selection
+            const moods = Object.keys(moodData);
+            const randomMood = moods[Math.floor(Math.random() * moods.length)];
+            selectMood(randomMood);
+          }
+        });
+
+        function selectMood(mood) {
+          selectedMood = mood;
+          const data = moodData[mood];
+          
+          // Update ring appearance
+          moodRing.style.background = data.color;
+          moodRing.classList.add('pulse');
+          
+          // Update text
+          currentMood.textContent = `${data.emoji} ${data.name}`;
+          moodDescription.textContent = data.description;
+          moodDescription.classList.remove('hidden');
+          
+          // Update analysis
+          moodMeaning.textContent = data.meaning;
+          moodRecommendations.textContent = data.recommendations;
+          moodAnalysis.classList.remove('hidden');
+          
+          // Update selected option
+          document.querySelectorAll('.mood-option').forEach(option => {
+            option.classList.remove('selected');
+          });
+          event.target.closest('.mood-option')?.classList.add('selected');
+          
+          // Trigger confetti
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#ffd700', '#ff8e53']
+          });
+          
+          loadMoodHistory();
+        }
+
+        saveMoodBtn.addEventListener('click', saveMood);
+        shareMoodBtn.addEventListener('click', shareMood);
+        clearHistoryBtn.addEventListener('click', clearMoodHistory);
+
+        function saveMood() {
+          if (!selectedMood) return;
+          
+          const moodEntry = {
+            mood: selectedMood,
+            date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString(),
+            timestamp: Date.now()
+          };
+          
+          let history = JSON.parse(localStorage.getItem('moodHistory') || '[]');
+          history.unshift(moodEntry);
+          
+          // Keep only last 20 entries
+          history = history.slice(0, 20);
+          
+          localStorage.setItem('moodHistory', JSON.stringify(history));
+          alert('💾 Mood saved to your history! 💾');
+          loadMoodHistory();
+        }
+
+        function shareMood() {
+          if (!selectedMood) return;
+          
+          const data = moodData[selectedMood];
+          const shareText = `I'm feeling ${data.name} ${data.emoji} right now!\n\n${data.description}\n\n✨ Discovered with Yes No Oracle Mood Ring ✨`;
+          
+          if (navigator.share) {
+            navigator.share({
+              title: 'My Current Mood',
+              text: shareText,
+              url: window.location.href
+            });
+          } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareText).then(() => {
+              alert('📱 Mood shared to clipboard! 📱');
+            });
+          } else {
+            alert('Sharing not supported in your browser.');
+          }
+        }
+
+        function loadMoodHistory() {
+          const history = JSON.parse(localStorage.getItem('moodHistory') || '[]');
+          
+          if (history.length > 0) {
+            moodHistorySection.classList.remove('hidden');
+            moodHistory.innerHTML = '';
+            
+            history.forEach(entry => {
+              const data = moodData[entry.mood];
+              const div = document.createElement('div');
+              div.className = 'mood-entry';
+              div.style.borderColor = data.color.match(/#[a-fA-F0-9]{6}/g)?.[0] || '#ffffff';
+              div.innerHTML = `
+                <div class="flex justify-between items-center">
+                  <div class="flex items-center">
+                    <span class="text-2xl mr-3">${data.emoji}</span>
+                    <div>
+                      <div class="font-semibold">${data.name}</div>
+                      <div class="text-sm text-gray-400">${entry.date} at ${entry.time}</div>
+                    </div>
+                  </div>
+                  <div class="color-dot" style="background: ${data.color};"></div>
+                </div>
+              `;
+              moodHistory.appendChild(div);
+            });
+          } else {
+            moodHistorySection.classList.add('hidden');
+          }
+        }
+
+        function clearMoodHistory() {
+          if (confirm('Are you sure you want to clear your mood history?')) {
+            localStorage.removeItem('moodHistory');
+            moodHistorySection.classList.add('hidden');
+            alert('Mood history cleared.');
+          }
+        }
+
+        // Load mood history on page load
+        loadMoodHistory();
+      });
+    </script>
+  </body>
+</html> 

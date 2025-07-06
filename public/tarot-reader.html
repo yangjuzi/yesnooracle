@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FLS1QMH9GM');
+</script>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarot Card Reader - Yes No Oracle</title>
+    <meta name="description" content="Get mystical guidance with our free tarot card reader. Discover ancient wisdom through tarot card readings and interpretations.">
+    <link rel="canonical" href="https://yesnooracle.dev/tarot-reader.html" />
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="192x192" href="/icon-192.png">
+    <link rel="icon" sizes="512x512" href="/icon-512.png">
+    <link rel="icon" sizes="192x192" href="/icon-192-maskable.png" type="image/png">
+    <link rel="icon" sizes="512x512" href="/icon-512-maskable.png" type="image/png">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <!-- Custom Styles -->
+     <style>
+      .font-cinzel {
+        font-family: 'Cinzel', serif;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      .language-btn {
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.2s;
+      }
+
+      .language-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+      }
+
+      .card-back {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+        background-size: 200% 200%;
+        animation: shimmer 2s ease-in-out infinite;
+      }
+
+      @keyframes shimmer {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+
+      .card-flip {
+        animation: flip 0.6s ease-in-out;
+      }
+
+      @keyframes flip {
+        0% { transform: rotateY(0deg); }
+        50% { transform: rotateY(90deg); }
+        100% { transform: rotateY(180deg); }
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+          <div class="relative">
+            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="es">Español</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Tarot Card Reader
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Discover ancient wisdom through mystical tarot card readings. Ask your question and let the cards reveal their guidance.
+          </p>
+        </div>
+
+        <!-- Reading Type Selection -->
+        <div class="max-w-4xl mx-auto mb-12">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h2 class="text-2xl font-cinzel mb-6 text-center">Choose Your Reading</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+              <button class="reading-type-btn bg-gradient-to-r from-purple-600 to-pink-600 p-6 rounded-lg hover:from-purple-700 hover:to-pink-700 transition" data-type="single">
+                <div class="text-3xl mb-3">🔮</div>
+                <h3 class="text-lg font-semibold mb-2">Single Card</h3>
+                <p class="text-sm text-gray-300">Quick guidance for a specific question</p>
+              </button>
+              <button class="reading-type-btn bg-gradient-to-r from-blue-600 to-purple-600 p-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition" data-type="three">
+                <div class="text-3xl mb-3">✨</div>
+                <h3 class="text-lg font-semibold mb-2">Three Card Spread</h3>
+                <p class="text-sm text-gray-300">Past, Present, Future reading</p>
+              </button>
+              <button class="reading-type-btn bg-gradient-to-r from-green-600 to-blue-600 p-6 rounded-lg hover:from-green-700 hover:to-blue-700 transition" data-type="celtic">
+                <div class="text-3xl mb-3">🌙</div>
+                <h3 class="text-lg font-semibold mb-2">Celtic Cross</h3>
+                <p class="text-sm text-gray-300">Comprehensive life reading</p>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question Input -->
+        <div class="max-w-2xl mx-auto mb-12">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h3 class="text-xl font-cinzel mb-4 text-center">Focus Your Question</h3>
+            <textarea id="question-input" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-4 mb-6 focus:outline-none focus:border-purple-400 transition" rows="4" placeholder="What would you like to know? Focus your energy and intent on your question..."></textarea>
+            <button id="draw-cards-btn" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg hover:shadow-purple-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
+              Draw Cards
+            </button>
+          </div>
+        </div>
+
+        <!-- Cards Display -->
+        <div id="cards-container" class="max-w-6xl mx-auto hidden">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h3 class="text-2xl font-cinzel mb-6 text-center">Your Reading</h3>
+            <div id="cards-grid" class="grid gap-6 justify-center"></div>
+          </div>
+        </div>
+
+        <!-- Interpretation -->
+        <div id="interpretation" class="max-w-4xl mx-auto mt-12 hidden">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h3 class="text-2xl font-cinzel mb-6 text-center">Card Interpretation</h3>
+            <div id="interpretation-content" class="prose prose-invert max-w-none"></div>
+            <button id="new-reading-btn" class="mt-8 bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition">
+              New Reading
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Educational Content -->
+    <section class="py-24 bg-black">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-cinzel text-center mb-16">The Art of Tarot</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="bg-white/5 p-8 rounded-lg">
+            <h3 class="text-2xl font-cinzel mb-4">History of Tarot</h3>
+            <p class="text-gray-300 mb-4">
+              Tarot cards originated in 15th century Italy as playing cards, but evolved into a powerful divination tool. The 78-card deck consists of 22 Major Arcana cards representing life's major themes and 56 Minor Arcana cards reflecting daily experiences.
+            </p>
+            <p class="text-gray-300">
+              Each card carries symbolic meanings that have been refined over centuries, offering guidance through archetypal imagery that speaks to our subconscious mind.
+            </p>
+          </div>
+          <div class="bg-white/5 p-8 rounded-lg">
+            <h3 class="text-2xl font-cinzel mb-4">How to Read Tarot</h3>
+            <p class="text-gray-300 mb-4">
+              Tarot reading is an intuitive art that combines symbolism, psychology, and spiritual insight. The cards don't predict the future but reveal patterns, possibilities, and guidance for your journey.
+            </p>
+            <p class="text-gray-300">
+              Trust your intuition when interpreting the cards. The meanings that resonate most strongly with you are often the most relevant to your situation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+    <script>
+      // Tarot Card Data
+      const tarotCards = {
+        majorArcana: [
+          {
+            name: "The Fool",
+            image: "🃏",
+            keywords: ["New beginnings", "Innocence", "Adventure", "Spontaneity"],
+            meaning: "The Fool represents new beginnings, innocence, and the courage to take risks. This card suggests you're on the verge of an exciting journey or adventure. Trust your instincts and embrace the unknown with an open heart.",
+            reversed: "Recklessness, foolish choices, naivety"
+          },
+          {
+            name: "The Magician",
+            image: "🧙‍♂️",
+            keywords: ["Manifestation", "Power", "Skill", "Willpower"],
+            meaning: "The Magician represents your ability to manifest your desires through focused willpower and skill. You have all the tools you need to achieve your goals. This is a time of great personal power and potential.",
+            reversed: "Manipulation, poor planning, untapped talents"
+          },
+          {
+            name: "The High Priestess",
+            image: "👑",
+            keywords: ["Intuition", "Mystery", "Inner knowledge", "Wisdom"],
+            meaning: "The High Priestess represents your intuitive wisdom and inner knowledge. Listen to your gut feelings and trust your subconscious mind. There may be hidden information or insights that you need to uncover.",
+            reversed: "Secrets, disconnected from intuition, withdrawal"
+          },
+          {
+            name: "The Empress",
+            image: "👸",
+            keywords: ["Fertility", "Nurturing", "Abundance", "Creativity"],
+            meaning: "The Empress represents abundance, creativity, and nurturing energy. This card suggests a time of growth, fertility, and material prosperity. Focus on creating and nurturing what brings you joy.",
+            reversed: "Creative block, dependence on others, emptiness"
+          },
+          {
+            name: "The Emperor",
+            image: "👑",
+            keywords: ["Authority", "Structure", "Control", "Leadership"],
+            meaning: "The Emperor represents authority, structure, and leadership. You have the power to take control of your situation and establish order. This is a time to be decisive and assertive in pursuing your goals.",
+            reversed: "Domination, excessive control, rigidity"
+          },
+          {
+            name: "The Hierophant",
+            image: "⛪",
+            keywords: ["Tradition", "Conformity", "Morality", "Education"],
+            meaning: "The Hierophant represents tradition, education, and spiritual guidance. You may need to follow established rules or seek guidance from a mentor. This card also suggests finding meaning through traditional values.",
+            reversed: "Personal beliefs, freedom, challenging the status quo"
+          },
+          {
+            name: "The Lovers",
+            image: "💕",
+            keywords: ["Love", "Harmony", "Relationships", "Choices"],
+            meaning: "The Lovers represent love, harmony, and important choices in relationships. This card suggests you're facing a significant decision that will impact your heart and relationships. Choose with love and integrity.",
+            reversed: "Disharmony, imbalance, misalignment of values"
+          },
+          {
+            name: "The Chariot",
+            image: "🏛️",
+            keywords: ["Control", "Willpower", "Victory", "Assertion"],
+            meaning: "The Chariot represents determination, willpower, and triumph over obstacles. You have the strength and focus to achieve your goals. This is a time of forward movement and success through disciplined effort.",
+            reversed: "Self-discipline, opposition, lack of direction"
+          },
+          {
+            name: "Strength",
+            image: "🦁",
+            keywords: ["Inner strength", "Courage", "Patience", "Control"],
+            meaning: "Strength represents inner courage, patience, and gentle power. You have the strength to overcome challenges through compassion and self-control. Trust in your ability to handle difficult situations with grace.",
+            reversed: "Inner weakness, self-doubt, lack of self-discipline"
+          },
+          {
+            name: "The Hermit",
+            image: "🕯️",
+            keywords: ["Soul-searching", "Introspection", "Being alone", "Inner guidance"],
+            meaning: "The Hermit represents introspection, inner guidance, and soul-searching. This is a time for self-reflection and finding answers within yourself. Trust your inner wisdom and take time for solitude if needed.",
+            reversed: "Isolation, loneliness, withdrawal"
+          },
+          {
+            name: "Wheel of Fortune",
+            image: "🎡",
+            keywords: ["Good luck", "Karma", "Life cycles", "Destiny"],
+            meaning: "The Wheel of Fortune represents cycles, change, and destiny. Life is constantly changing, and this card suggests you're in a period of transformation. Embrace change and trust that everything happens for a reason.",
+            reversed: "Bad luck, resistance to change, breaking cycles"
+          },
+          {
+            name: "Justice",
+            image: "⚖️",
+            keywords: ["Justice", "Fairness", "Truth", "Cause and effect"],
+            meaning: "Justice represents fairness, truth, and balance. This card suggests you need to make a fair and balanced decision. Consider all sides of the situation and act with integrity. What goes around comes around.",
+            reversed: "Unfairness, lack of accountability, dishonesty"
+          },
+          {
+            name: "The Hanged Man",
+            image: "🔄",
+            keywords: ["Surrender", "Letting go", "New perspective", "Enlightenment"],
+            meaning: "The Hanged Man represents surrender, new perspectives, and spiritual enlightenment. Sometimes you need to let go of old ways of thinking to gain new insights. This card suggests a period of waiting and reflection.",
+            reversed: "Stalling, needless sacrifice, fear of sacrifice"
+          },
+          {
+            name: "Death",
+            image: "💀",
+            keywords: ["Endings", "Change", "Transformation", "Transition"],
+            meaning: "Death represents transformation, endings, and new beginnings. This card doesn't mean literal death but rather the end of one phase and the beginning of another. Embrace change and let go of what no longer serves you.",
+            reversed: "Resistance to change, inability to move on, stagnation"
+          },
+          {
+            name: "Temperance",
+            image: "⚗️",
+            keywords: ["Balance", "Moderation", "Patience", "Purpose"],
+            meaning: "Temperance represents balance, moderation, and patience. This card suggests finding harmony in your life and practicing self-control. Good things come to those who wait and maintain balance.",
+            reversed: "Imbalance, excess, lack of harmony"
+          },
+          {
+            name: "The Devil",
+            image: "😈",
+            keywords: ["Shadow self", "Attachment", "Addiction", "Restriction"],
+            meaning: "The Devil represents temptation, attachment, and the shadow self. This card suggests you may be bound by unhealthy patterns or addictions. It's time to examine what's holding you back and break free from limiting beliefs.",
+            reversed: "Breaking free, release, restoring control"
+          },
+          {
+            name: "The Tower",
+            image: "🗼",
+            keywords: ["Sudden change", "Upheaval", "Chaos", "Revelation"],
+            meaning: "The Tower represents sudden change, upheaval, and revelation. This card suggests a dramatic shift that will shake up your life. While it may be challenging, this change is necessary for growth and transformation.",
+            reversed: "Fear of change, avoiding disaster, delaying the inevitable"
+          },
+          {
+            name: "The Star",
+            image: "⭐",
+            keywords: ["Hope", "Faith", "Purpose", "Renewal"],
+            meaning: "The Star represents hope, faith, and spiritual renewal. This card brings a message of optimism and healing. Trust in the universe and have faith that better times are ahead. Your dreams are within reach.",
+            reversed: "Lack of faith, despair, disconnection"
+          },
+          {
+            name: "The Moon",
+            image: "🌙",
+            keywords: ["Illusion", "Fear", "Anxiety", "Subconscious"],
+            meaning: "The Moon represents illusion, intuition, and the subconscious mind. This card suggests you may be dealing with fears, illusions, or hidden aspects of yourself. Trust your intuition but beware of deception.",
+            reversed: "Release of fear, repressed emotion, inner confusion"
+          },
+          {
+            name: "The Sun",
+            image: "☀️",
+            keywords: ["Positivity", "Fun", "Warmth", "Success"],
+            meaning: "The Sun represents joy, success, and vitality. This card brings positive energy and suggests a time of happiness and achievement. Embrace the light and let your inner child shine through.",
+            reversed: "Inner child, feeling down, overly optimistic"
+          },
+          {
+            name: "Judgement",
+            image: "📯",
+            keywords: ["Judgement", "Rebirth", "Inner calling", "Absolution"],
+            meaning: "Judgement represents rebirth, inner calling, and spiritual awakening. This card suggests a time of transformation and answering your higher calling. Trust your inner voice and embrace your true purpose.",
+            reversed: "Self-doubt, inner critic, ignoring the call"
+          },
+          {
+            name: "The World",
+            image: "🌍",
+            keywords: ["Completion", "Integration", "Accomplishment", "Travel"],
+            meaning: "The World represents completion, accomplishment, and integration. This card suggests you've reached a major milestone or completed a significant cycle. Celebrate your achievements and prepare for new beginnings.",
+            reversed: "Seeking personal closure, short-cut to success"
+          }
+        ]
+      };
+
+      let selectedReadingType = null;
+      let drawnCards = [];
+
+      // Event Listeners
+      document.addEventListener('DOMContentLoaded', function() {
+        const readingTypeBtns = document.querySelectorAll('.reading-type-btn');
+        const drawCardsBtn = document.getElementById('draw-cards-btn');
+        const newReadingBtn = document.getElementById('new-reading-btn');
+
+        readingTypeBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            readingTypeBtns.forEach(b => b.classList.remove('ring-4', 'ring-purple-400'));
+            this.classList.add('ring-4', 'ring-purple-400');
+            selectedReadingType = this.dataset.type;
+            drawCardsBtn.disabled = false;
+          });
+        });
+
+        drawCardsBtn.addEventListener('click', drawCards);
+        newReadingBtn.addEventListener('click', resetReading);
+      });
+
+      function drawCards() {
+        if (!selectedReadingType) {
+          alert('Please select a reading type first.');
+          return;
+        }
+
+        const question = document.getElementById('question-input').value.trim();
+        if (!question) {
+          alert('Please enter your question first.');
+          return;
+        }
+
+        // Determine number of cards based on reading type
+        let numCards = 1;
+        switch(selectedReadingType) {
+          case 'three':
+            numCards = 3;
+            break;
+          case 'celtic':
+            numCards = 10;
+            break;
+        }
+
+        // Draw random cards
+        drawnCards = [];
+        const shuffled = [...tarotCards.majorArcana].sort(() => 0.5 - Math.random());
+        drawnCards = shuffled.slice(0, numCards);
+
+        displayCards();
+        showInterpretation();
+        
+        // Trigger confetti
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+
+      function displayCards() {
+        const container = document.getElementById('cards-container');
+        const grid = document.getElementById('cards-grid');
+        
+        container.classList.remove('hidden');
+        
+        // Set grid columns based on number of cards
+        const cols = drawnCards.length <= 3 ? drawnCards.length : 3;
+        grid.className = `grid gap-6 justify-center`;
+        grid.style.gridTemplateColumns = `repeat(${cols}, minmax(200px, 1fr))`;
+
+        grid.innerHTML = '';
+        
+        drawnCards.forEach((card, index) => {
+          const cardElement = document.createElement('div');
+          cardElement.className = 'card bg-gradient-to-br from-purple-600 to-pink-600 p-6 rounded-lg text-center cursor-pointer';
+          cardElement.innerHTML = `
+            <div class="text-6xl mb-4">${card.image}</div>
+            <h4 class="text-lg font-semibold mb-2">${card.name}</h4>
+            <p class="text-sm text-gray-200">Click to reveal meaning</p>
+          `;
+          
+          cardElement.addEventListener('click', () => showCardMeaning(card, index));
+          grid.appendChild(cardElement);
+        });
+      }
+
+      function showCardMeaning(card, index) {
+        const positions = ['Past', 'Present', 'Future', 'Foundation', 'Challenge', 'Past Influence', 'Future Influence', 'Environment', 'Hopes & Fears', 'Outcome'];
+        const position = positions[index] || `Position ${index + 1}`;
+        
+        const meaningDiv = document.createElement('div');
+        meaningDiv.className = 'fixed inset-0 bg-black/80 flex items-center justify-center z-50';
+        meaningDiv.innerHTML = `
+          <div class="bg-white/10 backdrop-blur-lg rounded-lg p-8 max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
+            <div class="text-6xl mb-4 text-center">${card.image}</div>
+            <h3 class="text-2xl font-cinzel mb-2 text-center">${card.name}</h3>
+            <p class="text-purple-300 mb-4 text-center">${position}</p>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold mb-2">Keywords:</h4>
+                <p class="text-gray-300">${card.keywords.join(', ')}</p>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-2">Meaning:</h4>
+                <p class="text-gray-300">${card.meaning}</p>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-2">Reversed:</h4>
+                <p class="text-gray-300">${card.reversed}</p>
+              </div>
+            </div>
+            <button class="mt-6 bg-purple-600 px-6 py-2 rounded hover:bg-purple-700 transition">Close</button>
+          </div>
+        `;
+        
+        meaningDiv.querySelector('button').addEventListener('click', () => {
+          document.body.removeChild(meaningDiv);
+        });
+        
+        document.body.appendChild(meaningDiv);
+      }
+
+      function showInterpretation() {
+        const interpretation = document.getElementById('interpretation');
+        const content = document.getElementById('interpretation-content');
+        
+        let interpretationText = '';
+        
+        switch(selectedReadingType) {
+          case 'single':
+            interpretationText = `
+              <h4 class="text-xl font-semibold mb-4">Single Card Reading</h4>
+              <p class="mb-4">Your single card reading provides focused guidance for your question. The ${drawnCards[0].name} represents the core energy and message you need to understand right now.</p>
+              <p class="mb-4"><strong>Key Message:</strong> ${drawnCards[0].meaning}</p>
+              <p>Take time to reflect on how this card's energy relates to your question and current situation.</p>
+            `;
+            break;
+          case 'three':
+            interpretationText = `
+              <h4 class="text-xl font-semibold mb-4">Three Card Spread</h4>
+              <p class="mb-4">This traditional spread reveals the timeline of your situation:</p>
+              <div class="grid md:grid-cols-3 gap-6 mb-4">
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">Past</h5>
+                  <p class="text-sm">${drawnCards[0].name} - ${drawnCards[0].keywords.join(', ')}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">Present</h5>
+                  <p class="text-sm">${drawnCards[1].name} - ${drawnCards[1].keywords.join(', ')}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">Future</h5>
+                  <p class="text-sm">${drawnCards[2].name} - ${drawnCards[2].keywords.join(', ')}</p>
+                </div>
+              </div>
+              <p>This spread shows how past influences have led to your current situation and what the future may hold if you continue on your current path.</p>
+            `;
+            break;
+          case 'celtic':
+            interpretationText = `
+              <h4 class="text-xl font-semibold mb-4">Celtic Cross Reading</h4>
+              <p class="mb-4">This comprehensive spread provides deep insight into your situation:</p>
+              <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">1. Present Situation</h5>
+                  <p class="text-sm">${drawnCards[0].name}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">2. Challenge</h5>
+                  <p class="text-sm">${drawnCards[1].name}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">3. Foundation</h5>
+                  <p class="text-sm">${drawnCards[2].name}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">4. Past</h5>
+                  <p class="text-sm">${drawnCards[3].name}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">5. Future</h5>
+                  <p class="text-sm">${drawnCards[4].name}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded">
+                  <h5 class="font-semibold text-purple-300">6. Self</h5>
+                  <p class="text-sm">${drawnCards[5].name}</p>
+                </div>
+              </div>
+              <p>This detailed reading reveals the complex layers of your situation and provides guidance for your journey ahead.</p>
+            `;
+            break;
+        }
+        
+        content.innerHTML = interpretationText;
+        interpretation.classList.remove('hidden');
+      }
+
+      function resetReading() {
+        selectedReadingType = null;
+        drawnCards = [];
+        
+        document.querySelectorAll('.reading-type-btn').forEach(btn => {
+          btn.classList.remove('ring-4', 'ring-purple-400');
+        });
+        
+        document.getElementById('question-input').value = '';
+        document.getElementById('draw-cards-btn').disabled = true;
+        document.getElementById('cards-container').classList.add('hidden');
+        document.getElementById('interpretation').classList.add('hidden');
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    </script>
+  </body>
+</html> 

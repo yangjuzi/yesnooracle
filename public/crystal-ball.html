@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crystal Ball - Yes No Oracle</title>
+    <meta name="description" content="Gaze into the mystical crystal ball to receive divine predictions and spiritual guidance for your future.">
+    <link rel="canonical" href="https://yesnooracle.dev/crystal-ball.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .crystal-ball { width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(150,150,255,0.3), rgba(100,100,200,0.8)); border: 5px solid #4a5568; cursor: pointer; transition: all 0.5s ease; position: relative; overflow: hidden; box-shadow: 0 0 50px rgba(150,150,255,0.3); }
+      .crystal-ball:hover { transform: scale(1.05); box-shadow: 0 0 80px rgba(150,150,255,0.6); }
+      .crystal-ball::before { content: ''; position: absolute; top: 15%; left: 20%; width: 40%; height: 40%; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, transparent 70%); border-radius: 50%; }
+      .crystal-ball::after { content: ''; position: absolute; bottom: 10%; right: 20%; width: 25%; height: 25%; background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%); border-radius: 50%; }
+      .crystal-base { width: 200px; height: 80px; background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #2d3748 100%); border-radius: 50%; margin: -20px auto 0; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+      .crystal-base::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 150px; height: 20px; background: linear-gradient(135deg, #718096 0%, #4a5568 100%); border-radius: 50%; }
+      .glow { animation: glow 2s ease-in-out infinite alternate; }
+      @keyframes glow { from { box-shadow: 0 0 50px rgba(150,150,255,0.3); } to { box-shadow: 0 0 80px rgba(150,150,255,0.8); } }
+      .vision-text { background: linear-gradient(135deg, rgba(75,85,99,0.9), rgba(55,65,81,0.9)); color: #e2e8f0; padding: 25px; border-radius: 15px; border: 2px solid #6366f1; margin: 20px 0; font-style: italic; position: relative; box-shadow: 0 0 30px rgba(99,102,241,0.3); }
+      .vision-text::before { content: '🔮'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, rgba(75,85,99,0.9), rgba(55,65,81,0.9)); padding: 5px 15px; border-radius: 50%; border: 2px solid #6366f1; }
+      .mystical-smoke { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; background: radial-gradient(circle, rgba(150,150,255,0.1) 0%, transparent 70%); border-radius: 50%; animation: smoke 3s ease-in-out infinite; opacity: 0; }
+      @keyframes smoke { 0% { opacity: 0; transform: translateX(-50%) scale(0.5); } 50% { opacity: 0.3; transform: translateX(-50%) scale(1); } 100% { opacity: 0; transform: translateX(-50%) scale(1.5); } }
+      .fade-in { animation: fadeIn 1s ease-in; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-indigo-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-400 text-transparent bg-clip-text">
+            🔮 Crystal Ball 🔮
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Peer into the mystical crystal ball to unveil the secrets of your destiny and receive divine guidance
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div class="text-center mb-8">
+              <div class="relative inline-block">
+                <div class="mystical-smoke" id="mystical-smoke"></div>
+                <div class="crystal-ball mx-auto glow" id="crystal-ball"></div>
+                <div class="crystal-base"></div>
+              </div>
+              <p class="text-lg text-gray-300 mt-6" id="instruction">Focus your mind and click the crystal ball to receive your vision...</p>
+            </div>
+
+            <!-- Question Input -->
+            <div class="mb-8">
+              <div class="text-center mb-4">
+                <label class="block text-lg font-semibold mb-3 text-indigo-300">🌟 Ask the Crystal Ball 🌟</label>
+                <input type="text" id="user-question" placeholder="What do you seek to know?" class="w-full max-w-md px-4 py-3 rounded-lg text-black border-2 border-indigo-400 mx-auto block" />
+              </div>
+            </div>
+
+            <!-- Vision Display -->
+            <div id="vision-display" class="hidden">
+              <div class="vision-text fade-in">
+                <div class="text-center">
+                  <div class="text-lg font-semibold mb-4 text-indigo-300">The Crystal Ball Reveals...</div>
+                  <div id="question-display" class="text-base mb-4 text-gray-300"></div>
+                  <div id="vision-text" class="text-lg leading-relaxed font-medium"></div>
+                  <div class="text-sm text-gray-400 mt-6">✨ The visions are ever-changing ✨</div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button id="new-vision-btn" class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-3 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition text-white font-semibold">
+                  Seek Another Vision
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mystical Elements -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h2 class="text-2xl font-cinzel text-center mb-8 text-indigo-400">The Art of Crystal Gazing</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🌙</div>
+                <h3 class="font-semibold mb-2">Lunar Wisdom</h3>
+                <p class="text-sm text-gray-400">Insights from the moon's cycles</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">⭐</div>
+                <h3 class="font-semibold mb-2">Stellar Guidance</h3>
+                <p class="text-sm text-gray-400">Messages from the stars</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🌟</div>
+                <h3 class="font-semibold mb-2">Divine Prophecy</h3>
+                <p class="text-sm text-gray-400">Visions of what's to come</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const visions = [
+        "The path ahead is illuminated by your inner strength. Trust in your abilities and move forward with confidence.",
+        "A new opportunity approaches like the dawn. Be ready to embrace change when it arrives.",
+        "The answer you seek lies within your heart. Listen to your intuition and it will guide you true.",
+        "Patience is your greatest ally now. What you desire will manifest in divine timing.",
+        "Your kindness will return to you threefold. Continue to spread light wherever you go.",
+        "A door that seemed closed will soon open. Persistence is the key you need.",
+        "The universe conspires in your favor. Align your actions with your highest purpose.",
+        "Wisdom comes through experience. Embrace both joy and challenge as teachers.",
+        "Your creativity holds the solution. Think outside the boundaries of convention.",
+        "A meaningful connection awaits. Be open to new relationships and collaborations.",
+        "The seeds you plant today will bloom magnificently. Have faith in your efforts.",
+        "Balance is needed in your life. Seek harmony between work, rest, and play.",
+        "Your intuition is particularly strong now. Trust the subtle messages you receive.",
+        "Courage is not the absence of fear, but action despite it. Be brave.",
+        "The stars align for positive change. Embrace transformation with an open heart.",
+        "Your generosity creates ripples of goodness. Continue to give freely.",
+        "A lesson from the past will prove valuable. Reflect on your experiences.",
+        "The energy you put out returns to you. Choose positivity and watch it multiply.",
+        "Your dreams are closer than they appear. Take one more step forward.",
+        "Communication is key to resolving current challenges. Speak your truth kindly.",
+        "A period of growth and expansion begins. Prepare for new horizons.",
+        "Your perseverance will be rewarded. Don't give up just before the breakthrough.",
+        "The crystal reveals a time of healing and renewal. Allow yourself to recover.",
+        "Adventure calls to your spirit. Say yes to new experiences and discoveries.",
+        "Your leadership qualities are needed. Step forward and guide others.",
+        "The answers you seek are already within you. Quiet your mind and listen.",
+        "A cycle completes and a new one begins. Celebrate your progress.",
+        "Your compassion is a gift to the world. Share it freely and abundantly.",
+        "The path may seem unclear, but each step reveals the next. Keep walking.",
+        "Your unique talents are about to be recognized. Shine your light brightly."
+      ];
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const crystalBall = document.getElementById('crystal-ball');
+        const visionDisplay = document.getElementById('vision-display');
+        const visionText = document.getElementById('vision-text');
+        const questionDisplay = document.getElementById('question-display');
+        const instruction = document.getElementById('instruction');
+        const newVisionBtn = document.getElementById('new-vision-btn');
+        const userQuestion = document.getElementById('user-question');
+        const mysticalSmoke = document.getElementById('mystical-smoke');
+
+        crystalBall.addEventListener('click', revealVision);
+        newVisionBtn.addEventListener('click', resetCrystalBall);
+
+        function revealVision() {
+          const question = userQuestion.value.trim();
+          
+          if (!question) {
+            alert('🔮 Please ask the crystal ball a question first! 🔮');
+            userQuestion.focus();
+            return;
+          }
+
+          // Add mystical effects
+          mysticalSmoke.style.opacity = '0.5';
+          mysticalSmoke.style.animation = 'smoke 3s ease-in-out';
+          
+          // Add extra glow
+          crystalBall.style.boxShadow = '0 0 100px rgba(150,150,255,0.9)';
+          
+          setTimeout(() => {
+            const randomVision = visions[Math.floor(Math.random() * visions.length)];
+            visionText.textContent = randomVision;
+            questionDisplay.textContent = `"${question}"`;
+            
+            instruction.style.display = 'none';
+            visionDisplay.classList.remove('hidden');
+            
+            // Reset crystal ball glow
+            crystalBall.style.boxShadow = '';
+            
+            // Trigger mystical confetti
+            confetti({
+              particleCount: 150,
+              spread: 90,
+              origin: { y: 0.6 },
+              colors: ['#6366f1', '#8b5cf6', '#3b82f6', '#06b6d4', '#8b5cf6']
+            });
+          }, 1500);
+        }
+
+        function resetCrystalBall() {
+          visionDisplay.classList.add('hidden');
+          instruction.style.display = 'block';
+          userQuestion.value = '';
+          mysticalSmoke.style.opacity = '0';
+        }
+      });
+    </script>
+  </body>
+</html> 

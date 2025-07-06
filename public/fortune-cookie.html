@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fortune Cookie - Yes No Oracle</title>
+    <meta name="description" content="Open a virtual fortune cookie to receive wisdom, guidance, and positive messages for your day.">
+    <link rel="canonical" href="https://yesnooracle.dev/fortune-cookie.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .cookie { width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, #d4a574 0%, #f4c430 50%, #d4a574 100%); border: 3px solid #b8860b; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+      .cookie:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(244, 196, 48, 0.5); }
+      .cookie::before { content: ''; position: absolute; top: 20%; left: 20%; width: 60%; height: 60%; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%); border-radius: 50%; }
+      .cookie-crack { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 2px; background: #8b4513; opacity: 0; transition: opacity 0.3s ease; }
+      .cookie.cracked .cookie-crack { opacity: 1; }
+      .fortune-paper { background: #f5f5dc; color: #333; padding: 20px; border-radius: 10px; border: 2px solid #d4a574; margin: 20px 0; font-style: italic; position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+      .fortune-paper::before { content: ''; position: absolute; top: -10px; left: 20px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #d4a574; }
+      .shake { animation: shake 0.5s ease-in-out; }
+      @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+      .fade-in { animation: fadeIn 0.8s ease-in; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-amber-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 text-transparent bg-clip-text">
+            🥠 Fortune Cookie 🥠
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Crack open a virtual fortune cookie to receive ancient wisdom and guidance for your journey ahead
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div class="text-center mb-8">
+              <div class="cookie mx-auto" id="fortune-cookie">
+                <div class="cookie-crack"></div>
+              </div>
+              <p class="text-lg text-gray-300 mt-6" id="instruction">Click the fortune cookie to reveal your message!</p>
+            </div>
+
+            <!-- Fortune Display -->
+            <div id="fortune-display" class="hidden">
+              <div class="fortune-paper fade-in">
+                <div class="text-center">
+                  <div class="text-lg font-semibold mb-4 text-amber-600">Your Fortune</div>
+                  <div id="fortune-text" class="text-base leading-relaxed"></div>
+                  <div class="text-sm text-gray-500 mt-4">🥠 Ancient Wisdom 🥠</div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button id="new-fortune-btn" class="bg-gradient-to-r from-amber-600 to-yellow-600 px-8 py-3 rounded-lg hover:from-amber-700 hover:to-yellow-700 transition text-white font-semibold">
+                  Get Another Fortune
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fortune Categories -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h2 class="text-2xl font-cinzel text-center mb-8 text-amber-400">Types of Fortune</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">💫</div>
+                <h3 class="font-semibold mb-2">Wisdom</h3>
+                <p class="text-sm text-gray-400">Life lessons and insights</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🌟</div>
+                <h3 class="font-semibold mb-2">Guidance</h3>
+                <p class="text-sm text-gray-400">Direction for your path</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <div class="text-3xl mb-3">🍀</div>
+                <h3 class="font-semibold mb-2">Luck</h3>
+                <p class="text-sm text-gray-400">Positive energy and fortune</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const fortunes = [
+        "The best time to plant a tree was 20 years ago. The second best time is now.",
+        "Your future is created by what you do today, not tomorrow.",
+        "The only way to do great work is to love what you do.",
+        "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+        "Believe you can and you're halfway there.",
+        "The journey of a thousand miles begins with one step.",
+        "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+        "The only impossible journey is the one you never begin.",
+        "In the middle of difficulty lies opportunity.",
+        "Be yourself; everyone else is already taken.",
+        "Life is what happens to you while you're busy making other plans.",
+        "The way to get started is to quit talking and begin doing.",
+        "Don't let yesterday take up too much of today.",
+        "You learn more from failure than from success.",
+        "If you are working on something that you really care about, you don't have to be pushed.",
+        "Experience is a hard teacher because she gives the test first, the lesson afterward.",
+        "The most difficult thing is the decision to act, the rest is merely tenacity.",
+        "Your limitation—it's only your imagination.",
+        "Great things never come from comfort zones.",
+        "Dream it. Wish it. Do it.",
+        "Success doesn't just find you. You have to go out and get it.",
+        "The harder you work for something, the greater you'll feel when you achieve it.",
+        "Don't stop when you're tired. Stop when you're done.",
+        "Wake up with determination. Go to bed with satisfaction.",
+        "Do something today that your future self will thank you for.",
+        "Little things make big days.",
+        "It's going to be hard, but hard does not mean impossible.",
+        "Don't wait for opportunity. Create it.",
+        "Sometimes we're tested not to show our weaknesses, but to discover our strengths.",
+        "The key to success is to focus on goals, not obstacles.",
+        "Dream bigger. Do bigger.",
+        "Don't be afraid to give up the good to go for the great.",
+        "The secret of getting ahead is getting started.",
+        "Your potential is endless.",
+        "Focus on the good.",
+        "You are capable of amazing things.",
+        "This is your moment.",
+        "Make it happen.",
+        "You've got this.",
+        "Believe in yourself and all that you are."
+      ];
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const cookie = document.getElementById('fortune-cookie');
+        const fortuneDisplay = document.getElementById('fortune-display');
+        const fortuneText = document.getElementById('fortune-text');
+        const instruction = document.getElementById('instruction');
+        const newFortuneBtn = document.getElementById('new-fortune-btn');
+
+        cookie.addEventListener('click', openCookie);
+        newFortuneBtn.addEventListener('click', resetCookie);
+
+        function openCookie() {
+          // Add shake animation
+          cookie.classList.add('shake');
+          
+          setTimeout(() => {
+            cookie.classList.remove('shake');
+            cookie.classList.add('cracked');
+            
+            // Show fortune after crack animation
+            setTimeout(() => {
+              const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+              fortuneText.textContent = randomFortune;
+              
+              instruction.style.display = 'none';
+              fortuneDisplay.classList.remove('hidden');
+              
+              // Trigger confetti
+              confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#f4c430', '#d4a574', '#ffd700', '#ffb347']
+              });
+            }, 500);
+          }, 500);
+        }
+
+        function resetCookie() {
+          cookie.classList.remove('cracked');
+          fortuneDisplay.classList.add('hidden');
+          instruction.style.display = 'block';
+        }
+      });
+    </script>
+  </body>
+</html> 

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Selector - Yes No Oracle</title>
+    <meta name="description" content="Make random choices with our free random selector tool. Input your options and let fate decide for you.">
+    <link rel="canonical" href="https://yesnooracle.dev/random-selector.html" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      body { font-family: 'Inter', sans-serif; }
+      .option-item { transition: all 0.3s ease; }
+      .option-item:hover { transform: translateX(10px); }
+      .selected { background: linear-gradient(135deg, #8b5cf6, #ec4899) !important; }
+      .spinning { animation: spin 0.5s ease-in-out; }
+      @keyframes spin { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            Random Selector
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Can't decide? Let our random selector help you choose! Input your options and let fate guide your decision.
+          </p>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h2 class="text-2xl font-cinzel mb-6 text-center">Create Your Options</h2>
+            
+            <!-- Input Section -->
+            <div class="mb-8">
+              <div class="flex gap-4 mb-4">
+                <input type="text" id="option-input" placeholder="Enter an option..." class="flex-1 bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition">
+                <button id="add-option-btn" class="bg-purple-600 px-6 py-3 rounded-lg hover:bg-purple-700 transition">Add</button>
+              </div>
+              
+              <!-- Quick Add Buttons -->
+              <div class="mb-6">
+                <p class="text-sm text-gray-400 mb-3">Quick Add Common Options:</p>
+                <div class="flex flex-wrap gap-2">
+                  <button class="quick-add-btn bg-white/10 px-3 py-1 rounded text-sm hover:bg-white/20 transition" data-option="Yes">Yes</button>
+                  <button class="quick-add-btn bg-white/10 px-3 py-1 rounded text-sm hover:bg-white/20 transition" data-option="No">No</button>
+                  <button class="quick-add-btn bg-white/10 px-3 py-1 rounded text-sm hover:bg-white/20 transition" data-option="Maybe">Maybe</button>
+                  <button class="quick-add-btn bg-white/10 px-3 py-1 rounded text-sm hover:bg-white/20 transition" data-option="Try Again">Try Again</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Options List -->
+            <div id="options-container" class="mb-8">
+              <h3 class="text-lg font-semibold mb-4">Your Options (<span id="option-count">0</span>)</h3>
+              <div id="options-list" class="space-y-2"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-4 justify-center">
+              <button id="select-random-btn" class="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-lg text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg hover:shadow-purple-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
+                🎲 Select Random
+              </button>
+              <button id="clear-all-btn" class="bg-gray-600 px-8 py-4 rounded-lg text-lg hover:bg-gray-700 transition">
+                Clear All
+              </button>
+            </div>
+          </div>
+
+          <!-- Result Display -->
+          <div id="result-container" class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl hidden">
+            <h3 class="text-2xl font-cinzel mb-6 text-center">Your Selection</h3>
+            <div id="result-display" class="text-center">
+              <div id="selected-option" class="text-4xl font-cinzel mb-4 bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"></div>
+              <p class="text-gray-300 mb-6">This is your randomly selected option!</p>
+              <button id="select-again-btn" class="bg-gradient-to-r from-green-600 to-blue-600 px-8 py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition">
+                Select Again
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preset Categories -->
+        <div class="max-w-6xl mx-auto mt-16">
+          <h2 class="text-3xl font-cinzel text-center mb-12">Popular Selection Categories</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Food & Dining -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4">🍽️ Food & Dining</h3>
+              <div class="space-y-2 text-sm">
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Pizza,Burger,Sushi,Chinese,Italian,Mexican,Thai,Indian,Steak,Salad,Soup,Sandwich,Pasta,Seafood,BBQ">
+                  What should I eat today?
+                </button>
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Coffee,Tea,Water,Juice,Soda,Milk,Smoothie,Energy Drink,Hot Chocolate,Beer,Wine,Cocktail">
+                  What should I drink?
+                </button>
+              </div>
+            </div>
+
+            <!-- Entertainment -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4">🎬 Entertainment</h3>
+              <div class="space-y-2 text-sm">
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Action,Comedy,Drama,Horror,Romance,Sci-Fi,Thriller,Documentary,Animation,Fantasy">
+                  What movie genre should I watch?
+                </button>
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Netflix,Hulu,Disney+,Amazon Prime,HBO Max,YouTube,Twitch,Reading,Gaming,Music">
+                  How should I spend my free time?
+                </button>
+              </div>
+            </div>
+
+            <!-- Travel -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4">✈️ Travel</h3>
+              <div class="space-y-2 text-sm">
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Beach,Mountains,City,Countryside,Forest,Desert,Island,Historical Site,Theme Park,Museum">
+                  Where should I go on vacation?
+                </button>
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Car,Train,Plane,Bus,Bike,Walk,Boat,Subway">
+                  How should I travel?
+                </button>
+              </div>
+            </div>
+
+            <!-- Activities -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4">🎯 Activities</h3>
+              <div class="space-y-2 text-sm">
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Exercise,Reading,Writing,Drawing,Painting,Cooking,Gardening,Photography,Meditation,Yoga">
+                  What hobby should I try?
+                </button>
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Morning,Afternoon,Evening,Night">
+                  When should I do it?
+                </button>
+              </div>
+            </div>
+
+            <!-- Decisions -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4">🤔 Life Decisions</h3>
+              <div class="space-y-2 text-sm">
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Yes,No,Maybe,Wait,Think about it,Ask someone else,Flip a coin,Trust your gut">
+                  Should I do it?
+                </button>
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Today,Tomorrow,This week,Next week,This month,Next month,This year,Next year">
+                  When should I do it?
+                </button>
+              </div>
+            </div>
+
+            <!-- Colors -->
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4">🎨 Colors</h3>
+              <div class="space-y-2 text-sm">
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Red,Blue,Green,Yellow,Purple,Orange,Pink,Black,White,Gray,Brown,Teal">
+                  What's my lucky color?
+                </button>
+                <button class="preset-option w-full text-left p-2 rounded hover:bg-white/10 transition" data-options="Red,Blue,Green,Yellow,Purple,Orange,Pink,Black,White,Gray,Brown,Teal">
+                  What color should I wear?
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Educational Content -->
+    <section class="py-24 bg-black">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-cinzel text-center mb-16">The Art of Random Selection</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="bg-white/5 p-8 rounded-lg">
+            <h3 class="text-2xl font-cinzel mb-4">Why Use Random Selection?</h3>
+            <p class="text-gray-300 mb-4">
+              Random selection can help break decision paralysis and introduce new possibilities you might not have considered. It's particularly useful when:
+            </p>
+            <ul class="list-disc pl-6 space-y-2 text-gray-300">
+              <li>You're stuck between equally good options</li>
+              <li>You want to try something new and unexpected</li>
+              <li>You need to make a quick decision</li>
+              <li>You want to add an element of surprise to your day</li>
+            </ul>
+          </div>
+          <div class="bg-white/5 p-8 rounded-lg">
+            <h3 class="text-2xl font-cinzel mb-4">Making the Most of Random Choices</h3>
+            <p class="text-gray-300 mb-4">
+              While random selection can be fun and helpful, it's important to use it wisely:
+            </p>
+            <ul class="list-disc pl-6 space-y-2 text-gray-300">
+              <li>Use it for low-stakes decisions or when you're truly stuck</li>
+              <li>Consider the random result as a starting point, not a final answer</li>
+              <li>Trust your intuition if the random choice doesn't feel right</li>
+              <li>Use it as a tool for exploration and discovery</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
+          <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight</p>
+          <div class="text-sm text-gray-500">
+            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
+            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
+          </div>
+          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      let options = [];
+      let isSelecting = false;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const addBtn = document.getElementById('add-option-btn');
+        const input = document.getElementById('option-input');
+        const selectBtn = document.getElementById('select-random-btn');
+        const clearBtn = document.getElementById('clear-all-btn');
+        const selectAgainBtn = document.getElementById('select-again-btn');
+
+        // Add option
+        addBtn.addEventListener('click', addOption);
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') addOption();
+        });
+
+        // Quick add buttons
+        document.querySelectorAll('.quick-add-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const option = this.dataset.option;
+            if (!options.includes(option)) {
+              options.push(option);
+              updateOptionsList();
+            }
+          });
+        });
+
+        // Preset options
+        document.querySelectorAll('.preset-option').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const presetOptions = this.dataset.options.split(',');
+            options = [...new Set([...options, ...presetOptions])];
+            updateOptionsList();
+          });
+        });
+
+        // Select random
+        selectBtn.addEventListener('click', selectRandom);
+        clearBtn.addEventListener('click', clearAll);
+        selectAgainBtn.addEventListener('click', selectRandom);
+      });
+
+      function addOption() {
+        const input = document.getElementById('option-input');
+        const option = input.value.trim();
+        
+        if (option && !options.includes(option)) {
+          options.push(option);
+          updateOptionsList();
+          input.value = '';
+        }
+      }
+
+      function updateOptionsList() {
+        const container = document.getElementById('options-list');
+        const count = document.getElementById('option-count');
+        const selectBtn = document.getElementById('select-random-btn');
+        
+        count.textContent = options.length;
+        selectBtn.disabled = options.length < 2;
+        
+        container.innerHTML = '';
+        
+        options.forEach((option, index) => {
+          const item = document.createElement('div');
+          item.className = 'option-item bg-white/5 p-3 rounded flex justify-between items-center';
+          item.innerHTML = `
+            <span>${option}</span>
+            <button class="remove-option text-red-400 hover:text-red-300 transition" data-index="${index}">×</button>
+          `;
+          
+          item.querySelector('.remove-option').addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            options.splice(index, 1);
+            updateOptionsList();
+          });
+          
+          container.appendChild(item);
+        });
+      }
+
+      function selectRandom() {
+        if (options.length < 2) return;
+        
+        isSelecting = true;
+        const selectBtn = document.getElementById('select-random-btn');
+        const resultContainer = document.getElementById('result-container');
+        const selectedOption = document.getElementById('selected-option');
+        
+        // Disable button and show spinning animation
+        selectBtn.disabled = true;
+        selectBtn.classList.add('spinning');
+        
+        // Simulate selection process
+        let counter = 0;
+        const interval = setInterval(() => {
+          const randomOption = options[Math.floor(Math.random() * options.length)];
+          selectedOption.textContent = randomOption;
+          counter++;
+          
+          if (counter > 10) {
+            clearInterval(interval);
+            isSelecting = false;
+            selectBtn.disabled = false;
+            selectBtn.classList.remove('spinning');
+            resultContainer.classList.remove('hidden');
+            
+            // Trigger confetti
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+            
+            // Scroll to result
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+
+      function clearAll() {
+        options = [];
+        updateOptionsList();
+        document.getElementById('result-container').classList.add('hidden');
+      }
+    </script>
+  </body>
+</html> 
