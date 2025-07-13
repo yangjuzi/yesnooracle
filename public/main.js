@@ -80,37 +80,59 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check for cached answer
         const cachedAnswer = getCachedAnswer(userId, question);
         
-        if (cachedAnswer) {
-            // Use cached answer
-            answerDiv.textContent = cachedAnswer;
-            const isYes = cachedAnswer === 'Yes';
-            answerDiv.className = `mt-6 text-2xl font-cinzel ${isYes ? 'text-green-400' : 'text-red-400'}`;
-            answerDiv.classList.remove('hidden');
-            
-            // Show cache indicator
-            const cacheIndicator = document.createElement('div');
-            cacheIndicator.className = 'text-sm text-gray-400 mt-2';
-            cacheIndicator.textContent = '(Same answer as before)';
-            answerDiv.appendChild(cacheIndicator);
-            
-            // Trigger confetti for positive answers
-            if (isYes && typeof confetti === 'function') {
-                confetti({
-                    particleCount: 50,
-                    spread: 60,
-                    origin: { y: 0.8 }
-                });
-            }
-            
-            return;
+        // Add crystal ball animation (for both cached and new answers)
+        const crystalBall = document.querySelector('.crystal-ball');
+        if (crystalBall) {
+            crystalBall.classList.add('consulting');
+            crystalBall.style.animation = 'float 3s ease-in-out infinite, glow 2s ease-in-out infinite';
         }
 
-        // Add loading effect
+        // Add loading effect (for both cached and new answers)
         oracleButton.textContent = 'Consulting the Oracle...';
         oracleButton.disabled = true;
         answerDiv.classList.add('hidden');
 
-        // Simulate oracle consultation delay
+        if (cachedAnswer) {
+            // Use cached answer with same animation timing
+            setTimeout(() => {
+                answerDiv.textContent = cachedAnswer;
+                const isYes = cachedAnswer.startsWith('Yes');
+                answerDiv.className = `mt-6 text-2xl font-cinzel ${isYes ? 'text-green-400' : 'text-red-400'}`;
+                answerDiv.classList.remove('hidden');
+                
+                // Add to history for cached answers too
+                addToHistory(question, cachedAnswer);
+                
+                // Show share section for cached answers too
+                const shareSection = document.getElementById('share-section');
+                if (shareSection) {
+                    shareSection.classList.remove('hidden');
+                }
+                
+                // Reset crystal ball animation
+                if (crystalBall) {
+                    crystalBall.classList.remove('consulting');
+                    crystalBall.style.animation = 'float 3s ease-in-out infinite';
+                }
+                
+                // Trigger confetti for positive answers
+                if (isYes && typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 50,
+                        spread: 60,
+                        origin: { y: 0.8 }
+                    });
+                }
+                
+                // Reset button
+                oracleButton.textContent = 'Get Oracle Answer';
+                oracleButton.disabled = false;
+            }, 2000);
+            
+            return;
+        }
+
+        // Simulate oracle consultation delay for new answers
         setTimeout(() => {
             const isYes = Math.random() > 0.5;
             const answers = isYes ? yesAnswers : noAnswers;
@@ -119,9 +141,24 @@ document.addEventListener('DOMContentLoaded', function() {
             // Cache the answer
             setCachedAnswer(userId, question, randomAnswer);
             
+            // Add to history
+            addToHistory(question, randomAnswer);
+            
             answerDiv.textContent = randomAnswer;
             answerDiv.className = `mt-6 text-2xl font-cinzel ${isYes ? 'text-green-400' : 'text-red-400'}`;
             answerDiv.classList.remove('hidden');
+            
+            // Show share section
+            const shareSection = document.getElementById('share-section');
+            if (shareSection) {
+                shareSection.classList.remove('hidden');
+            }
+            
+            // Reset crystal ball animation
+            if (crystalBall) {
+                crystalBall.classList.remove('consulting');
+                crystalBall.style.animation = 'float 3s ease-in-out infinite';
+            }
             
             // Trigger confetti for positive answers
             if (isYes && typeof confetti === 'function') {
@@ -133,10 +170,213 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Reset button
-            oracleButton.textContent = 'Oracle';
+            oracleButton.textContent = 'Get Oracle Answer';
             oracleButton.disabled = false;
         }, 2000);
     }
+
+    // Statistics functions
+    function updateStatistics(answer) {
+        let stats = JSON.parse(localStorage.getItem('oracle_stats') || '{"total": 0, "yes": 0, "no": 0}');
+        stats.total++;
+        if (answer === 'Yes') {
+            stats.yes++;
+        } else {
+            stats.no++;
+        }
+        localStorage.setItem('oracle_stats', JSON.stringify(stats));
+        displayStatistics();
+    }
+
+    function displayStatistics() {
+        const stats = JSON.parse(localStorage.getItem('oracle_stats') || '{"total": 0, "yes": 0, "no": 0}');
+        const questionsCount = document.getElementById('questions-count');
+        const yesCount = document.getElementById('yes-count');
+        const noCount = document.getElementById('no-count');
+        
+        if (questionsCount) questionsCount.textContent = stats.total;
+        if (yesCount) yesCount.textContent = stats.yes;
+        if (noCount) noCount.textContent = stats.no;
+    }
+
+    // History functions
+    function addToHistory(question, answer) {
+        let history = JSON.parse(localStorage.getItem('oracle_history') || '[]');
+        history.unshift({
+            question: question,
+            answer: answer,
+            timestamp: new Date().toLocaleString()
+        });
+        // Keep only last 10 questions
+        if (history.length > 10) {
+            history = history.slice(0, 10);
+        }
+        localStorage.setItem('oracle_history', JSON.stringify(history));
+        displayHistory();
+    }
+
+    function displayHistory() {
+        const history = JSON.parse(localStorage.getItem('oracle_history') || '[]');
+        const historyContainer = document.getElementById('question-history');
+        
+        if (!historyContainer) return;
+        
+        if (history.length === 0) {
+            historyContainer.innerHTML = '<p class="text-gray-400 text-center text-sm">No questions asked yet. Ask your first question above!</p>';
+            return;
+        }
+        
+        historyContainer.innerHTML = history.map(item => `
+            <div class="bg-white/5 rounded-lg p-3 cursor-pointer hover:bg-white/10 transition" onclick="reuseQuestion('${item.question.replace(/'/g, "\\'")}')">
+                <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                        <p class="text-white text-sm font-medium">${item.question}</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-xs ${item.answer === 'Yes' ? 'text-green-400' : 'text-red-400'}">${item.answer}</span>
+                            <span class="text-xs text-gray-500">${item.timestamp}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function reuseQuestion(question) {
+        if (questionInput) {
+            questionInput.value = question;
+            questionInput.focus();
+        }
+    }
+
+    // Daily question functionality
+    function loadDailyQuestion() {
+        const dailyQuestions = [
+            // 原有的反思性问题
+            "Should I take more risks in my life?",
+            "Is it time to let go of something that no longer serves me?",
+            "Should I trust my intuition more?",
+            "Is today a good day to start something new?",
+            "Should I reach out to someone I've been thinking about?",
+            "Is it time to make a change in my routine?",
+            "Should I be more patient with myself?",
+            "Is there something I need to forgive?",
+            "Should I focus more on my personal growth?",
+            "Is it time to step out of my comfort zone?",
+            "Should I listen to my heart over my head today?",
+            "Is there an opportunity I should consider?",
+            "Should I be more grateful for what I have?",
+            "Is it time to set new goals?",
+            "Should I trust the process more?",
+            // 新增的流行问题
+            "Does he love me?",
+            "Will I get the job?",
+            "Is this the right time to invest?",
+            "Should I move to a new city?",
+            "Am I on the right path?",
+            "Will I find love soon?",
+            "Is now a good time to travel?",
+            "Should I start a new hobby?",
+            "Will I be successful?",
+            "Is my friend trustworthy?",
+            "Should I take that risk?",
+            "Will I pass my exams?",
+            "Is this a good relationship?",
+            "Should I buy that item?",
+            "Will I achieve my goals?",
+            "Is it time to change jobs?",
+            "Should I reach out to them?",
+            "Will I get a promotion?",
+            "Is my health improving?",
+            "Should I marry him?"
+        ];
+        
+        const today = new Date().toDateString();
+        const savedDate = localStorage.getItem('daily_question_date');
+        const savedQuestion = localStorage.getItem('daily_question');
+        
+        if (savedDate === today && savedQuestion) {
+            document.getElementById('daily-question').textContent = savedQuestion;
+        } else {
+            const randomIndex = Math.floor(Math.random() * dailyQuestions.length);
+            const question = dailyQuestions[randomIndex];
+            localStorage.setItem('daily_question', question);
+            localStorage.setItem('daily_question_date', today);
+            document.getElementById('daily-question').textContent = question;
+        }
+    }
+
+    // Social sharing functions
+    function shareToTwitter() {
+        const question = questionInput.value.trim();
+        const answer = answerDiv.textContent;
+        const text = question ? 
+            `I asked the Oracle: "${question}" and got "${answer}". What would you ask? Try it yourself!` :
+            'I just discovered this amazing Yes/No Oracle! Get instant guidance for your decisions.';
+        const url = 'https://yesnooracle.dev/';
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function shareToFacebook() {
+        const url = 'https://yesnooracle.dev/';
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function copyToClipboard() {
+        const question = questionInput.value.trim();
+        const answer = answerDiv.textContent;
+        const text = question ? 
+            `I asked the Oracle: "${question}" and got "${answer}". Check out this amazing Yes/No Oracle: https://yesnooracle.dev/` :
+            'Check out this amazing Yes/No Oracle for instant decision guidance: https://yesnooracle.dev/';
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const copyBtn = document.getElementById('share-copy');
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Copied!';
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+            }, 2000);
+        });
+    }
+
+    // Initialize new features
+    function initializeNewFeatures() {
+        displayHistory();
+        loadDailyQuestion();
+        
+        // Social sharing event listeners
+        const shareTwitter = document.getElementById('share-twitter');
+        const shareFacebook = document.getElementById('share-facebook');
+        const shareCopy = document.getElementById('share-copy');
+        const useDailyQuestion = document.getElementById('use-daily-question');
+        const clearHistory = document.getElementById('clear-history');
+        
+        if (shareTwitter) shareTwitter.addEventListener('click', shareToTwitter);
+        if (shareFacebook) shareFacebook.addEventListener('click', shareToFacebook);
+        if (shareCopy) shareCopy.addEventListener('click', copyToClipboard);
+        
+        if (useDailyQuestion) {
+            useDailyQuestion.addEventListener('click', () => {
+                const dailyQuestion = document.getElementById('daily-question').textContent;
+                if (questionInput && dailyQuestion) {
+                    questionInput.value = dailyQuestion;
+                    questionInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    questionInput.focus();
+                }
+            });
+        }
+        
+        if (clearHistory) {
+            clearHistory.addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear your question history?')) {
+                    localStorage.removeItem('oracle_history');
+                    displayHistory();
+                }
+            });
+        }
+    }
+
+    // Initialize all features when DOM is loaded
+    initializeNewFeatures();
 
     // Event listeners
     if (oracleButton) {
@@ -166,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Language selector functionality
-    const languageSelect = document.getElementById('language-select');
+const languageSelect = document.getElementById('language-select');
     if (languageSelect) {
         languageSelect.addEventListener('change', function() {
             const selectedLang = this.value;
@@ -220,424 +460,3 @@ window.YesNoOracle = {
         }
     }
 };
-
-// Decision Matrix functionality
-if (document.getElementById('decision-matrix')) {
-  const matrix = {
-    options: [],
-    criteria: [],
-    weights: {},
-    ratings: {}
-  };
-
-  function addOption() {
-    const option = prompt('Enter option name:');
-    if (!option) return;
-    
-    matrix.options.push(option);
-    updateMatrix();
-  }
-
-  function addCriterion() {
-    const criterion = prompt('Enter criterion name:');
-    if (!criterion) return;
-    
-    matrix.criteria.push(criterion);
-    matrix.weights[criterion] = 1;
-    updateMatrix();
-  }
-
-  function updateMatrix() {
-    const table = document.getElementById('decision-matrix');
-    const thead = table.querySelector('thead tr');
-    const tbody = table.querySelector('tbody');
-    const tfoot = table.querySelector('tfoot');
-    
-    // Update header
-    thead.innerHTML = '<th class="p-2 border border-white/20">Options/Criteria</th>';
-    matrix.criteria.forEach(criterion => {
-      thead.innerHTML += `<th class="p-2 border border-white/20">${criterion}</th>`;
-    });
-    
-    // Update body
-    tbody.innerHTML = '';
-    matrix.options.forEach(option => {
-      const row = document.createElement('tr');
-      row.innerHTML = `<td class="p-2 border border-white/20">${option}</td>`;
-      
-      matrix.criteria.forEach(criterion => {
-        const rating = matrix.ratings[`${option}-${criterion}`] || '';
-        row.innerHTML += `
-          <td class="p-2 border border-white/20">
-            <input type="number" min="1" max="10" value="${rating}" 
-                   class="matrix-cell bg-white/10 rounded px-2 py-1"
-                   data-option="${option}" data-criterion="${criterion}"
-                   onchange="updateRating(this)">
-          </td>
-        `;
-      });
-      
-      tbody.appendChild(row);
-    });
-    
-    // Update weights row
-    const weightsRow = tfoot.querySelector('tr:first-child');
-    weightsRow.innerHTML = '<th class="p-2 border border-white/20">Weights</th>';
-    matrix.criteria.forEach(criterion => {
-      weightsRow.innerHTML += `
-        <td class="p-2 border border-white/20">
-          <input type="number" min="1" max="10" value="${matrix.weights[criterion]}"
-                 class="weight-input bg-white/10 rounded px-2 py-1"
-                 data-criterion="${criterion}"
-                 onchange="updateWeight(this)">
-        </td>
-      `;
-    });
-    
-    // Update total scores row
-    const scoresRow = tfoot.querySelector('tr:last-child');
-    scoresRow.innerHTML = '<th class="p-2 border border-white/20">Total Score</th>';
-    matrix.options.forEach(option => {
-      const score = calculateScore(option);
-      scoresRow.innerHTML += `
-        <td class="p-2 border border-white/20 text-center">
-          ${score.toFixed(1)}
-        </td>
-      `;
-    });
-    
-    updateResults();
-  }
-
-  function updateRating(input) {
-    const option = input.dataset.option;
-    const criterion = input.dataset.criterion;
-    const value = parseInt(input.value);
-    
-    if (value >= 1 && value <= 10) {
-      matrix.ratings[`${option}-${criterion}`] = value;
-      updateMatrix();
-    }
-  }
-
-  function updateWeight(input) {
-    const criterion = input.dataset.criterion;
-    const value = parseInt(input.value);
-    
-    if (value >= 1 && value <= 10) {
-      matrix.weights[criterion] = value;
-      updateMatrix();
-    }
-  }
-
-  function calculateScore(option) {
-    let totalScore = 0;
-    let totalWeight = 0;
-    
-    matrix.criteria.forEach(criterion => {
-      const rating = matrix.ratings[`${option}-${criterion}`] || 0;
-      const weight = matrix.weights[criterion];
-      totalScore += rating * weight;
-      totalWeight += weight;
-    });
-    
-    return totalWeight > 0 ? totalScore / totalWeight : 0;
-  }
-
-  function updateResults() {
-    const resultsDiv = document.getElementById('results');
-    
-    if (matrix.options.length === 0 || matrix.criteria.length === 0) {
-      resultsDiv.innerHTML = '<p>Add options and criteria to see results.</p>';
-      return;
-    }
-    
-    const scores = matrix.options.map(option => ({
-      option,
-      score: calculateScore(option)
-    }));
-    
-    scores.sort((a, b) => b.score - a.score);
-    
-    let html = '<div class="space-y-4">';
-    html += '<h3 class="text-xl font-semibold">Recommendation</h3>';
-    html += `<p>The best option is: <span class="text-purple-400 font-semibold">${scores[0].option}</span></p>`;
-    
-    html += '<h3 class="text-xl font-semibold mt-6">All Options Ranked</h3>';
-    html += '<ol class="list-decimal pl-6 space-y-2">';
-    scores.forEach(({option, score}) => {
-      html += `<li>${option} - Score: ${score.toFixed(1)}</li>`;
-    });
-    html += '</ol>';
-    
-    html += '</div>';
-    resultsDiv.innerHTML = html;
-  }
-
-  // Add event listeners
-  document.getElementById('add-option').addEventListener('click', addOption);
-  document.getElementById('add-criterion').addEventListener('click', addCriterion);
-}
-
-// Random Number Generator functionality
-if (document.getElementById('random-number-tool')) {
-  const toolDiv = document.getElementById('random-number-tool');
-  const resultDiv = document.getElementById('random-number-result');
-
-  toolDiv.innerHTML = `
-    <div class="flex flex-col md:flex-row items-center gap-4">
-      <label class="flex items-center gap-2">Minimum
-        <input id="rand-min" type="number" value="1" class="bg-white/10 rounded px-2 py-1 w-24 text-center" />
-      </label>
-      <label class="flex items-center gap-2">Maximum
-        <input id="rand-max" type="number" value="100" class="bg-white/10 rounded px-2 py-1 w-24 text-center" />
-      </label>
-      <button id="rand-generate" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">Generate</button>
-    </div>
-  `;
-  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">Set range and click generate</div>';
-
-  document.getElementById('rand-generate').onclick = function() {
-    const min = parseInt(document.getElementById('rand-min').value);
-    const max = parseInt(document.getElementById('rand-max').value);
-    if (isNaN(min) || isNaN(max) || min > max) {
-      resultDiv.innerHTML = '<div class="text-red-400 text-center mt-4">Please enter valid minimum and maximum values</div>';
-      return;
-    }
-    const rand = Math.floor(Math.random() * (max - min + 1)) + min;
-    resultDiv.innerHTML = `<div class="text-center text-5xl font-bold text-purple-300 animate-pulse">${rand}</div>`;
-  };
-}
-
-// Coin Flip with 3D animation
-if (document.getElementById('coin-flip-tool')) {
-  const toolDiv = document.getElementById('coin-flip-tool');
-  const resultDiv = document.getElementById('coin-flip-result');
-
-  toolDiv.innerHTML = `
-    <div class="flex flex-col items-center gap-4">
-      <button id="coin-flip-btn" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-xl font-bold transition">Flip Coin</button>
-      <div id="coin-flip-coin" class="mt-8" style="height:120px;"></div>
-    </div>
-  `;
-  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">Click the button to flip the coin</div>';
-
-  const coinDiv = document.getElementById('coin-flip-coin');
-  let flipping = false;
-
-  function createCoinSVG(face) {
-    const isHeads = face === 'heads';
-    return `
-      <svg width="200" height="200" viewBox="0 0 100 100" class="coin-svg">
-        <defs>
-          <linearGradient id="coinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
-          </linearGradient>
-          <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-            <feOffset dx="2" dy="2" result="offsetblur" />
-            <feComponentTransfer>
-              <feFuncA type="linear" slope="0.3" />
-            </feComponentTransfer>
-            <feMerge>
-              <feMergeNode />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        
-        <!-- Coin body -->
-        <circle cx="50" cy="50" r="45" fill="url(#coinGradient)" filter="url(#shadow)" />
-        
-        <!-- Coin edge -->
-        <circle cx="50" cy="50" r="45" fill="none" stroke="#B8860B" stroke-width="2" />
-        
-        <!-- Coin face -->
-        <g transform="translate(50,50)">
-          ${isHeads ? `
-            <!-- Heads side -->
-            <circle cx="0" cy="0" r="35" fill="#FFD700" />
-            <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="80">H</text>
-          ` : `
-            <!-- Tails side -->
-            <circle cx="0" cy="0" r="35" fill="#FFD700" />
-            <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="80">T</text>
-          `}
-        </g>
-      </svg>
-    `;
-  }
-
-  function showCoin(face) {
-    coinDiv.innerHTML = `
-      <div class="relative mx-auto" style="width:200px;height:200px;">
-        ${createCoinSVG(face)}
-      </div>`;
-  }
-
-  showCoin('heads');
-
-  document.getElementById('coin-flip-btn').onclick = function() {
-    if (flipping) return;
-    flipping = true;
-    resultDiv.innerHTML = '';
-    
-    const isHeads = Math.random() < 0.5;
-    const finalFace = isHeads ? 'heads' : 'tails';
-    
-    coinDiv.innerHTML = `
-      <div class="relative mx-auto coin-3d" style="width:200px;height:200px;">
-        <div class="coin-container" style="transform-style: preserve-3d; perspective: 1000px;">
-          ${createCoinSVG('heads')}
-        </div>
-      </div>`;
-    
-    const coinContainer = coinDiv.querySelector('.coin-container');
-    
-    // Add 3D flip animation with faster speed
-    coinContainer.style.animation = 'flip 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)';
-    
-    setTimeout(() => {
-      showCoin(finalFace);
-      resultDiv.innerHTML = `<div class="text-center text-4xl font-bold text-purple-300 mt-4 coin-result">${finalFace === 'heads' ? 'Heads' : 'Tails'}</div>`;
-      flipping = false;
-    }, 600);
-  };
-}
-
-// Add coin flip animation
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes flip {
-    0% { 
-      transform: translateY(0) rotateX(0) rotateY(0) rotateZ(0);
-      filter: brightness(1);
-    }
-    8% { 
-      transform: translateY(-60px) rotateX(360deg) rotateY(360deg) rotateZ(180deg);
-      filter: brightness(1.2);
-    }
-    16% { 
-      transform: translateY(-120px) rotateX(720deg) rotateY(720deg) rotateZ(360deg);
-      filter: brightness(1.4);
-    }
-    24% { 
-      transform: translateY(-160px) rotateX(1080deg) rotateY(1080deg) rotateZ(540deg);
-      filter: brightness(1.2);
-    }
-    32% { 
-      transform: translateY(-200px) rotateX(1440deg) rotateY(1440deg) rotateZ(720deg);
-      filter: brightness(1);
-    }
-    40% { 
-      transform: translateY(-160px) rotateX(1800deg) rotateY(1800deg) rotateZ(900deg);
-      filter: brightness(0.8);
-    }
-    48% { 
-      transform: translateY(-120px) rotateX(2160deg) rotateY(2160deg) rotateZ(1080deg);
-      filter: brightness(0.9);
-    }
-    56% { 
-      transform: translateY(-80px) rotateX(2520deg) rotateY(2520deg) rotateZ(1260deg);
-      filter: brightness(1);
-    }
-    64% { 
-      transform: translateY(-40px) rotateX(2880deg) rotateY(2880deg) rotateZ(1440deg);
-      filter: brightness(1.1);
-    }
-    72% { 
-      transform: translateY(-20px) rotateX(3240deg) rotateY(3240deg) rotateZ(1620deg);
-      filter: brightness(1);
-    }
-    80% { 
-      transform: translateY(-10px) rotateX(3600deg) rotateY(3600deg) rotateZ(1800deg);
-      filter: brightness(0.9);
-    }
-    88% { 
-      transform: translateY(-4px) rotateX(3960deg) rotateY(3960deg) rotateZ(1980deg);
-      filter: brightness(0.95);
-    }
-    100% { 
-      transform: translateY(0) rotateX(4320deg) rotateY(4320deg) rotateZ(2160deg);
-      filter: brightness(1);
-    }
-  }
-  
-  .coin-svg {
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
-    transform-style: preserve-3d;
-    perspective: 1000px;
-  }
-
-  .coin-container {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
-
-  .coin-result {
-    animation: bounce 0.5s ease-in-out;
-  }
-`;
-document.head.appendChild(style);
-
-// Dice Roller functionality
-if (document.getElementById('dice-roller-tool')) {
-  const toolDiv = document.getElementById('dice-roller-tool');
-  const resultDiv = document.getElementById('dice-roller-result');
-
-  toolDiv.innerHTML = `
-    <div class="flex flex-col md:flex-row items-center gap-4">
-      <label class="flex items-center gap-2">Number of sides
-        <select id="dice-sides" class="bg-white/10 rounded px-2 py-1 w-24 text-center">
-          <option value="6">6-sided</option>
-          <option value="4">4-sided</option>
-          <option value="8">8-sided</option>
-          <option value="10">10-sided</option>
-          <option value="12">12-sided</option>
-          <option value="20">20-sided</option>
-        </select>
-      </label>
-      <button id="dice-roll-btn" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">Roll</button>
-    </div>
-  `;
-  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">Select number of sides and click roll</div>';
-
-  document.getElementById('dice-roll-btn').onclick = function() {
-    const sides = parseInt(document.getElementById('dice-sides').value);
-    const roll = Math.floor(Math.random() * sides) + 1;
-    resultDiv.innerHTML = `<div class="text-center text-5xl font-bold text-purple-300 animate-pulse">${roll}</div><div class="text-center text-lg mt-2">${sides}-sided die</div>`;
-  };
-}
-
-// Draw Lots functionality
-if (document.getElementById('draw-lots-tool')) {
-  const toolDiv = document.getElementById('draw-lots-tool');
-  const resultDiv = document.getElementById('draw-lots-result');
-
-  toolDiv.innerHTML = `
-    <div class="flex flex-col gap-4">
-      <textarea id="lots-input" rows="5" placeholder="Enter one option per line" class="bg-white/10 rounded px-3 py-2 w-full text-white"></textarea>
-      <button id="draw-lots-btn" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-semibold">Draw</button>
-    </div>
-  `;
-  resultDiv.innerHTML = '<div class="text-center text-2xl text-purple-400 mt-4">Enter options and click draw</div>';
-
-  document.getElementById('draw-lots-btn').onclick = function() {
-    const input = document.getElementById('lots-input').value;
-    const options = input.split('\n').map(s => s.trim()).filter(Boolean);
-    if (options.length < 2) {
-      resultDiv.innerHTML = '<div class="text-red-400 text-center mt-4">Please enter at least two options</div>';
-      return;
-    }
-    const idx = Math.floor(Math.random() * options.length);
-    const chosen = options[idx];
-    resultDiv.innerHTML = `<div class="text-center text-4xl font-bold text-purple-300 animate-bounce">${chosen}</div><div class="text-center text-lg mt-2">Total options: ${options.length}</div>`;
-  };
-} 

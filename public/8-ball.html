@@ -41,21 +41,147 @@
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <h1 class="text-4xl md:text-6xl font-cinzel mb-8 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
-            8 Ball Yes or No
+            Magic 8-Ball Oracle
           </h1>
           <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            Ask the mystical 8 Ball your yes or no questions and receive a random answer.
+            Ask the mystical 8-Ball your burning questions and receive wisdom from the beyond. A classic divination tool with modern convenience.
           </p>
         </div>
 
         <!-- Main Tool -->
         <div class="max-w-4xl mx-auto">
           <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div class="mb-6">
+              <input type="text" id="user-question" placeholder="Ask your question to the Magic 8-Ball..." class="w-full px-4 py-3 rounded-lg text-black text-lg" />
+            </div>
             <div class="ball" id="magic-ball"></div>
-            <div class="answer" id="answer">Ask a question and click the ball!</div>
+            <div class="answer" id="answer">Ask a question and shake the ball!</div>
             <button id="shake-btn" class="mt-8 bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-lg text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg hover:shadow-purple-500/20">
-              Shake the 8 Ball
+              Shake the Magic 8-Ball
             </button>
+          </div>
+
+          <!-- About Magic 8-Ball -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h2 class="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">The Magic 8-Ball Tradition</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-white">Origins & History</h3>
+                <p class="text-gray-300 mb-4">The Magic 8-Ball was invented in the 1950s and became one of the most popular fortune-telling toys of all time. Originally inspired by a spirit writing device, it has helped millions make decisions with its cryptic responses.</p>
+                <p class="text-gray-300">Our digital version maintains the classic mystery while adding modern convenience and visual effects.</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-white">How It Works</h3>
+                <p class="text-gray-300 mb-4">Ask your question, then shake the ball to reveal your answer. The Magic 8-Ball contains 20 possible responses, ranging from positive to negative to neutral, just like the original.</p>
+                <p class="text-gray-300">Each answer is randomly selected to provide unbiased guidance for your questions.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- All Possible Answers -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h2 class="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">All Possible Answers</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-green-400">Positive Responses</h3>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• It is certain</li>
+                  <li>• It is decidedly so</li>
+                  <li>• Without a doubt</li>
+                  <li>• Yes definitely</li>
+                  <li>• You may rely on it</li>
+                  <li>• As I see it, yes</li>
+                  <li>• Most likely</li>
+                  <li>• Outlook good</li>
+                  <li>• Yes</li>
+                  <li>• Signs point to yes</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-yellow-400">Neutral Responses</h3>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Reply hazy, try again</li>
+                  <li>• Ask again later</li>
+                  <li>• Better not tell you now</li>
+                  <li>• Cannot predict now</li>
+                  <li>• Concentrate and ask again</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-red-400">Negative Responses</h3>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Don't count on it</li>
+                  <li>• My reply is no</li>
+                  <li>• My sources say no</li>
+                  <li>• Outlook not so good</li>
+                  <li>• Very doubtful</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Best Practices -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h2 class="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">How to Get the Best Results</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-white">🎯 Ask Clear Questions</h3>
+                <p class="text-gray-300">Frame your questions clearly and specifically. Instead of "Will I be happy?", try "Should I accept this job offer?"</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-white">🧘 Focus Your Intent</h3>
+                <p class="text-gray-300">Take a moment to center yourself before asking. The clearer your intention, the more meaningful the answer.</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-white">💭 Trust Your Reaction</h3>
+                <p class="text-gray-300">Pay attention to your first reaction to the answer. It often reveals what you truly wanted to hear.</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-white">⏰ Don't Over-Ask</h3>
+                <p class="text-gray-300">Avoid asking the same question repeatedly. The first answer is usually the most revealing.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h2 class="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-white">Is the Magic 8-Ball accurate?</h3>
+                <p class="text-gray-300">The Magic 8-Ball provides random responses, so it's not about predicting the future. It's a fun way to explore your feelings about a decision and sometimes break through indecision.</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-white">What makes this different from other decision tools?</h3>
+                <p class="text-gray-300">The Magic 8-Ball offers a classic, nostalgic experience with varied responses beyond just yes/no. It's perfect for when you want a more mystical approach to decision-making.</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-white">Can I use this for important decisions?</h3>
+                <p class="text-gray-300">While fun for casual questions, we recommend using our more comprehensive <a href="/decision-making-tools.html" class="text-purple-400 hover:underline">decision-making tools</a> for important life choices.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Related Tools -->
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h2 class="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">Explore More Oracle Tools</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <h3 class="text-lg font-semibold mb-2 text-white">Yes No Oracle</h3>
+                <p class="text-gray-300 mb-4">Get detailed mystical guidance with our main oracle</p>
+                <a href="/index.html" class="text-purple-400 hover:text-purple-300 transition">Try Now →</a>
+              </div>
+              <div class="text-center">
+                <h3 class="text-lg font-semibold mb-2 text-white">Crystal Ball</h3>
+                <p class="text-gray-300 mb-4">Peer into the future with our crystal ball oracle</p>
+                <a href="/crystal-ball.html" class="text-purple-400 hover:text-purple-300 transition">Try Now →</a>
+              </div>
+              <div class="text-center">
+                <h3 class="text-lg font-semibold mb-2 text-white">Tarot Reader</h3>
+                <p class="text-gray-300 mb-4">Get detailed card readings for complex questions</p>
+                <a href="/tarot-reader.html" class="text-purple-400 hover:text-purple-300 transition">Try Now →</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
