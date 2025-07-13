@@ -7,14 +7,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Oracle answers
     const yesAnswers = [
-        'Yes', 'Absolutely', 'Definitely', 'Of course', 'Without a doubt',
-        'Yes, follow your heart', 'The stars align in your favor', 'Yes, the time is right'
+        'Yes', 'Yes，Absolutely', 'Yes，Definitely', 'Yes，Of course', 'Yes，Without a doubt',
+        'Yes, follow your heart', 'Yes，The stars align in your favor', 'Yes, the time is right'
     ];
 
     const noAnswers = [
-        'No', 'Not now', 'The path is unclear', 'Wait for a better time', 'No, reconsider',
-        'The universe suggests otherwise', 'No, seek another way', 'Not the right moment'
+        'No', 'No，Not now', 'No，The path is unclear', 'No，Wait for a better time', 'No, reconsider',
+        'No，The universe suggests otherwise', 'No, seek another way', 'No，Not the right moment'
     ];
+
+    // Generate or get user ID
+    function getUserId() {
+        let userId = localStorage.getItem('oracle_user_id');
+        if (!userId) {
+            userId = 'user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+            localStorage.setItem('oracle_user_id', userId);
+        }
+        return userId;
+    }
+
+    // Simple hash function for questions
+    function hashQuestion(question) {
+        let hash = 0;
+        for (let i = 0; i < question.length; i++) {
+            const char = question.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convert to 32-bit integer
+        }
+        return Math.abs(hash);
+    }
+
+    // Cache management
+    function getCachedAnswer(userId, question) {
+        const cacheKey = `oracle_${userId}_${hashQuestion(question.toLowerCase().trim())}`;
+        const cached = localStorage.getItem(cacheKey);
+        
+        if (cached) {
+            const data = JSON.parse(cached);
+            const now = Date.now();
+            const cacheExpiry = 1 * 60 * 60 * 1000; // 1 hours
+            
+            if (now - data.timestamp < cacheExpiry) {
+                return data.answer;
+            } else {
+                localStorage.removeItem(cacheKey);
+            }
+        }
+        
+        return null;
+    }
+
+    function setCachedAnswer(userId, question, answer) {
+        const cacheKey = `oracle_${userId}_${hashQuestion(question.toLowerCase().trim())}`;
+        const data = {
+            answer: answer,
+            timestamp: Date.now()
+        };
+        localStorage.setItem(cacheKey, JSON.stringify(data));
+    }
 
     // Oracle function
     function askOracle() {
@@ -22,6 +72,36 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!question) {
             alert('Please enter a question first.');
+            return;
+        }
+
+        const userId = getUserId();
+        
+        // Check for cached answer
+        const cachedAnswer = getCachedAnswer(userId, question);
+        
+        if (cachedAnswer) {
+            // Use cached answer
+            answerDiv.textContent = cachedAnswer;
+            const isYes = cachedAnswer === 'Yes';
+            answerDiv.className = `mt-6 text-2xl font-cinzel ${isYes ? 'text-green-400' : 'text-red-400'}`;
+            answerDiv.classList.remove('hidden');
+            
+            // Show cache indicator
+            const cacheIndicator = document.createElement('div');
+            cacheIndicator.className = 'text-sm text-gray-400 mt-2';
+            cacheIndicator.textContent = '(Same answer as before)';
+            answerDiv.appendChild(cacheIndicator);
+            
+            // Trigger confetti for positive answers
+            if (isYes && typeof confetti === 'function') {
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { y: 0.8 }
+                });
+            }
+            
             return;
         }
 
@@ -35,6 +115,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const isYes = Math.random() > 0.5;
             const answers = isYes ? yesAnswers : noAnswers;
             const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+            
+            // Cache the answer
+            setCachedAnswer(userId, question, randomAnswer);
             
             answerDiv.textContent = randomAnswer;
             answerDiv.className = `mt-6 text-2xl font-cinzel ${isYes ? 'text-green-400' : 'text-red-400'}`;
