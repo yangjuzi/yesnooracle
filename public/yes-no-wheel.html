@@ -50,7 +50,39 @@
         transition: transform 4s cubic-bezier(0.23, 1, 0.32, 1);
         border: 4px solid #a855f7;
         box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
-        background: conic-gradient(from 0deg, #8b5cf6, #ec4899, #f59e0b, #10b981, #3b82f6, #ef4444);
+        background: #1a1a1a;
+      }
+      
+      .wheel-segment {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        transform-origin: 100% 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 12px;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        border-right: 1px solid rgba(255,255,255,0.2);
+      }
+      
+      .wheel-segment.yes {
+        background: linear-gradient(45deg, #10b981, #059669);
+      }
+      
+      .wheel-segment.no {
+        background: linear-gradient(45deg, #ef4444, #dc2626);
+      }
+      
+      .wheel-segment:nth-child(even) {
+        opacity: 0.9;
+      }
+      
+      .segment-text {
+        padding-top: 15px;
+        transform: rotate(15deg);
       }
       
       .wheel-pointer {
@@ -138,13 +170,14 @@
           </h1>
           
           <p class="text-xl text-center mb-16 text-gray-300 max-w-3xl mx-auto">
-            When you're truly stuck, a random spin can reveal what you really want.
+            When you're truly stuck, a random spin can reveal what you really want. The wheel comes pre-loaded with Yes/No options - just spin to get started, or add your own custom options.
           </p>
 
           <div class="grid lg:grid-cols-2 gap-12 items-start">
             <!-- Options Input -->
             <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8">
-              <h2 class="text-2xl font-semibold mb-6 text-purple-400">Add Your Options</h2>
+              <h2 class="text-2xl font-semibold mb-4 text-purple-400">Customize Your Options</h2>
+              <p class="text-gray-300 text-sm mb-6">The wheel is pre-loaded with Yes/No options (6 each). You can add more options or customize as needed.</p>
               
               <div class="flex gap-3 mb-6">
                 <input 
@@ -175,6 +208,13 @@
                   class="w-full border border-gray-500 text-gray-300 py-2 rounded-lg hover:bg-gray-500/20 transition"
                 >
                   Clear All Options
+                </button>
+                
+                <button 
+                  id="reset-yes-no" 
+                  class="w-full border border-green-400 text-green-400 py-2 rounded-lg hover:bg-green-400/20 transition"
+                >
+                  Reset to Yes/No (Default)
                 </button>
                 
                 <button 
@@ -276,16 +316,23 @@
     </footer>
 
     <script>
-      let options = [];
+      // 默认选项：yes和no各6份
+      let options = ['Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No'];
       let isSpinning = false;
+
+      // 页面加载时初始化默认选项
+      document.addEventListener('DOMContentLoaded', function() {
+        updateOptionsList();
+        updateWheel();
+      });
 
       function addOption() {
         const input = document.getElementById('option-input');
         const option = input.value.trim();
         
         if (!option) return;
-        if (options.length >= 8) {
-          alert('Maximum 8 options allowed');
+        if (options.length >= 12) {
+          alert('Maximum 12 options allowed');
           return;
         }
         if (options.includes(option)) {
@@ -317,6 +364,12 @@
         updateWheel();
       }
 
+      function resetToYesNo() {
+        options = ['Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No'];
+        updateOptionsList();
+        updateWheel();
+      }
+
       function updateOptionsList() {
         const list = document.getElementById('options-list');
         if (options.length === 0) {
@@ -324,14 +377,27 @@
           return;
         }
 
-        list.innerHTML = options.map((option, index) => `
+        // 统计每个选项出现的次数
+        const optionCounts = {};
+        options.forEach(option => {
+          optionCounts[option] = (optionCounts[option] || 0) + 1;
+        });
+
+        // 显示选项和其出现次数
+        list.innerHTML = Object.entries(optionCounts).map(([option, count]) => `
           <div class="flex items-center justify-between bg-black/30 p-3 rounded">
-            <span>${option}</span>
-            <button onclick="removeOption(${index})" class="text-red-400 hover:text-red-300 ml-2">
+            <span>${option} ${count > 1 ? `(×${count})` : ''}</span>
+            <button onclick="removeAllInstances('${option}')" class="text-red-400 hover:text-red-300 ml-2">
               ✕
             </button>
           </div>
         `).join('');
+      }
+
+      function removeAllInstances(optionToRemove) {
+        options = options.filter(option => option !== optionToRemove);
+        updateOptionsList();
+        updateWheel();
       }
 
       function updateWheel() {
@@ -345,13 +411,73 @@
         }
 
         spinBtn.disabled = false;
-        wheel.innerHTML = `
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="bg-black/70 p-2 rounded text-sm">
-              ${options.join(' • ')}
-            </div>
-          </div>
+        
+        // 使用SVG创建轮盘
+        const totalOptions = options.length;
+        const anglePerSegment = 360 / totalOptions;
+        const radius = 150;
+        const centerX = 175;
+        const centerY = 175;
+        
+        let svgHTML = `
+          <svg width="350" height="350" viewBox="0 0 350 350" style="position: absolute; top: 0; left: 0;">
         `;
+        
+        for (let i = 0; i < totalOptions; i++) {
+          const startAngle = i * anglePerSegment;
+          const endAngle = (i + 1) * anglePerSegment;
+          const option = options[i];
+          
+          // 计算扇形路径
+          const startAngleRad = (startAngle - 90) * Math.PI / 180;
+          const endAngleRad = (endAngle - 90) * Math.PI / 180;
+          
+          const x1 = centerX + radius * Math.cos(startAngleRad);
+          const y1 = centerY + radius * Math.sin(startAngleRad);
+          const x2 = centerX + radius * Math.cos(endAngleRad);
+          const y2 = centerY + radius * Math.sin(endAngleRad);
+          
+          const largeArcFlag = anglePerSegment > 180 ? 1 : 0;
+          
+          const pathData = `M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
+          
+          // 颜色
+          const color = option.toLowerCase() === 'yes' ? '#10b981' : '#ef4444';
+          const darkColor = option.toLowerCase() === 'yes' ? '#059669' : '#dc2626';
+          
+          // 文字位置
+          const textAngle = startAngle + anglePerSegment / 2;
+          const textAngleRad = (textAngle - 90) * Math.PI / 180;
+          const textRadius = radius * 0.7;
+          const textX = centerX + textRadius * Math.cos(textAngleRad);
+          const textY = centerY + textRadius * Math.sin(textAngleRad);
+          
+          svgHTML += `
+            <path d="${pathData}" 
+                  fill="url(#gradient${i})" 
+                  stroke="rgba(255,255,255,0.3)" 
+                  stroke-width="1"/>
+            <defs>
+              <linearGradient id="gradient${i}" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:${color};stop-opacity:1" />
+                <stop offset="100%" style="stop-color:${darkColor};stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <text x="${textX}" y="${textY}" 
+                  fill="white" 
+                  font-size="14" 
+                  font-weight="bold" 
+                  text-anchor="middle" 
+                  dominant-baseline="middle"
+                  transform="rotate(${textAngle}, ${textX}, ${textY})"
+                  style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+              ${option}
+            </text>
+          `;
+        }
+        
+        svgHTML += '</svg>';
+        wheel.innerHTML = svgHTML;
       }
 
       function spin() {
@@ -405,6 +531,7 @@
       });
       document.getElementById('clear-options').addEventListener('click', clearOptions);
       document.getElementById('add-sample-options').addEventListener('click', addSampleOptions);
+      document.getElementById('reset-yes-no').addEventListener('click', resetToYesNo);
       document.getElementById('spin-btn').addEventListener('click', spin);
     </script>
     

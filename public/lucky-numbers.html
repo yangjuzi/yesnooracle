@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FLS1QMH9GM');
+</script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lucky Numbers Generator - Yes No Oracle</title>
-    <meta name="description" content="Generate your personal lucky numbers for lottery, decisions, and life's important moments.">
+    <title>Lucky Numbers Generator - Free Personal & Lottery Numbers | Yes No Oracle</title>
+    <meta name="description" content="Generate your personal lucky numbers for lottery, important decisions, and manifestation. Free numerology-based lucky number generator with cosmic timing insights.">
+    <meta name="keywords" content="lucky numbers, lottery numbers, personal lucky numbers, numerology, number generator, manifestation numbers, cosmic timing, fortune numbers">
     <link rel="canonical" href="https://yesnooracle.dev/lucky-numbers.html" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/style.css" />
@@ -100,16 +111,69 @@
         text-align: center;
         cursor: pointer;
         transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .number-type::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+        transition: left 0.5s ease;
       }
       
       .number-type:hover {
         background: rgba(255, 215, 0, 0.2);
         transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+      }
+      
+      .number-type:hover::before {
+        left: 100%;
       }
       
       .number-type.selected {
         background: rgba(255, 215, 0, 0.3);
         border-color: #ffb347;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        transform: scale(1.08);
+      }
+      
+      .number-type.selected::after {
+        content: '✓';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: #ffd700;
+        color: #000;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        animation: checkmark 0.3s ease;
+      }
+      
+      @keyframes checkmark {
+        0% { transform: scale(0) rotate(180deg); }
+        100% { transform: scale(1) rotate(0deg); }
+      }
+      
+      .number-type.selected .number-type-icon {
+        animation: bounce 0.6s ease;
+      }
+      
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
       }
     </style>
   </head>
@@ -148,22 +212,22 @@
               <h3 class="text-xl font-semibold mb-4 text-center text-yellow-400">🌟 Choose Your Lucky Number Type 🌟</h3>
               <div class="number-type-selector">
                 <div class="number-type" data-type="lottery">
-                  <div class="text-2xl mb-2">🎲</div>
+                  <div class="text-2xl mb-2 number-type-icon">🎲</div>
                   <div class="font-semibold">Lottery Numbers</div>
                   <div class="text-sm text-gray-400">6 numbers (1-49)</div>
                 </div>
                 <div class="number-type" data-type="personal">
-                  <div class="text-2xl mb-2">✨</div>
+                  <div class="text-2xl mb-2 number-type-icon">✨</div>
                   <div class="font-semibold">Personal Lucky</div>
                   <div class="text-sm text-gray-400">3 special numbers</div>
                 </div>
                 <div class="number-type" data-type="daily">
-                  <div class="text-2xl mb-2">📅</div>
+                  <div class="text-2xl mb-2 number-type-icon">📅</div>
                   <div class="font-semibold">Daily Number</div>
                   <div class="text-sm text-gray-400">1 number for today</div>
                 </div>
                 <div class="number-type" data-type="custom">
-                  <div class="text-2xl mb-2">🎯</div>
+                  <div class="text-2xl mb-2 number-type-icon">🎯</div>
                   <div class="font-semibold">Custom Range</div>
                   <div class="text-sm text-gray-400">Choose your range</div>
                 </div>
@@ -260,6 +324,380 @@
       </div>
     </section>
 
+    <!-- What are Lucky Numbers Section -->
+    <section class="py-24 bg-gradient-to-b from-black to-yellow-900/20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-cinzel text-center mb-12 text-yellow-400">What Are Lucky Numbers?</h2>
+          
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <p class="text-lg text-gray-300 mb-6">
+              Lucky numbers are specific numerical sequences that are believed to carry positive energy and attract favorable outcomes in various aspects of life. These numbers can be derived from personal information, numerological calculations, or cosmic alignments that resonate with your unique energy signature.
+            </p>
+            
+            <p class="text-lg text-gray-300 mb-6">
+              Throughout history, cultures worldwide have recognized the power of certain numbers to influence fortune, success, and manifestation. From ancient Chinese feng shui to modern numerology, lucky numbers serve as tools for aligning with positive vibrations and enhancing life's opportunities.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+              <div class="bg-white/5 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4 text-yellow-300">🎲 How They Work</h3>
+                <ul class="text-gray-300 space-y-2">
+                  <li>• Resonate with your personal energy field</li>
+                  <li>• Align with cosmic and universal rhythms</li>
+                  <li>• Enhance focus and intention setting</li>
+                  <li>• Create positive psychological associations</li>
+                </ul>
+              </div>
+              
+              <div class="bg-white/5 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4 text-yellow-300">✨ Benefits</h3>
+                <ul class="text-gray-300 space-y-2">
+                  <li>• Increased confidence in decision-making</li>
+                  <li>• Enhanced manifestation abilities</li>
+                  <li>• Improved lottery and gambling outcomes</li>
+                  <li>• Greater synchronicity in daily life</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Numerology and Lucky Numbers Section -->
+    <section class="py-24 bg-gradient-to-b from-yellow-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-cinzel text-center mb-12 text-yellow-400">Numerology and Lucky Numbers</h2>
+          
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 class="text-2xl font-semibold mb-4 text-yellow-300">🔢 The Science of Numbers</h3>
+                <p class="text-gray-300 mb-4">
+                  Numerology is the ancient study of numbers and their mystical relationship to life events. Each number carries specific vibrations and meanings that can influence various aspects of our existence, from personality traits to life opportunities.
+                </p>
+                <p class="text-gray-300">
+                  Your lucky numbers are calculated based on your birth date, name, and other personal factors, creating a unique numerical profile that resonates with your individual energy.
+                </p>
+              </div>
+              
+              <div>
+                <h3 class="text-2xl font-semibold mb-4 text-yellow-300">🌟 Number Meanings</h3>
+                <div class="space-y-2 text-sm">
+                  <div class="flex"><span class="text-yellow-400 w-8">1:</span><span class="text-gray-300">Leadership, independence, new beginnings</span></div>
+                  <div class="flex"><span class="text-yellow-400 w-8">2:</span><span class="text-gray-300">Cooperation, partnership, balance</span></div>
+                  <div class="flex"><span class="text-yellow-400 w-8">3:</span><span class="text-gray-300">Creativity, communication, joy</span></div>
+                  <div class="flex"><span class="text-yellow-400 w-8">4:</span><span class="text-gray-300">Stability, hard work, foundation</span></div>
+                  <div class="flex"><span class="text-yellow-400 w-8">5:</span><span class="text-gray-300">Freedom, adventure, change</span></div>
+                  <div class="flex"><span class="text-yellow-400 w-8">6:</span><span class="text-gray-300">Nurturing, responsibility, family</span></div>
+                  <div class="flex"><span class="text-yellow-400 w-8">7:</span><span class="text-gray-300">Spirituality, introspection, wisdom</span></div>
+                  <div class="flex"><span class="text-yellow-400 w-8">8:</span><span class="text-gray-300">Material success, power, achievement</span></div>
+                  <div class="flex"><span class="text-yellow-400 w-8">9:</span><span class="text-gray-300">Completion, humanitarian service, wisdom</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h3 class="text-2xl font-semibold mb-6 text-yellow-300 text-center">🎯 Types of Lucky Number Calculations</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <h4 class="font-semibold mb-2 text-yellow-400">Life Path Numbers</h4>
+                <p class="text-sm text-gray-300">Calculated from your birth date, revealing your life's purpose and natural talents</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <h4 class="font-semibold mb-2 text-yellow-400">Expression Numbers</h4>
+                <p class="text-sm text-gray-300">Derived from your full name, showing your natural abilities and potential</p>
+              </div>
+              <div class="text-center p-4 bg-white/5 rounded-lg">
+                <h4 class="font-semibold mb-2 text-yellow-400">Personal Year Numbers</h4>
+                <p class="text-sm text-gray-300">Based on current year cycles, indicating favorable timing for actions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="py-24 bg-gradient-to-b from-black to-yellow-900/20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-cinzel text-center mb-12 text-yellow-400">How to Use Lucky Numbers</h2>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-2xl font-semibold mb-4 text-yellow-300">🎰 Lottery and Gaming</h3>
+              <p class="text-gray-300 mb-4">
+                Use your lucky numbers for lottery tickets, casino games, and other games of chance. Many winners report using numerologically significant numbers that held personal meaning.
+              </p>
+              <ul class="text-gray-300 space-y-2">
+                <li>• Choose numbers based on birth dates</li>
+                <li>• Use recurring numbers from dreams</li>
+                <li>• Combine multiple lucky number types</li>
+                <li>• Play consistently with the same numbers</li>
+              </ul>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-2xl font-semibold mb-4 text-yellow-300">💼 Business and Career</h3>
+              <p class="text-gray-300 mb-4">
+                Incorporate lucky numbers into business decisions, launch dates, pricing strategies, and important meetings to enhance success potential.
+              </p>
+              <ul class="text-gray-300 space-y-2">
+                <li>• Choose auspicious launch dates</li>
+                <li>• Include lucky numbers in prices</li>
+                <li>• Schedule meetings on favorable days</li>
+                <li>• Use in phone numbers and addresses</li>
+              </ul>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-2xl font-semibold mb-4 text-yellow-300">💕 Love and Relationships</h3>
+              <p class="text-gray-300 mb-4">
+                Apply lucky numbers to relationship timing, anniversary dates, and compatibility analysis to strengthen romantic connections.
+              </p>
+              <ul class="text-gray-300 space-y-2">
+                <li>• Plan dates on lucky number days</li>
+                <li>• Choose anniversary dates wisely</li>
+                <li>• Use in proposal timing</li>
+                <li>• Analyze compatibility numbers</li>
+              </ul>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-2xl font-semibold mb-4 text-yellow-300">🏠 Home and Family</h3>
+              <p class="text-gray-300 mb-4">
+                Use lucky numbers when choosing addresses, moving dates, and making important family decisions to create harmonious living spaces.
+              </p>
+              <ul class="text-gray-300 space-y-2">
+                <li>• Select house numbers carefully</li>
+                <li>• Choose favorable moving dates</li>
+                <li>• Plan family events on lucky days</li>
+                <li>• Use in children's important dates</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cultural Perspectives Section -->
+    <section class="py-24 bg-gradient-to-b from-yellow-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-cinzel text-center mb-12 text-yellow-400">Lucky Numbers Around the World</h2>
+          
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">🏮 Chinese Culture</h3>
+              <p class="text-gray-300 mb-4">
+                In Chinese culture, the number 8 is considered extremely lucky because it sounds like the word for "prosperity." The number 9 represents longevity and completeness.
+              </p>
+              <div class="text-sm text-gray-400">
+                <strong>Lucky:</strong> 8, 9, 6<br>
+                <strong>Unlucky:</strong> 4 (sounds like "death")
+              </div>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">🎌 Japanese Tradition</h3>
+              <p class="text-gray-300 mb-4">
+                Japanese culture favors odd numbers for celebrations and even numbers for mourning. The number 7 is particularly lucky, associated with good fortune and happiness.
+              </p>
+              <div class="text-sm text-gray-400">
+                <strong>Lucky:</strong> 7, 3, 5<br>
+                <strong>Unlucky:</strong> 4, 9 (associated with death)
+              </div>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">🌍 Western Numerology</h3>
+              <p class="text-gray-300 mb-4">
+                Western traditions often consider 7 the luckiest number, while 13 is widely regarded as unlucky. The number 3 is also considered fortunate in many contexts.
+              </p>
+              <div class="text-sm text-gray-400">
+                <strong>Lucky:</strong> 7, 3, 21<br>
+                <strong>Unlucky:</strong> 13, 666
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips and Best Practices Section -->
+    <section class="py-24 bg-gradient-to-b from-black to-yellow-900/20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-cinzel text-center mb-12 text-yellow-400">Maximizing Your Lucky Numbers</h2>
+          
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <h3 class="text-2xl font-semibold mb-6 text-yellow-300">🎯 Best Practices</h3>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="text-lg font-semibold mb-3 text-yellow-300">✨ Enhancing Lucky Number Power</h4>
+                <ul class="text-gray-300 space-y-2">
+                  <li>• Use numbers consistently over time</li>
+                  <li>• Combine with positive visualization</li>
+                  <li>• Choose numbers that feel personally meaningful</li>
+                  <li>• Pay attention to recurring numbers in your life</li>
+                  <li>• Use during important decisions and events</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="text-lg font-semibold mb-3 text-yellow-300">⚠️ Common Mistakes</h4>
+                <ul class="text-gray-300 space-y-2">
+                  <li>• Changing numbers too frequently</li>
+                  <li>• Using numbers without personal connection</li>
+                  <li>• Relying solely on luck without action</li>
+                  <li>• Ignoring intuitive feelings about numbers</li>
+                  <li>• Using unlucky numbers in your culture</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <h3 class="text-2xl font-semibold mb-6 text-yellow-300">🌟 Timing and Cosmic Alignment</h3>
+            
+            <div class="space-y-4">
+              <div class="border-l-4 border-yellow-400 pl-6">
+                <h4 class="font-semibold text-yellow-300">Moon Phases</h4>
+                <p class="text-gray-300">New moon energy is ideal for setting intentions with your lucky numbers, while full moon amplifies their manifestation power.</p>
+              </div>
+              
+              <div class="border-l-4 border-yellow-400 pl-6">
+                <h4 class="font-semibold text-yellow-300">Personal Year Cycles</h4>
+                <p class="text-gray-300">Different numbers gain power during different personal year cycles. Calculate your personal year to maximize effectiveness.</p>
+              </div>
+              
+              <div class="border-l-4 border-yellow-400 pl-6">
+                <h4 class="font-semibold text-yellow-300">Daily Timing</h4>
+                <p class="text-gray-300">Morning hours (6-9 AM) and evening hours (6-9 PM) are considered most auspicious for using lucky numbers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-gradient-to-b from-yellow-900/20 to-black">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-cinzel text-center mb-12 text-yellow-400">Frequently Asked Questions</h2>
+          
+          <div class="space-y-6">
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">❓ How do I find my personal lucky numbers?</h3>
+              <p class="text-gray-300">
+                Personal lucky numbers can be calculated using your birth date, full name, and other significant dates in your life. Our generator uses numerological principles to create numbers that resonate with your unique energy signature. You can also pay attention to numbers that appear frequently in your life or hold special meaning for you.
+              </p>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">❓ Do lucky numbers really work?</h3>
+              <p class="text-gray-300">
+                Lucky numbers work through a combination of psychological confidence, increased awareness, and potential energetic resonance. While there's no scientific guarantee, many people report positive experiences when using numbers that feel personally meaningful. The key is choosing numbers that enhance your confidence and positive mindset.
+              </p>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">❓ Should I use the same lucky numbers all the time?</h3>
+              <p class="text-gray-300">
+                Consistency can be powerful, but it's also important to trust your intuition. Some people find success using the same numbers repeatedly, while others prefer to generate new numbers for different situations. Consider having a core set of personal lucky numbers while remaining open to new ones for specific purposes.
+              </p>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">❓ Can I have unlucky numbers?</h3>
+              <p class="text-gray-300">
+                Yes, certain numbers may feel less favorable to you personally or culturally. Pay attention to numbers that consistently appear during challenging times or that simply don't feel right. Avoid using numbers that make you feel uncomfortable or anxious, as negative associations can diminish their effectiveness.
+              </p>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">❓ How often should I generate new lucky numbers?</h3>
+              <p class="text-gray-300">
+                This depends on your personal preference and the purpose. For general life guidance, monthly or quarterly generation works well. For specific events or decisions, generate numbers as needed. Some people prefer daily numbers for immediate guidance, while others stick with annual numbers for consistency.
+              </p>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <h3 class="text-xl font-semibold mb-4 text-yellow-300">❓ Can I combine different types of lucky numbers?</h3>
+              <p class="text-gray-300">
+                Absolutely! Many people find success combining different types of lucky numbers. For example, you might use numerology-based numbers for important decisions and random lucky numbers for games of chance. The key is to choose combinations that feel harmonious and meaningful to you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="py-24 bg-gradient-to-b from-black to-yellow-900/20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-cinzel text-center mb-12 text-yellow-400">Explore More Fortune Tools</h2>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="random-number.html" class="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group">
+              <div class="text-4xl mb-4 text-center group-hover:scale-110 transition">🎲</div>
+              <h3 class="text-xl font-semibold mb-3 text-yellow-300">Random Number Generator</h3>
+              <p class="text-gray-300 text-sm">
+                Generate random numbers for any purpose with customizable ranges and quantities.
+              </p>
+            </a>
+
+            <a href="fortune-cookie.html" class="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group">
+              <div class="text-4xl mb-4 text-center group-hover:scale-110 transition">🥠</div>
+              <h3 class="text-xl font-semibold mb-3 text-yellow-300">Fortune Cookie</h3>
+              <p class="text-gray-300 text-sm">
+                Crack open digital fortune cookies for wisdom and inspirational messages.
+              </p>
+            </a>
+
+            <a href="tarot-reader.html" class="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group">
+              <div class="text-4xl mb-4 text-center group-hover:scale-110 transition">🃏</div>
+              <h3 class="text-xl font-semibold mb-3 text-yellow-300">Tarot Reading</h3>
+              <p class="text-gray-300 text-sm">
+                Discover your destiny through the ancient wisdom of tarot cards.
+              </p>
+            </a>
+
+            <a href="yes-no-astrology.html" class="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group">
+              <div class="text-4xl mb-4 text-center group-hover:scale-110 transition">⭐</div>
+              <h3 class="text-xl font-semibold mb-3 text-yellow-300">Astrology Oracle</h3>
+              <p class="text-gray-300 text-sm">
+                Receive cosmic guidance based on celestial movements and astrological wisdom.
+              </p>
+            </a>
+
+            <a href="crystal-ball.html" class="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group">
+              <div class="text-4xl mb-4 text-center group-hover:scale-110 transition">🔮</div>
+              <h3 class="text-xl font-semibold mb-3 text-yellow-300">Crystal Ball</h3>
+              <p class="text-gray-300 text-sm">
+                Peer into the mystical crystal ball for divine guidance and spiritual insights.
+              </p>
+            </a>
+
+            <a href="dice-roller.html" class="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group">
+              <div class="text-4xl mb-4 text-center group-hover:scale-110 transition">🎰</div>
+              <h3 class="text-xl font-semibold mb-3 text-yellow-300">Dice Roller</h3>
+              <p class="text-gray-300 text-sm">
+                Roll virtual dice for games, decisions, and random number generation.
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="py-12 bg-black border-t border-white/10">
       <div class="container mx-auto px-6">
@@ -309,7 +747,7 @@
         const numbersMeaning = document.getElementById('numbers-meaning');
         const additionalInfo = document.getElementById('additional-info');
         const numerologyInsight = document.getElementById('numerology-insight');
-        const timingAdvice = document.getElementById('timing-advice');
+        const timingAdviceElement = document.getElementById('timing-advice');
         const actionButtons = document.getElementById('action-buttons');
         const generateAgainBtn = document.getElementById('generate-again');
         const saveNumbersBtn = document.getElementById('save-numbers');
@@ -437,7 +875,7 @@
             const rootNumber = sum % 9 || 9;
             
             numerologyInsight.textContent = numerologyInsights[rootNumber];
-            timingAdvice.textContent = timingAdvice[Math.floor(Math.random() * timingAdvice.length)];
+            timingAdviceElement.textContent = timingAdvice[Math.floor(Math.random() * timingAdvice.length)];
             
             numbersDisplay.classList.remove('hidden');
             additionalInfo.classList.remove('hidden');
