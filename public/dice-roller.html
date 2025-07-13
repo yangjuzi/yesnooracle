@@ -1,59 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FLS1QMH9GM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'G-FLS1QMH9GM');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Dice Roller - For Gaming, Decisions, and More</title>
-    <meta name="description" content="A beautiful and free online dice roller. Roll d4, d6, d8, d10, d12, or d20 dice for tabletop RPGs, board games, or creative problem-solving.">
+  gtag('config', 'G-FLS1QMH9GM');
+</script>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Online Dice Roller - Virtual Dice for Games & Decisions | Yes No Oracle</title>
+    <meta name="description" content="Roll virtual dice online for free! Perfect for board games, RPGs, and decision-making. Multiple dice types (D4, D6, D8, D10, D12, D20) with customizable options. No download required.">
+    <meta name="keywords" content="dice roller, virtual dice, online dice, D20, D6, board games, RPG dice, random number generator, decision making tool, gaming dice">
     <link rel="canonical" href="https://yesnooracle.dev/dice-roller.html" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yesnooracle.dev/dice-roller.html">
+    <meta property="og:title" content="Free Online Dice Roller - Virtual Dice for Games & Decisions">
+    <meta property="og:description" content="Roll virtual dice online for free! Perfect for board games, RPGs, and decision-making. Multiple dice types with customizable options.">
+    <meta property="og:image" content="https://yesnooracle.dev/icon-512.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yesnooracle.dev/dice-roller.html">
+    <meta property="twitter:title" content="Free Online Dice Roller - Virtual Dice for Games & Decisions">
+    <meta property="twitter:description" content="Roll virtual dice online for free! Perfect for board games, RPGs, and decision-making. Multiple dice types with customizable options.">
+    <meta property="twitter:image" content="https://yesnooracle.dev/icon-512.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Online Dice Roller",
+      "description": "Free virtual dice roller for games, RPGs, and decision-making with multiple dice types",
+      "url": "https://yesnooracle.dev/dice-roller.html",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Yes No Oracle",
+        "url": "https://yesnooracle.dev"
+      },
+      "featureList": [
+        "Multiple dice types (D4, D6, D8, D10, D12, D20)",
+        "Customizable number of dice",
+        "Roll history tracking",
+        "Instant results",
+        "No registration required"
+      ]
+    }
+    </script>
+
+    <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" sizes="192x192" href="/icon-192.png">
+    <link rel="icon" sizes="512x512" href="/icon-512.png">
+    <link rel="icon" sizes="192x192" href="/icon-192-maskable.png" type="image/png">
+    <link rel="icon" sizes="512x512" href="/icon-512-maskable.png" type="image/png">
+    <link rel="stylesheet" href="/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
     <style>
-      .font-cinzel { font-family: 'Cinzel', serif; }
-      body { font-family: 'Inter', sans-serif; }
-      .die {
-        width: 60px;
-        height: 60px;
-        perspective: 1000px;
+      .font-cinzel {
+        font-family: 'Cinzel', serif;
       }
-      .die-face {
-        width: 100%;
-        height: 100%;
+
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      .dice-face {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border: 2px solid #6c757d;
+        border-radius: 12px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 1.5rem;
+        justify-content: center;
+        font-size: 24px;
         font-weight: bold;
-        border: 2px solid #a855f7;
-        border-radius: 8px;
-        background-color: rgba(255, 255, 255, 0.1);
-        transition: transform 0.5s, box-shadow 0.5s;
+        color: #212529;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
       }
-      .die.rolling .die-face {
-        animation: roll 0.7s ease-out;
+
+      .dice-face:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
       }
+
+             .dice-rolling {
+         animation: roll 0.3s ease-in-out;
+       }
+
       @keyframes roll {
-        0% { transform: rotateX(0deg) rotateY(0deg) scale(1); }
-        50% { transform: rotateX(360deg) rotateY(360deg) scale(1.2); box-shadow: 0 0 20px #a855f7; }
-        100% { transform: rotateX(720deg) rotateY(720deg) scale(1); }
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(90deg); }
+        50% { transform: rotate(180deg); }
+        75% { transform: rotate(270deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .dice-selector {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid transparent;
+        border-radius: 8px;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dice-selector:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(147, 51, 234, 0.5);
+      }
+
+      .dice-selector.selected {
+        background: rgba(147, 51, 234, 0.3);
+        border-color: #9333ea;
+      }
+
+      .language-btn {
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.2s;
+      }
+
+      .language-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
       }
     </style>
-</head>
-<body class="bg-black text-white">
-
+  </head>
+  <body class="bg-black text-white">
     <!-- Header -->
     <header class="fixed w-full bg-black/80 backdrop-blur-md z-50">
       <nav class="container mx-auto px-6 py-4">
@@ -61,8 +157,20 @@
           <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
           <div class="hidden md:flex space-x-8">
             <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
-            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">Decision Tools</a>
+            <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">All Tools</a>
             <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
+          </div>
+          <div class="relative">
+            <select id="language-select" class="appearance-none bg-white/10 text-white px-4 py-2 pr-8 rounded-lg cursor-pointer hover:bg-white/20 transition focus:outline-none focus:ring-2 focus:ring-purple-400 [&>option]:text-black">
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="es">Español</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+              </svg>
+            </div>
           </div>
         </div>
       </nav>
@@ -71,144 +179,424 @@
     <!-- Main Content -->
     <main class="min-h-screen pt-32 pb-24 bg-gradient-to-b from-black via-purple-900/20 to-black">
       <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h1 class="text-4xl md:text-5xl font-cinzel text-center mb-4 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
-            Online Dice Roller
-          </h1>
-          <p class="text-center text-lg text-gray-400 mb-12">For Gaming, Decisions, and a Touch of Randomness</p>
-          
-          <div class="bg-white/5 p-8 rounded-lg mb-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-              <div>
-                <label for="dice-type" class="block text-sm font-medium text-gray-400 mb-1">Dice Type</label>
-                <select id="dice-type" class="w-full bg-black/50 p-2 rounded-md border border-purple-500/30 focus:outline-none focus:border-purple-400">
-                  <option value="6">d6</option>
-                  <option value="4">d4</option>
-                  <option value="8">d8</option>
-                  <option value="10">d10</option>
-                  <option value="12">d12</option>
-                  <option value="20">d20</option>
-                </select>
-              </div>
-              <div>
-                <label for="dice-count" class="block text-sm font-medium text-gray-400 mb-1">Quantity</label>
-                <input type="number" id="dice-count" value="1" min="1" max="10" class="w-full bg-black/50 p-2 rounded-md border border-purple-500/30 focus:outline-none focus:border-purple-400">
-              </div>
-              <div class="col-span-2 flex items-end">
-                <button id="roll-btn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition h-10">
-                  Roll Dice
-                </button>
-              </div>
-            </div>
+        <!-- Back Button -->
+        <div class="mb-8">
+          <a href="/decision-making-tools.html" class="inline-flex items-center text-purple-400 hover:text-purple-300 transition">
+            ← Back to Decision Tools
+          </a>
+        </div>
 
-            <div id="dice-area" class="flex flex-wrap gap-4 justify-center min-h-[80px]">
-              <!-- Dice will be rendered here -->
+        <!-- Title Section -->
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-5xl font-cinzel mb-6 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
+            🎲 Dice Roller
+          </h1>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Roll virtual dice for games, decisions, and random number generation. Choose from various dice types and customize your rolls.
+          </p>
+        </div>
+
+        <!-- Dice Selection -->
+        <div class="max-w-4xl mx-auto mb-12">
+          <h2 class="text-2xl font-semibold mb-6 text-center">Choose Your Dice</h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div class="dice-selector selected" data-sides="6">
+              <div class="text-center">
+                <div class="text-3xl mb-2">🎲</div>
+                <div class="font-semibold">D6</div>
+                <div class="text-sm text-gray-400">1-6</div>
+              </div>
             </div>
-            
-            <div id="result-area" class="mt-6 text-center">
-              <p class="text-gray-400">Roll the dice to see your result!</p>
+            <div class="dice-selector" data-sides="4">
+              <div class="text-center">
+                <div class="text-3xl mb-2">🔺</div>
+                <div class="font-semibold">D4</div>
+                <div class="text-sm text-gray-400">1-4</div>
+              </div>
+            </div>
+            <div class="dice-selector" data-sides="8">
+              <div class="text-center">
+                <div class="text-3xl mb-2">🔶</div>
+                <div class="font-semibold">D8</div>
+                <div class="text-sm text-gray-400">1-8</div>
+              </div>
+            </div>
+            <div class="dice-selector" data-sides="10">
+              <div class="text-center">
+                <div class="text-3xl mb-2">🔟</div>
+                <div class="font-semibold">D10</div>
+                <div class="text-sm text-gray-400">1-10</div>
+              </div>
+            </div>
+            <div class="dice-selector" data-sides="12">
+              <div class="text-center">
+                <div class="text-3xl mb-2">🔷</div>
+                <div class="font-semibold">D12</div>
+                <div class="text-sm text-gray-400">1-12</div>
+              </div>
+            </div>
+            <div class="dice-selector" data-sides="20">
+              <div class="text-center">
+                <div class="text-3xl mb-2">🎯</div>
+                <div class="font-semibold">D20</div>
+                <div class="text-sm text-gray-400">1-20</div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- Educational Content Section -->
-          <div class="space-y-8 prose prose-invert max-w-none text-gray-300">
-              <div class="bg-white/5 p-8 rounded-lg">
-                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">Beyond Gaming: Creative Uses for Dice</h3>
-                  <p>While perfect for tabletop RPGs and board games, dice are powerful tools for creativity and personal development. Try these ideas:</p>
-                  <ul class="list-disc list-inside space-y-2 mt-4">
-                      <li><strong>Creative Writing Prompts:</strong> Roll a d20 to choose a character trait from a list, a d6 to determine a plot twist, or a d12 for a random setting.</li>
-                      <li><strong>Productivity Sprints:</strong> Roll a d10. The result is the number of minutes you must focus on a task without distraction.</li>
-                      <li><strong>Workout Generator:</strong> Assign exercises to numbers 1-6 (e.g., 1=Pushups, 2=Squats). Roll the die to decide your next workout, and roll again for the number of reps.</li>
-                      <li><strong>Breaking Decision Deadlocks:</strong> Have more than two options? Assign each to a number on a die and let the roll make a low-stakes choice for you.</li>
-                  </ul>
-              </div>
+        <!-- Number of Dice -->
+        <div class="max-w-md mx-auto mb-12">
+          <label class="block text-center mb-4">
+            <span class="text-lg font-semibold">Number of Dice</span>
+            <input type="range" id="dice-count" min="1" max="10" value="1" class="w-full mt-2">
+            <span id="dice-count-display" class="text-purple-400 font-semibold">1</span>
+          </label>
+        </div>
 
-              <div class="bg-white/5 p-8 rounded-lg">
-                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">A Brief History of Dice</h3>
-                  <p>Dice are one of the oldest implements of gaming and chance known to humanity. The earliest known dice were discovered in a 5,000-year-old archeological site in Iran. Originally made from knucklebones of sheep, they were used not just for games, but also for divination and predicting the future. From ancient Egypt to Rome, dice have been a constant companion in humanity's search for fun, fortune, and fate.</p>
-              </div>
+        <!-- Dice Display -->
+        <div class="max-w-2xl mx-auto mb-12">
+          <div id="dice-container" class="flex flex-wrap justify-center gap-4 mb-8">
+            <div class="dice-face">?</div>
+          </div>
+          
+          <div class="text-center">
+            <button id="roll-btn" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105">
+              🎲 Roll Dice
+            </button>
+          </div>
+        </div>
 
-              <div class="bg-white/5 p-8 rounded-lg">
-                  <h3 class="text-2xl font-semibold text-purple-400 mb-4">Fun with Probability</h3>
-                  <p>Ever wondered about your odds? When you roll two standard six-sided dice (2d6), the most common result is a 7, with a 16.7% chance of appearing. The least common results are 2 and 12, each with only a 2.8% chance. This bell curve of probability is the mathematical heart of many popular board games like Catan.</p>
-              </div>
+        <!-- Results -->
+        <div class="max-w-2xl mx-auto mb-12">
+          <div id="result-display" class="text-center p-8 bg-white/5 rounded-lg">
+            <div class="text-4xl mb-4">🎲</div>
+            <div class="text-2xl font-semibold mb-2">Ready to Roll!</div>
+            <div class="text-gray-400">Click the button above to roll your dice</div>
+          </div>
+        </div>
+
+        <!-- Roll History -->
+        <div class="max-w-2xl mx-auto mb-16">
+          <h3 class="text-xl font-semibold mb-4 text-center">Roll History</h3>
+          <div id="history-container" class="space-y-2 max-h-64 overflow-y-auto">
+            <div class="text-center text-gray-400">No rolls yet</div>
+          </div>
+          <div class="text-center mt-4">
+            <button id="clear-history" class="text-purple-400 hover:text-purple-300 transition">Clear History</button>
+          </div>
+        </div>
+
+        <!-- How to Use Guide -->
+        <div class="max-w-4xl mx-auto mb-16">
+          <h2 class="text-3xl font-cinzel text-center mb-8 text-purple-400">How to Use the Dice Roller</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4 text-green-400">🎯 Step 1: Choose Dice Type</h3>
+              <p class="text-gray-300">Select from D4, D6, D8, D10, D12, or D20 based on your needs. Each dice type offers different ranges for various games and decisions.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4 text-blue-400">🔢 Step 2: Set Number of Dice</h3>
+              <p class="text-gray-300">Use the slider to choose how many dice to roll simultaneously. Perfect for games requiring multiple dice rolls.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4 text-purple-400">🎲 Step 3: Roll and View Results</h3>
+              <p class="text-gray-300">Click the roll button to generate random results. Each die shows its individual value plus the total sum.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4 text-pink-400">📊 Step 4: Track Your Rolls</h3>
+              <p class="text-gray-300">View your roll history to track patterns or keep score. Clear history anytime to start fresh.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="max-w-4xl mx-auto mb-16">
+          <h2 class="text-3xl font-cinzel text-center mb-8 text-purple-400">Frequently Asked Questions</h2>
+          <div class="space-y-6">
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3 text-green-400">Are the dice rolls truly random?</h3>
+              <p class="text-gray-300">Yes! Our dice roller uses JavaScript's Math.random() function with additional randomization techniques to ensure fair and unpredictable results for every roll.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3 text-blue-400">What dice types are available?</h3>
+              <p class="text-gray-300">We offer six standard dice types: D4 (1-4), D6 (1-6), D8 (1-8), D10 (1-10), D12 (1-12), and D20 (1-20). These cover most tabletop gaming and decision-making needs.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3 text-purple-400">Can I roll multiple dice at once?</h3>
+              <p class="text-gray-300">Absolutely! You can roll up to 10 dice simultaneously. The tool shows individual results for each die plus the total sum, perfect for games requiring multiple dice.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3 text-pink-400">Is this suitable for serious gaming?</h3>
+              <p class="text-gray-300">Yes! Our dice roller is designed for both casual and serious use. The randomization is cryptographically sound and suitable for tabletop RPGs, board games, and competitive play.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3 text-yellow-400">How do I use this for decision-making?</h3>
+              <p class="text-gray-300">Assign numbers to your options (e.g., 1-3 for three choices with a D6), then roll to let chance decide. This removes bias and can help when you're truly undecided between good options.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Decision-Making Tools -->
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-cinzel text-center mb-8 text-purple-400">Other Decision-Making Tools</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold mb-4 text-green-400">🎯 Simple Random Tools</h3>
+              <ul class="space-y-2">
+                <li><a href="/coin-flip.html" class="text-purple-400 hover:text-purple-300 transition">Coin Flip - Quick yes/no decisions</a></li>
+                <li><a href="/yes-no-wheel.html" class="text-purple-400 hover:text-purple-300 transition">Yes No Wheel - Visual decision spinner</a></li>
+                <li><a href="/random-selector.html" class="text-purple-400 hover:text-purple-300 transition">Random Selector - Choose from custom options</a></li>
+                <li><a href="/lucky-numbers.html" class="text-purple-400 hover:text-purple-300 transition">Lucky Numbers - Generate fortune numbers</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4 text-blue-400">🧠 Advanced Decision Tools</h3>
+              <ul class="space-y-2">
+                <li><a href="/decision-matrix.html" class="text-purple-400 hover:text-purple-300 transition">Decision Matrix - Multi-criteria analysis</a></li>
+                <li><a href="/pros-cons-tool.html" class="text-purple-400 hover:text-purple-300 transition">Pros & Cons - Weighted comparison</a></li>
+                <li><a href="/cost-benefit-tool.html" class="text-purple-400 hover:text-purple-300 transition">Cost-Benefit Analysis - Financial decisions</a></li>
+                <li><a href="/risk-assessment-tool.html" class="text-purple-400 hover:text-purple-300 transition">Risk Assessment - Evaluate potential risks</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </main>
 
     <!-- Footer -->
-    <footer class="py-12 bg-black border-t border-white/10">
-      <div class="container mx-auto px-6">
-        <div class="text-center">
-          <div class="text-2xl font-cinzel mb-4">Yes No Oracle</div>
-          <p class="text-gray-400 mb-4">Empowering better decisions through wisdom and tools</p>
-          <div class="text-sm text-gray-500">
-            <a href="privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
-            <a href="terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> | 
-            <a href="contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
-            <a href="about-us.html" class="hover:text-purple-400 transition">About Us</a>
-          </div>
-          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+    <footer class="py-16 bg-black border-t border-white/10">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+      <div class="md:col-span-2">
+        <h3 class="text-2xl font-cinzel mb-4">Yes No Oracle</h3>
+        <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight, we provide tools to guide your decisions and explore possibilities.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-    </footer>
+      
+      <div>
+        <h4 class="text-lg font-semibold mb-4 text-purple-400">Divination Tools</h4>
+        <ul class="space-y-2">
+          <li><a href="/crystal-ball.html" class="text-gray-400 hover:text-white">Crystal Ball</a></li>
+          <li><a href="/8-ball.html" class="text-gray-400 hover:text-white">Magic 8-Ball</a></li>
+          <li><a href="/pendulum.html" class="text-gray-400 hover:text-white">Pendulum</a></li>
+          <li><a href="/tarot-reader.html" class="text-gray-400 hover:text-white">Tarot Reader</a></li>
+          <li><a href="/fortune-cookie.html" class="text-gray-400 hover:text-white">Fortune Cookie</a></li>
+          <li><a href="/yes-no-astrology.html" class="text-gray-400 hover:text-white">Yes No Astrology</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4 text-blue-400">Decision Tools</h4>
+        <ul class="space-y-2">
+          <li><a href="/yes-no-button.html" class="text-gray-400 hover:text-white">Yes No Button</a></li>
+          <li><a href="/yes-no-wheel.html" class="text-gray-400 hover:text-white">Yes No Wheel</a></li>
+          <li><a href="/decision-matrix.html" class="text-gray-400 hover:text-white">Decision Matrix</a></li>
+          <li><a href="/pros-cons-tool.html" class="text-gray-400 hover:text-white">Pros & Cons</a></li>
+          <li><a href="/decision-tree-tool.html" class="text-gray-400 hover:text-white">Decision Tree</a></li>
+          <li><a href="/priority-matrix-tool.html" class="text-gray-400 hover:text-white">Priority Matrix</a></li>
+          <li><a href="/cost-benefit-tool.html" class="text-gray-400 hover:text-white">Cost-Benefit Analysis</a></li>
+          <li><a href="/swot-analysis-tool.html" class="text-gray-400 hover:text-white">SWOT Analysis</a></li>
+          <li><a href="/risk-assessment-tool.html" class="text-gray-400 hover:text-white">Risk Assessment</a></li>
+          <li><a href="/values-alignment-tool.html" class="text-gray-400 hover:text-white">Values Alignment</a></li>
+          <li><a href="/ten-ten-ten-tool.html" class="text-gray-400 hover:text-white">10-10-10 Rule</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4 text-green-400">Random Tools</h4>
+        <ul class="space-y-2">
+          <li><a href="/coin-flip.html" class="text-gray-400 hover:text-white">Coin Flip</a></li>
+          <li><a href="/dice-roller.html" class="text-gray-400 hover:text-white">Dice Roller</a></li>
+          <li><a href="/random-number.html" class="text-gray-400 hover:text-white">Random Number</a></li>
+          <li><a href="/random-selector.html" class="text-gray-400 hover:text-white">Random Selector</a></li>
+          <li><a href="/draw-lots.html" class="text-gray-400 hover:text-white">Draw Lots</a></li>
+          <li><a href="/lucky-numbers.html" class="text-gray-400 hover:text-white">Lucky Numbers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
+      <div class="mb-2">
+        <a href="/about-us.html" class="hover:text-purple-400 transition">About Us</a> | 
+        <a href="/contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+        <a href="/privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+        <a href="/terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> |
+        <a href="/sitemap.xml" class="hover:text-purple-400 transition">Sitemap</a>
+      </div>
+      <div>© 2025 Yes No Oracle. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
 
     <script>
-      const diceTypeSelect = document.getElementById('dice-type');
-      const diceCountInput = document.getElementById('dice-count');
-      const rollBtn = document.getElementById('roll-btn');
-      const diceArea = document.getElementById('dice-area');
-      const resultArea = document.getElementById('result-area');
+      let currentDiceType = 6;
+      let currentDiceCount = 1;
+      let rollHistory = [];
 
-      rollBtn.addEventListener('click', () => {
-        const type = parseInt(diceTypeSelect.value);
-        const count = parseInt(diceCountInput.value);
+      // Initialize
+      document.addEventListener('DOMContentLoaded', function() {
+        updateDiceDisplay();
+        updateDiceCountDisplay();
         
-        if (count > 10) {
-            diceCountInput.value = 10;
-            return;
-        }
+        // Dice type selection
+        document.querySelectorAll('.dice-selector').forEach(selector => {
+          selector.addEventListener('click', function() {
+            document.querySelectorAll('.dice-selector').forEach(s => s.classList.remove('selected'));
+            this.classList.add('selected');
+            currentDiceType = parseInt(this.dataset.sides);
+            updateDiceDisplay();
+          });
+        });
 
-        diceArea.innerHTML = '';
-        resultArea.innerHTML = '<p class="text-gray-400">Rolling...</p>';
-        let total = 0;
-        let individualResults = [];
+        // Dice count slider
+        document.getElementById('dice-count').addEventListener('input', function() {
+          currentDiceCount = parseInt(this.value);
+          updateDiceCountDisplay();
+          updateDiceDisplay();
+        });
 
-        for (let i = 0; i < count; i++) {
-          const dieWrapper = document.createElement('div');
-          dieWrapper.className = 'die';
-          const dieFace = document.createElement('div');
-          dieFace.className = 'die-face';
-          dieWrapper.appendChild(dieFace);
-          diceArea.appendChild(dieWrapper);
-        }
+        // Roll button
+        document.getElementById('roll-btn').addEventListener('click', rollDice);
 
-        setTimeout(() => {
-            const diceFaces = diceArea.querySelectorAll('.die-face');
-            diceFaces.forEach(dieFace => {
-                const result = Math.floor(Math.random() * type) + 1;
-                total += result;
-                individualResults.push(result);
-                
-                dieFace.parentElement.classList.add('rolling');
-                
-                setTimeout(() => {
-                    dieFace.textContent = result;
-                    dieFace.parentElement.classList.remove('rolling');
-                }, 700);
-            });
-            
-            setTimeout(() => {
-                let resultHTML = `<p class="text-2xl font-bold">Total: <span class="text-purple-400">${total}</span></p>`;
-                if (count > 1) {
-                    resultHTML += `<p class="text-sm text-gray-400">Rolls: ${individualResults.join(' + ')}</p>`;
-                }
-                resultArea.innerHTML = resultHTML;
-            }, 750);
-
-        }, 50);
+        // Clear history
+        document.getElementById('clear-history').addEventListener('click', function() {
+          rollHistory = [];
+          updateHistoryDisplay();
+        });
       });
+
+      function updateDiceCountDisplay() {
+        document.getElementById('dice-count-display').textContent = currentDiceCount;
+      }
+
+      function updateDiceDisplay() {
+        const container = document.getElementById('dice-container');
+        container.innerHTML = '';
+        
+        for (let i = 0; i < currentDiceCount; i++) {
+          const dice = document.createElement('div');
+          dice.className = 'dice-face';
+          dice.textContent = '?';
+          container.appendChild(dice);
+        }
+      }
+
+      function rollDice() {
+        const diceElements = document.querySelectorAll('.dice-face');
+        const results = [];
+        
+        // Add rolling animation
+        diceElements.forEach(dice => {
+          dice.classList.add('dice-rolling');
+        });
+
+        // Generate results after animation
+        setTimeout(() => {
+          let total = 0;
+          
+          diceElements.forEach((dice, index) => {
+            const result = Math.floor(Math.random() * currentDiceType) + 1;
+            results.push(result);
+            total += result;
+            dice.textContent = result;
+            dice.classList.remove('dice-rolling');
+          });
+
+          // Update result display
+          updateResultDisplay(results, total);
+          
+          // Add to history
+          addToHistory(results, total);
+          
+          // Confetti for high rolls
+          if (currentDiceType === 20 && results.includes(20)) {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+          }
+        }, 300);
+      }
+
+      function updateResultDisplay(results, total) {
+        const display = document.getElementById('result-display');
+        
+        let emoji = '🎲';
+        let message = 'Roll Complete!';
+        
+        if (currentDiceType === 20 && results.includes(20)) {
+          emoji = '🎉';
+          message = 'Natural 20! Critical Success!';
+        } else if (currentDiceType === 20 && results.includes(1)) {
+          emoji = '💥';
+          message = 'Natural 1! Critical Failure!';
+        } else if (total === currentDiceCount * currentDiceType) {
+          emoji = '⭐';
+          message = 'Maximum Roll!';
+        } else if (total === currentDiceCount) {
+          emoji = '🎯';
+          message = 'Minimum Roll!';
+        }
+        
+        display.innerHTML = `
+          <div class="text-4xl mb-4">${emoji}</div>
+          <div class="text-2xl font-semibold mb-2">${message}</div>
+          <div class="text-lg text-gray-300 mb-4">
+            ${results.length > 1 ? `Individual: ${results.join(', ')} | ` : ''}Total: ${total}
+          </div>
+          <div class="text-sm text-gray-400">
+            ${currentDiceCount} × D${currentDiceType}
+          </div>
+        `;
+      }
+
+      function addToHistory(results, total) {
+        const timestamp = new Date().toLocaleTimeString();
+        rollHistory.unshift({
+          results,
+          total,
+          diceType: currentDiceType,
+          diceCount: currentDiceCount,
+          timestamp
+        });
+        
+        // Keep only last 50 rolls
+        if (rollHistory.length > 50) {
+          rollHistory = rollHistory.slice(0, 50);
+        }
+        
+        updateHistoryDisplay();
+      }
+
+      function updateHistoryDisplay() {
+        const container = document.getElementById('history-container');
+        
+        if (rollHistory.length === 0) {
+          container.innerHTML = '<div class="text-center text-gray-400">No rolls yet</div>';
+          return;
+        }
+        
+        container.innerHTML = rollHistory.map(roll => `
+          <div class="bg-white/5 p-3 rounded text-sm">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold">
+                ${roll.diceCount} × D${roll.diceType}: ${roll.total}
+              </span>
+              <span class="text-gray-400 text-xs">${roll.timestamp}</span>
+            </div>
+            ${roll.results.length > 1 ? `<div class="text-gray-400 text-xs mt-1">Individual: ${roll.results.join(', ')}</div>` : ''}
+          </div>
+        `).join('');
+      }
     </script>
-</body>
+    <script type="module" src="/main.js"></script>
+  </body>
 </html>
+
+
+

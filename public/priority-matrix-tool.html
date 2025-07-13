@@ -29,32 +29,84 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
-        aspect-ratio: 1;
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
       }
       
       @media (max-width: 768px) {
         .matrix-grid {
-          grid-template-columns: 1fr;
-          aspect-ratio: auto;
-          gap: 1.5rem;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.5rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .matrix-grid {
+          gap: 0.25rem;
         }
       }
       
       .matrix-quadrant {
-        min-height: 200px;
+        min-height: 280px;
         border: 2px solid;
         border-radius: 12px;
         padding: 1rem;
         position: relative;
       }
       
-      @media (max-width: 640px) {
+      @media (max-width: 768px) {
         .matrix-quadrant {
-          min-height: 150px;
-          padding: 0.75rem;
+          min-height: 200px;
+          padding: 0.5rem;
+          border-radius: 8px;
         }
+      }
+      
+      @media (max-width: 480px) {
+        .matrix-quadrant {
+          min-height: 180px;
+          padding: 0.4rem;
+          border-radius: 6px;
+        }
+      }
+      
+      /* Mobile-optimized text sizes */
+      @media (max-width: 480px) {
+        .quadrant-title {
+          font-size: 0.9rem !important;
+        }
+        
+        .quadrant-subtitle {
+          font-size: 0.7rem !important;
+        }
+        
+        .quadrant-description {
+          font-size: 0.65rem !important;
+        }
+        
+        .task-item {
+          font-size: 0.75rem !important;
+          padding: 0.3rem !important;
+        }
+        
+        .priority-badge {
+          font-size: 0.6rem !important;
+          padding: 0.2rem 0.4rem !important;
+        }
+        
+        .star-rating {
+          font-size: 0.6rem !important;
+        }
+      }
+      
+      /* Better mobile interaction */
+      .mobile-task-input {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+      }
+      
+      .mobile-friendly-btn {
+        min-height: 44px; /* iOS recommended touch target */
+        font-size: 14px;
       }
     </style>
   </head>
@@ -122,32 +174,32 @@
           </div>
 
           <!-- Task Input -->
-          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-4 sm:p-8 mb-8">
-            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-purple-400">Add a Task</h2>
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-3 sm:p-8 mb-6 sm:mb-8">
+            <h2 class="text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6 text-purple-400">Add a Task</h2>
             
-            <div class="space-y-4">
+            <div class="space-y-3 sm:space-y-4">
               <div>
-                <label class="block text-sm font-semibold mb-2">Task Description</label>
+                <label class="block text-xs sm:text-sm font-semibold mb-2">Task Description</label>
                 <input 
                   type="text" 
                   id="task-input"
                   placeholder="Enter your task..."
-                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white"
+                  class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 focus:outline-none focus:border-purple-400 transition text-white mobile-task-input"
                 >
               </div>
               
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label class="block text-sm font-semibold mb-2">Importance Level</label>
-                  <select id="importance-select" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 text-white">
+                  <label class="block text-xs sm:text-sm font-semibold mb-2">Importance Level</label>
+                  <select id="importance-select" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 text-white mobile-task-input">
                     <option value="high">High - Critical for goals</option>
                     <option value="low">Low - Nice to have</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-semibold mb-2">Urgency Level</label>
-                  <select id="urgency-select" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 text-white">
+                  <label class="block text-xs sm:text-sm font-semibold mb-2">Urgency Level</label>
+                  <select id="urgency-select" class="w-full bg-black/50 border border-purple-500/30 rounded-lg p-3 text-white mobile-task-input">
                     <option value="high">High - Time sensitive</option>
                     <option value="low">Low - Can wait</option>
                   </select>
@@ -156,7 +208,7 @@
               
               <button 
                 id="add-task"
-                class="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition"
+                class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition mobile-friendly-btn"
               >
                 Add Task to Matrix
               </button>
@@ -165,6 +217,17 @@
 
           <!-- Priority Matrix -->
           <div class="mb-8">
+            <!-- Mobile Usage Tip -->
+            <div class="md:hidden bg-blue-900/20 border border-blue-500/30 rounded-lg p-3 mb-4">
+              <div class="flex items-center mb-2">
+                <span class="text-blue-400 mr-2">📱</span>
+                <h3 class="text-sm font-semibold text-blue-300">Mobile Usage Tip</h3>
+              </div>
+              <p class="text-xs text-blue-200">
+                Tap and hold on any quadrant to scroll through tasks. Use the "Add Task" button above to categorize your activities.
+              </p>
+            </div>
+            
             <h2 class="text-xl sm:text-2xl font-cinzel text-center mb-8">Eisenhower Priority Matrix</h2>
             
             <!-- Matrix Labels -->
@@ -175,117 +238,300 @@
               </div>
             </div>
             
-            <div class="matrix-grid">
-              <!-- Quadrant 1: Important & Urgent -->
-              <div class="matrix-quadrant border-red-500 bg-red-900/20">
-                <div class="flex items-center mb-3">
-                  <span class="text-xl mr-2">🔥</span>
-                  <div>
-                    <h3 class="font-semibold text-red-400">DO FIRST</h3>
-                    <p class="text-xs text-red-300">Important & Urgent</p>
+            <!-- Matrix Container with Axis Labels -->
+            <div class="relative max-w-4xl mx-auto">
+              <!-- Enhanced Axis Labels -->
+              <!-- Left Axis Label (Importance) -->
+              <div class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full pr-6 hidden lg:block">
+                <div class="flex flex-col items-center space-y-3">
+                  <div class="text-xs font-semibold text-purple-400 transform -rotate-90 whitespace-nowrap">
+                    HIGH IMPORTANCE
+                  </div>
+                  <div class="flex flex-col items-center space-y-1">
+                    <div class="w-0.5 h-8 bg-gradient-to-b from-purple-400 to-gray-600"></div>
+                    <div class="text-purple-300 text-lg">↓</div>
+                    <div class="w-0.5 h-8 bg-gradient-to-b from-gray-600 to-gray-400"></div>
+                  </div>
+                  <div class="text-xs font-semibold text-gray-400 transform -rotate-90 whitespace-nowrap">
+                    LOW IMPORTANCE
                   </div>
                 </div>
-                <div id="quadrant-1" class="space-y-2 min-h-[100px] overflow-y-auto">
-                  <p class="text-gray-500 italic text-sm">Crisis management tasks</p>
-                </div>
-                <div class="mt-3 text-xs text-red-300">
-                  Count: <span id="count-1">0</span>
+              </div>
+              
+              <!-- Top Axis Label (Urgency) -->
+              <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full pb-6 hidden lg:block">
+                <div class="flex items-center space-x-3">
+                  <div class="text-xs font-semibold text-gray-400 whitespace-nowrap">
+                    LOW URGENCY
+                  </div>
+                  <div class="flex items-center space-x-1">
+                    <div class="h-0.5 w-8 bg-gradient-to-r from-gray-400 to-gray-600"></div>
+                    <div class="text-gray-300 text-lg">→</div>
+                    <div class="h-0.5 w-8 bg-gradient-to-r from-gray-600 to-red-400"></div>
+                  </div>
+                  <div class="text-xs font-semibold text-red-400 whitespace-nowrap">
+                    HIGH URGENCY
+                  </div>
                 </div>
               </div>
+              
+              <!-- Mobile Axis Labels -->
+              <div class="lg:hidden mb-6">
+                <div class="grid grid-cols-2 gap-4 text-center text-xs">
+                  <div class="bg-black/20 rounded-lg p-3">
+                    <div class="font-semibold text-purple-400 mb-1">IMPORTANCE</div>
+                    <div class="flex items-center justify-center space-x-2">
+                      <span class="text-purple-300">High</span>
+                      <span class="text-gray-300">→</span>
+                      <span class="text-gray-400">Low</span>
+                    </div>
+                  </div>
+                  <div class="bg-black/20 rounded-lg p-3">
+                    <div class="font-semibold text-red-400 mb-1">URGENCY</div>
+                    <div class="flex items-center justify-center space-x-2">
+                      <span class="text-gray-400">Low</span>
+                      <span class="text-gray-300">→</span>
+                      <span class="text-red-300">High</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Matrix Grid -->
+              <div class="matrix-grid">
+                <!-- Quadrant 1: Important & Urgent - CRISIS ZONE -->
+                <div class="matrix-quadrant border-2 border-red-500 bg-gradient-to-br from-red-900/30 to-red-800/20 relative overflow-hidden shadow-lg">
+                  <!-- Priority Badge -->
+                  <div class="absolute top-1 sm:top-2 right-1 sm:right-2 bg-red-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full z-20 priority-badge">
+                    #1
+                  </div>
+                  <!-- Background Pattern -->
+                  <div class="absolute inset-0 opacity-5">
+                    <div class="text-6xl sm:text-8xl text-red-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">🚨</div>
+                  </div>
+                  
+                  <div class="relative z-10">
+                    <div class="flex items-center mb-1 sm:mb-2 md:mb-3">
+                      <div class="bg-red-500/20 p-1 sm:p-1.5 md:p-2 rounded-lg mr-1 sm:mr-2 md:mr-3 border border-red-500/30">
+                        <span class="text-base sm:text-lg md:text-2xl">🔥</span>
+                      </div>
+                      <div>
+                        <h3 class="font-bold text-red-300 text-sm sm:text-base md:text-lg quadrant-title">DO FIRST</h3>
+                        <p class="text-xs text-red-200 quadrant-subtitle">Important & Urgent</p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-red-900/40 rounded-lg p-1.5 sm:p-2 md:p-3 mb-1 sm:mb-2 md:mb-3 border border-red-500/20">
+                      <p class="text-xs text-red-200 mb-0.5 sm:mb-1 quadrant-description">⚡ Crises requiring immediate attention</p>
+                      <p class="text-xs text-red-200 quadrant-description">🎯 Execute immediately, don't delay</p>
+                    </div>
+                    
+                    <div id="quadrant-1" class="space-y-1 sm:space-y-2 min-h-[40px] sm:min-h-[60px] md:min-h-[80px] overflow-y-auto">
+                      <p class="text-red-300 italic text-xs sm:text-sm">Add urgent important tasks...</p>
+                    </div>
+                    
+                    <div class="mt-1 sm:mt-2 md:mt-3 flex justify-between items-center">
+                      <span class="text-xs text-red-300">Tasks: <span id="count-1" class="font-bold">0</span></span>
+                      <div class="text-red-400 text-xs star-rating">★★★★★</div>
+                    </div>
+                  </div>
+                </div>
 
-              <!-- Quadrant 2: Important & Not Urgent -->
-              <div class="matrix-quadrant border-green-500 bg-green-900/20">
-                <div class="flex items-center mb-3">
-                  <span class="text-xl mr-2">📅</span>
-                  <div>
-                    <h3 class="font-semibold text-green-400">SCHEDULE</h3>
-                    <p class="text-xs text-green-300">Important & Not Urgent</p>
+                <!-- Quadrant 2: Important & Not Urgent - GROWTH ZONE -->
+                <div class="matrix-quadrant border-2 border-green-500 bg-gradient-to-br from-green-900/30 to-green-800/20 relative overflow-hidden shadow-lg">
+                  <!-- Priority Badge -->
+                  <div class="absolute top-1 sm:top-2 right-1 sm:right-2 bg-green-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full z-20 priority-badge">
+                    #2
+                  </div>
+                  <!-- Background Pattern -->
+                  <div class="absolute inset-0 opacity-5">
+                    <div class="text-6xl sm:text-8xl text-green-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">🌱</div>
+                  </div>
+                  
+                  <div class="relative z-10">
+                    <div class="flex items-center mb-1 sm:mb-2 md:mb-3">
+                      <div class="bg-green-500/20 p-1 sm:p-1.5 md:p-2 rounded-lg mr-1 sm:mr-2 md:mr-3 border border-green-500/30">
+                        <span class="text-base sm:text-lg md:text-2xl">📈</span>
+                      </div>
+                      <div>
+                        <h3 class="font-bold text-green-300 text-sm sm:text-base md:text-lg quadrant-title">SCHEDULE</h3>
+                        <p class="text-xs text-green-200 quadrant-subtitle">Important & Not Urgent</p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-green-900/40 rounded-lg p-1.5 sm:p-2 md:p-3 mb-1 sm:mb-2 md:mb-3 border border-green-500/20">
+                      <p class="text-xs text-green-200 mb-0.5 sm:mb-1 quadrant-description">🎯 Important for long-term goals</p>
+                      <p class="text-xs text-green-200 quadrant-description">📅 Plan and execute regularly</p>
+                    </div>
+                    
+                    <div id="quadrant-2" class="space-y-1 sm:space-y-2 min-h-[40px] sm:min-h-[60px] md:min-h-[80px] overflow-y-auto">
+                      <p class="text-green-300 italic text-xs sm:text-sm">Add important planning tasks...</p>
+                    </div>
+                    
+                    <div class="mt-1 sm:mt-2 md:mt-3 flex justify-between items-center">
+                      <span class="text-xs text-green-300">Tasks: <span id="count-2" class="font-bold">0</span></span>
+                      <div class="text-green-400 text-xs star-rating">★★★★☆</div>
+                    </div>
                   </div>
                 </div>
-                <div id="quadrant-2" class="space-y-2 min-h-[100px] overflow-y-auto">
-                  <p class="text-gray-500 italic text-sm">Planning & development</p>
-                </div>
-                <div class="mt-3 text-xs text-green-300">
-                  Count: <span id="count-2">0</span>
-                </div>
-              </div>
 
-              <!-- Quadrant 3: Not Important & Urgent -->
-              <div class="matrix-quadrant border-yellow-500 bg-yellow-900/20">
-                <div class="flex items-center mb-3">
-                  <span class="text-xl mr-2">📞</span>
-                  <div>
-                    <h3 class="font-semibold text-yellow-400">DELEGATE</h3>
-                    <p class="text-xs text-yellow-300">Not Important & Urgent</p>
+                <!-- Quadrant 3: Not Important & Urgent - DISTRACTION ZONE -->
+                <div class="matrix-quadrant border-2 border-yellow-500 bg-gradient-to-br from-yellow-900/30 to-yellow-800/20 relative overflow-hidden shadow-lg">
+                  <!-- Priority Badge -->
+                  <div class="absolute top-1 sm:top-2 right-1 sm:right-2 bg-yellow-500 text-black text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full z-20 priority-badge">
+                    #3
+                  </div>
+                  <!-- Background Pattern -->
+                  <div class="absolute inset-0 opacity-5">
+                    <div class="text-6xl sm:text-8xl text-yellow-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">⚡</div>
+                  </div>
+                  
+                  <div class="relative z-10">
+                    <div class="flex items-center mb-1 sm:mb-2 md:mb-3">
+                      <div class="bg-yellow-500/20 p-1 sm:p-1.5 md:p-2 rounded-lg mr-1 sm:mr-2 md:mr-3 border border-yellow-500/30">
+                        <span class="text-base sm:text-lg md:text-2xl">👥</span>
+                      </div>
+                      <div>
+                        <h3 class="font-bold text-yellow-300 text-sm sm:text-base md:text-lg quadrant-title">DELEGATE</h3>
+                        <p class="text-xs text-yellow-200 quadrant-subtitle">Not Important & Urgent</p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-yellow-900/40 rounded-lg p-1.5 sm:p-2 md:p-3 mb-1 sm:mb-2 md:mb-3 border border-yellow-500/20">
+                      <p class="text-xs text-yellow-200 mb-0.5 sm:mb-1 quadrant-description">⚠️ Seems urgent but not important</p>
+                      <p class="text-xs text-yellow-200 quadrant-description">🤝 Delegate to others or handle quickly</p>
+                    </div>
+                    
+                    <div id="quadrant-3" class="space-y-1 sm:space-y-2 min-h-[40px] sm:min-h-[60px] md:min-h-[80px] overflow-y-auto">
+                      <p class="text-yellow-300 italic text-xs sm:text-sm">Add delegation tasks...</p>
+                    </div>
+                    
+                    <div class="mt-1 sm:mt-2 md:mt-3 flex justify-between items-center">
+                      <span class="text-xs text-yellow-300">Tasks: <span id="count-3" class="font-bold">0</span></span>
+                      <div class="text-yellow-400 text-xs star-rating">★★☆☆☆</div>
+                    </div>
                   </div>
                 </div>
-                <div id="quadrant-3" class="space-y-2 min-h-[100px] overflow-y-auto">
-                  <p class="text-gray-500 italic text-sm">Interruptions & some calls</p>
-                </div>
-                <div class="mt-3 text-xs text-yellow-300">
-                  Count: <span id="count-3">0</span>
-                </div>
-              </div>
 
-              <!-- Quadrant 4: Not Important & Not Urgent -->
-              <div class="matrix-quadrant border-gray-500 bg-gray-900/20">
-                <div class="flex items-center mb-3">
-                  <span class="text-xl mr-2">🗑️</span>
-                  <div>
-                    <h3 class="font-semibold text-gray-400">ELIMINATE</h3>
-                    <p class="text-xs text-gray-300">Not Important & Not Urgent</p>
+                <!-- Quadrant 4: Not Important & Not Urgent - WASTE ZONE -->
+                <div class="matrix-quadrant border-2 border-gray-500 bg-gradient-to-br from-gray-900/30 to-gray-800/20 relative overflow-hidden shadow-lg">
+                  <!-- Priority Badge -->
+                  <div class="absolute top-1 sm:top-2 right-1 sm:right-2 bg-gray-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full z-20 priority-badge">
+                    #4
+                  </div>
+                  <!-- Background Pattern -->
+                  <div class="absolute inset-0 opacity-5">
+                    <div class="text-6xl sm:text-8xl text-gray-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">🗑️</div>
+                  </div>
+                  
+                  <div class="relative z-10">
+                    <div class="flex items-center mb-1 sm:mb-2 md:mb-3">
+                      <div class="bg-gray-500/20 p-1 sm:p-1.5 md:p-2 rounded-lg mr-1 sm:mr-2 md:mr-3 border border-gray-500/30">
+                        <span class="text-base sm:text-lg md:text-2xl">🚫</span>
+                      </div>
+                      <div>
+                        <h3 class="font-bold text-gray-300 text-sm sm:text-base md:text-lg quadrant-title">ELIMINATE</h3>
+                        <p class="text-xs text-gray-200 quadrant-subtitle">Not Important & Not Urgent</p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/40 rounded-lg p-1.5 sm:p-2 md:p-3 mb-1 sm:mb-2 md:mb-3 border border-gray-500/20">
+                      <p class="text-xs text-gray-200 mb-0.5 sm:mb-1 quadrant-description">🎮 No contribution to goals</p>
+                      <p class="text-xs text-gray-200 quadrant-description">✂️ Minimize or eliminate completely</p>
+                    </div>
+                    
+                    <div id="quadrant-4" class="space-y-1 sm:space-y-2 min-h-[40px] sm:min-h-[60px] md:min-h-[80px] overflow-y-auto">
+                      <p class="text-gray-300 italic text-xs sm:text-sm">Identify time wasters...</p>
+                    </div>
+                    
+                    <div class="mt-1 sm:mt-2 md:mt-3 flex justify-between items-center">
+                      <span class="text-xs text-gray-300">Tasks: <span id="count-4" class="font-bold">0</span></span>
+                      <div class="text-gray-400 text-xs star-rating">★☆☆☆☆</div>
+                    </div>
                   </div>
                 </div>
-                <div id="quadrant-4" class="space-y-2 min-h-[100px] overflow-y-auto">
-                  <p class="text-gray-500 italic text-sm">Time wasters & distractions</p>
-                </div>
-                <div class="mt-3 text-xs text-gray-300">
-                  Count: <span id="count-4">0</span>
-                </div>
               </div>
-            </div>
-            
-            <!-- Axis Labels -->
-            <div class="text-center mt-4">
-              <div class="text-sm text-gray-400 transform -rotate-90 absolute left-4 top-1/2 origin-center hidden sm:block">
-                High Importance ↑<br>↓ Low Importance
+              
+              <!-- Quadrant Legend -->
+              <div class="mt-8 bg-black/30 rounded-lg p-6 border border-white/10">
+                <h3 class="text-lg font-semibold mb-4 text-center text-white">Four Quadrant Understanding Guide</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div class="flex items-center space-x-3 p-3 bg-red-900/20 rounded-lg border border-red-500/30">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-xs">#1</div>
+                    <div>
+                      <span class="text-red-300 font-semibold">Crisis Management Zone</span>
+                      <p class="text-red-200 text-xs">Immediate action to resolve urgent issues</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3 p-3 bg-green-900/20 rounded-lg border border-green-500/30">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xs">#2</div>
+                    <div>
+                      <span class="text-green-300 font-semibold">Strategic Planning Zone</span>
+                      <p class="text-green-200 text-xs">Prevent crises, long-term development</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3 p-3 bg-yellow-900/20 rounded-lg border border-yellow-500/30">
+                    <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-black font-bold text-xs">#3</div>
+                    <div>
+                      <span class="text-yellow-300 font-semibold">Distraction Management Zone</span>
+                      <p class="text-yellow-200 text-xs">Learn to say no, delegate reasonably</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3 p-3 bg-gray-900/20 rounded-lg border border-gray-500/30">
+                    <div class="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-xs">#4</div>
+                    <div>
+                      <span class="text-gray-300 font-semibold">Time Black Hole Zone</span>
+                      <p class="text-gray-200 text-xs">Act decisively, save time</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-purple-900/20 rounded-lg border border-purple-500/30">
+                  <h4 class="text-purple-300 font-semibold mb-2">💡 Usage Suggestions</h4>
+                  <ul class="text-purple-200 text-sm space-y-1">
+                    <li>• Ideal state: Most time spent in Quadrant 2 (Strategic Planning)</li>
+                    <li>• Reduce Quadrant 1: Prevent crises through Quadrant 2 planning</li>
+                    <li>• Control Quadrant 3: Learn to identify and reject unimportant urgent matters</li>
+                    <li>• Eliminate Quadrant 4: Identify and reduce time-wasting activities</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Summary -->
-          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-6 sm:p-8 mb-8">
-            <h2 class="text-xl sm:text-2xl font-cinzel mb-6 text-center">Priority Summary</h2>
+          <div class="bg-white/5 backdrop-blur-lg rounded-lg p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+            <h2 class="text-lg sm:text-xl md:text-2xl font-cinzel mb-4 sm:mb-6 text-center">Priority Summary</h2>
             
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-              <div class="text-center p-4 bg-red-900/30 rounded-lg">
-                <div class="text-2xl mb-2">🔥</div>
-                <div class="text-sm font-semibold">Do First</div>
-                <div id="summary-1" class="text-xl font-bold text-red-400">0</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6">
+              <div class="text-center p-2 sm:p-4 bg-red-900/30 rounded-lg">
+                <div class="text-lg sm:text-2xl mb-1 sm:mb-2">🔥</div>
+                <div class="text-xs sm:text-sm font-semibold">Do First</div>
+                <div id="summary-1" class="text-lg sm:text-xl font-bold text-red-400">0</div>
               </div>
               
-              <div class="text-center p-4 bg-green-900/30 rounded-lg">
-                <div class="text-2xl mb-2">📅</div>
-                <div class="text-sm font-semibold">Schedule</div>
-                <div id="summary-2" class="text-xl font-bold text-green-400">0</div>
+              <div class="text-center p-2 sm:p-4 bg-green-900/30 rounded-lg">
+                <div class="text-lg sm:text-2xl mb-1 sm:mb-2">📅</div>
+                <div class="text-xs sm:text-sm font-semibold">Schedule</div>
+                <div id="summary-2" class="text-lg sm:text-xl font-bold text-green-400">0</div>
               </div>
               
-              <div class="text-center p-4 bg-yellow-900/30 rounded-lg">
-                <div class="text-2xl mb-2">📞</div>
-                <div class="text-sm font-semibold">Delegate</div>
-                <div id="summary-3" class="text-xl font-bold text-yellow-400">0</div>
+              <div class="text-center p-2 sm:p-4 bg-yellow-900/30 rounded-lg">
+                <div class="text-lg sm:text-2xl mb-1 sm:mb-2">📞</div>
+                <div class="text-xs sm:text-sm font-semibold">Delegate</div>
+                <div id="summary-3" class="text-lg sm:text-xl font-bold text-yellow-400">0</div>
               </div>
               
-              <div class="text-center p-4 bg-gray-900/30 rounded-lg">
-                <div class="text-2xl mb-2">🗑️</div>
-                <div class="text-sm font-semibold">Eliminate</div>
-                <div id="summary-4" class="text-xl font-bold text-gray-400">0</div>
+              <div class="text-center p-2 sm:p-4 bg-gray-900/30 rounded-lg">
+                <div class="text-lg sm:text-2xl mb-1 sm:mb-2">🗑️</div>
+                <div class="text-xs sm:text-sm font-semibold">Eliminate</div>
+                <div id="summary-4" class="text-lg sm:text-xl font-bold text-gray-400">0</div>
               </div>
             </div>
 
-            <div id="priority-insights" class="bg-black/30 p-4 sm:p-6 rounded-lg">
-              <h3 class="text-lg font-semibold mb-4">Priority Insights</h3>
-              <p class="text-gray-400">Add tasks to see priority distribution and recommendations...</p>
+            <div id="priority-insights" class="bg-black/30 p-3 sm:p-4 md:p-6 rounded-lg">
+              <h3 class="text-base sm:text-lg font-semibold mb-2 sm:mb-4">Priority Insights</h3>
+              <p class="text-gray-400 text-sm">Add tasks to see priority distribution and recommendations...</p>
             </div>
           </div>
 
@@ -364,11 +610,11 @@
           <!-- =================================== -->
 
           <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
-            <button id="clear-all" class="w-full sm:w-auto border border-gray-500 text-gray-300 px-4 sm:px-6 py-3 rounded-lg hover:bg-gray-500/20 transition text-sm sm:text-base">
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center mt-8">
+            <button id="clear-all" class="w-full sm:w-auto border border-gray-500 text-gray-300 px-4 sm:px-6 py-3 rounded-lg hover:bg-gray-500/20 transition text-sm sm:text-base mobile-friendly-btn">
               Clear All Tasks
             </button>
-            <button id="sample-tasks" class="w-full sm:w-auto border border-purple-400 text-purple-400 px-4 sm:px-6 py-3 rounded-lg hover:bg-purple-400/20 transition text-sm sm:text-base">
+            <button id="sample-tasks" class="w-full sm:w-auto border border-purple-400 text-purple-400 px-4 sm:px-6 py-3 rounded-lg hover:bg-purple-400/20 transition text-sm sm:text-base mobile-friendly-btn">
               Load Sample Tasks
             </button>
           </div>
@@ -404,15 +650,72 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 sm:py-12 bg-black border-t border-white/10">
-      <div class="container mx-auto px-4 sm:px-6">
-        <div class="text-center">
-          <div class="text-xl sm:text-2xl font-cinzel mb-4">Yes No Oracle</div>
-          <p class="text-gray-400 mb-4">Prioritize effectively with strategic clarity</p>
-          <div class="text-sm text-gray-500">© 2025 Yes No Oracle. All rights reserved.</div>
+    <footer class="py-16 bg-black border-t border-white/10">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+      <div class="md:col-span-2">
+        <h3 class="text-2xl font-cinzel mb-4">Yes No Oracle</h3>
+        <p class="text-gray-400 mb-4">Bridging ancient wisdom and modern insight, we provide tools to guide your decisions and explore possibilities.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-    </footer>
+      
+      <div>
+        <h4 class="text-lg font-semibold mb-4 text-purple-400">Divination Tools</h4>
+        <ul class="space-y-2">
+          <li><a href="/crystal-ball.html" class="text-gray-400 hover:text-white">Crystal Ball</a></li>
+          <li><a href="/8-ball.html" class="text-gray-400 hover:text-white">Magic 8-Ball</a></li>
+          <li><a href="/pendulum.html" class="text-gray-400 hover:text-white">Pendulum</a></li>
+          <li><a href="/tarot-reader.html" class="text-gray-400 hover:text-white">Tarot Reader</a></li>
+          <li><a href="/fortune-cookie.html" class="text-gray-400 hover:text-white">Fortune Cookie</a></li>
+          <li><a href="/yes-no-astrology.html" class="text-gray-400 hover:text-white">Yes No Astrology</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4 text-blue-400">Decision Tools</h4>
+        <ul class="space-y-2">
+          <li><a href="/yes-no-button.html" class="text-gray-400 hover:text-white">Yes No Button</a></li>
+          <li><a href="/yes-no-wheel.html" class="text-gray-400 hover:text-white">Yes No Wheel</a></li>
+          <li><a href="/decision-matrix.html" class="text-gray-400 hover:text-white">Decision Matrix</a></li>
+          <li><a href="/pros-cons-tool.html" class="text-gray-400 hover:text-white">Pros & Cons</a></li>
+          <li><a href="/decision-tree-tool.html" class="text-gray-400 hover:text-white">Decision Tree</a></li>
+          <li><a href="/priority-matrix-tool.html" class="text-gray-400 hover:text-white">Priority Matrix</a></li>
+          <li><a href="/cost-benefit-tool.html" class="text-gray-400 hover:text-white">Cost-Benefit Analysis</a></li>
+          <li><a href="/swot-analysis-tool.html" class="text-gray-400 hover:text-white">SWOT Analysis</a></li>
+          <li><a href="/risk-assessment-tool.html" class="text-gray-400 hover:text-white">Risk Assessment</a></li>
+          <li><a href="/values-alignment-tool.html" class="text-gray-400 hover:text-white">Values Alignment</a></li>
+          <li><a href="/ten-ten-ten-tool.html" class="text-gray-400 hover:text-white">10-10-10 Rule</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4 text-green-400">Random Tools</h4>
+        <ul class="space-y-2">
+          <li><a href="/coin-flip.html" class="text-gray-400 hover:text-white">Coin Flip</a></li>
+          <li><a href="/dice-roller.html" class="text-gray-400 hover:text-white">Dice Roller</a></li>
+          <li><a href="/random-number.html" class="text-gray-400 hover:text-white">Random Number</a></li>
+          <li><a href="/random-selector.html" class="text-gray-400 hover:text-white">Random Selector</a></li>
+          <li><a href="/draw-lots.html" class="text-gray-400 hover:text-white">Draw Lots</a></li>
+          <li><a href="/lucky-numbers.html" class="text-gray-400 hover:text-white">Lucky Numbers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
+      <div class="mb-2">
+        <a href="/about-us.html" class="hover:text-purple-400 transition">About Us</a> | 
+        <a href="/contact-us.html" class="hover:text-purple-400 transition">Contact Us</a> | 
+        <a href="/privacy-policy.html" class="hover:text-purple-400 transition">Privacy Policy</a> | 
+        <a href="/terms-of-service.html" class="hover:text-purple-400 transition">Terms of Service</a> |
+        <a href="/sitemap.xml" class="hover:text-purple-400 transition">Sitemap</a>
+      </div>
+      <div>© 2025 Yes No Oracle. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
 
     <script>
       let tasks = {
@@ -517,19 +820,19 @@
         }
 
         const taskItem = document.createElement('div');
-        taskItem.className = 'task-item bg-black/30 p-2 rounded flex justify-between items-center';
+        taskItem.className = 'task-item bg-black/30 p-2 sm:p-2.5 rounded flex justify-between items-center text-xs sm:text-sm';
         taskItem.textContent = text;
         
         const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'text-red-500 hover:text-red-400 text-xs ml-2';
-        deleteBtn.textContent = '✖';
+        deleteBtn.className = 'text-red-500 hover:text-red-400 text-sm sm:text-base ml-2 p-1 rounded hover:bg-red-500/20 transition min-w-[24px] min-h-[24px] flex items-center justify-center';
+        deleteBtn.textContent = '×';
         deleteBtn.onclick = () => {
           taskItem.remove();
           updateQuadrant(quadrantName);
           // Add placeholder back if quadrant is empty
           if (quadrantEl.children.length === 0) {
              const newPlaceholder = document.createElement('p');
-             newPlaceholder.className = 'text-gray-500 italic text-sm';
+             newPlaceholder.className = 'text-gray-500 italic text-xs sm:text-sm';
              let placeholderText = '';
               switch(quadrantName){
                   case 'do-first': placeholderText = 'Crisis management tasks'; break;
@@ -574,8 +877,29 @@
       });
 
       document.getElementById('sample-tasks').addEventListener('click', () => {
-        // Implementation of loading sample tasks
+        // Clear existing tasks first
+        document.getElementById('clear-all').click();
+        
+        // Add sample tasks to different quadrants
+        const sampleTasks = [
+          { text: 'Handle urgent client complaint', importance: 'high', urgency: 'high' },
+          { text: 'Prepare for tomorrow\'s presentation', importance: 'high', urgency: 'high' },
+          { text: 'Weekly team planning meeting', importance: 'high', urgency: 'low' },
+          { text: 'Learn new professional skills', importance: 'high', urgency: 'low' },
+          { text: 'Answer non-urgent emails', importance: 'low', urgency: 'high' },
+          { text: 'Attend optional department meeting', importance: 'low', urgency: 'high' },
+          { text: 'Browse social media', importance: 'low', urgency: 'low' },
+          { text: 'Reorganize desk drawer', importance: 'low', urgency: 'low' }
+        ];
+        
+        sampleTasks.forEach(task => {
+          addTaskToMatrix(task.text, task.importance, task.urgency);
+        });
       });
     </script>
   </body>
 </html>
+
+
+
+
