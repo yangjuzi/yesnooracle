@@ -37,7 +37,7 @@
     <meta property="twitter:image" content="https://yesnooracle.dev/icon-512.png">
     
     <link rel="canonical" href="https://yesnooracle.dev/coin-flip.html" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/favicon-CRIAOuLO.ico" type="image/x-icon">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -73,125 +73,122 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/tw.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <style>
       .font-cinzel { font-family: 'Cinzel', serif; }
       body { font-family: 'Inter', sans-serif; }
+
       .coin-container {
-        perspective: 1000px;
+        perspective: 900px;
         display: inline-block;
+        position: relative;
       }
+      .coin-stage { display: inline-block; margin: 20px; }
+      .coin-stage.tossing {
+        animation: coinToss var(--toss, 2.1s) cubic-bezier(.32,.6,.35,1);
+      }
+      @keyframes coinToss {
+        0%   { transform: translateY(0); }
+        16%  { transform: translateY(-52px); }
+        34%  { transform: translateY(10px); }
+        52%  { transform: translateY(-16px); }
+        68%  { transform: translateY(4px); }
+        82%  { transform: translateY(-6px); }
+        100% { transform: translateY(0); }
+      }
+      .coin-shadow {
+        position: absolute;
+        left: 50%;
+        bottom: 2px;
+        width: 168px;
+        height: 20px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(0,0,0,.6) 0%, rgba(0,0,0,.28) 45%, transparent 72%);
+        filter: blur(3px);
+      }
+      .coin-shadow.tossing {
+        animation: shadowToss var(--toss, 2.1s) cubic-bezier(.32,.6,.35,1);
+      }
+      @keyframes shadowToss {
+        0%   { transform: translateX(-50%) scale(1);    opacity: .95; }
+        16%  { transform: translateX(-50%) scale(.55); opacity: .4; }
+        34%  { transform: translateX(-50%) scale(1.1);  opacity: 1; }
+        52%  { transform: translateX(-50%) scale(.78); opacity: .55; }
+        68%  { transform: translateX(-50%) scale(1.02); opacity: .85; }
+        82%  { transform: translateX(-50%) scale(.9);   opacity: .7; }
+        100% { transform: translateX(-50%) scale(1);    opacity: .95; }
+      }
+
       .coin {
         width: 180px;
         height: 180px;
         position: relative;
         transform-style: preserve-3d;
-        transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        margin: 20px;
+        transform: rotateX(10deg);
+        will-change: transform;
       }
-      .coin.flipping {
-        animation: coinFlip 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      .coin-edge {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: repeating-conic-gradient(#e3c063 0deg 3deg, #7d5f16 3deg 6.5deg);
       }
-      
-      @keyframes coinFlip {
-        0% { transform: rotateY(0deg) rotateX(0deg); }
-        25% { transform: rotateY(900deg) rotateX(180deg); }
-        50% { transform: rotateY(1800deg) rotateX(360deg); }
-        75% { transform: rotateY(2700deg) rotateX(540deg); }
-        100% { transform: rotateY(3600deg) rotateX(720deg); }
-      }
-      
       .coin-face {
         position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
+        inset: 0;
         border-radius: 50%;
+        backface-visibility: hidden;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 2px;
+        padding: 1.4rem;
         text-align: center;
-        padding: 1rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #2d3748;
-        border: 6px solid #d4af37;
-        box-shadow: 
-          0 0 20px rgba(212, 175, 55, 0.4),
-          inset 0 0 20px rgba(255, 255, 255, 0.3),
-          inset 0 0 40px rgba(212, 175, 55, 0.2);
+        background:
+          radial-gradient(circle at 32% 26%, rgba(255,255,240,.85) 0%, rgba(255,255,240,0) 24%),
+          conic-gradient(from 210deg, #ecd07d, #b8892f 22%, #f2dc9a 47%, #a87e24 72%, #ecd07d),
+          radial-gradient(circle at 50% 46%, #e2bd5c 0%, #c69c39 68%, #a67c21 100%);
+        box-shadow:
+          inset 0 3px 5px rgba(255,246,214,.5),
+          inset 0 -5px 9px rgba(80,52,0,.5),
+          0 0 22px rgba(212,175,55,.3);
       }
-      
-      .coin-face.heads {
-        background: radial-gradient(circle at 30% 30%, 
-          #f7fafc 0%, 
-          #e2e8f0 25%, 
-          #cbd5e0 50%, 
-          #a0aec0 75%, 
-          #718096 100%);
-        transform: rotateY(0deg);
-      }
-      
-      .coin-face.tails {
-        background: radial-gradient(circle at 30% 30%, 
-          #fed7d7 0%, 
-          #feb2b2 25%, 
-          #fc8181 50%, 
-          #f56565 75%, 
-          #e53e3e 100%);
-        transform: rotateY(180deg);
-      }
-      
+      .coin-face.heads { transform: translateZ(8px); }
+      .coin-face.tails { transform: rotateY(180deg) translateZ(8px); }
       .coin-face::before {
         content: '';
         position: absolute;
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
+        inset: 7px;
         border-radius: 50%;
-        border: 2px solid rgba(212, 175, 55, 0.3);
+        border: 3px solid rgba(125,95,22,.5);
+        box-shadow:
+          inset 0 1px 1px rgba(255,244,200,.55),
+          0 1px 1px rgba(70,45,0,.45);
         pointer-events: none;
       }
-      
-      .coin-face::after {
-        content: '';
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        right: 20px;
-        bottom: 20px;
-        border-radius: 50%;
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        pointer-events: none;
+      .coin-emblem {
+        width: 46px;
+        height: 46px;
+        flex-shrink: 0;
+        filter: drop-shadow(0 1px 0 rgba(255,244,200,.55)) drop-shadow(0 -1px 1px rgba(70,45,0,.4));
       }
-      
-      .coin:hover {
-        filter: drop-shadow(0 10px 20px rgba(212, 175, 55, 0.3));
+      .coin-label {
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: .95rem;
+        letter-spacing: .1em;
+        line-height: 1.15;
+        max-width: 78%;
+        color: #6d5210;
+        text-shadow:
+          0 1px 0 rgba(255,246,210,.6),
+          0 -1px 1px rgba(70,45,0,.45);
+        overflow-wrap: break-word;
       }
-      
-      .flip-animation {
-        animation: flipCoin 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-      
-      @keyframes flipCoin {
-        0% { 
-          transform: rotateY(0deg) rotateX(0deg) translateY(0px);
-        }
-        25% { 
-          transform: rotateY(1080deg) rotateX(360deg) translateY(-30px);
-        }
-        50% { 
-          transform: rotateY(2160deg) rotateX(720deg) translateY(-20px);
-        }
-        75% { 
-          transform: rotateY(3240deg) rotateX(1080deg) translateY(-10px);
-        }
-        100% { 
-          transform: rotateY(4320deg) rotateX(1440deg) translateY(0px);
-        }
-      }
+      .coin:hover { filter: drop-shadow(0 10px 20px rgba(212,175,55,.3)); }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -202,7 +199,7 @@
         <div class="flex justify-between items-center">
           <div class="text-2xl font-cinzel font-bold">Yes No Oracle</div>
           <div class="hidden md:flex space-x-8">
-            <a href="/index.html" class="hover:text-purple-400 transition">Home</a>
+            <a href="/" class="hover:text-purple-400 transition">Home</a>
             <a href="/decision-making-tools.html" class="hover:text-purple-400 transition">All Tools</a>
             <a href="/blog.html" class="hover:text-purple-400 transition">Blog</a>
           </div>
@@ -233,9 +230,32 @@
 
             <div class="text-center">
                 <div class="coin-container inline-block mb-6">
-                  <div id="coin" class="coin">
-                    <div id="heads-face" class="coin-face heads">HEADS</div>
-                    <div id="tails-face" class="coin-face tails">TAILS</div>
+                  <div class="coin-shadow" id="coin-shadow"></div>
+                  <div class="coin-stage" id="coin-stage">
+                    <div id="coin" class="coin">
+                      <div class="coin-face heads" id="heads-face">
+                        <svg class="coin-emblem" viewBox="0 0 64 64" aria-hidden="true">
+                          <circle cx="32" cy="32" r="11" fill="#dfc06a" stroke="#7d5f16" stroke-width="2.5"/>
+                          <g stroke="#a8842c" stroke-width="3" stroke-linecap="round">
+                            <line x1="32" y1="6" x2="32" y2="14"/>
+                            <line x1="32" y1="50" x2="32" y2="58"/>
+                            <line x1="6" y1="32" x2="14" y2="32"/>
+                            <line x1="50" y1="32" x2="58" y2="32"/>
+                            <line x1="13.6" y1="13.6" x2="19.3" y2="19.3"/>
+                            <line x1="44.7" y1="44.7" x2="50.4" y2="50.4"/>
+                            <line x1="13.6" y1="50.4" x2="19.3" y2="44.7"/>
+                            <line x1="44.7" y1="19.3" x2="50.4" y2="13.6"/>
+                          </g>
+                        </svg>
+                        <span class="coin-label" id="heads-label">HEADS</span>
+                      </div>
+                      <div class="coin-face tails" id="tails-face">
+                        <svg class="coin-emblem" viewBox="0 0 64 64" aria-hidden="true">
+                          <path d="M32 8l6.6 15.6L55 25.4 42.8 36.7l3.5 16.8L32 45.6 17.7 53.5l3.5-16.8L9 25.4l16.4-1.8z" fill="#dfc06a" stroke="#7d5f16" stroke-width="2.5" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="coin-label" id="tails-label">TAILS</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <button id="flip-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition text-lg">
@@ -369,9 +389,9 @@
       <div>
         <h4 class="text-lg font-semibold mb-4 text-purple-400">Divination Tools</h4>
         <ul class="space-y-2">
-          <li><a href="/crystal-ball.html" class="text-gray-400 hover:text-white">Crystal Ball</a></li>
+          <li><a href="/crystal-ball" class="text-gray-400 hover:text-white">Crystal Ball</a></li>
           <li><a href="/8-ball.html" class="text-gray-400 hover:text-white">Magic 8-Ball</a></li>
-          <li><a href="/pendulum.html" class="text-gray-400 hover:text-white">Pendulum</a></li>
+          <li><a href="/pendulum" class="text-gray-400 hover:text-white">Pendulum</a></li>
           <li><a href="/tarot-reader.html" class="text-gray-400 hover:text-white">Tarot Reader</a></li>
           <li><a href="/fortune-cookie.html" class="text-gray-400 hover:text-white">Fortune Cookie</a></li>
           <li><a href="/yes-no-astrology.html" class="text-gray-400 hover:text-white">Yes No Astrology</a></li>
@@ -381,7 +401,7 @@
       <div>
         <h4 class="text-lg font-semibold mb-4 text-blue-400">Decision Tools</h4>
         <ul class="space-y-2">
-          <li><a href="/yes-no-button.html" class="text-gray-400 hover:text-white">Yes No Button</a></li>
+          <li><a href="/yes-no-button" class="text-gray-400 hover:text-white">Yes No Button</a></li>
           <li><a href="/yes-no-wheel.html" class="text-gray-400 hover:text-white">Yes No Wheel</a></li>
           <li><a href="/decision-matrix.html" class="text-gray-400 hover:text-white">Decision Matrix</a></li>
           <li><a href="/pros-cons-tool.html" class="text-gray-400 hover:text-white">Pros & Cons</a></li>
@@ -421,17 +441,31 @@
 </footer>
     <script>
       const coin = document.getElementById('coin');
+      const stage = document.getElementById('coin-stage');
+      const shadow = document.getElementById('coin-shadow');
+      const container = document.querySelector('.coin-container');
       const flipBtn = document.getElementById('flip-btn');
       const resultDiv = document.getElementById('result');
       const headsInput = document.getElementById('heads-input');
       const tailsInput = document.getElementById('tails-input');
-      const headsFace = document.getElementById('heads-face');
-      const tailsFace = document.getElementById('tails-face');
+      const headsLabel = document.getElementById('heads-label');
+      const tailsLabel = document.getElementById('tails-label');
       let isFlipping = false;
+      let currentY = 0;
+
+      // Build the reeded edge (coin thickness) between the two faces
+      (function buildEdge() {
+        for (let z = -7; z <= 7; z++) {
+          const edge = document.createElement('div');
+          edge.className = 'coin-edge';
+          edge.style.transform = 'translateZ(' + z + 'px)';
+          coin.appendChild(edge);
+        }
+      })();
 
       function updateFaces() {
-          headsFace.textContent = headsInput.value.trim() || 'HEADS';
-          tailsFace.textContent = tailsInput.value.trim() || 'TAILS';
+        headsLabel.textContent = headsInput.value.trim() || 'HEADS';
+        tailsLabel.textContent = tailsInput.value.trim() || 'TAILS';
       }
 
       headsInput.addEventListener('input', updateFaces);
@@ -444,36 +478,39 @@
         resultDiv.innerHTML = '&nbsp;';
         flipBtn.textContent = 'Flipping...';
         flipBtn.disabled = true;
-        
-        // 重置硬币状�?
-        coin.style.transform = 'rotateY(0deg) rotateX(0deg)';
-        coin.classList.remove('flip-animation');
 
         const isHeads = Math.random() < 0.5;
-        
-        // 添加翻转动画
-        setTimeout(() => {
-          coin.classList.add('flip-animation');
-          
-          // 多次旋转，最后停在正确的�?
-          const baseRotationY = 4320; // 12�?
-          const baseRotationX = 1440; // 4�?
-          const finalRotationY = isHeads ? baseRotationY : baseRotationY + 180;
-          
-          coin.style.transform = `rotateY(${finalRotationY}deg) rotateX(${baseRotationX}deg)`;
-        }, 50);
 
-        // 动画完成后显示结�?
+        // Spin forward from wherever the coin currently rests (no snap-back)
+        const target = isHeads ? 0 : 180;
+        const currentMod = ((currentY % 360) + 360) % 360;
+        const delta = (target - currentMod + 360) % 360 + (9 + Math.floor(Math.random() * 3)) * 360;
+        currentY += delta;
+
+        const duration = 2000 + Math.random() * 300;
+        container.style.setProperty('--toss', duration + 'ms');
+
+        coin.style.transition = 'transform ' + duration + 'ms cubic-bezier(.16,.68,.22,1)';
+        requestAnimationFrame(() => {
+          coin.style.transform = 'rotateX(10deg) rotateY(' + currentY + 'deg)';
+        });
+
+        stage.classList.remove('tossing');
+        shadow.classList.remove('tossing');
+        void stage.offsetWidth;
+        stage.classList.add('tossing');
+        shadow.classList.add('tossing');
+
         setTimeout(() => {
           isFlipping = false;
           flipBtn.textContent = 'Flip Coin';
           flipBtn.disabled = false;
-          coin.classList.remove('flip-animation');
-          
+          stage.classList.remove('tossing');
+          shadow.classList.remove('tossing');
+
           const winnerText = isHeads ? (headsInput.value.trim() || 'HEADS') : (tailsInput.value.trim() || 'TAILS');
           resultDiv.innerHTML = `<span class="block">The result is:</span><strong class="text-purple-400">${winnerText}</strong>`;
-          
-          // 添加结果动画效果
+
           if (window.confetti) {
             confetti({
               particleCount: 100,
@@ -481,9 +518,9 @@
               origin: { y: 0.6 }
             });
           }
-        }, 1550);
+        }, duration + 150);
       });
-      
+
       updateFaces();
     </script>
     <!-- AdSense自动广告配置 -->

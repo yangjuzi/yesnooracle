@@ -1,0 +1,606 @@
+0 verbose cli C:\Users\12057\.workbuddy\binaries\node\versions\22.22.2\node.exe C:\Users\12057\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.7
+2 info using node@v22.22.2
+3 silly config load:file:C:\Users\12057\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\.npmrc
+5 silly config load:file:C:\Users\12057\.npmrc
+6 silly config load:file:C:\Users\12057\.workbuddy\binaries\node\versions\22.22.2\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--no-audit" "--no-fund" "--cache" "./.npm-cache" "--registry" "https://registry.npmmirror.com"
+9 verbose logfile logs-max:10 dir:C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\.npm-cache\_logs\2026-10-11T01_02_07_108Z-
+10 verbose logfile C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\.npm-cache\_logs\2026-10-11T01_02_07_108Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly fetch manifest canvas-confetti@^1.9.3
+15 silly packumentCache full:https://registry.npmmirror.com/canvas-confetti cache-miss
+16 http fetch GET 200 https://registry.npmmirror.com/canvas-confetti 679ms (cache revalidated)
+17 silly packumentCache full:https://registry.npmmirror.com/canvas-confetti set size:126028 disposed:false
+18 silly placeDep ROOT canvas-confetti@1.9.4 OK for: yesnooracle@1.0.0 want: ^1.9.3
+19 silly fetch manifest csstype@^3.2.2
+20 silly packumentCache full:https://registry.npmmirror.com/csstype cache-miss
+21 http cache https://registry.npmmirror.com/csstype 13ms (cache hit)
+22 silly packumentCache full:https://registry.npmmirror.com/csstype set size:227919 disposed:false
+23 silly placeDep ROOT csstype@3.2.3 OK for: @types/react@19.3.0 want: ^3.2.2
+24 silly fetch manifest @next/env@15.5.27
+25 silly packumentCache full:https://registry.npmmirror.com/@next%2fenv cache-miss
+26 http cache https://registry.npmmirror.com/@next%2fenv 30ms (cache hit)
+27 silly packumentCache full:https://registry.npmmirror.com/@next%2fenv set size:7723056 disposed:false
+28 silly fetch manifest @next/swc-darwin-arm64@15.5.27
+29 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-darwin-arm64 cache-miss
+30 http cache https://registry.npmmirror.com/@next%2fswc-darwin-arm64 30ms (cache hit)
+31 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-darwin-arm64 set size:5958049 disposed:false
+32 silly fetch manifest @next/swc-darwin-x64@15.5.27
+33 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-darwin-x64 cache-miss
+34 http cache https://registry.npmmirror.com/@next%2fswc-darwin-x64 28ms (cache hit)
+35 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-darwin-x64 set size:5896511 disposed:false
+36 silly fetch manifest @next/swc-linux-arm64-gnu@15.5.27
+37 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-linux-arm64-gnu cache-miss
+38 http cache https://registry.npmmirror.com/@next%2fswc-linux-arm64-gnu 32ms (cache hit)
+39 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-linux-arm64-gnu set size:5881251 disposed:false
+40 silly fetch manifest @next/swc-linux-arm64-musl@15.5.27
+41 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-linux-arm64-musl cache-miss
+42 http cache https://registry.npmmirror.com/@next%2fswc-linux-arm64-musl 27ms (cache hit)
+43 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-linux-arm64-musl set size:5899513 disposed:false
+44 silly fetch manifest @next/swc-linux-x64-gnu@15.5.27
+45 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-linux-x64-gnu cache-miss
+46 http cache https://registry.npmmirror.com/@next%2fswc-linux-x64-gnu 30ms (cache hit)
+47 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-linux-x64-gnu set size:6011235 disposed:false
+48 silly fetch manifest @next/swc-linux-x64-musl@15.5.27
+49 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-linux-x64-musl cache-miss
+50 http cache https://registry.npmmirror.com/@next%2fswc-linux-x64-musl 30ms (cache hit)
+51 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-linux-x64-musl set size:5832981 disposed:false
+52 silly fetch manifest @next/swc-win32-arm64-msvc@15.5.27
+53 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-win32-arm64-msvc cache-miss
+54 http cache https://registry.npmmirror.com/@next%2fswc-win32-arm64-msvc 30ms (cache hit)
+55 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-win32-arm64-msvc set size:5862804 disposed:false
+56 silly fetch manifest @next/swc-win32-x64-msvc@15.5.27
+57 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-win32-x64-msvc cache-miss
+58 http cache https://registry.npmmirror.com/@next%2fswc-win32-x64-msvc 29ms (cache hit)
+59 silly packumentCache full:https://registry.npmmirror.com/@next%2fswc-win32-x64-msvc set size:5984403 disposed:false
+60 silly placeDep ROOT @next/env@15.5.27 OK for: next@15.5.27 want: 15.5.27
+61 silly placeDep ROOT @next/swc-darwin-arm64@15.5.27 OK for: next@15.5.27 want: 15.5.27
+62 silly placeDep ROOT @next/swc-darwin-x64@15.5.27 OK for: next@15.5.27 want: 15.5.27
+63 silly placeDep ROOT @next/swc-linux-arm64-gnu@15.5.27 OK for: next@15.5.27 want: 15.5.27
+64 silly placeDep ROOT @next/swc-linux-arm64-musl@15.5.27 OK for: next@15.5.27 want: 15.5.27
+65 silly placeDep ROOT @next/swc-linux-x64-gnu@15.5.27 OK for: next@15.5.27 want: 15.5.27
+66 silly placeDep ROOT @next/swc-linux-x64-musl@15.5.27 OK for: next@15.5.27 want: 15.5.27
+67 silly placeDep ROOT @next/swc-win32-arm64-msvc@15.5.27 OK for: next@15.5.27 want: 15.5.27
+68 silly placeDep ROOT @next/swc-win32-x64-msvc@15.5.27 OK for: next@15.5.27 want: 15.5.27
+69 silly fetch manifest @img/colour@^1.1.0
+70 silly packumentCache full:https://registry.npmmirror.com/@img%2fcolour cache-miss
+71 http cache https://registry.npmmirror.com/@img%2fcolour 13ms (cache hit)
+72 silly packumentCache full:https://registry.npmmirror.com/@img%2fcolour set size:10232 disposed:false
+73 silly fetch manifest @img/sharp-darwin-arm64@0.35.5
+74 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-darwin-arm64 cache-miss
+75 http cache https://registry.npmmirror.com/@img%2fsharp-darwin-arm64 12ms (cache hit)
+76 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-darwin-arm64 set size:124732 disposed:false
+77 silly fetch manifest @img/sharp-darwin-x64@0.35.5
+78 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-darwin-x64 cache-miss
+79 http cache https://registry.npmmirror.com/@img%2fsharp-darwin-x64 11ms (cache hit)
+80 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-darwin-x64 set size:123234 disposed:false
+81 silly fetch manifest @img/sharp-freebsd-wasm32@0.35.5
+82 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-freebsd-wasm32 cache-miss
+83 http cache https://registry.npmmirror.com/@img%2fsharp-freebsd-wasm32 11ms (cache hit)
+84 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-freebsd-wasm32 set size:57331 disposed:false
+85 silly fetch manifest @img/sharp-libvips-darwin-arm64@1.3.4
+86 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-arm64 cache-miss
+87 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-arm64 12ms (cache hit)
+88 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-arm64 set size:101532 disposed:false
+89 silly fetch manifest @img/sharp-libvips-darwin-x64@1.3.4
+90 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-x64 cache-miss
+91 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-x64 11ms (cache hit)
+92 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-x64 set size:100517 disposed:false
+93 silly fetch manifest @img/sharp-libvips-linux-arm@1.3.4
+94 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm cache-miss
+95 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm 13ms (cache hit)
+96 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm set size:108548 disposed:false
+97 silly fetch manifest @img/sharp-libvips-linux-arm64@1.3.4
+98 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm64 cache-miss
+99 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm64 12ms (cache hit)
+100 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm64 set size:105431 disposed:false
+101 silly fetch manifest @img/sharp-libvips-linux-ppc64@1.3.4
+102 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-ppc64 cache-miss
+103 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-linux-ppc64 13ms (cache hit)
+104 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-ppc64 set size:89393 disposed:false
+105 silly fetch manifest @img/sharp-libvips-linux-riscv64@1.3.4
+106 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-riscv64 cache-miss
+107 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-linux-riscv64 11ms (cache hit)
+108 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-riscv64 set size:74633 disposed:false
+109 silly fetch manifest @img/sharp-libvips-linux-s390x@1.3.4
+110 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-s390x cache-miss
+111 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-linux-s390x 10ms (cache hit)
+112 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-s390x set size:99017 disposed:false
+113 silly fetch manifest @img/sharp-libvips-linux-x64@1.3.4
+114 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-x64 cache-miss
+115 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-linux-x64 12ms (cache hit)
+116 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-x64 set size:104091 disposed:false
+117 silly fetch manifest @img/sharp-libvips-linuxmusl-arm64@1.3.4
+118 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linuxmusl-arm64 cache-miss
+119 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-linuxmusl-arm64 14ms (cache hit)
+120 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linuxmusl-arm64 set size:104596 disposed:false
+121 silly fetch manifest @img/sharp-libvips-linuxmusl-x64@1.3.4
+122 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linuxmusl-x64 cache-miss
+123 http cache https://registry.npmmirror.com/@img%2fsharp-libvips-linuxmusl-x64 13ms (cache hit)
+124 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linuxmusl-x64 set size:101274 disposed:false
+125 silly fetch manifest @img/sharp-linux-arm@0.35.5
+126 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-arm cache-miss
+127 http cache https://registry.npmmirror.com/@img%2fsharp-linux-arm 13ms (cache hit)
+128 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-arm set size:121467 disposed:false
+129 silly fetch manifest @img/sharp-linux-arm64@0.35.5
+130 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-arm64 cache-miss
+131 http cache https://registry.npmmirror.com/@img%2fsharp-linux-arm64 11ms (cache hit)
+132 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-arm64 set size:122400 disposed:false
+133 silly fetch manifest @img/sharp-linux-ppc64@0.35.5
+134 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-ppc64 cache-miss
+135 http cache https://registry.npmmirror.com/@img%2fsharp-linux-ppc64 11ms (cache hit)
+136 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-ppc64 set size:84463 disposed:false
+137 silly fetch manifest @img/sharp-linux-riscv64@0.35.5
+138 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-riscv64 cache-miss
+139 http cache https://registry.npmmirror.com/@img%2fsharp-linux-riscv64 12ms (cache hit)
+140 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-riscv64 set size:60511 disposed:false
+141 silly fetch manifest @img/sharp-linux-s390x@0.35.5
+142 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-s390x cache-miss
+143 http cache https://registry.npmmirror.com/@img%2fsharp-linux-s390x 13ms (cache hit)
+144 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-s390x set size:120119 disposed:false
+145 silly fetch manifest @img/sharp-linux-x64@0.35.5
+146 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-x64 cache-miss
+147 http cache https://registry.npmmirror.com/@img%2fsharp-linux-x64 13ms (cache hit)
+148 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-x64 set size:120940 disposed:false
+149 silly fetch manifest @img/sharp-linuxmusl-arm64@0.35.5
+150 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linuxmusl-arm64 cache-miss
+151 http cache https://registry.npmmirror.com/@img%2fsharp-linuxmusl-arm64 11ms (cache hit)
+152 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linuxmusl-arm64 set size:124154 disposed:false
+153 silly fetch manifest @img/sharp-linuxmusl-x64@0.35.5
+154 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linuxmusl-x64 cache-miss
+155 http cache https://registry.npmmirror.com/@img%2fsharp-linuxmusl-x64 11ms (cache hit)
+156 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linuxmusl-x64 set size:122719 disposed:false
+157 silly fetch manifest @img/sharp-webcontainers-wasm32@0.35.5
+158 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-webcontainers-wasm32 cache-miss
+159 http cache https://registry.npmmirror.com/@img%2fsharp-webcontainers-wasm32 12ms (cache hit)
+160 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-webcontainers-wasm32 set size:56480 disposed:false
+161 silly fetch manifest @img/sharp-win32-arm64@0.35.5
+162 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-win32-arm64 cache-miss
+163 http cache https://registry.npmmirror.com/@img%2fsharp-win32-arm64 11ms (cache hit)
+164 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-win32-arm64 set size:78959 disposed:false
+165 silly fetch manifest @img/sharp-win32-ia32@0.35.5
+166 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-win32-ia32 cache-miss
+167 http cache https://registry.npmmirror.com/@img%2fsharp-win32-ia32 11ms (cache hit)
+168 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-win32-ia32 set size:123041 disposed:false
+169 silly fetch manifest @img/sharp-win32-x64@0.35.5
+170 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-win32-x64 cache-miss
+171 http cache https://registry.npmmirror.com/@img%2fsharp-win32-x64 11ms (cache hit)
+172 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-win32-x64 set size:121977 disposed:false
+173 silly placeDep ROOT @img/colour@1.1.0 OK for: sharp@0.35.5 want: ^1.1.0
+174 silly placeDep ROOT @img/sharp-darwin-arm64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+175 silly placeDep ROOT @img/sharp-darwin-x64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+176 silly placeDep ROOT @img/sharp-freebsd-wasm32@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+177 silly placeDep ROOT @img/sharp-libvips-darwin-arm64@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+178 silly placeDep ROOT @img/sharp-libvips-darwin-x64@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+179 silly placeDep ROOT @img/sharp-libvips-linux-arm@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+180 silly placeDep ROOT @img/sharp-libvips-linux-arm64@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+181 silly placeDep ROOT @img/sharp-libvips-linux-ppc64@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+182 silly placeDep ROOT @img/sharp-libvips-linux-riscv64@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+183 silly placeDep ROOT @img/sharp-libvips-linux-s390x@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+184 silly placeDep ROOT @img/sharp-libvips-linux-x64@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+185 silly placeDep ROOT @img/sharp-libvips-linuxmusl-arm64@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+186 silly placeDep ROOT @img/sharp-libvips-linuxmusl-x64@1.3.4 OK for: sharp@0.35.5 want: 1.3.4
+187 silly placeDep ROOT @img/sharp-linux-arm@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+188 silly placeDep ROOT @img/sharp-linux-arm64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+189 silly placeDep ROOT @img/sharp-linux-ppc64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+190 silly placeDep ROOT @img/sharp-linux-riscv64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+191 silly placeDep ROOT @img/sharp-linux-s390x@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+192 silly placeDep ROOT @img/sharp-linux-x64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+193 silly placeDep ROOT @img/sharp-linuxmusl-arm64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+194 silly placeDep ROOT @img/sharp-linuxmusl-x64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+195 silly placeDep ROOT @img/sharp-webcontainers-wasm32@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+196 silly placeDep ROOT @img/sharp-win32-arm64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+197 silly placeDep ROOT @img/sharp-win32-ia32@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+198 silly placeDep ROOT @img/sharp-win32-x64@0.35.5 OK for: sharp@0.35.5 want: 0.35.5
+199 silly fetch manifest @img/sharp-wasm32@0.35.5
+200 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-wasm32 cache-miss
+201 silly fetch manifest @img/sharp-wasm32@0.35.5
+202 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-wasm32 cache-miss
+203 http cache https://registry.npmmirror.com/@img%2fsharp-wasm32 17ms (cache hit)
+204 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-wasm32 set size:117514 disposed:false
+205 http cache https://registry.npmmirror.com/@img%2fsharp-wasm32 364ms (cache hit)
+206 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-wasm32 set size:117514 disposed:false
+207 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-wasm32 dispose
+208 silly placeDep ROOT @img/sharp-wasm32@0.35.5 OK for: @img/sharp-freebsd-wasm32@0.35.5 want: 0.35.5
+209 silly fetch manifest client-only@0.0.1
+210 silly packumentCache full:https://registry.npmmirror.com/client-only cache-miss
+211 http cache https://registry.npmmirror.com/client-only 13ms (cache hit)
+212 silly packumentCache full:https://registry.npmmirror.com/client-only set size:2873 disposed:false
+213 silly placeDep ROOT client-only@0.0.1 OK for: styled-jsx@5.1.6 want: 0.0.1
+214 silly reify mark retired [
+214 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\baseline-browser-mapping',
+214 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\baseline-browser-mapping',
+214 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\baseline-browser-mapping.cmd',
+214 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\baseline-browser-mapping.ps1'
+214 silly reify ]
+215 silly reify mark retired [
+215 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\autoprefixer',
+215 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\autoprefixer',
+215 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\autoprefixer.cmd',
+215 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\autoprefixer.ps1'
+215 silly reify ]
+216 silly reify mark retired [
+216 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\browserslist',
+216 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\browserslist',
+216 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\browserslist.cmd',
+216 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\browserslist.ps1'
+216 silly reify ]
+217 silly reify mark retired [
+217 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\cssesc',
+217 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\cssesc',
+217 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\cssesc.cmd',
+217 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\cssesc.ps1'
+217 silly reify ]
+218 silly reify mark retired [
+218 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\jiti',
+218 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\jiti',
+218 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\jiti.cmd',
+218 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\jiti.ps1'
+218 silly reify ]
+219 silly reify mark retired [
+219 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\next',
+219 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\next',
+219 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\next.cmd',
+219 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\next.ps1'
+219 silly reify ]
+220 silly reify mark retired [
+220 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\nanoid',
+220 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\nanoid',
+220 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\nanoid.cmd',
+220 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\nanoid.ps1'
+220 silly reify ]
+221 silly reify mark retired [
+221 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\resolve',
+221 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\resolve',
+221 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\resolve.cmd',
+221 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\resolve.ps1'
+221 silly reify ]
+222 silly reify mark retired [
+222 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\semver',
+222 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\semver',
+222 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\semver.cmd',
+222 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\semver.ps1'
+222 silly reify ]
+223 silly reify mark retired [
+223 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\sucrase',
+223 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase',
+223 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase.cmd',
+223 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase.ps1',
+223 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase-node',
+223 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase-node.cmd',
+223 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase-node.ps1'
+223 silly reify ]
+224 silly reify mark retired [
+224 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\tailwindcss',
+224 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwind',
+224 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwind.cmd',
+224 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwind.ps1',
+224 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwindcss',
+224 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwindcss.cmd',
+224 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwindcss.ps1'
+224 silly reify ]
+225 silly reify mark retired [
+225 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\typescript',
+225 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsc',
+225 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsc.cmd',
+225 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsc.ps1',
+225 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsserver',
+225 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsserver.cmd',
+225 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsserver.ps1'
+225 silly reify ]
+226 silly reify mark retired [
+226 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\update-browserslist-db',
+226 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\update-browserslist-db',
+226 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\update-browserslist-db.cmd',
+226 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\update-browserslist-db.ps1'
+226 silly reify ]
+227 silly reify moves {
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\baseline-browser-mapping': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.baseline-browser-mapping-NOMbUTjH',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\baseline-browser-mapping': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.baseline-browser-mapping-TXSyPhNF',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\baseline-browser-mapping.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.baseline-browser-mapping.cmd-5yQy4acJ',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\baseline-browser-mapping.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.baseline-browser-mapping.ps1-Gxha0cWq',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\autoprefixer': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.autoprefixer-57kyjrZV',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\autoprefixer': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.autoprefixer-vT7pNnYz',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\autoprefixer.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.autoprefixer.cmd-6ZI3LtNW',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\autoprefixer.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.autoprefixer.ps1-daEqhJox',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\browserslist': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.browserslist-IJeunt6h',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\browserslist': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.browserslist-2AVYMYgy',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\browserslist.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.browserslist.cmd-nFxKDQRm',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\browserslist.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.browserslist.ps1-iVcQamdY',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\cssesc': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.cssesc-8G8QT7e9',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\cssesc': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.cssesc-4Q5ZlLBW',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\cssesc.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.cssesc.cmd-FPTnUUer',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\cssesc.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.cssesc.ps1-fwKAygkr',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\jiti': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.jiti-zuyRgFO7',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\jiti': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.jiti-OK34lcja',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\jiti.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.jiti.cmd-Rlob1pFf',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\jiti.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.jiti.ps1-oN6MGd97',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\next': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.next-F2MYKPw0',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\next': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.next-ksdb58z2',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\next.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.next.cmd-PAdmp0er',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\next.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.next.ps1-5g4Itowa',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\nanoid': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.nanoid-1nCTJO67',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\nanoid': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.nanoid-v3yZWFjj',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\nanoid.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.nanoid.cmd-eLMQzDro',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\nanoid.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.nanoid.ps1-Q6H4CzB1',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\resolve': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.resolve-8Io6cOeI',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\resolve': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.resolve-grGNwAHg',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\resolve.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.resolve.cmd-TZRxNbGZ',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\resolve.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.resolve.ps1-eolCeJLY',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\semver': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.semver-t5GUEmnk',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\semver': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.semver-hSAVOgf5',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\semver.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.semver.cmd-ypGFo4DR',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\semver.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.semver.ps1-w3WxTAIT',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\sucrase': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.sucrase-8fXSpGme',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.sucrase-Iy6Pl6Qi',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.sucrase.cmd-VfWbYDOp',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.sucrase.ps1-SFcaI6Wl',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase-node': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.sucrase-node-k0DIPd6V',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase-node.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.sucrase-node.cmd-Rb6b303I',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\sucrase-node.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.sucrase-node.ps1-iruBSamA',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\tailwindcss': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.tailwindcss-iMXhLD5E',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwind': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tailwind-XShbePBR',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwind.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tailwind.cmd-WaYv6bXo',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwind.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tailwind.ps1-xzbmK4mz',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwindcss': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tailwindcss-AQUr6u5p',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwindcss.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tailwindcss.cmd-39Ifis9O',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tailwindcss.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tailwindcss.ps1-VwuG1Jzj',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\typescript': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.typescript-24fTdz6S',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsc': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tsc-CyuVGQ8L',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsc.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tsc.cmd-rlzCxHVA',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsc.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tsc.ps1-S8WL0hBL',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsserver': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tsserver-CfuPLU1W',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsserver.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tsserver.cmd-yXrUG4Vw',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\tsserver.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.tsserver.ps1-mGZcw13z',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\update-browserslist-db': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.update-browserslist-db-Kx7MIBF6',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\update-browserslist-db': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.update-browserslist-db-GwsgsXB2',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\update-browserslist-db.cmd': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.update-browserslist-db.cmd-qbBcjlnW',
+227 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\update-browserslist-db.ps1': 'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\.bin\\.update-browserslist-db.ps1-5OPSHjGF'
+227 silly reify }
+228 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-win32-ia32
+229 silly reify mark deleted [
+229 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-win32-ia32'
+229 silly reify ]
+230 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-win32-arm64
+231 silly reify mark deleted [
+231 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-win32-arm64'
+231 silly reify ]
+232 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-webcontainers-wasm32
+233 silly reify mark deleted [
+233 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-webcontainers-wasm32'
+233 silly reify ]
+234 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-linuxmusl-x64
+235 silly reify mark deleted [
+235 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-linuxmusl-x64'
+235 silly reify ]
+236 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-linuxmusl-arm64
+237 silly reify mark deleted [
+237 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-linuxmusl-arm64'
+237 silly reify ]
+238 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-linux-x64
+239 silly reify mark deleted [
+239 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-linux-x64'
+239 silly reify ]
+240 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-linux-s390x
+241 silly reify mark deleted [
+241 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-linux-s390x'
+241 silly reify ]
+242 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-linux-riscv64
+243 silly reify mark deleted [
+243 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-linux-riscv64'
+243 silly reify ]
+244 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-linux-ppc64
+245 silly reify mark deleted [
+245 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-linux-ppc64'
+245 silly reify ]
+246 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-linux-arm64
+247 silly reify mark deleted [
+247 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-linux-arm64'
+247 silly reify ]
+248 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-linux-arm
+249 silly reify mark deleted [
+249 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-linux-arm'
+249 silly reify ]
+250 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-linuxmusl-x64
+251 silly reify mark deleted [
+251 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-linuxmusl-x64'
+251 silly reify ]
+252 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-linuxmusl-arm64
+253 silly reify mark deleted [
+253 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-linuxmusl-arm64'
+253 silly reify ]
+254 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-linux-x64
+255 silly reify mark deleted [
+255 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-linux-x64'
+255 silly reify ]
+256 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-linux-s390x
+257 silly reify mark deleted [
+257 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-linux-s390x'
+257 silly reify ]
+258 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-linux-riscv64
+259 silly reify mark deleted [
+259 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-linux-riscv64'
+259 silly reify ]
+260 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-linux-ppc64
+261 silly reify mark deleted [
+261 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-linux-ppc64'
+261 silly reify ]
+262 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-linux-arm64
+263 silly reify mark deleted [
+263 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-linux-arm64'
+263 silly reify ]
+264 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-linux-arm
+265 silly reify mark deleted [
+265 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-linux-arm'
+265 silly reify ]
+266 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-darwin-x64
+267 silly reify mark deleted [
+267 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-darwin-x64'
+267 silly reify ]
+268 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-libvips-darwin-arm64
+269 silly reify mark deleted [
+269 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-libvips-darwin-arm64'
+269 silly reify ]
+270 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-freebsd-wasm32
+271 silly reify mark deleted [
+271 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-freebsd-wasm32'
+271 silly reify ]
+272 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-darwin-x64
+273 silly reify mark deleted [
+273 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-darwin-x64'
+273 silly reify ]
+274 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@img\sharp-darwin-arm64
+275 silly reify mark deleted [
+275 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@img\\sharp-darwin-arm64'
+275 silly reify ]
+276 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@next\swc-win32-arm64-msvc
+277 silly reify mark deleted [
+277 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@next\\swc-win32-arm64-msvc'
+277 silly reify ]
+278 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@next\swc-linux-x64-musl
+279 silly reify mark deleted [
+279 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@next\\swc-linux-x64-musl'
+279 silly reify ]
+280 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@next\swc-linux-x64-gnu
+281 silly reify mark deleted [
+281 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@next\\swc-linux-x64-gnu'
+281 silly reify ]
+282 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@next\swc-linux-arm64-musl
+283 silly reify mark deleted [
+283 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@next\\swc-linux-arm64-musl'
+283 silly reify ]
+284 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@next\swc-linux-arm64-gnu
+285 silly reify mark deleted [
+285 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@next\\swc-linux-arm64-gnu'
+285 silly reify ]
+286 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@next\swc-darwin-x64
+287 silly reify mark deleted [
+287 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@next\\swc-darwin-x64'
+287 silly reify ]
+288 verbose reify failed optional dependency C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle\node_modules\@next\swc-darwin-arm64
+289 silly reify mark deleted [
+289 silly reify   'C:\\Users\\12057\\WorkBuddy\\2026-10-11-07-02-58\\yesnooracle\\node_modules\\@next\\swc-darwin-arm64'
+289 silly reify ]
+290 http cache @img/sharp-wasm32@https://registry.npmmirror.com/@img/sharp-wasm32/-/sharp-wasm32-0.35.5.tgz 1ms (cache hit)
+291 http cache client-only@https://registry.npmmirror.com/client-only/-/client-only-0.0.1.tgz 1ms (cache hit)
+292 http cache @next/swc-win32-x64-msvc@https://registry.npmmirror.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.5.27.tgz 0ms (cache hit)
+293 http cache @img/sharp-win32-x64@https://registry.npmmirror.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.35.5.tgz 0ms (cache hit)
+294 http cache @img/colour@https://registry.npmmirror.com/@img/colour/-/colour-1.1.0.tgz 0ms (cache hit)
+295 http cache @next/env@https://registry.npmmirror.com/@next/env/-/env-15.5.27.tgz 0ms (cache hit)
+296 http cache canvas-confetti@https://registry.npmmirror.com/canvas-confetti/-/canvas-confetti-1.9.4.tgz 0ms (cache hit)
+297 http cache csstype@https://registry.npmmirror.com/csstype/-/csstype-3.2.3.tgz 0ms (cache hit)
+298 silly packumentCache corgi:https://registry.npmmirror.com/update-browserslist-db cache-miss
+299 silly packumentCache corgi:https://registry.npmmirror.com/typescript cache-miss
+300 silly packumentCache corgi:https://registry.npmmirror.com/tailwindcss cache-miss
+301 silly packumentCache corgi:https://registry.npmmirror.com/semver cache-miss
+302 silly packumentCache corgi:https://registry.npmmirror.com/sucrase cache-miss
+303 silly packumentCache corgi:https://registry.npmmirror.com/resolve cache-miss
+304 silly packumentCache corgi:https://registry.npmmirror.com/nanoid cache-miss
+305 silly packumentCache corgi:https://registry.npmmirror.com/next cache-miss
+306 silly packumentCache corgi:https://registry.npmmirror.com/cssesc cache-miss
+307 silly packumentCache corgi:https://registry.npmmirror.com/jiti cache-miss
+308 silly packumentCache corgi:https://registry.npmmirror.com/browserslist cache-miss
+309 silly packumentCache corgi:https://registry.npmmirror.com/baseline-browser-mapping cache-miss
+310 silly packumentCache corgi:https://registry.npmmirror.com/autoprefixer cache-miss
+311 http fetch GET 200 https://registry.npmmirror.com/update-browserslist-db 6381ms (cache miss)
+312 silly packumentCache corgi:https://registry.npmmirror.com/update-browserslist-db set size:15035 disposed:false
+313 http fetch GET 200 https://registry.npmmirror.com/tailwindcss 6842ms (cache miss)
+314 silly packumentCache corgi:https://registry.npmmirror.com/tailwindcss set size:1178236 disposed:false
+315 http fetch GET 200 https://registry.npmmirror.com/resolve 7596ms (cache miss)
+316 silly packumentCache corgi:https://registry.npmmirror.com/resolve set size:21425 disposed:false
+317 http fetch GET 200 https://registry.npmmirror.com/sucrase 7626ms (cache miss)
+318 silly packumentCache corgi:https://registry.npmmirror.com/sucrase set size:24508 disposed:false
+319 http fetch GET 200 https://registry.npmmirror.com/nanoid 8356ms (cache miss)
+320 silly packumentCache corgi:https://registry.npmmirror.com/nanoid set size:32353 disposed:false
+321 http fetch GET 200 https://registry.npmmirror.com/typescript 8620ms (cache miss)
+322 silly packumentCache corgi:https://registry.npmmirror.com/typescript set size:1084774 disposed:false
+323 http fetch GET 200 https://registry.npmmirror.com/cssesc 8735ms (cache miss)
+324 silly packumentCache corgi:https://registry.npmmirror.com/cssesc set size:1184 disposed:false
+325 http fetch GET 200 https://registry.npmmirror.com/browserslist 8747ms (cache miss)
+326 silly packumentCache corgi:https://registry.npmmirror.com/browserslist set size:49150 disposed:false
+327 http fetch GET 200 https://registry.npmmirror.com/baseline-browser-mapping 8755ms (cache miss)
+328 silly packumentCache corgi:https://registry.npmmirror.com/baseline-browser-mapping set size:46797 disposed:false
+329 http fetch GET 200 https://registry.npmmirror.com/semver 8845ms (cache miss)
+330 silly packumentCache corgi:https://registry.npmmirror.com/semver set size:22323 disposed:false
+331 http fetch GET 200 https://registry.npmmirror.com/jiti 9545ms (cache miss)
+332 silly packumentCache corgi:https://registry.npmmirror.com/jiti set size:39121 disposed:false
+333 http fetch GET 200 https://registry.npmmirror.com/autoprefixer 9622ms (cache miss)
+334 silly packumentCache corgi:https://registry.npmmirror.com/autoprefixer set size:52262 disposed:false
+335 http fetch GET 200 https://registry.npmmirror.com/next 11702ms (cache miss)
+336 silly packumentCache corgi:https://registry.npmmirror.com/next set size:2579792 disposed:false
+337 http cache https://cdn.npmmirror.com/packages/update-browserslist-db/1.3.4/update-browserslist-db-1.3.4.tgz 5909ms (cache hit)
+338 http cache https://cdn.npmmirror.com/packages/tailwindcss/3.4.19/tailwindcss-3.4.19.tgz 5409ms (cache hit)
+339 http cache https://cdn.npmmirror.com/packages/resolve/1.22.13/resolve-1.22.13.tgz 4851ms (cache hit)
+340 http cache https://cdn.npmmirror.com/packages/nanoid/3.3.20/nanoid-3.3.20.tgz 4094ms (cache hit)
+341 http cache https://cdn.npmmirror.com/packages/sucrase/3.35.1/sucrase-3.35.1.tgz 4828ms (cache hit)
+342 http cache https://cdn.npmmirror.com/packages/typescript/5.9.3/typescript-5.9.3.tgz 3747ms (cache hit)
+343 http cache https://cdn.npmmirror.com/packages/browserslist/4.29.3/browserslist-4.29.3.tgz 3716ms (cache hit)
+344 http cache https://cdn.npmmirror.com/packages/cssesc/3.0.0/cssesc-3.0.0.tgz 3735ms (cache hit)
+345 http cache https://cdn.npmmirror.com/packages/baseline-browser-mapping/2.11.28/baseline-browser-mapping-2.11.28.tgz 3712ms (cache hit)
+346 http cache https://cdn.npmmirror.com/packages/semver/7.8.5/semver-7.8.5.tgz 3678ms (cache hit)
+347 http cache https://cdn.npmmirror.com/packages/autoprefixer/10.6.1/autoprefixer-10.6.1.tgz 2893ms (cache hit)
+348 http cache https://cdn.npmmirror.com/packages/jiti/1.21.7/jiti-1.21.7.tgz 2979ms (cache hit)
+349 http cache https://cdn.npmmirror.com/packages/next/15.5.27/next-15.5.27.tgz 2397ms (cache hit)
+350 silly ADD node_modules/client-only
+351 silly ADD node_modules/@img/sharp-wasm32
+352 silly ADD node_modules/@img/sharp-win32-x64
+353 silly ADD
+354 silly ADD
+355 silly ADD
+356 silly ADD
+357 silly ADD
+358 silly ADD
+359 silly ADD
+360 silly ADD
+361 silly ADD
+362 silly ADD
+363 silly ADD
+364 silly ADD
+365 silly ADD
+366 silly ADD
+367 silly ADD
+368 silly ADD
+369 silly ADD
+370 silly ADD
+371 silly ADD
+372 silly ADD
+373 silly ADD
+374 silly ADD
+375 silly ADD
+376 silly ADD
+377 silly ADD node_modules/@img/colour
+378 silly ADD node_modules/@next/swc-win32-x64-msvc
+379 silly ADD
+380 silly ADD
+381 silly ADD
+382 silly ADD
+383 silly ADD
+384 silly ADD
+385 silly ADD
+386 silly ADD node_modules/@next/env
+387 silly ADD node_modules/csstype
+388 silly ADD node_modules/canvas-confetti
+389 silly CHANGE node_modules/update-browserslist-db
+390 silly CHANGE node_modules/typescript
+391 silly CHANGE node_modules/tailwindcss
+392 silly CHANGE node_modules/sucrase
+393 silly CHANGE node_modules/semver
+394 silly CHANGE node_modules/resolve
+395 silly CHANGE node_modules/nanoid
+396 silly CHANGE node_modules/next
+397 silly CHANGE node_modules/jiti
+398 silly CHANGE node_modules/cssesc
+399 silly CHANGE node_modules/browserslist
+400 silly CHANGE node_modules/autoprefixer
+401 silly CHANGE node_modules/baseline-browser-mapping
+402 verbose cwd C:\Users\12057\WorkBuddy\2026-10-11-07-02-58\yesnooracle
+403 verbose os Windows_NT 10.0.19044
+404 verbose node v22.22.2
+405 verbose npm  v10.9.7
+406 verbose exit 0
+407 info ok
