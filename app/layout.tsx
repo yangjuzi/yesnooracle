@@ -37,6 +37,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google AdSense — standard verification/ad code, kept as a static
+            tag so it is visible in the HTML source for crawlers and review. */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4461477700183709"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={`${cinzel.variable} ${inter.variable} bg-black text-white`}>
         {children}
 

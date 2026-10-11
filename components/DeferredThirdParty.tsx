@@ -4,10 +4,14 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 
 /**
- * Loads GA + AdSense only after the visitor actually interacts with the page
+ * Loads GA only after the visitor actually interacts with the page
  * (scroll / tap / key), with a timer fallback. Even next/script's lazyOnload
- * lands these scripts inside Lighthouse's TBT measurement window; gating on
+ * lands this script inside Lighthouse's TBT measurement window; gating on
  * interaction keeps first-party content interactive first.
+ *
+ * AdSense is NOT deferred here: the standard async <script> tag lives in the
+ * layout <head> so crawlers and AdSense verification see it in the page
+ * source directly.
  */
 export default function DeferredThirdParty() {
   const [loaded, setLoaded] = useState(false);
@@ -43,13 +47,6 @@ export default function DeferredThirdParty() {
           gtag('config', 'G-FLS1QMH9GM');
         `}
       </Script>
-
-      {/* AdSense */}
-      <Script
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4461477700183709"
-        strategy="afterInteractive"
-        crossOrigin="anonymous"
-      />
     </>
   );
 }
