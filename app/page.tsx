@@ -228,7 +228,7 @@ function ToolCard({
   desc?: string;
 }) {
   return (
-    <div className="tool-card bg-white/5 backdrop-blur-lg rounded-lg p-4 border border-purple-500/20 text-center">
+    <div className="tool-card bg-white/5 rounded-lg p-4 border border-purple-500/20 text-center">
       <div className="text-2xl mb-1.5">{icon}</div>
       <h3 className="font-semibold mb-1.5">{name}</h3>
       {desc && <p className="text-sm text-gray-400 mb-2">{desc}</p>}
@@ -263,13 +263,13 @@ export default function Home() {
       <main>
         <OracleHero />
 
-        <section className="py-16 bg-gradient-to-b from-black via-purple-900/10 to-black">
+        <section className="py-16 bg-gradient-to-b from-black via-purple-900/10 to-black cv-auto">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-cinzel text-center mb-12 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
               How to Get the Best Answers
             </h2>
             <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-5">
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5">
+              <div className="bg-white/5 rounded-lg p-5">
                 <div className="text-purple-400 text-2xl mb-3">🎯</div>
                 <h3 className="text-lg font-semibold mb-2">Be Specific</h3>
                 <p className="text-gray-400 text-sm">
@@ -277,7 +277,7 @@ export default function Home() {
                   this job offer?&quot; Clear questions get clearer guidance.
                 </p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5">
+              <div className="bg-white/5 rounded-lg p-5">
                 <div className="text-purple-400 text-2xl mb-3">🧘</div>
                 <h3 className="text-lg font-semibold mb-2">Focus Your Intent</h3>
                 <p className="text-gray-400 text-sm">
@@ -285,7 +285,7 @@ export default function Home() {
                   intention matter in divination.
                 </p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5">
+              <div className="bg-white/5 rounded-lg p-5">
                 <div className="text-purple-400 text-2xl mb-3">💭</div>
                 <h3 className="text-lg font-semibold mb-2">Trust Your Reaction</h3>
                 <p className="text-gray-400 text-sm">
@@ -293,7 +293,7 @@ export default function Home() {
                   you truly want. Pay attention to it.
                 </p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5">
+              <div className="bg-white/5 rounded-lg p-5">
                 <div className="text-purple-400 text-2xl mb-3">🕰️</div>
                 <h3 className="text-lg font-semibold mb-2">Timing Matters</h3>
                 <p className="text-gray-400 text-sm">
@@ -305,13 +305,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 bg-black">
+        <section className="py-16 bg-black cv-auto">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-cinzel text-center mb-12 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
               What Our Users Say
             </h2>
             <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5 text-center">
+              <div className="bg-white/5 rounded-lg p-5 text-center">
                 <div className="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
                 <p className="text-gray-300 mb-4 italic">
                   &quot;The oracle helped me make the best decision of my life.
@@ -319,7 +319,7 @@ export default function Home() {
                 </p>
                 <p className="text-purple-400 font-semibold">- Sarah M.</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5 text-center">
+              <div className="bg-white/5 rounded-lg p-5 text-center">
                 <div className="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
                 <p className="text-gray-300 mb-4 italic">
                   &quot;I love how it makes me think about what I really want.
@@ -327,7 +327,7 @@ export default function Home() {
                 </p>
                 <p className="text-purple-400 font-semibold">- David L.</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5 text-center">
+              <div className="bg-white/5 rounded-lg p-5 text-center">
                 <div className="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
                 <p className="text-gray-300 mb-4 italic">
                   &quot;Simple, beautiful, and surprisingly insightful. I use it
@@ -339,7 +339,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 bg-black">
+        <section className="py-16 bg-black cv-auto">
           <div className="container mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-cinzel mb-4 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
@@ -397,7 +397,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="faq" className="py-16 bg-black">
+        <section id="faq" className="py-16 bg-black cv-auto">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-cinzel text-center mb-3 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
               Sacred Knowledge
@@ -424,7 +424,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="max-w-3xl mx-auto mt-12 bg-white/5 backdrop-blur-lg rounded-lg p-6">
+            <div className="max-w-3xl mx-auto mt-12 bg-white/5 rounded-lg p-6">
               <h3 className="text-lg font-semibold mb-6 text-center text-purple-400">
                 Tips for Better Oracle Sessions
               </h3>

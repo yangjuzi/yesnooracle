@@ -192,32 +192,21 @@
   }
 }
 
-/* ---- Option A: glowing ask card ---- */
+/* ---- Option A: glowing ask card ----
+   Static glow: an infinite box-shadow animation repaints every frame and
+   is a major TBT cost on low-end mobile, so the card only glows on focus. */
 .glow-card {
   border: 1px solid rgba(196, 181, 253, 0.45);
   box-shadow: 0 0 40px rgba(147, 112, 219, 0.4),
     0 0 80px rgba(147, 112, 219, 0.2);
-  animation: card-breathe 5s ease-in-out infinite;
   transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
 .glow-card:focus-within {
   border-color: rgba(216, 180, 254, 0.8);
-  animation: none;
   box-shadow: 0 0 55px rgba(168, 85, 247, 0.6),
     0 0 110px rgba(168, 85, 247, 0.3);
 }
-@keyframes card-breathe {
-  0%, 100% {
-    box-shadow: 0 0 40px rgba(147, 112, 219, 0.4),
-      0 0 80px rgba(147, 112, 219, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 55px rgba(147, 112, 219, 0.55),
-      0 0 110px rgba(147, 112, 219, 0.3);
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
-  .glow-card { animation: none; }
   .crystal-ball--overlap { animation: none; }
 }

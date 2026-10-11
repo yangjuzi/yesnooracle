@@ -74,7 +74,7 @@ export default function CrystalBallTool() {
   };
 
   return (
-    <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+    <div className="bg-white/5 rounded-lg p-8 shadow-2xl mb-8">
       <div className="text-center mb-8">
         <div className="relative inline-block">
           <div

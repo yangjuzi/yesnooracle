@@ -285,7 +285,7 @@ export default function OracleHero() {
             </div>
           </div>
 
-        <div className="glow-card relative z-10 w-full bg-white/5 backdrop-blur-lg rounded-lg p-4 pt-14">
+        <div className="glow-card relative z-10 w-full bg-white/5 rounded-lg p-4 pt-14">
           <textarea
             ref={inputRef}
             value={question}
@@ -325,7 +325,7 @@ export default function OracleHero() {
                 <p className="text-gray-300 text-sm mb-3">
                   Share your oracle wisdom:
                 </p>
-                <div className="flex justify-center gap-3">
+                <div className="flex flex-wrap justify-center gap-3">
                   <button
                     onClick={shareToTwitter}
                     className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2"
@@ -374,7 +374,7 @@ export default function OracleHero() {
         <TopQuestions />
 
         <div className="max-w-4xl mx-auto mt-8 grid md:grid-cols-2 gap-4 items-start">
-          <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5">
+          <div className="bg-white/5 rounded-lg p-5">
           <h3 className="text-lg font-cinzel font-semibold mb-3 text-center bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
             Daily Inspiration
           </h3>
@@ -389,7 +389,7 @@ export default function OracleHero() {
           </div>
         </div>
 
-          <div className="bg-white/5 backdrop-blur-lg rounded-lg p-5">
+          <div className="bg-white/5 rounded-lg p-5">
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-lg font-cinzel font-semibold bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 text-transparent bg-clip-text">
               Recent Questions

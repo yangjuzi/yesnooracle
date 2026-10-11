@@ -37,7 +37,7 @@ export default function CrystalBallPage() {
             <CrystalBallTool />
 
             {/* Mystical Elements */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
               <h2 className="text-2xl font-cinzel text-center mb-8 text-indigo-400">
                 The Art of Crystal Gazing
               </h2>
@@ -73,7 +73,7 @@ export default function CrystalBallPage() {
               What is Crystal Ball Scrying?
             </h2>
 
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl mb-8">
               <p className="text-lg text-gray-300 mb-6">
                 Crystal ball scrying, also known as crystallomancy, is an
                 ancient form of divination that involves gazing into a crystal
@@ -130,7 +130,7 @@ export default function CrystalBallPage() {
               Ancient Origins of Crystal Ball Divination
             </h2>
 
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl mb-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-2xl font-semibold mb-4 text-indigo-300">
@@ -172,7 +172,7 @@ export default function CrystalBallPage() {
               </div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
               <h3 className="text-2xl font-semibold mb-6 text-indigo-300 text-center">
                 📜 Historical Timeline
               </h3>
@@ -223,7 +223,7 @@ export default function CrystalBallPage() {
             </h2>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-2xl font-semibold mb-4 text-indigo-300">
                   💎 Clear Quartz Crystal
                 </h3>
@@ -239,7 +239,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-2xl font-semibold mb-4 text-indigo-300">
                   🌙 Moonstone Crystal
                 </h3>
@@ -254,7 +254,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-2xl font-semibold mb-4 text-indigo-300">
                   🔮 Amethyst Crystal
                 </h3>
@@ -270,7 +270,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-2xl font-semibold mb-4 text-indigo-300">
                   🌟 Rose Quartz Crystal
                 </h3>
@@ -285,7 +285,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-2xl font-semibold mb-4 text-indigo-300">
                   🖤 Black Obsidian
                 </h3>
@@ -300,7 +300,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-2xl font-semibold mb-4 text-indigo-300">
                   🌈 Fluorite Crystal
                 </h3>
@@ -327,7 +327,7 @@ export default function CrystalBallPage() {
               Complete Guide to Crystal Ball Reading
             </h2>
 
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl mb-8">
               <h3 className="text-2xl font-semibold mb-6 text-indigo-300">
                 🎯 Step-by-Step Instructions
               </h3>
@@ -390,7 +390,7 @@ export default function CrystalBallPage() {
               </div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
               <h3 className="text-2xl font-semibold mb-6 text-indigo-300">
                 💡 Tips for Better Readings
               </h3>
@@ -436,7 +436,7 @@ export default function CrystalBallPage() {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <div className="text-4xl mb-4 text-center">💕</div>
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   Love &amp; Relationships
@@ -452,7 +452,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <div className="text-4xl mb-4 text-center">💼</div>
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   Career &amp; Business
@@ -468,7 +468,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <div className="text-4xl mb-4 text-center">🏠</div>
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   Family &amp; Home
@@ -484,7 +484,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <div className="text-4xl mb-4 text-center">🌱</div>
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   Personal Growth
@@ -500,7 +500,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <div className="text-4xl mb-4 text-center">💰</div>
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   Financial Matters
@@ -517,7 +517,7 @@ export default function CrystalBallPage() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <div className="text-4xl mb-4 text-center">🌟</div>
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   Life Decisions
@@ -547,7 +547,7 @@ export default function CrystalBallPage() {
             </h2>
 
             <div className="space-y-6">
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   ❓ How accurate are crystal ball readings?
                 </h3>
@@ -561,7 +561,7 @@ export default function CrystalBallPage() {
                 </p>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   ❓ Can anyone learn to read crystal balls?
                 </h3>
@@ -575,7 +575,7 @@ export default function CrystalBallPage() {
                 </p>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   ❓ What should I do if I don&apos;t see anything in the crystal
                   ball?
@@ -590,7 +590,7 @@ export default function CrystalBallPage() {
                 </p>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   ❓ How often should I consult the crystal ball?
                 </h3>
@@ -604,7 +604,7 @@ export default function CrystalBallPage() {
                 </p>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   ❓ Are crystal ball readings safe?
                 </h3>
@@ -618,7 +618,7 @@ export default function CrystalBallPage() {
                 </p>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+              <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
                 <h3 className="text-xl font-semibold mb-4 text-indigo-300">
                   ❓ Can crystal ball readings predict the future?
                 </h3>
@@ -647,7 +647,7 @@ export default function CrystalBallPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <a
                 href="/tarot-reader.html"
-                className="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
+                className="bg-white/5 rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
               >
                 <div className="text-4xl mb-4 text-center group-hover:scale-110 transition">
                   🃏
@@ -663,7 +663,7 @@ export default function CrystalBallPage() {
 
               <a
                 href="/yes-no-astrology.html"
-                className="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
+                className="bg-white/5 rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
               >
                 <div className="text-4xl mb-4 text-center group-hover:scale-110 transition">
                   ⭐
@@ -679,7 +679,7 @@ export default function CrystalBallPage() {
 
               <a
                 href="/pendulum"
-                className="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
+                className="bg-white/5 rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
               >
                 <div className="text-4xl mb-4 text-center group-hover:scale-110 transition">
                   🪬
@@ -695,7 +695,7 @@ export default function CrystalBallPage() {
 
               <a
                 href="/8-ball.html"
-                className="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
+                className="bg-white/5 rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
               >
                 <div className="text-4xl mb-4 text-center group-hover:scale-110 transition">
                   🎱
@@ -711,7 +711,7 @@ export default function CrystalBallPage() {
 
               <a
                 href="/fortune-cookie.html"
-                className="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
+                className="bg-white/5 rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
               >
                 <div className="text-4xl mb-4 text-center group-hover:scale-110 transition">
                   🥠
@@ -727,7 +727,7 @@ export default function CrystalBallPage() {
 
               <a
                 href="/mood-ring.html"
-                className="bg-white/5 backdrop-blur-lg rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
+                className="bg-white/5 rounded-lg p-6 shadow-2xl hover:bg-white/10 transition group"
               >
                 <div className="text-4xl mb-4 text-center group-hover:scale-110 transition">
                   💍

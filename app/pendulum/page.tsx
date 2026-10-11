@@ -33,7 +33,7 @@ export default function PendulumPage() {
           <div className="max-w-4xl mx-auto">
             <PendulumTool />
 
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
               <h2 className="text-2xl font-cinzel text-center mb-8 text-violet-400">
                 The Art of Pendulum Divination
               </h2>

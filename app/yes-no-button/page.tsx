@@ -35,7 +35,7 @@ export default function YesNoButtonPage() {
             <YesNoButtonTool />
 
             {/* How to Use */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl mb-8">
               <h2 className="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">
                 How to Use the Yes No Button
               </h2>
@@ -62,7 +62,7 @@ export default function YesNoButtonPage() {
             </div>
 
             {/* When to Use */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl mb-8">
               <h2 className="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">
                 Perfect For These Situations
               </h2>
@@ -98,7 +98,7 @@ export default function YesNoButtonPage() {
             </div>
 
             {/* Example Questions */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl mb-8">
               <h2 className="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">
                 Example Questions
               </h2>
@@ -129,7 +129,7 @@ export default function YesNoButtonPage() {
             </div>
 
             {/* FAQ */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl mb-8">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl mb-8">
               <h2 className="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">
                 Frequently Asked Questions
               </h2>
@@ -175,7 +175,7 @@ export default function YesNoButtonPage() {
             </div>
 
             {/* Related Tools */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+            <div className="bg-white/5 rounded-lg p-8 shadow-2xl">
               <h2 className="text-2xl font-cinzel font-semibold mb-6 text-center text-purple-400">
                 Try Our Other Tools
               </h2>
