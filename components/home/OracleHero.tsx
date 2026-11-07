@@ -259,7 +259,7 @@ export default function OracleHero() {
         </h1>
         <p className="text-base md:text-lg mb-24 text-gray-300 max-w-3xl mx-auto">
           Get instant answers to your most pressing questions. Our mystical
-          oracle provides accurate yes or no guidance to help you make better
+          oracle provides instant yes or no answers to help you explore your
           decisions.
         </p>
 
@@ -368,6 +368,12 @@ export default function OracleHero() {
               </div>
             </div>
           )}
+
+          <p className="mt-4 text-xs text-gray-500">
+            For reflection and entertainment only. Results are randomly
+            generated in your browser — not a prediction or professional
+            advice.
+          </p>
         </div>
         </div>
 

@@ -18,6 +18,22 @@ const nextConfig: NextConfig = {
         destination: "/crystal-ball",
         permanent: true,
       },
+      // Blog articles moved into the /blog/ subdirectory with keyword slugs.
+      {
+        source: "/blog-2.html",
+        destination: "/blog/ask-better-questions.html",
+        permanent: true,
+      },
+      {
+        source: "/blog-4.html",
+        destination: "/blog/divination-personal-growth.html",
+        permanent: true,
+      },
+      {
+        source: "/blog-5.html",
+        destination: "/blog/yes-no-tools-comparison.html",
+        permanent: true,
+      },
     ];
   },
 };

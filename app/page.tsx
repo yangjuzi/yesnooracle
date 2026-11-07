@@ -4,9 +4,9 @@ import Footer from "@/components/Footer";
 import OracleHero from "@/components/home/OracleHero";
 
 export const metadata: Metadata = {
-  title: "Free Online Yes No Oracle | Get Accurate Yes or No Answers",
+  title: "Free Online Yes No Oracle | Get Instant Yes or No Answers",
   description:
-    "Get instant, accurate yes-or-no answers with our free online oracle. Simply type your question to make quick decisions and receive immediate guidance.",
+    "Get instant yes-or-no answers with our free online oracle. Simply type your question to make quick decisions and receive immediate guidance.",
   keywords:
     "yes no oracle, decision making, online oracle, yes or no questions, instant answers, free oracle, decision tool, mystical guidance",
   authors: [{ name: "Yes No Oracle" }],
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yes No Oracle - Free Online Yes or No Oracle",
     description:
-      "Get instant accurate yes or no answers to your questions with our free online oracle. Make better decisions with our mystical yes or no oracle tool.",
+      "Get instant yes or no answers to your questions with our free online oracle. Make better decisions with our mystical yes or no oracle tool.",
     type: "website",
     url: "/",
     siteName: "Yes No Oracle",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yes No Oracle - Free Online Decision Making Tool",
     description:
-      "Get instant accurate yes or no answers to your questions with our free online oracle.",
+      "Get instant yes or no answers to your questions with our free online oracle.",
     images: ["https://yesnooracle.dev/icon-512.png"],
   },
   icons: {
@@ -165,6 +165,10 @@ const randomTools = [
 
 const faqs = [
   {
+    q: "Should I make important decisions based on this?",
+    a: "The oracle is a fun tool for reflection, not a replacement for careful thinking. Use it to explore your feelings or break through indecision, but always consider the real-world consequences of your choices. Trust your judgment, not random chance.",
+  },
+  {
     q: "How accurate is the oracle?",
     a: "The oracle provides random yes/no answers, so it's not about predicting the future. Think of it as a digital coin flip that helps you explore your own feelings about a decision. Sometimes just asking the question and seeing an answer helps clarify what you really want.",
   },
@@ -174,15 +178,11 @@ const faqs = [
   },
   {
     q: "Is this just random chance?",
-    a: "Yes, the answers are randomly generated. But here's the interesting part - your reaction to the answer often reveals what you were hoping to hear. If you get \u201cNo\u201d and feel disappointed, that tells you something important about what you actually want.",
+    a: "Yes, the answers are randomly generated. But here's the interesting part - your reaction to the answer often reveals what you were hoping to hear. If you get “No” and feel disappointed, that tells you something important about what you actually want.",
   },
   {
     q: "Can I ask the same question multiple times?",
     a: "You can, but it's usually not helpful. If you keep asking until you get the answer you want, you're probably ignoring your own instincts. The first answer is often the most revealing because it shows your immediate reaction.",
-  },
-  {
-    q: "Should I make important decisions based on this?",
-    a: "The oracle is a fun tool for reflection, not a replacement for careful thinking. Use it to explore your feelings or break through indecision, but always consider the real-world consequences of your choices. Trust your judgment, not random chance.",
   },
   {
     q: "What if I don't like the answer?",

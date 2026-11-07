@@ -163,6 +163,10 @@ export default function PendulumTool() {
               Ask Another Question
             </button>
           </div>
+          <p className="text-xs text-gray-500 mt-4">
+            For reflection and entertainment only. Results are randomly
+            generated in your browser — not a prediction or professional advice.
+          </p>
         </div>
       )}
     </div>

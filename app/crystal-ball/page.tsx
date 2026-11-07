@@ -480,7 +480,7 @@ export default function CrystalBallPage() {
                 </p>
                 <div className="text-sm text-gray-400">
                   <strong>Common Questions:</strong> Should we move? How can I
-                  improve family harmony? What&apos;s best for my children?
+                  improve family harmony?
                 </div>
               </div>
 
@@ -511,8 +511,8 @@ export default function CrystalBallPage() {
                   for prosperity and warn of financial challenges.
                 </p>
                 <div className="text-sm text-gray-400">
-                  <strong>Common Questions:</strong> Will this investment pay
-                  off? How can I improve my finances? What financial
+                  <strong>Common Questions:</strong> Should I wait before making
+                  this decision? How can I improve my finances? What financial
                   opportunities are coming?
                 </div>
               </div>
@@ -632,6 +632,24 @@ export default function CrystalBallPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Disclaimer Section */}
+      <section className="py-16 bg-black">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto bg-white/5 rounded-lg p-8 shadow-2xl">
+            <h2 className="text-xl font-semibold mb-4 text-indigo-300 text-center">
+              ⚠️ Disclaimer
+            </h2>
+            <p className="text-gray-400 text-sm text-center leading-relaxed">
+              This tool is for entertainment and self-reflection. Results are
+              generated randomly in your browser and are not predictions of the
+              future, nor medical, legal, financial or relationship advice. For
+              decisions that matter, rely on qualified professional advice and
+              your own judgement.
+            </p>
           </div>
         </div>
       </section>
